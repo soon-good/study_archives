@@ -156,7 +156,17 @@ googogo
 
 
 
-# docker에 jar 파일 복사
+### 접속
+
+자, 이제 Spring Boot App을 구동하고 나서  
+
+- http://localhost:80/hello 에  
+
+접속하면 gogogo 라는 문자열이 보일 것이다. 이제 이 spring boot app을 Nginx컨테이너로 배포해야 한다. Nginx컨테이너는 현재 개발 PC의 9993포트로 연결되어 있다는 것을 기억하고 있자.
+
+
+
+# 컨테이너에 jar 파일 복사
 
   
 
@@ -169,6 +179,15 @@ total 21668
 drwxrwxrwt 1 root root        4096 Dec  1 13:31 .
 drwxr-xr-x 1 root root        4096 Dec  1 13:31 ..
 -rw-r--r-- 1  501 dialout 22177902 Dec  1 13:13 deploy-0.0.1-SNAPSHOT.jar
+
+# nginx.conf 파일이 어느곳에 존재하는지 확인
+root@4c50c0a1c8d0:/# find / -name nginx.conf
+root@4c50c0a1c8d0:/etc/nginx# apt-get install vim
+root@4c50c0a1c8d0:/etc/nginx# vim nginx.conf
+root@4c50c0a1c8d0:/etc/nginx# mv nginx.conf nginx.conf.org
+
+
+
 ```
 
 
