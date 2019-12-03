@@ -180,12 +180,41 @@ drwxrwxrwt 1 root root        4096 Dec  1 13:31 .
 drwxr-xr-x 1 root root        4096 Dec  1 13:31 ..
 -rw-r--r-- 1  501 dialout 22177902 Dec  1 13:13 deploy-0.0.1-SNAPSHOT.jar
 
+root@8fe6e9d95177:/tmp# wget https://download.java.net/openjdk/jdk10/ri/openjdk-10+44_linux-x64_bin_ri.tar.gz
+
+root@8fe6e9d95177:/tmp# mv openjdk-10+44_linux-x64_bin_ri.tar.gz /usr/local/src/
+
+root@8fe6e9d95177:/tmp# cd /usr/local/src
+
+root@5aff70499779:/usr/local/src# tar xvzf openjdk-10+44_linux-x64_bin_ri.tar.gz
+
+root@5aff70499779:/usr/local/src# mv /usr/local/src/jdk-10 /usr/local/java
+
+root@5aff70499779:/usr/local/src# vim /etc/profile
+export JAVA_HOME=/usr/local/java/
+export JRE_HOME=/usr/local/java/jre/
+export CLASSPATH=/usr/local/java/lib/tools.jar
+export PATH=$PATH:$JAVA_HOME/bin:$JRE_HOME/bin:$CLASSPATH
+:wq
+
+root@5aff70499779:/usr/local/src # source /etc/profile
+root@5aff70499779:/usr/local/src # java -version
+root@5aff70499779:/usr/local/src # cd /tmp
+root@5aff70499779:/tmp # java -jar deploy-0.0.1-SNAPSHOT.jar &
+
+# TODO
+  1 java - alternative 관련 내용 추가
+  2 service로 등록해서 백그라운드로 돌도록 하자.
+  3 nginx.conf
+
 # nginx.conf 파일이 어느곳에 존재하는지 확인
 root@4c50c0a1c8d0:/# find / -name nginx.conf
-root@4c50c0a1c8d0:/etc/nginx# apt-get install vim
+root@4c50c0a1c8d0:/etc/nginx# apt-get update 
+root@4c50c0a1c8d0:/etc/nginx# apt-get install vim 
+
 root@4c50c0a1c8d0:/etc/nginx# vim nginx.conf
 root@4c50c0a1c8d0:/etc/nginx# mv nginx.conf nginx.conf.org
-
+root@5aff70499779:/usr/local/src#
 
 
 ```
