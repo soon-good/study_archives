@@ -203,6 +203,7 @@ root@5aff70499779:/usr/local/src # cd /tmp
 root@5aff70499779:/tmp # java -jar deploy-0.0.1-SNAPSHOT.jar &
 
 # TODO
+  0 apt-get update, install wget, vim : Dockerfile 내에 기술할 것
   1 java - alternative 관련 내용 추가
   2 service로 등록해서 백그라운드로 돌도록 하자.
   3 nginx.conf
@@ -212,8 +213,8 @@ root@4c50c0a1c8d0:/# find / -name nginx.conf
 root@4c50c0a1c8d0:/etc/nginx# apt-get update 
 root@4c50c0a1c8d0:/etc/nginx# apt-get install vim 
 
-root@4c50c0a1c8d0:/etc/nginx# vim nginx.conf
 root@4c50c0a1c8d0:/etc/nginx# mv nginx.conf nginx.conf.org
+root@4c50c0a1c8d0:/etc/nginx# vim nginx.conf
 root@5aff70499779:/usr/local/src#
 
 
@@ -221,4 +222,67 @@ root@5aff70499779:/usr/local/src#
 
 
 
+# nginx.conf
+
+
+
+```json
+
+user  nginx;
+worker_processes  1;
+
+error_log  /var/log/nginx/error.log warn;
+pid        /var/run/nginx.pid;
+
+
+events {
+    worker_connections  1024;
+}
+
+
+http {
+    include       /etc/nginx/mime.types;
+    default_type  application/octet-stream;
+
+    log_format  main  '$remote_addr - $remote_user [$time_local] "$request" '
+                      '$status $body_bytes_sent "$http_referer" '
+                      '"$http_user_agent" "$http_x_forwarded_for"';
+
+    access_log  /var/log/nginx/access.log  main;
+
+    sendfile        on;
+    #tcp_nopush     on;
+
+    keepalive_timeout  65;
+
+    #gzip  on;
+
+    include /etc/nginx/conf.d/*.conf;
+
+server {
+    listen 80 default_server;
+    listen [::]:80 default_server;
+    server_name _;
+    root /usr/share/nginx/html;
+    
+    # Load configuration files for the default server block.
+    include /etc/nginx/default.d/*.conf;
+
+    location /hello {
+        proxy_pass http://localhost:9998/hello;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Powarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header Host $http_host;
+    }
+}
+
+}
+
+```
+
+
+
 나머지는 내일하자... 시간이 ... ㄷㄷㄷ
+
+
+
