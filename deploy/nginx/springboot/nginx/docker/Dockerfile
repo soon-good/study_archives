@@ -105,9 +105,7 @@ RUN cd /tmp
 #RUN mv openjdk-10+44_linux-x64_bin_ri.tar.gz /usr/local/src/
 
 COPY ./jdk-10 /usr/local/src/jdk-10
-
 RUN cd /usr/local/src
-RUN ls /usr/local/src
 #RUN tar xvzf /usr/local/src/openjdk-10+44_linux-x64_bin_ri.tar.gz
 RUN mv /usr/local/src/jdk-10 /usr/local/java
 
