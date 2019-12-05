@@ -103,7 +103,7 @@ RUN cd /tmp
 RUN wget https://download.java.net/openjdk/jdk10/ri/openjdk-10+44_linux-x64_bin_ri.tar.gz
 RUN mv openjdk-10+44_linux-x64_bin_ri.tar.gz /usr/local/src/
 RUN cd /usr/local/src
-RUN tar xvzf openjdk-10+44_linux-x64_bin_ri.tar.gz
+RUN tar xvzf /usr/local/src/openjdk-10+44_linux-x64_bin_ri.tar.gz
 RUN mv /usr/local/src/jdk-10 /usr/local/java
 
 RUN echo "export JAVA_HOME=/usr/local/java/" >> /etc/profile
