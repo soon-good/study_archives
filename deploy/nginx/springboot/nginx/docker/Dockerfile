@@ -100,10 +100,15 @@ RUN apt-get -y update
 RUN apt-get -y install wget
 RUN apt-get -y install vim
 RUN cd /tmp
-RUN wget https://download.java.net/openjdk/jdk10/ri/openjdk-10+44_linux-x64_bin_ri.tar.gz
-RUN mv openjdk-10+44_linux-x64_bin_ri.tar.gz /usr/local/src/
+
+#RUN wget https://download.java.net/openjdk/jdk10/ri/openjdk-10+44_linux-x64_bin_ri.tar.gz
+#RUN mv openjdk-10+44_linux-x64_bin_ri.tar.gz /usr/local/src/
+
+COPY ./jdk-10 /usr/local/src/jdk-10
+
 RUN cd /usr/local/src
-RUN tar xvzf openjdk-10+44_linux-x64_bin_ri.tar.gz
+RUN ls /usr/local/src
+#RUN tar xvzf /usr/local/src/openjdk-10+44_linux-x64_bin_ri.tar.gz
 RUN mv /usr/local/src/jdk-10 /usr/local/java
 
 RUN echo "export JAVA_HOME=/usr/local/java/" >> /etc/profile
@@ -111,7 +116,8 @@ RUN echo "export JRE_HOME=/usr/local/java/jre/" >> /etc/profile
 RUN echo "export CLASSPATH=/usr/local/java/lib/tools.jar" >> /etc/profile
 RUN echo "PATH=$PATH:$JAVA_HOME/bin:$JRE_HOME/bin:$CLASSPATH" >> /etc/profile
 
-RUN source /etc/profile
+#RUN source /etc/profile
+CMD ["/etc/profile"]
 RUN java -version
 COPY ../../deploy/target/deploy-0.0.1-SNAPSHOT.jar /tmp
 
