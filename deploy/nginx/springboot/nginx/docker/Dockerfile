@@ -116,11 +116,15 @@ RUN echo "PATH=$PATH:$JAVA_HOME/bin:$JRE_HOME/bin:$CLASSPATH" >> /etc/profile
 
 #RUN source /etc/profile
 CMD ["/etc/profile"]
-RUN java -version
-COPY ../../deploy/target/deploy-0.0.1-SNAPSHOT.jar /tmp
-
-RUN chmod+x /tmp/deploy-0.0.1-SNAPSHOT.jar
-RUN java -jar deploy-0.0.1-SNAPSHOT.jar &
+#RUN java -version
+CMD ["java", "-version"]
+#COPY ../../deploy/target/deploy-0.0.1-SNAPSHOT.jar /tmp
+COPY deploy-0.0.1-SNAPSHOT.jar /tmp
+COPY nginx.conf /etc/nginx/nginx.conf
+CMD ["chmod", "+x", "/tmp/deploy-0.0.1-SNAPSHOT.jar"]
+CMD ["java", "-jar", "/tmp/deploy-0.0.1-SNAPSHOT.jar", "&"]
+#RUN chmod+x /tmp/deploy-0.0.1-SNAPSHOT.jar
+#RUN java -jar deploy-0.0.1-SNAPSHOT.jar &
 
 EXPOSE 80
 
