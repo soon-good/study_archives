@@ -193,7 +193,43 @@ public final class CaseInsensitiveString
 
 
 
+ex) 클래스의 핵심필드가 여러개일때 비교를 중첩으로 할 경우에 대한 예제  
 
+areaCode로 비교
+
+- -> areaCode가 같으면 prefix로 비교
+- -> prefix가 같으면 lineNum으로 비교
+
+```java
+public int compareTo(PhoneNumber pn){
+  int result = Short.compare(areaCode, pn.areaCode);
+  if(result == 0){
+    result = Short.compare(prefix, pn.prefix);
+    if(result == 0){
+      result = Short.compare(lineNum, pn.lineNum);
+    }
+  }
+}
+```
+
+자바 8에서는 이런 코드를 Comparator 인터페이스를 일련의 비교자 생성 메서드(comparator construction method)와 팀을 꾸려 메서드 연쇄방식으로 비교자를 생성할수 있게 되었다. (참고로, 자바의 정적 임포트(static import) 기능을 활용하면 정적 비교자 생성메서드들을 이름만으로 사용할 수 있어 코드가 더 깔끔해진다.)  
+
+이 비교자들을 Comparable 인터페이스가 원하는 compareTo를 구현하는데에 비교적 멋있게 활용할 수 있다. java8의 비교자 생성메서드 활용방식은 약간의 성능저하가 뒤따른다. (PhoneNumber인스턴스의 정렬된 배열에 적용해보니 내컴퓨터에서 10%정도 느려졌다.)
+
+  
+
+ex) 비교자 생성 메서드를 활용한 비교자
+
+```java
+private static final Comparator<PhoneNumber> COMPARATOR = 
+  comparingInt((PhoneNumber pn) -> pn.areaCode)
+  	.thenComparingInt(pn->pn.prefix)
+  	.thenComparingInt(pn->pn.lineNum);
+
+public int compareTo(PhoneNumber pn){
+  return COMPARTOR.compare(this, pn);
+}
+```
 
 
 
