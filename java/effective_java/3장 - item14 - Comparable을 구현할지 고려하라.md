@@ -66,31 +66,9 @@ public class WordList{
 
 타입이 다른 주어지면 간단히 ClassCastException을 던져도 되며 대부분 그렇게 한다. 물론 이 규약에서는 다른 타입 사이의 비교도 허용하는데, 보통은 비교할 객체들이 구현한 공통 인터페이스를 매개로 이뤄진다.  
 
-
-
-# Comparable을 사용하는 경우
-
-본문 내용
-
-> Java의 주요 컬렉션 클래스인 TreeSet, TreeMap, 검색과 정렬 알고리즘을 활용하는 유틸리티 클래스인 Collections, Arrays의 경우 compareTo 규약을 사용하고 있다. 따라서 hashCode 규약을 지키지 못하면 해시를 사용하는 클래스와 어울리지 못하듯, compareTo 규약을 지키지 못하면 비교를 활용하는 클래스와 어울리지 못한다.  
-
   
 
-## 실제 사용 예를 들어보자
-
-간단한 비교연산, 대소판별 만 구현한다면 굳이 Comparable을 구현하여 사용하지 않아도 된다. 하지만 필요한 경우를 예를 들어본다면
-
-- 연도별 데이터를 가져온 후 시간 순, 또는 id 순, 가나다 순, 알파벳 순으로 정렬하는 경우를 예로 들어볼 수 있을 듯 하다.
-- 어떤 순차적인 수열과 같은 데이터를 정렬해야 하는 경우
-- 등등 여러가지 경우가 있겠으나, 더 이상 생각해내지 못하고 있다. 조금씩 채워나가자.
-
-
-
-아래(compareTo규약(규칙))에서 언급하고 있는데 컬렉션들은 동치성을 비교할 때에도 equals의 규약을 따른다고 되어있지만, 놀랍게도 정렬된 컬렉션들은 동치성을 비교할 때 실상은 equals 대신 compareTo를 사용한다고 한다.  
-
-아주 큰 문제는 아니지만 주의해야 한다.  
-
-# compareTo 메서드 규칙
+# compareTo() 의 대/소 판단 규칙
 
 동치성 등에 대해 조금전 살펴봤던 sigmoid 함수에 대한 규칙들을 다시 풀어서 쓰고 있다. 이 정도면 했던말 반복하기 연습하는 책이라고 봐도 무방하다.  
 
@@ -114,7 +92,11 @@ public class WordList{
 
 
 
-# compareTo 메서드 내의 수학적 규칙
+# compareTo() 내의 수학적 rule
+
+이 부분을 삭제할까 했었다. 그런데 책에서 언급하는 내용이기도 하고, 수학적인 논리로 증명을 한다거나 논리를 세우는게 가끔은 모호한 규칙을 검증하려 할때 도움이 될수도 있겠다 싶어서 조금은 억지로 정리를 한다 ㅠㅠ...  
+
+  
 
 여기서는 입력이 어떤 값이든 어떤 비교나 이런 연산에 의해 출력값이 -1, 0, 1 로 나오는 시그모이드 함수(sigmoid function) 개념이 나온다.  
 
@@ -160,11 +142,33 @@ compareTo함수의 내용은
 
 
 
+# Comparable을 사용하는 경우
+
+본문 내용
+
+> Java의 주요 컬렉션 클래스인 TreeSet, TreeMap, 검색과 정렬 알고리즘을 활용하는 유틸리티 클래스인 Collections, Arrays의 경우 compareTo 규약을 사용하고 있다. 따라서 hashCode 규약을 지키지 못하면 해시를 사용하는 클래스와 어울리지 못하듯, compareTo 규약을 지키지 못하면 비교를 활용하는 클래스와 어울리지 못한다.  
+
+  
+
+## 실제 사용 예를 들어보자
+
+간단한 비교연산, 대소판별 만 구현한다면 굳이 Comparable을 구현하여 사용하지 않아도 된다. 하지만 필요한 경우를 예를 들어본다면
+
+- 연도별 데이터를 가져온 후 시간 순, 또는 id 순, 가나다 순, 알파벳 순으로 정렬하는 경우를 예로 들어볼 수 있을 듯 하다.
+- 어떤 순차적인 수열과 같은 데이터를 정렬해야 하는 경우
+- 등등 여러가지 경우가 있겠으나, 더 이상 생각해내지 못하고 있다. 조금씩 채워나가자.
 
 
-# compareTo 메서드의 활용 
 
-## Comparator, Comparable
+아래(compareTo규약(규칙))에서 언급하고 있는데 컬렉션들은 동치성을 비교할 때에도 equals의 규약을 따른다고 되어있지만, 놀랍게도 정렬된 컬렉션들은 동치성을 비교할 때 실상은 equals 대신 compareTo를 사용한다고 한다.  
+
+아주 큰 문제는 아니지만 주의해야 한다.  
+
+
+
+## compareTo 메서드의 두 가지 활용방식 
+
+### Comparator, Comparable
 
 compareTo를 사용하는 방식으로
 
@@ -230,6 +234,67 @@ public int compareTo(PhoneNumber pn){
   return COMPARTOR.compare(this, pn);
 }
 ```
+
+  
+
+## 주의해야 하는 경우
+
+가끔은 '값의 차'를 기준으로 
+
+- 첫 번째 값이 두 번째 값보다 작으면 음수를 
+- 두 값이 같으면 0을
+- 첫 번째 값이 크면 양수를 반환
+
+하는 경우를 보게 될 것이라고 책에서 이야기하고 있다. 책에서 이야기한걸 보니 실제로 그런 경우가 있는것 같다. 꼼꼼히 읽어보면 위에서 정리한 compareTo()의 대/소 판단 규칙과는 조금 다르다.  
+
+ 
+
+ex) 대/소 값만을 판단해 -1, 0,1을 return 하지 않는 실제 경우
+
+```java
+static Comparator<Object> hashCodeOrder = new Comparator<>(){
+  public int compare(Object o1, Object o2){
+    return o1.hashCode() - o2.hashCode();
+  }
+}
+```
+
+  
+
+이 경우 compare의 결과가 -1, 0, 1 을 return 하는 것이 아니라 양수/음수/0을 return하고 있다.  
+
+- 이 경우 정수가 표현가능한 수의 범위를 넘어갈 경우  
+  정수 오버플로우를 일으키거나
+- IEEE 754 부동소수점 계산 방식에 따른 오류를 낼 수 있다.
+
+그리고, 실제로 -1/0/1을 return 하는 코드보다 월등히 빠르지도 않다.  
+
+  
+
+위의 경우 아래와 같이 코드를 고쳐서 활용하는 것을 권장하고 있다.
+
+ex) 정적 compare 메서드를 활용한 비교자
+
+```java
+static Comparator<Object> hashCodeOrder = new Comparator<>(){
+  public int compare(Object o1, Object o2){
+    return Integer.compare(o1.hashCode(), o2.hashCode());
+  }
+}
+```
+
+
+
+이것을 람다식으로 표현하면 아래와 같다.
+
+```java
+static Comparator<Object> hashCodeOrder = 
+  Comparator.comparingInt(o->o.hashCode());
+```
+
+
+
+
 
 
 
