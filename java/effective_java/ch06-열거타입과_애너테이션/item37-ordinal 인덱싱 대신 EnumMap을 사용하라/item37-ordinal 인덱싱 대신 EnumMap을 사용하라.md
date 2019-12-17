@@ -22,8 +22,8 @@ public enum DeviceType{
   }
   
   public static void main(String [] args){
-		DeviceType d1 = DeviceType.valueOf("PCS");// 정상 동작
-		DeviceType d2 = DeviceType.valueOf(1);		// 컴파일 에러
+		DeviceType d1 = DeviceType.valueOf("PCS");	// 정상 동작
+		DeviceType d2 = DeviceType.valueOf(1);			// 컴파일 에러
 	}
 }
 ```
@@ -43,7 +43,7 @@ item37에서는 이러한 경우에 대해서 다룬다.
 
 # Plant 의 LifeCycle 시나리오
 
-화분의 생애 주기를 가지고 있는 클래스를 표현하고 있다.
+화분의 생애 주기 유형을 enum으로 가지고 있는 클래스를 표현하고 있다.
 
 ex)
 
@@ -67,16 +67,22 @@ class Plant{
 
 
 
-# 나쁜 예 - ordianl을 사용해 상수접근을 하는예 
+# 나쁜 예 - ordinal을 사용해 상수접근을 하는예 
 
 절대 따라하지 말라고 주의를 주는 예이다. 
 
 ```java
+// 생애주기의 종류의 갯수만큼 Set<Plant>[] 생성,
+// 즉, 배열 공간 생성
 Set<Plant>[] plantsByLifeCycle = 
   (Set<Plant>[]) new Set[Plant.LifeCycle.values().length];
+
+// Set<Plant> []의 index마다 비어있는 HashSet<P> 공간 할당
 for(int i=0; i<plantsByLifeCycle.length; i++){
   plantsByLifeCycle[i] = new HashSet<>();
 }
+
+// Plant의 LifeCycle에 대한 index에 Plant를 add
 for(Plant p : garden)
   plantsByLifeCycle[p.lifeCycle.ordinal()].add(p);
 
@@ -84,4 +90,37 @@ for(int i=0; i<plantsByLifeCycle.length; i++){
   System.out.printf("%s: %s%n". Plant.LifeCycle.values()[i], plantsByLifeCycle[i]);
 }
 ```
+
+
+
+# 권장하는 방식 - EnumMap 활용
+
+
+
+```java
+// EnumMap 타입인 plantsByLifeCycle 선언
+Map<Plant.LifeCycle, Set<Plant>> plantsByLifeCycle = 
+  new EnumMap<>(Plant.LifeCycle.class);
+
+// Enum의 상수(ANNUAL, PERENNIAL, BIENNIAL)별로 순회하면서 
+// plantsByLifeCycle에 <LifeCycle, Set<Plant>> 자료를 생성
+// 즉, 각 상수(ANNUAL, PERENNIAL, BIENNIAL)별로 비어있는 HashSet할당
+for(Plant.LifeCycle lc : Plant.LifeCycle.values())
+  plantsByLifeCycle.put(lc, new HashSet<>());
+
+// 정원 내의 화초를 순회
+// 화초(i)가 가지고 있는 생애주기로 enumMap의 HashSet을 탐색하고,
+// 해당 HashSet에 화초를 추가하고 있다.
+// (생애주기 Enum에 대해 하나이상의 화초를 매핑하고 있다.)
+for(Plant p : garden)
+  plantsByLifeCycle.get(p.lifeCycle).add(p);
+
+System.out.println(plantsByLifeCycle);
+```
+
+
+
+
+
+
 
