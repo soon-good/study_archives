@@ -128,27 +128,179 @@ System.out.println(plantsByLifeCycle);
 
 # EnumMap의 장점
 
-EnumMap은 내부에서 배열을 사용한다. 이런 내부 구현방식을 안으로 숨겨서 
+EnumMap은 내부에서 배열을 사용한다. EnumMap은 이런 내부 구현방식을 안으로 숨겨서  
 
 - Map의 안정성
 - 배열의 성능(index를 직접 지정하는)
 
-을 모두 얻어낸 것이다.  
+을 충족시켰다.
 
-
-
-EnumMap의 생성자가 받는 키 타입의 Class 객체는 한정적 타입 토큰으로, 런타임 제네릭 정보를 제공한다. (ITEM 33)  
+또한 EnumMap의 생성자가 받는 키 타입의 Class 객체는 한정적 타입 토큰으로, 런타임 제네릭 정보를 제공한다. (ITEM 33)  
 
 
 
 # 스트림 활용 (1)
 
+참고로, 이 예제는 EnumMap을 사용하지 않는다. List\<Plant\> 형태인 garden에서 LifeCycle의 상수의 종류별로 그루핑해 리스트를 도출하고 있다.  
+
+예제1) LifeCycle의 종류별로 그루핑하여 Map\<LifeCycle, List\<Plant\>\> 형태로 도출
+
+```java
+import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
+
+public class Plant {
+	public enum LifeCycle {
+		ANNUAL(1, "ANNUAL"){
+
+		},
+		BIENNIAL(2, "BIENNIAL"){
+
+		},
+		PERENIAL(3, "PERENIAL"){
+
+		};
+
+		private int lifeCycleCd;
+		private String lifeCycleNm;
+
+		LifeCycle(int lifeCycleCd, String lifeCycleNm){
+			this.lifeCycleCd = lifeCycleCd;
+			this.lifeCycleNm = lifeCycleNm;
+		}
+	}
+
+	private String name;
+	private LifeCycle lifeCycle;
+
+	public Plant(LifeCycle lifeCycle, String name){
+		this.name = name;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public LifeCycle lifeCycle(){
+		return this.lifeCycle;
+	}
+
+	public static void main(String [] args){
+
+		List<Plant> garden = Arrays.asList(
+			new Plant(LifeCycle.ANNUAL,"Rose"),
+			new Plant(LifeCycle.BIENNIAL, "Daisy")
+		);
+
+    // List<Plant>를 Enum 상수별로 그룹핑
+    // 그 결과로 LifeCycle 별로 Plant의 리스트(List<Plant>)가 도출된다.
+		Map<LifeCycle, List<Plant>> d = garden.stream()
+			.collect(Collectors.groupingBy(p -> p.lifeCycle()));
+	}
+}
+```
 
 
-TODO  
 
-- 스트림 예제도 github내의 현재 디렉터리에 push할것.
-- 어떻게 정리하지?? 이것도 서사시다....
+# 스트림 활용 (2)
+
+EnumMap을 사용하는 경우의 예제이다.  
+
+- 매개변수 3개 짜리 Collectors.groupingBy 메서드를 사용했다.  
+
+- 매개변수가 3개인 Collectors.groupingBy 메서드는 mapFactory 매개변수에 원하는 맵 구현체(여기서는 EnumMap)를 명시해 호출할 수 있다.  
 
 
 
+```java
+package example.stream.second;
+
+import java.util.Arrays;
+import java.util.EnumMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.stream.Collectors;
+
+public class Plant {
+	public enum LifeCycle {
+		ANNUAL(1, "ANNUAL"){
+
+		},
+		BIENNIAL(2, "BIENNIAL"){
+
+		},
+		PERENIAL(3, "PERENIAL"){
+
+		};
+
+		private int lifeCycleCd;
+		private String lifeCycleNm;
+
+		LifeCycle(int lifeCycleCd, String lifeCycleNm){
+			this.lifeCycleCd = lifeCycleCd;
+			this.lifeCycleNm = lifeCycleNm;
+		}
+	}
+
+	private String name;
+	private LifeCycle lifeCycle;
+
+	public Plant(LifeCycle lifeCycle, String name){
+		this.name = name;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public LifeCycle lifeCycle(){
+		return this.lifeCycle;
+	}
+
+	public static void main(String [] args){
+
+		List<Plant> garden = Arrays.asList(
+			new Plant(LifeCycle.ANNUAL,"Rose"),
+			new Plant(LifeCycle.BIENNIAL, "Daisy")
+		);
+
+		EnumMap<LifeCycle, Set<Plant>> d = garden.stream().collect(Collectors.groupingBy(
+			p -> p.lifeCycle,
+			() -> new EnumMap<>(LifeCycle.class),
+			Collectors.toSet()
+		));
+	}
+}
+
+```
+
+
+
+스트림을 사용하면 단순히 EnumMap만 사용했을 때와는 조금은 다르게 동작한다.  
+
+EnumMap을 사용하면  
+
+- 식물의 LifeCycle의 종류별 하나씩의 중첩 맵을 만들지만
+
+스트림 버전에서는
+
+- 해당 생애주기에 속하는 식물이 있을 때만 만든다.  
+
+  
+
+예를 들어, 정원에 한해살이와 두해 살이 식물만 있다면,  
+
+- EnumMap버전은 맵을 3개 만들고
+
+스트림 버전에서는
+
+- 2개만 만든다.
+
+
+
+# 중첩 EnumMap 예제 
+
+228p~
