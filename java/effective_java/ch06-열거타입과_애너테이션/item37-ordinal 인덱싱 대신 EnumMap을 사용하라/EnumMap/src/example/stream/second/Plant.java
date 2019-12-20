@@ -1,6 +1,10 @@
+package example.stream.second;
+
 import java.util.Arrays;
+import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 public class Plant {
@@ -46,7 +50,10 @@ public class Plant {
 			new Plant(LifeCycle.BIENNIAL, "Daisy")
 		);
 
-		Map<LifeCycle, List<Plant>> d = garden.stream()
-			.collect(Collectors.groupingBy(p -> p.lifeCycle()));
+		EnumMap<LifeCycle, Set<Plant>> d = garden.stream().collect(Collectors.groupingBy(
+			p -> p.lifeCycle,
+			() -> new EnumMap<>(LifeCycle.class),
+			Collectors.toSet()
+		));
 	}
 }
