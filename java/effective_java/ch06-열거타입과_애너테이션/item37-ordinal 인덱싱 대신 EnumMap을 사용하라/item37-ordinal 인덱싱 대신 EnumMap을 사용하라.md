@@ -303,4 +303,122 @@ EnumMap을 사용하면
 
 # 중첩 EnumMap 예제 
 
-228p~
+
+
+#### ex) 상태 변화 맵 예제
+
+```java
+package example.stream.third;
+
+import java.util.EnumMap;
+import java.util.Map;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
+public class NestedEnumMap {
+	public enum Phase{
+		SOLID, LIQUID, GAS;
+
+		public enum Transition {
+			MELT(SOLID, LIQUID),	FREEZE(LIQUID, SOLID),
+			BOIL(LIQUID, GAS),		CONDENSE(GAS, LIQUID),
+			SUBLIME(SOLID, GAS),	DEPOSIT(GAS, SOLID);
+
+			private final Phase from;
+			private final Phase to;
+      // 현재 상태에 대한 다음 상태를 얻기 위한 Map
+			private static Map<Phase, EnumMap<Phase, Transition>> map;
+
+			Transition(Phase from, Phase to){
+				this.from = from;
+				this.to = to;
+			}
+
+			// 책의 예제처럼 멤버변수 선언과 동시에 초기화할 수도 있지만, 선언과 할당을 따로 함
+			static{
+				map = Stream.of(values())
+					.collect(Collectors.groupingBy(
+						t -> t.from,
+						() -> new EnumMap<>(Phase.class),
+						Collectors.toMap(
+							t -> t.to, t -> t,
+							(x, y) -> y, () -> new EnumMap<>(Phase.class)
+						)));
+			}
+
+			// from(현재상태) 에서 to(다음상태)를 얻어낸다.
+			public static Transition from (Phase from, Phase to){
+				return map.get(from).get(to);
+			}
+
+		}
+
+
+	}
+
+}
+
+```
+
+  
+
+Map\<Phase, EnumMap\<Phase, Transition\>\> map 은 현재 상태(Phase from)에 대해 다음 상태(Phase to)를 얻어내기 위한 Map이다.  
+
+위에서는 이 map을 초기화하기 위해 Collector를 두번 사용했다.
+
+1. Collectors.groupingBy
+   from 을 기준으로 grouping  
+
+2. Collectors.toMap
+   from에 대한 다음 상태를 map으로 1:1 대응시킴. 
+   - (x,y)->y 는 선언만 하고 실제로 쓰이지 않는다. EnumMap을 얻기위해 단지 맵 팩터리가 필요한 것 뿐이고, Collector들은 점층적 팩터리(telescoping factory)를 제공하기 때문이다.  
+   - 책의 2판에서는 명시적인 반복문을 사용했다. 다소 장황한 편이지만 이해하기 더 수월한 편이다.  
+
+
+
+#### Ex) 위의 예제에서 새로운 상태인 플라스마(PLASMA)를 추가할 경우
+
+플라스마는 아래 두 가지의 상태전이를 갖는다.
+
+- 이온화 (IONIZE)
+  기체 -> 플라스마
+
+- 탈이온화 (DEONIZE)
+  플라스마 -> 기체
+
+  
+
+```java
+public enum Phase{
+	SOLID, LIQUID, GAS, 
+  PLASMA; // PLASMA : 새로 추가된 상태
+  
+  public enum Transition{
+		MELT(SOLID, LIQUID), 	FREEZE(LIQUID, SOLID),
+    BOIL(LIQUID, GAS),		CONDENSE(GAS, LIQUID),
+    SUBLIME(SOLID, GAS),	DEPOSIT(GAS, SOLID),
+    // 새로 추가된 상태 전이
+    IONIZE(GAS, PLASMA),	DEIONIZE(PLASMA, GAS); 
+  }
+}
+```
+
+
+
+배열, ordinal을 사용할 경우와는 다르게 원소를 추가하고 순서를 잘못나열하지 않아도 되는 점이 편하다. EnumMap 버전에서는 단순히
+
+- Enum Phase내에 PLASMA를 추가하고
+- Enum Transition내에 IONIZE(GAS, PLASMA), DEIONIZE(PLASMA, GAS)를 추가한다.
+
+배열,ordinal() 버전처럼 따로 로직내에서 for문을 수정해야 한다던가, 인덱스를 수정할 일이 극히 적어지고, 단순히 상수만 추가해주고 있다. 새로 추가하는 상수에 대해 부가적인 동작이 필요하므로 유연한 방식이라고 할 수 있다.  
+
+  
+
+또한 EnumMap의 내부에서는 실제 동작이 Map들의 Map이 배열로 구현되므로 낭비되는 공간, 시간도 거의 없이 명확하며 유지보수하기 좋다.
+
+
+
+
+
+
+
