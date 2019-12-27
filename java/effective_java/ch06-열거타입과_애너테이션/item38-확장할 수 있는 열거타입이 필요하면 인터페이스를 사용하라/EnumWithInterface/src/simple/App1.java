@@ -1,3 +1,7 @@
+/**
+ * Class 객체를 파라미터로 전달받아 test 하는 방식
+ */
+
 package simple;
 
 import simple.types.ExtendedOperation;
@@ -10,7 +14,7 @@ public class App1 {
 		double y = Double.parseDouble("1.1");
 
 		// ExtendedOperation의 class 리터럴을 넘기고 있다.
-		// 이렇게 함으로써 확장된 연산을 어떤 것(ExtendedOperation)으로  지정할 지 알려준다.
+		// 이렇게 함으로써 확장된 연산(%,^)을 어떤 것(ExtendedOperation)으로  지정할 지 알려준다.
 		test(ExtendedOperation.class, x, y);
 	}
 
