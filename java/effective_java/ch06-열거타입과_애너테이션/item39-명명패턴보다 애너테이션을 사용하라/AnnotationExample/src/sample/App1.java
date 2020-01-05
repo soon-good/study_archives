@@ -4,6 +4,16 @@ import sample.context.MyContextContainer;
 import sample.greeting.EnglishGreeting;
 import sample.greeting.KoreanGreeting;
 
+/**
+ * 출력 결과
+ * Korean Greeting
+ * 안뇽하세요
+ *
+ * English Greeting
+ * Hi, There...
+ *
+ * Process finished with exit code 0
+ */
 public class App1 {
 	public static void main(String [] args) throws InstantiationException, IllegalAccessException{
 		MyContextContainer con = new MyContextContainer();
