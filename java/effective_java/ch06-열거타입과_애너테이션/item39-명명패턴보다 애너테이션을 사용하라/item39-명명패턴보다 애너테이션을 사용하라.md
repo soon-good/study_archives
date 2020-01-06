@@ -60,18 +60,24 @@ public @interface Test{
 
 
 
-# 애너테이션 만들어보기
+# 애너테이션 활용
 
-- 마커 애너테이션
-- 일반 애너테이션
+빌트인(내장) 애너테이션을 사용하는 것 외에도 중복되는 로직들을 직접 애너테이션으로 만들어 사용하는 것 또한 가능하다.  
+
+여기서는
+
+- 파라미터(매개변수)가 없는 애너테이션 (마커 애너테이션)
+- 파라미터(매개변수)를 가진 애너테이션
 
 을 직접 만들어본다.
 
   
 
-애너테이션을 만들때 
+애너테이션을 제작하고 선언한 애너테이션을 단순히 @[에너테이션명] 과 같이 사용하는 것만으로 애너테이션을 사용할 수 없다. 애너테이션의 선언과, 사용 구문을 작성 후에는 이것을 로딩하는 구문을 따로 작성해야 한다.    
 
-- 애너테이션 선언  
+보통 애너테이션을 만들때 아래와 같이 세가지의 작업을 하게 된다.  
+
+- 애너테이션 선언.  
   @interface [애너테이션 이름]  
 
 - 사용 구문(로직) 작성  
@@ -82,15 +88,14 @@ public @interface Test{
 
 
 
-## 마커 애너테이션
+## 파라미터가 없는 애너테이션 (마커 애너테이션)
 
-매개변수를 가지지 않는 애너테이션. 아무 매개변수 없이 단순히 대상에 마킹(marking)한다는 의미에서, 마커(marker) 애너테이션이라고 부른다.
-
+매개변수를 가지지 않는 애너테이션. 아무 매개변수 없이 단순히 대상에 마킹(marking)한다는 의미에서, 마커(marker) 애너테이션이라고 부른다.  
 
 
 ### 예1) JUnit Test 어노테이션
 
-선언
+선언  
 
 ```java
 import java.lang.annotation.*;
@@ -108,7 +113,7 @@ public @interface Test{
 
   
 
-사용
+사용  
 
 ```java
 public class Sample{
@@ -138,9 +143,9 @@ public class Sample{
 - m2(), m6(), m8()  
   테스트 코드가 아니다. 일반 메서드로 동작한다.  
 
+  
 
-
-로딩  
+로딩   
 
 ```java
 import java.lang.reflect.*;
@@ -173,7 +178,278 @@ public class RunTests {
 
 
 
-## 
+## 파라미터(매개변수)를 가진 애너테이션
+
+매개변수의 타입으로 Class\<? extends Throwable\> 을 받는 애너테이션을 작성해본다. 여기서 와일드 카드 ?은 
+
+- "Thrwoable 을 확장한(상속한) 클래스의 Class 객체" 
+
+라는 의미이다. 따라서 모든 예외(와 오류) 타입을 다 수용한다. (item33에서 언급하는 한정적 타입 토큰을 사용하는 예가 될 수 있다.)
+
+
+
+### ExceptionTest.java
+
+```java
+import java.lang.annotation.*;
+/*
+ * 예외가 던져져야만 성공하는 테스트 메서드용 애너테이션
+ */
+@Retention(RetentionPolicy.RUNTIME)
+@Target(ElementType.METHOD)
+public @interface ExceptionTest{
+  Class<? extends Throwable> value();
+}
+```
+
+
+
+### 사용예제 - Sample2.java  
+
+이 에너테이션을 실제 다른 메서드위에서 사용하는 예
+
+```java
+public class Sample2{
+  @ExceptionTest(ArithmeticException.class)
+  public static void m1(){    // 성공해야 한다.
+    int i = 0;
+    i = i/i;
+  }
+  
+  @ExceptionTest(ArithmeticException.class)
+  public static void m2(){    // 실패해야 한다. (다른 예외 발생)
+    int [] a = new int [0];
+    int i = a[1];
+  }
+  
+  @ExceptionTest(ArithmeticException.class)
+  public static void m3(){}   // 실패한다.
+}
+```
+
+  
+
+### 로딩구문 예제
+
+```java
+import java.lang.reflect.*;
+
+public class RunTests {
+  public stratic void main(String [] args) throws Exception{
+    int tests  = 0;
+    int passed = 0;
+    Class<?> testClass = Class.forName(args[0]);
+    for(Method m : testClass.getDeclaredMethods()){
+      if(m.isAnnotationPresent(Test.class)){
+        tests++;
+        try{
+          m.invoke(null);
+          passed++;
+        }
+        catch(InvocationTargetException wrappedExc){
+          Throwable exc = wrappedExc.getCause();
+          // 추가된 구문 (아래 구문들 참고)
+          // 1) ExceptionTest 애너테이션 내부로 전달된 파라미터의 
+          //    클래스 인스턴스를 얻어온다.
+          Class<? extends Throwable> excType = 
+            m.getAnnotation(ExceptionTest.class).value();
+          
+          // 2) Exception 인스턴스가 ExceptionTest 클래스의 인스턴스인지 체크
+          if(excType.isInstance(exc)){
+            passed++;
+          }
+          else{
+            System.out.printf("테스트 %s 실패 : 기대한 예외 %s, 발생한 예외 %s%n", m, excType.getName(), exc);
+          }
+        }
+        catch(Exception exc){
+          System.out.println("잘못 사용한 @Test : " + m);
+        }
+      }
+    }
+    System.out.printf("성공 : %d, 실패\: %d%n", passed, tests-passed);
+  }
+}
+```
+
+
+
+## 여러개의 파라미터를 사용할 때
+
+
+
+1. 반복문 사용
+2. @Repeatable 애너테이션 사용
+
+
+
+## 여러개의 파라미터 사용 (1) - 반복문 사용  
+
+애너테이션이 배열을 파라미터로 받아야 할 경우가 있다. 예를 들어 여러가지 종류의 예외가 발생할 경우를 대비해 Exception 클래스 별로 다른 예외 문구 출력을 하도록 지정하는 경우를들 수 있다.  
+여러개의 예외를 배열로 명시하고 그 중 하나가 발생하면 성공하게 만드는 방식이다.   
+
+예) @ExceptionTest 애너테이션의 매개변수 타입을 Class 객체의 배열로 수정
+
+```java
+@Retention(RetentionPolicy.RUNTIME)
+@Target(ElementType.METHOD)
+public @interface ExceptionTest{
+  Class<? extends Throwable> [] value();
+}
+```
+
+  
+
+배열 매개변수를 직접 전달하는 예
+
+```java
+@ExceptionTest({IndexOutOfBoundsException.class,
+               NullPointerException.class})
+public static void doublyBad(){ 	// 성공하는 코드
+  List<String> list = new ArrayList<>();
+  list.addAlll(5, null);
+}
+```
+
+  
+
+배열 파라미터를 처리하도록 테스트 러너(로딩 구문)을 수정
+
+```java
+import java.lang.reflect.*;
+
+public class RunTests {
+  public stratic void main(String [] args) throws Exception{
+    int tests  = 0;
+    int passed = 0;
+    Class<?> testClass = Class.forName(args[0]);
+    for(Method m : testClass.getDeclaredMethods()){
+      if(m.isAnnotationPresent(Test.class)){
+        tests++;
+        try{
+          m.invoke(null);
+          System.out.printf("테스트 %s 실패: 예외를 던지지 않음%n", m);
+        }
+        catch(InvocationTargetException wrappedExc){
+          Throwable exc = wrappedExc.getCause();
+          int oldPassed = passed;
+          
+          // ExceptionTest 어노테이션이 반환하는 값의 클래스 인스턴스 배열을 얻어온다.
+          Class <? extends Throwable> excTypes =
+            m.getAnnotation(ExceptionTest.class).value();
+          
+          // 예외들의 배열을 Class 
+          for(Class <? extends Throwable> excType : excTypes){
+            // 실제 발생한 예외와 어노테이션에서 래핑하는 예외값을 일일이 비교
+            if(excType.isInstance(exc)){
+              passed++;
+              break;
+            }
+          }
+          
+          if(passed == oldPassed){
+            System.out.printf("테스트 %s 실패: %s %n", m, exc);
+          }
+        }
+      }
+    }
+  }
+}
+```
+
+
+
+
+
+## 여러개의 파라미터 사용 (2) - @Repeatable
+
+자바 8 에서는 여러개의 파라미터를 받는 애너테이션을 다른 방식으로도 만들 수 있다. 배열 매개변수를 사용하는 대신 애너테이션에 @Repeatable 메타 에너테이션을 다는 방식이다.
+
+  
+
+@Repeatable을 단 애너테이션은 하나의 프로그램 요소에 여러번 다는 것이 가능하다. 단, 주의할 점이 있다. 
+
+1. @Repeatable을 단 애너테이션을 반환하는 '컨테이너 애너테이션'을 하나 더 정의하고, @Repeatable에 이 컨테이너 애너테이션의 class객체를 매개변수로 전달해야 한다.
+2. 컨테이너 애너테이션은 내부 애너테이션 타입의 배열을 반환하는 value 메서드를 정의해야 한다. 
+3. 마지막으로, 컨테이너 애너테이션 타입에는 적절한 보존정책(@Retention)과 적용대상(@Target)을 명시해야 한다. 그렇지 않으면 컴파일되지 않는다.  
+
+  
+
+```java
+// 반복 가능한 애너테이션
+@Retention(RetentionPolicy.RUNTIME)
+@Target(ElementType.METHOD)
+@Repeatable(ExceptionTestContainer.class) // 이 부분에 주목하자
+public @interface ExceptionTest{
+  Class <? extends Throwable> value();
+}
+
+// 컨테이너 애너테이션
+@Retention(RetentionPolicy.RUNTIME)
+@Target(ElementType.METHOD)
+public @interface ExceptionTestContainer{
+  ExceptionTest[] value();
+}
+```
+
+@ExceptionTest 애노테이션이 @ExceptionTestContainer를 여러번 반복해서 받고 있다.  
+
+사용
+
+```java
+@ExceptionTest(IndexOutOfBoundsException.class)
+@ExceptionTest(NullPointerException.class)
+public static void doublyBad(){...}
+```
+
+  
+
+테스트 러너(로딩 구문)  
+
+```java
+import java.lang.reflect.*;
+
+public class RunTests {
+  public stratic void main(String [] args) throws Exception{
+    int tests  = 0;
+    int passed = 0;
+    Class<?> testClass = Class.forName(args[0]);
+    for(Method m : testClass.getDeclaredMethods()){
+      if(m.isAnnotationPresent(ExceptionTest.class) || 
+        	m.isAnnotationPresent(ExceptionTestContainer.class)){
+        tests++;
+        try{
+          m.invoke(null);
+          System.out.printf("테스트 %s 실패: 예외를 던지지 않음%n", m);
+        }
+        catch(Throwable wrappedExc){
+          Throwable exc = wrappedExc.getCause();
+          int oldPassed = passed;
+          ExceptionTest[] excTests = 
+            m.getAnnotationsByType(ExceptionTest.class);
+          for(ExceptionTEst excTest : excTests){
+            if(excTest.value().isInstance(exc)){
+              passed++;
+              break;
+            }
+          }
+          
+          if(passed == oldPassed)
+            System.out.println("테스트 %s 실패 : %s %n", m, exc);
+        }
+      }
+    }
+  }
+}
+```
+
+
+
+@Repeatable을 사용할 경우 테스트러너(로딩 구문)을 작성하는 부분에서 주의를 할 필요가 있다. 반복가능 애너테이션을 여러 개 달면 하나만 달았을 때와 구분하기 위해 해당 컨테이너 애너테이션 타입이 적용된다.  
+
+getAnnotationByType 메서드는 이 둘을 구분하지 않아서 반복가능 애너테이션과 그 컨테이너 애너테이션을 모두 가져오지만 isAnnotationPresent 메서드는 둘을 명확히 구분한다.  
+
+
 
 
 
