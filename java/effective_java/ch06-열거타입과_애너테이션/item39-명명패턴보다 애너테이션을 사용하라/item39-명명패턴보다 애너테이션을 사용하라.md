@@ -445,9 +445,28 @@ public class RunTests {
 
 
 
-@Repeatable을 사용할 경우 테스트러너(로딩 구문)을 작성하는 부분에서 주의를 할 필요가 있다. 반복가능 애너테이션을 여러 개 달면 하나만 달았을 때와 구분하기 위해 해당 컨테이너 애너테이션 타입이 적용된다.  
+### @Repeatable 사용시 주의
 
-getAnnotationByType 메서드는 이 둘을 구분하지 않아서 반복가능 애너테이션과 그 컨테이너 애너테이션을 모두 가져오지만 isAnnotationPresent 메서드는 둘을 명확히 구분한다.  
+@Repeatable 을 사용할 때 어노테이션을 로딩하는 구문(로더, 위 예에서는 테스트 러너)에서 Annotation 존재 여부 검사하는 구문에서 주의해야 하는 부분이 있다.  
+
+- isAnnotationPresent() 메서드 사용시  
+  ExceptionTest, ExceptionTestContainer 클래스 모두에 대해 존재 여부를 체크해야 한다.  
+
+  
+
+> 우리는 @ExceptionTest라는 어노테이션을 만들었다. 그리고 이 @ExceptionTest 어노테이션을 반복해서 사용가능하도록 선언했다. 이렇게 만든 ExceptionTest를 검사하는 체크 로직에서 isAnnotationPresent 메서드를 사용시 ExceptionTestContainer의 클래스 인스턴스도 함께 체크해야 한다.  
+>
+> 예를 들어 isAnnotationPresent() 메서드로 ExceptionTestContainer 존재 여부를 체크하는 로직을 추가하지 않은 후, 반복 애너테이션을 사용할 경우   isAnnotationPresent()로 반복 가능 애너테이션이 달렸는지 검사한다면 "그렇지 않다"라고 알려주게 된다.
+
+
+
+
+
+# 마치면서
+
+여러분이 다른 프로그래머가 소스코드에 추가정보를 제공할 수 있는 도구를 만드는 일을 한다면 적당한 애너테이션 타입도 함께 정의해 제공하자. 애너테이션으로 할 수 있는 일을 명명 패턴으로 처리할 이유는 없다.  
+
+
 
 
 
