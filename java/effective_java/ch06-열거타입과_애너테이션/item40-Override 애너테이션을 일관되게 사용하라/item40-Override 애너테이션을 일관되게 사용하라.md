@@ -19,3 +19,70 @@
 
 
 
+예) 영어 단어 2개로 구성된 문자열 표현
+
+```java
+public class Bigram{
+  private final char first;
+  private final char second;
+  
+  public Bigram(char first, char second){
+    this.first = first;
+    this.second = second;
+  }
+  
+  public boolean equals(Bigram b){
+    return b.first = first && b.second == second;
+  }
+  
+  public int hashCode(){
+    return 31*first+second;
+  }
+  
+  public static void main(String [] args){
+    Set<Bigram> s = new HashSet<>();
+    for(int i=0; i<10; i++)
+      for(char ch='a'; ch<='z'; ch++)
+        s.add(new Bigram(ch, ch));
+    
+    System.out.println(s.size());
+  }
+}
+```
+
+
+
+main 메서드 내에서 소문자 2개로 구성된 바이그램 26개를 10번 반복해 집합에 추가하고 그 집합의 크기를 출력하고 있다. Set은 중복을 허용하지 않으므로 26이 출력될 것 같지만, 실제로는 260이 출력된다.  
+
+위 코드에서는 Object 클래스의 equals를 <u>재정의(overriding)한 것이 아니라 다중정의(overloading)하고 있기 때문</u>이다. Object의 equals()메서드는 매개변수 타입을 Object로 해야 하는데 그렇게 하지 않았기 때문이다.
+
+재정의(overriding)가 목적이었다면, @Override를 붙이는 것으로 위 코드와 같은 논리적 오류를 방지할 수 있다. @Override를 붙이면 컴파일러가 프로그램 실행 전에 메소드 시그니처가 틀렸다는 에러를 내 줄 수 있기 때문에 아주 편리하다.  
+
+예) @Override 붙이기  
+익셉션이 컴파일 타임에 나므로, 프로그램 실행시의 논리적 오류를 미연에 방지한다.
+
+```java
+@Override public boolean equals(Bigram b){
+  return b.first == first && b.second == second;
+}
+```
+
+  
+
+예) 잘못 사용된 오버라이딩 구문을 용도에 맞도록 수정  
+```java
+@Override public boolean equals(Object o){
+  if(!(o instanceof Bigram)){
+    return false;
+  }
+  Bigram b = (Bigram) o;
+  return b.first == first && b.second == second;
+}
+```
+
+
+
+대부분의 IDE에서 refactor 메뉴를 활용하면 @Override 애너테이션을 메서드 시그니처에 맞춰서 달아준다. 최근에는 프로그래머가 직접 수작업으로 @Override 애너테이션을 표기하지 않음으로써 오류를 내는 경우가 생길 수 있다. 이런 경우에 대한 대비책으로 코딩 컨벤션으로 @Overriding 애너테이션을 사용하도록 권장하는 것으로 보인다.   
+(Overriding과 Overloading을 문법적으로 공부하고, 파악하려고 노력하거나, 시간 공수를 들이는 것보다 명시적으로 Overriding을 목적으로 하는 곳에는 일괄적으로. @Overriding 애너테이션을 달도록 코딩 컨벤션을 정하는게 더 효율적인것 같기도 하다.)  
+
+
