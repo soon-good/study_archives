@@ -36,7 +36,25 @@ dependencies {
   - 인메모리 환경이므로 애플리케이션을 재시작할 때마다 초기화 된다는 점을 이용해 테스트 용도로 많이 사용된다.
   - JPA 테스트, 로컬환경에서의 구동에 사용할 예정
 
-  
+
+
+
+## application.properties
+
+
+
+```properties
+spring.jpa.show_sql=true
+spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQL5InnoDBDialect
+```
+
+
+
+## DataSource 설정
+
+별다른 설정 없이 @SpringBootTest를 사용할 경우 H2 데이터베이스를 자동으로 실행해준다.
+
+
 
 ## Mybatis 등의 레거시와 JPA 비교
 
