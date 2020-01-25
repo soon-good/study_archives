@@ -71,6 +71,10 @@ dependencies {
 
 ## 1) gradle 에서 에러가 날때
 
+- 참고자료  
+  [spring boot2 + lombok, gradle 에서 lombok 에러날 때](https://blogdeveloperspot.blogspot.com/2019/03/springboot2-lombok-gradle-bootjar.html)
+
+
 아래와 같은 에러 문구를 접할 수 있다.  
 
 >  Execution failed for task ':compileTestJava'.
