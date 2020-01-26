@@ -367,8 +367,379 @@ public class PostsApiControllerTest {
 
 
 
-# 예제 - UPDATE/DELETE
+# 예제 - UPDATE
+
+
+
+## Domain
+
+- Posts
+
+Posts 도메인 내에서는 update(content, title) 함수를 추가했다.
+
+별도의 JPA함수 호출 없이 @Transactional 이 붙어 있는 곳에서 
+
+post.update("asdfa", "asdfasdf") 와 같이 수행하면 이 곳에서 Transaction의 순서를 보장하여 저장해준다.  
+
+이것이 가능한 이유는 Posts 클래스에 @Entity 어노테이션이 붙었고 이 의미는 JPA의 Repository 영역에서 이 Entity 를 관리한다는 의미인 것으로 보인다. 자세한 것은 더 공부하자.
+
+```java
+package com.stock.data.domain.posts;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+
+@Getter
+@NoArgsConstructor
+@Entity
+public class Posts {
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+
+	@Column(length = 500, nullable = false)
+	private String title;
+
+	@Column(columnDefinition = "TEXT", nullable = false)
+	private String content;
+
+	private String author;
+
+	@Builder
+	public Posts(String title, String content, String author){
+		this.title = title;
+		this.content = content;
+		this.author = author;
+	}
+
+	public void update(String title, String content) {
+		this.title = title;
+		this.content = content;
+	}
+}
+
+```
+
+
+
+## Dto
+
+- PostsResponseDto
+- PostsUpdateRequestDto
+
+단순 데이터 조회결과 return, 단순 데이터 수정의 경우 모두 Posts에 대한 Dto를 만들어준다. (조회와 수정 모두 같은 내용을 보여주지는 않으므로 각각 다른 Dto를 가지고 있어도 된다.)
+
+
+
+### PostsResponseDto
+
+findById를 Get요청으로 처리할 때   
+
+Post   라는 이름의 Entity에서 받아온 결과중 일부분의 필드만을 Dto로 보여주는 것이기 때문에 Entity 객체를 그대로 받아서 처리하는 단순 로직을 가지고 있다.
+
+```java
+package com.stock.data.web.posts.dto;
+
+import com.stock.data.domain.posts.Posts;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+
+@Getter
+@NoArgsConstructor
+public class PostsResponseDto {
+
+	private Long id;
+
+	private String title;
+	private String content;
+	private String author;
+
+	public PostsResponseDto (Posts entity){
+		this.id = entity.getId();
+		this.title = entity.getTitle();
+		this.content = entity.getContent();
+		this.author = entity.getAuthor();
+	}
+}
+```
+
+
+
+### PostsUpdateRequestDto
+
+단순히 화면에서 title, content를 PostsUpdateRequestDto 객체로 묶어서 전달 받는다. 
+
+```java
+package com.stock.data.web.posts.dto;
+
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+
+@Getter
+@NoArgsConstructor
+public class PostsUpdateRequestDto {
+	private String title;
+	private String content;
+
+	@Builder
+	public PostsUpdateRequestDto(String title, String content){
+		this.title = title;
+		this.content = content;
+	}
+}
+```
+
+
+
+참고를 위해 PostUpdateRequestDto가 RequestBody로 사용되는 Controller에서의 메서드를 남겨본다.
+
+```java
+@RequiredArgsConstructor
+@RestController
+public class PostsApiController{
+  ...
+  @PutMapping("/api/v1/posts/{id}")
+  public Long update(@PathVariable Long id,
+                    @RequestBody PostUpdateRequestDto requestDto){
+    return postsService.update(id, requestDto);
+  }   
+}
+```
+
+
+
+
+
+## Controller, Service
+
+- PostsApiController
+- PostsService
+
+
+
+### PostsApiController
+
+```java
+package com.stock.data.web.posts;
+
+import com.stock.data.web.posts.dto.PostsSaveRequestDto;
+import com.stock.data.web.posts.dto.PostsResponseDto;
+import com.stock.data.web.posts.dto.PostsUpdateRequestDto;
+import lombok.RequiredArgsConstructor;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+
+@RequiredArgsConstructor
+@RestController
+public class PostsApiController {
+
+	private final PostsService postsService;
+
+  // ...
+  
+	@PutMapping("/api/v1/posts/{id}")
+	public Long update( @PathVariable Long id,
+						@RequestBody PostsUpdateRequestDto requestDto){
+		return postsService.update(id, requestDto);
+	}
+
+	@GetMapping("/api/v1/posts/{id}")
+	public PostsResponseDto findById(@PathVariable Long id){
+		return postsService.findById(id);
+	}
+}
+```
+
+
+
+### PostsService
+
+```java
+package com.stock.data.web.posts;
+
+import com.stock.data.domain.posts.Posts;
+import com.stock.data.domain.posts.PostsRepository;
+import com.stock.data.web.posts.dto.PostsResponseDto;
+import com.stock.data.web.posts.dto.PostsSaveRequestDto;
+import com.stock.data.web.posts.dto.PostsUpdateRequestDto;
+import javax.transaction.Transactional;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
+
+@RequiredArgsConstructor
+@Service
+public class PostsService {
+	private final PostsRepository postsRepository;
+
+	@Transactional
+	public Long update(Long id, PostsUpdateRequestDto requestDto) {
+
+		Posts posts = postsRepository.findById(id)
+			.orElseThrow(()->new IllegalArgumentException("사용자가 없습니다. ID = " + id));
+
+		posts.update(requestDto.getTitle(), requestDto.getContent());
+		return id;
+	}
+
+	public PostsResponseDto findById(Long id) {
+		Posts post = postsRepository.findById(id)
+			.orElseThrow(()->new IllegalArgumentException("사용자가 없습니다. ID = "+ id));
+		return new PostsResponseDto(post);
+	}
+}
+
+```
+
+
+
+위에서 언급했듯이 Posts 클래스내에 update라는 함수가 존재한다. 그리고 Posts클래스에는 @Entity 애노테이션이 달려있다. 그리고 @Transactional이 붙어있는 update 메서드 내에서 postsRepository 를 이용해 직접 update기능을 호출하는 쿼리를 수행하는 부분이 없다.  
+
+이것은 
+
+-  JPA의 영속성 컨텍스트
+
+대분에 가능한 것이다. 영속성 컨텍스트는 엔티티를 영구 저장하는 환경이다. 일종의 논리적 개념이라고 볼수 있으며, JPA의 핵심 내용은 엔티티가 영속성 컨텍스트에 포함되어 있는지 아닌지로 갈린다.  
+
+JPA의 엔티티 매니저(Entity Manager)가 활성화 된 상태로(Spring Data Jpa를 쓴다면 기본 옵션) 트랜잭션 안에서 데이터베이스에서 데이터를 가져오면 이 데이터는 영속성 컨텍스트가 유지된 상태이다.  
+
+이 상태에서 해당 데이터의 값을 변경하면 트랜잭션이 끝나는 시점에 해당 테이블에 변경분을 반영한다. 즉, **Entity 객체의 값만 변경하면 별도로 Update쿼리를 날릴 필요가 없다**는 의미이다. 이 개념을 더티체킹(dirty checking이라 한다.)
+
+좀더 자세한 설명은 [블로그 - 기억보다는 기록을](https://jojoldu.tistory.com/415) 을 참고하면 된다.
 
 
 
 # 테스트 코드
+
+- PostsApiControllerTest
+
+```java
+package com.stock.data.web.posts;
+
+import static org.assertj.core.api.Assertions.assertThat;
+
+import com.stock.data.domain.posts.Posts;
+import com.stock.data.domain.posts.PostsRepository;
+import com.stock.data.web.posts.dto.PostsSaveRequestDto;
+import com.stock.data.web.posts.dto.PostsUpdateRequestDto;
+import java.util.List;
+import org.junit.After;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
+import org.springframework.boot.test.web.client.TestRestTemplate;
+import org.springframework.boot.web.server.LocalServerPort;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.test.context.junit4.SpringRunner;
+
+@RunWith(SpringRunner.class)
+@SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
+public class PostsApiControllerTest {
+
+	@LocalServerPort
+	private int port;
+
+	@Autowired
+	private TestRestTemplate restTemplate;
+
+	@Autowired
+	private PostsRepository postsRepository;
+
+	@After
+	public void tearDown() throws Exception{
+		postsRepository.deleteAll();
+	}
+
+	@Test
+	public void Posts_등록된다() throws Exception{
+		String title = "타이틀 ... ";
+		String content = "content";
+
+		PostsSaveRequestDto requestDto =
+			PostsSaveRequestDto.builder()
+				.title(title)
+				.content(content)
+				.author("어떤 작가님")
+				.build();
+
+		String url = "http://localhost:"
+						+ port
+						+ "/api/v1/posts";
+
+		ResponseEntity<Long> responseEntity =
+			restTemplate.postForEntity(url, requestDto, Long.class);
+
+		assertThat(responseEntity.getStatusCode())
+			.isEqualTo(HttpStatus.OK);
+
+		assertThat(responseEntity.getBody())
+			.isGreaterThan(0L);
+	}
+
+	@Test
+	public void Posts_수정된다() throws Exception{
+		Posts savedPosts = postsRepository.save(
+			Posts.builder()
+				.title("제목 1 ")
+				.content("내용 1")
+				.author("author")
+				.build()
+		);
+
+		Long updateId = savedPosts.getId();
+		String expectedTitle = "title2";
+		String expectedContent = "content2";
+
+		PostsUpdateRequestDto requestDto =
+			PostsUpdateRequestDto.builder()
+				.title(expectedTitle)
+				.content(expectedContent)
+				.build();
+
+		String url = "http://localhost:" + port + "/api/v1/posts/" + updateId;
+
+		HttpEntity<PostsUpdateRequestDto> requestEntity = new HttpEntity<>(requestDto);
+
+		ResponseEntity<Long> responseEntity =
+			restTemplate.exchange(
+				url, HttpMethod.PUT, requestEntity, Long.class
+			);
+
+		assertThat(responseEntity.getStatusCode())
+				.isEqualTo(HttpStatus.OK);
+
+		assertThat(responseEntity.getBody())
+				.isGreaterThan(0L);
+
+		List<Posts> all = postsRepository.findAll();
+
+		assertThat(all.get(0).getTitle())
+			.isEqualTo(expectedTitle);
+		assertThat(all.get(0).getContent())
+			.isEqualTo(expectedContent);
+	}
+}
+```
+
+
+
+# JPA Auditing
+
+JPA Auditing으로 생성시간/수정시간을 자동화해보자
+
