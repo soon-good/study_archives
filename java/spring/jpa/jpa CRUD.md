@@ -743,3 +743,144 @@ public class PostsApiControllerTest {
 
 JPA Auditing으로 생성시간/수정시간을 자동화해보자
 
+보통 Entity(엔티티)는 해당 데이터의 생성시간, 수정시간을 포함하고 있다. 언제 만들어졌는지, 언제 수정되었는지 등은 추후 유지보수에 있어서 굉장히 요긴하게 쓰이기 때문이다.  
+
+  
+
+이런 이유로 매번 DB insert, update 하기 전에 날짜 데이터를 등록/수정하는 코드가 여기저기 들어가게 된다.  
+
+```java
+public void savePosts(){
+  //...
+  posts.setCreateDate(new LocalDate());
+  postsRepository.save(posts);
+}
+```
+
+이렇게 날짜에 관련된 정보를 create/update하는 코드는 굉장히 중복되는 면도 많고, 코드가 지저분해지기도 한다. 이런 문제를 해결하기 위해 JPA Auditing을 사용한다.
+
+
+
+## LocalDate 사용
+
+Java8 에서부터 LocalDate, LocalDateTime이 등장했는데, 예전의 Java 기본 날짜 타입인 Date의 문제점을 고친 타입이므로 Java8을 사용하거 있을 경우 LocalDate, LocalDateTime은 안 쓸 이유가 없다.  
+
+hibernate에서 LocalDate, LocalDateTime이 데이터베이스에 매핑되는 것이 제대로 되지 않는 현상이 Hibernate 5.2.10 버전 이후로 해결되었다고 한다. (스프링 부트 1.x의 경우 별도로 Hibernate 5.2.10을 사용하도록 설정이 필요하다. 스프링 부트 2.x버전을 사용하면 기본적으로 5.2.10을 사용중이므로 별다른 설정없이 바로 사용하면 된다)
+
+
+
+>기존 Date, Calendar 클래스의 문제점
+>
+>1. 불변(변경이 불가능한) 객체가 아니다.  
+>
+>   멀티 스레드 환경에서 언제든 문제가 발생한다.
+>
+>2. Calendar 는 월(Month) 값 설계가 잘못됬다.  
+>   2월은 1, 3월은 2,... 등으로 값을 표기하고 있다. 
+>
+>이런 문제들을 JodaTime이라는 오픈소스로 해결해왔었다. Java8에서는 LocalDate를 통해 해결한다. (자세한 내용은 - [Java 날짜와 시간 API](https://d2.naver.com/helloworld/645609) 를 참고. )
+
+
+
+## domain - BaseTimeEntity
+
+domain 패키지 바로 아래에 BaseTimeEntity 클래스를 생성한다. BaseTimeEntity 클래스는 모든 Entity의 상위 클래스가 되어 Entity들의  createdDate, modifiedDate를 자동으로 관리하는 역할을 수행하게 된다.
+
+```java
+package com.stock.data.domain;
+
+import java.time.LocalDateTime;
+import javax.persistence.EntityListeners;
+import javax.persistence.MappedSuperclass;
+import lombok.Getter;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
+@Getter
+@MappedSuperclass
+@EntityListeners(AuditingEntityListener.class)
+public abstract class BaseTimeEntity {
+
+	@CreatedDate
+	private LocalDateTime createdDate;
+
+	@LastModifiedDate
+	private LocalDateTime modifiedDate;
+}
+```
+
+- @MappedSuperClass  
+  - 하위클래스에게서 매핑되는 수퍼클래스임을 명시하는 역할
+  - 멤버필드가 DB 컬럼으로 인식되도록 하는 역할
+    - JPA Entity 클래스들이 BaseTimeEntity를 상속할 경우 @CreatedDate, @LastModifiedDate로 선언한 멤버필드들도 컬럼으로 인식하도록 해주는 역할을 수행한다.  
+- @EntityListeners(AuditingEntityListener.class)  
+  - BaseTimeEntity 클래스에 Auditing 기능을 포함시킨다.
+- @CratedDate
+  - Entity가 생성되어 저장될 때의 시간이 자동 저장된다.
+- @LastModifiedDate
+  - 조회한 Entity의 값을 변경할 때의 시간이 자동 저장된다.
+
+## domain - Posts
+
+Auditing 기능이 적용되길 원하는  Entity클래스가 방금 작성한  BaseTimeEntity클래스르 상속받도록 해준다.
+
+```java
+public class Posts extends BaseTimeEntity{
+  // ...
+}
+```
+
+
+
+## Main - @EnableJpaAuditing
+
+Application 클래스에 @EnableJpaAuditing 을 추가해 Spring Boot 애플리케이션이 JpaAuditing기능이  On 되어 있는 상태로 동작하도록 해준다.
+
+```java
+package com.stock.data;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
+
+@EnableJpaAuditing
+@SpringBootApplication
+public class Application {
+	public static void main(String [] args){
+		SpringApplication.run(Application.class, args);
+	}
+}
+```
+
+
+
+## 테스트 코드
+
+```java
+  @Test
+	public void BaseTimeEntity_등록(){
+		LocalDateTime now = LocalDateTime.of(2019, 6, 4, 0,0, 0);
+		postsRepository.save(
+			Posts.builder()
+				.title("title")
+				.content("content")
+				.author("author")
+				.build()
+		);
+
+		List<Posts> postsList = postsRepository.findAll();
+
+		Posts post = postsList.get(0);
+
+		System.out.println("====== createdDate :: "
+			+ post.getCreatedDate()
+			+ ", modifiedDate :: "
+			+ post.getModifiedDate()
+		);
+
+		assertThat(post.getCreatedDate()).isAfter(now);
+		assertThat(post.getModifiedDate()).isAfter(now);
+	}
+```
+
