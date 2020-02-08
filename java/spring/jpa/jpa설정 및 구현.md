@@ -358,6 +358,39 @@ public class PostsRepositoryTest {
 
 
 
+# JPA 설정 분리하기
+
+
+
+com.stock.data.config 패키지에 
+
+- datasource 패키지 생성
+- datasource 패키지 아래에 jpa 패키지 생성
+- datasource.jpa 패키지 아래에
+  JpaConfig.java 생성
+
+  
+
+**JpaConfig.java**
+
+```java
+package com.stock.data.config.datasource.jpa;
+
+import org.springframework.context.annotation.Configuration;
+import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
+
+@Configuration
+@EnableJpaAuditing
+public class JpaConfig {
+}
+```
+
+
+
+
+
+
+
 
 
 
