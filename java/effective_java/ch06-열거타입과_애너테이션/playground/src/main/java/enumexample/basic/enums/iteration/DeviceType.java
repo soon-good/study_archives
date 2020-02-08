@@ -1,10 +1,10 @@
 package enumexample.basic.enums.iteration;
 
 public enum DeviceType {
-	CPU(1, "CPU"){
+	CPU(2, "CPU"){
 
 	},
-	RAM(2, "RAM"){
+	RAM(100, "RAM"){
 
 	};
 
@@ -19,4 +19,5 @@ public enum DeviceType {
 	public String getDeviceTypeNm(){
 		return deviceTypeNm;
 	}
+	public int getDeviceTypeCd() { return deviceTypeCd; }
 }

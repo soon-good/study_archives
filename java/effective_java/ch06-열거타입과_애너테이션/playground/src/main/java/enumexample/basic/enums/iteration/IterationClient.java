@@ -1,9 +1,9 @@
 package enumexample.basic.enums.iteration;
 
-public class Main {
+public class IterationClient {
 	public static void main(String [] args){
 		for(DeviceType device : DeviceType.values()){
-			System.out.println("Type :: " + device);
+			System.out.println("[device : " + device + "] :: " + device.getDeviceTypeCd());
 		}
 	}
 }
