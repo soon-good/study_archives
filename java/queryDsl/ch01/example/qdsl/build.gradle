@@ -2,7 +2,7 @@ plugins {
 	id 'org.springframework.boot' version '2.3.0.BUILD-SNAPSHOT'
 	id 'io.spring.dependency-management' version '1.0.9.RELEASE'
 	// queryDsl 추가
-	id "com.ewerk.gradle.plugin.querydsl" version "1.0.10"
+	id "com.ewerk.gradle.plugins.querydsl" version "1.0.10"
 	id 'java'
 }
 
