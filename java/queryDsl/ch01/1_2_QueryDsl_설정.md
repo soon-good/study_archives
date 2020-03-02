@@ -258,5 +258,79 @@ class QdslApplicationTests {
 
 
 
+# 라이브러리 살펴보기
+
+## 의존성 트리 살펴보기
+
+![이미자](./img/LIBRARY_STRUCTURE_DEPENDENCY.png)
+
+Gradle 탭 > Source Sets > main > Dependencies > 
+
+- com.querydsl.querydsl-apt:4.1.4
+  - 방금 만든 예제에서 살펴본 QHello.java와 같은 QType을 Entity를 변환하여 자동 생성(generated)하는 역할을 하는 라이브러리 
+- com.querydsl:querydsl-jpa:4.2.2
+  - selectFrom 등과 같은 실제 sql을 지원하는 라이브러리
+
+## JAR 파일 다운로드 확인
+
+![이미자](./img/LIBRARY_STRUCTURE_JAR.png)
+
+
+
+## ps
+
+starter-jpa 의존성 트리를 살펴볼때 추가적으로 살펴봐야 하는 것들로
+
+- AssertJ (테스트를 편하게 해준다)
+- slf4j
+- hibernate
+- HikariCP
+- ...
+
+
+
+# 빌드 스크립트 
+
+우리는 맨 위에 plugins에 아래의 querydsl gradle 플러그인을 추가했었다.
+
+```groovy
+plugins{
+  ...
+  id "com.ewerk.gradle.plugins.querydsl" version "1.0.10"
+}
+```
+
+  
+
+이 플러그인 설정이 아래의 구문과 맞물려서 실행된다.
+
+```groovy
+//querydsl build 스크립트
+def querydslDir = "$buildDir/generated/querydsl"
+
+querydsl {
+	jpa = true
+	querydslSourcesDir = querydslDir
+}
+// sourceSets가 정의되어 있으면 Intellij와 같은 IDE에서 자동으로 해당 디렉터리를 import해준다.
+sourceSets {
+	main.java.srcDir querydslDir
+}
+configurations {
+	querydsl.extendsFrom compileClasspath
+}
+compileQuerydsl {
+	options.annotationProcessorPath = configurations.querydsl
+}
+```
+
+
+
+# 결론
+
+구글 검색을 겁나게 해야 한다. 고 이야기하고 있다.
+
+
+
 
 
