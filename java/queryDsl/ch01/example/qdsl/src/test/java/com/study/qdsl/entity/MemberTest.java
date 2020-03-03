@@ -11,6 +11,11 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Commit;
 
 /**
+ * @Transactional
+ *  : Test에 적용하면 테스트 시작시에 트랜잭션을 시작하기도 하지만, 추가로 테스트가 끝나고 트랜잭션을 자동으로 롤백해주는 기능을 수행한다.
+ *  : @Transactional을 테스트 코드에 사용하면 해당 테스트가 끝나고, DB의 데이터를 롤백해서 깔끔하게 초기화 해준다.
+ *  : 다른 테스트에 영향을 주지 않고, 다음 테스트를 계속 어이갈 수 있는 장점이 있다.
+ *
  * @Commit
  *  : DB에 Commit을 하게되면 다른 테스트들과 꼬일수 있기 때문에 git에 커밋/푸시 시에는 주석처리
  *  : H2 Database Console에서는 당연히 안보이긴 하지만, 로그나, 콘솔에서만 확인하고, 다른 테스트와 꼬이지 않기 위해 주석처리
