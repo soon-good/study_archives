@@ -13,6 +13,7 @@ import org.springframework.test.annotation.Commit;
 /**
  * @Commit
  *  : DB에 Commit을 하게되면 다른 테스트들과 꼬일수 있기 때문에 git에 커밋/푸시 시에는 주석처리
+ *  : H2 Database Console에서는 당연히 안보이긴 하지만, 로그나, 콘솔에서만 확인하고, 다른 테스트와 꼬이지 않기 위해 주석처리
  */
 @SpringBootTest
 @Transactional
