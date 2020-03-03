@@ -16,7 +16,7 @@ import org.springframework.test.annotation.Commit;
  */
 @SpringBootTest
 @Transactional
-@Commit
+//@Commit
 class MemberTest {
 
 	@Autowired
