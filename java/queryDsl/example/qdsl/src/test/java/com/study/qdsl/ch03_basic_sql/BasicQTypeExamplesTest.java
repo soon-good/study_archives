@@ -15,6 +15,15 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+/**
+ * 기본 QType 사용시
+ *   - QType을 축약형으로 사용하는 경우
+ *     (import static 등을 활용)
+ *
+ *   - 조인할 테이블의 QType 인스턴스 생성시 테이블의 별칭을 다르게 주어서 사용하는 경우
+ *     (셀프 조인 등의 경우에 활용)
+ * 에 대해서 정리
+ */
 @SpringBootTest
 @Transactional
 public class BasicQTypeExamplesTest {
