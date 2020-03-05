@@ -40,6 +40,13 @@ public class JpqlVsQueryDslTest {
 	 */
 	@BeforeEach
 	public void before(){
+		queryFactory = new JPAQueryFactory(em);		// 인스턴스 em을 바인딩할때 동시성 문제가 되지 않을까? 하고 고민하게 될 수 있다.
+													// 클래스의 전역 멤버 필드로 두어도 문제되지 않는다.
+													// 여러개의 멀티 쓰레드에서 인스턴스 em에 접근하게 되서 문제가 되지 않을까? 할수도 있다.
+													// 여기에 대해서는 동시성 문제 같은 것들을 고민하지 않아도 된다.
+													// 스프링 프레임워크가 주입해주는 EntityManager 자체가 멀티쓰레드에 문제가 되지 않도록 설계되어 있다.
+													// 여러 멀티 쓰레드에서 들어와도 현재 내 트랜잭이 어디에 걸려있는지에 따라 필요한 곳에 바인딩되도록 분배해준다.
+
 		Team teamA = new Team("teamA");
 		Team teamB = new Team("teamB");
 		em.persist(teamA);
@@ -81,13 +88,7 @@ public class JpqlVsQueryDslTest {
 	@Test
 	public void startQueryDsl(){
 //		JPAQueryFactory queryFactory = new JPAQueryFactory(em); // 주석처리하고, queryFactory를 전역필드로 설정
-
-		queryFactory = new JPAQueryFactory(em);		// 인스턴스 em을 바인딩할때 동시성 문제가 되지 않을까? 하고 고민하게 될 수 있다.
-													// 클래스의 전역 멤버 필드로 두어도 문제되지 않는다.
-													// 여러개의 멀티 쓰레드에서 인스턴스 em에 접근하게 되서 문제가 되지 않을까? 할수도 있다.
-													// 여기에 대해서는 동시성 문제 같은 것들을 고민하지 않아도 된다.
-													// 스프링 프레임워크가 주입해주는 EntityManager 자체가 멀티쓰레드에 문제가 되지 않도록 설계되어 있다.
-													// 여러 멀티 쓰레드에서 들어와도 현재 내 트랜잭이 어디에 걸려있는지에 따라 필요한 곳에 바인딩되도록 분배해준다.
+																// before() 구문에서 초기화하도록 변경
 
 		/** QMember("이름");
 		 *  - '이름' 은 어떤 QMember인지 구분하는 이름을 주는 것이다. */
