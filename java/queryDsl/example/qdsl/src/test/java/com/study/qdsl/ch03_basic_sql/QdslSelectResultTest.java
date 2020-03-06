@@ -20,7 +20,7 @@ import org.springframework.boot.test.context.SpringBootTest;
  */
 @SpringBootTest
 @Transactional
-public class QdslSelectResult {
+public class QdslSelectResultTest {
 
 	@Autowired
 	EntityManager em;
