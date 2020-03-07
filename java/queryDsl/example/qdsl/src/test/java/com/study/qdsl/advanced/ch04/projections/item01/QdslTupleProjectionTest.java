@@ -24,7 +24,7 @@ import org.springframework.boot.test.context.SpringBootTest;
  */
 @SpringBootTest
 @Transactional
-public class QdslBasicTupleTest {
+public class QdslTupleProjectionTest {
 
 	@Autowired
 	EntityManager em;
