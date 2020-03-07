@@ -28,6 +28,13 @@ import org.springframework.boot.test.context.SpringBootTest;
  *
  * 	QType 사용
  * 	  단순히 new Q타입생성자(....) 을 select() 메서드 안에 두면 된다.
+ *
+ * 	보완)
+ * 	  근데 또 생각해보면 클래스 설계 시에 상속구조 또는 다른 방식으로 조금 다르게 분기하도록 하면될듯 하다.
+ *
+ * 	  지금 당장에 생각나는 방법 중 하나는
+ * 	  MemberDto를 상속(확장)하는 하나의 클래스를 생성한다.
+ * 	  	- 하나는 상속받은후 생성자에 @QueryProjection 을 걸면된다.
  */
 @SpringBootTest
 @Transactional
