@@ -66,6 +66,29 @@ class MemberJpaQdslRepositoryTest {
 		assertThat(result.get(0).getUsername()).isEqualTo("Stacey");
 	}
 
+	@Test
+	public void searchTestByWhere(){
+		createSampleData();
+
+		/**
+		 * 주의 !!)
+		 * 동적쿼리 작성시 아래의 조건문에서 goe, loe,teamName 처럼 조건식을 작성하지 않고 객체만 생성하면
+		 *
+		 * 컴파일타임에는  에러가 나지 않고
+		 * 운영에서도 역시 에러가 나지 않는다.
+		 *
+		 * 하지만 모든 데이터를 가져오므로 치명적이기도 하고, 화면상에 가져와야 하는 데이터와 맞지 않는 버그 또한 생긴다.
+		 */
+		MemberSearchCondition condition = new MemberSearchCondition();
+		condition.setAgeGoe(24);
+		condition.setAgeLoe(27);
+		condition.setTeamName("Analysis");
+
+		List<MemberTeamDto> result = qdslRepository.searchByWhere(condition);
+
+		assertThat(result.get(0).getUsername()).isEqualTo("Stacey");
+	}
+
 	private void createSampleData(){
 		Team marketingTeam = new Team("Marketing");
 		Team analysisTeam = new Team("Analysis");

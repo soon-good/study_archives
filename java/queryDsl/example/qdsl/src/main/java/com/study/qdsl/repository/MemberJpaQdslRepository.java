@@ -4,6 +4,8 @@ import static com.study.qdsl.entity.QMember.*;
 import static com.study.qdsl.entity.QTeam.*;
 
 import com.querydsl.core.BooleanBuilder;
+import com.querydsl.core.types.Predicate;
+import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import com.study.qdsl.dto.MemberTeamDto;
 import com.study.qdsl.dto.QMemberTeamDto;
@@ -105,5 +107,62 @@ public class MemberJpaQdslRepository {
 					.where(builder)
 					.leftJoin(member.team, team)
 					.fetch();
+	}
+
+	/**
+		Ch05 - item3 :: 동적 쿼리와 성능 최적화 조회 (where 절과 BooleanExpression 활용)
+		 : QueryDsl 의 Where절에 BooleanExpression 반환 메서드를 통한 동적 쿼리 예제
+		 : 특정 조건 (ConditionDto) Dto를 생성해 조건 값들을 가지는 객체로 동적생성 (좋다!!)
+				: 검색 조건 처리 함수, null 처리 공통화 (좋다!!)
+
+		 : 테스트 코드 작성
+		 : 항상 경계해야 하는 것이지만, 동적 쿼리는 항항 null 을 주의해야 한다.
+	 */
+	public List<MemberTeamDto> searchByWhere(MemberSearchCondition condition){
+		return queryFactory
+			.select(new QMemberTeamDto(
+				member.id.as("memberId"),
+				member.username,
+				member.age,
+				member.team.id.as("teamId"),
+				member.team.name.as("teamName")
+			))
+			.from(member)
+			.where(
+				userNameEq(condition.getUsername()),
+				teamNameEq(condition.getTeamName()),
+				ageGoe(condition.getAgeGoe()),
+				ageLoe(condition.getAgeLoe())
+			)
+			.leftJoin(member.team, team)
+			.fetch();
+	}
+
+	/**
+	 * where 동적 파라미터의 장점
+	 * 	: 조건 검사 함수를 재사용할 수 있다.
+	 * 	: 이런 조건들은 공통화하여 공통 사용 클래스를 두어 static 함수로 제공해도 되고
+	 * 	: Enum 으로 비교 루틴들을 정형화 하여 제공할 수도 있고, 활용범위가 다양해진다.
+	 *
+	 * 	: 이런 공통 함수들을 또 Enum 으로 한번 더 묶어서 isValid()함수 등을 제공할 수도 있다.
+	 */
+	private BooleanExpression userNameEq(String username) {
+		return StringUtils.isEmpty(username) ? null : member.username.eq(username);
+	}
+
+	private BooleanExpression teamNameEq(String teamName) {
+		return StringUtils.isEmpty(teamName) ? null : team.name.eq(teamName);
+	}
+
+	private BooleanExpression ageGoe(Integer ageGoe) {
+		return ageGoe == null ? null : member.age.goe(ageGoe);
+	}
+
+	private BooleanExpression ageLoe(Integer ageLoe) {
+		return ageLoe == null ? null : member.age.loe(ageLoe);
+	}
+
+	private BooleanExpression ageBetween(int ageLoe, int ageGoe){
+		return ageGoe(ageGoe).and(ageLoe(ageLoe));
 	}
 }
