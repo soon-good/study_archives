@@ -1,14 +1,21 @@
 package com.study.qdsl.repository;
 
 import static com.study.qdsl.entity.QMember.*;
+import static com.study.qdsl.entity.QTeam.*;
 
+import com.querydsl.core.BooleanBuilder;
 import com.querydsl.jpa.impl.JPAQueryFactory;
+import com.study.qdsl.dto.MemberTeamDto;
+import com.study.qdsl.dto.QMemberTeamDto;
+import com.study.qdsl.dto.condition.MemberSearchCondition;
 import com.study.qdsl.entity.Member;
 import com.study.qdsl.entity.QMember;
+import com.study.qdsl.entity.QTeam;
 import java.util.List;
 import javax.persistence.EntityManager;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
+import org.springframework.util.StringUtils;
 
 /**
  * 참고)
@@ -62,5 +69,41 @@ public class MemberJpaQdslRepository {
 		return queryFactory.selectFrom(member)
 			.where(member.username.eq(username))
 			.fetch();
+	}
+
+	public List<MemberTeamDto> searchByBuilder(MemberSearchCondition condition){
+
+		BooleanBuilder builder = new BooleanBuilder();
+
+		/**
+		 * 웹에서 넘어오는 파라미터 들은 null 로 넘어올 때도 있고 ""으로 넘어올 때도 있다.
+		 * 이런 경우에 대해 편리함을 제공해주는 라이브러리가 SpringFramework 에서 제공해주는 StringUtils::hasText() 이다.
+		 **/
+//		if(null, "")
+		if (StringUtils.hasText(condition.getUsername())) {
+			builder.and(member.username.eq(condition.getUsername()));
+		}
+		if (StringUtils.hasText(condition.getTeamName())) {
+			builder.and(member.team.name.eq(condition.getTeamName()));
+		}
+		if(condition.getAgeGoe() != null){
+			builder.and(member.age.goe(condition.getAgeGoe()));
+		}
+		if(condition.getAgeLoe() != null){
+			builder.and(member.age.loe(condition.getAgeLoe()));
+		}
+
+		return queryFactory
+			.select(new QMemberTeamDto(
+						member.id.as("memberId"),
+						member.username,
+						member.age,
+						member.team.id.as("teamId"),
+						member.team.name.as("teamName")
+					))
+					.from(member)
+					.where(builder)
+					.leftJoin(member.team, team)
+					.fetch();
 	}
 }
