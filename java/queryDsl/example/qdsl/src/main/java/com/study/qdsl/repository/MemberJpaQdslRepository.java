@@ -14,6 +14,7 @@ import com.study.qdsl.entity.Member;
 import com.study.qdsl.entity.QMember;
 import com.study.qdsl.entity.QTeam;
 import java.util.List;
+import java.util.Optional;
 import javax.persistence.EntityManager;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
@@ -61,6 +62,15 @@ public class MemberJpaQdslRepository {
 //		this.em = em;
 //		this.queryFactory = queryFactory;
 //	}
+
+	public void save(Member member){
+		em.persist(member);
+	}
+
+	public Optional<Member> findById(Long id){
+		Member foundMember = em.find(Member.class, id);
+		return Optional.ofNullable(foundMember);
+	}
 
 	public List<Member> findAll() {
 		return queryFactory.selectFrom(member)
