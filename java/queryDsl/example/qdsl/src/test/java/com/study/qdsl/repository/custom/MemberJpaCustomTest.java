@@ -4,6 +4,8 @@ import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 import com.querydsl.jpa.impl.JPAQueryFactory;
+import com.study.qdsl.dto.MemberTeamDto;
+import com.study.qdsl.dto.condition.MemberSearchCondition;
 import com.study.qdsl.entity.Member;
 import com.study.qdsl.entity.Team;
 import com.study.qdsl.repository.datajpa.MemberDataJpaRepository;
@@ -15,6 +17,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 
 /**
  * ch06-item2-QueryDsl 지원 커스텀 리포지터리 만들기
@@ -80,5 +84,22 @@ class MemberJpaCustomTest {
 		List<Member> stacey = dataJpaRepository.findByUsername("Stacey");
 		assertThat(stacey.size()).isEqualTo(1);
 		assertThat(stacey.get(0).getUsername()).isEqualTo("Stacey");
+	}
+
+	@Test
+	public void searchPageSimpleTest(){
+		MemberSearchCondition condition = new MemberSearchCondition();
+		// 스프링 데이터의 페이지네이션의 page 는 0번 부터 시작된다.
+		PageRequest pageRequest = PageRequest.of(0, 3);
+		Page<MemberTeamDto> results = dataJpaRepository.searchPageSimple(condition, pageRequest);
+
+		assertThat(results.getSize()).isEqualTo(3);
+
+		assertThat(results.getContent())
+			.extracting("username")
+			.containsExactly("John", "Becky", "Kyle");
+
+		System.out.println("results === ");
+		System.out.println(results);
 	}
 }
