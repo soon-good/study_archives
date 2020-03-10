@@ -1,6 +1,7 @@
 package com.study.qdsl.repository.datajpa;
 
 import com.study.qdsl.entity.Member;
+import com.study.qdsl.repository.custom.MemberJpaCustom;
 import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 
@@ -16,8 +17,10 @@ import org.springframework.data.jpa.repository.JpaRepository;
  *
  * findByUsername(), findByAge() 등등 세부 컬럼에 대한 메서드를 만들었을 때
  * 스프링 데이터 JPA 는 메서드의 이름에 주어진 이름을 통해 자동으로 컬럼명을 인식해 JPQL 을 만들어내는 전략을 취한다.
+ *
+ * ch06-item2-QueryDsl 지원 커스텀 리포지터리 만들기 >> MemberJpaCustom 상속하도록 변경
  */
-public interface MemberDataJpaRepository extends JpaRepository<Member, Long> {
+public interface MemberDataJpaRepository extends JpaRepository<Member, Long> , MemberJpaCustom {
 
 	/** 아래와 같이 작성하면 스프링 데이터 JPA 가 메서드 이름으로 자동으로 JPQL 을 만들어내는 전략을 취한다.
 	 * ex) select m from Member m where m.username = :username */
