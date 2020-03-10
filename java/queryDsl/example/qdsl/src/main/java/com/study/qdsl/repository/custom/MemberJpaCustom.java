@@ -14,5 +14,10 @@ public interface MemberJpaCustom {
 	public List<MemberTeamDto> search(MemberSearchCondition condition);
 	/** ch06-item3-스프링 데이터 페이징 활용1 - QueryDsl 페이징 연동 */
 	public Page<MemberTeamDto> searchPageSimple(MemberSearchCondition condition, Pageable pageable);
-	public Page<MemberTeamDto> searchPageComplex(MemberSearchCondition condition, Pageable pageable);
+
+	/** ch06-item3-스프링 데이터 페이징 활용1 - QueryDsl 페이징 연동 */
+	public Page<MemberTeamDto> searchPageComplex (MemberSearchCondition condition, Pageable pageable);
+
+	/** ch06-item4-스프링 데이터 페이징 활용2 - countQuery 최적화 */
+	public Page<MemberTeamDto> searchPageOptimized(MemberSearchCondition condition, Pageable pageable);
 }

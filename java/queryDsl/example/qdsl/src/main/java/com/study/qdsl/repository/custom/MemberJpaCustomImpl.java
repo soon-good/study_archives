@@ -6,6 +6,7 @@ import static org.springframework.util.StringUtils.*;
 
 import com.querydsl.core.QueryResults;
 import com.querydsl.core.types.dsl.BooleanExpression;
+import com.querydsl.jpa.impl.JPAQuery;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import com.study.qdsl.dto.MemberTeamDto;
 import com.study.qdsl.dto.QMemberTeamDto;
@@ -18,6 +19,7 @@ import javax.persistence.EntityManager;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.repository.support.PageableExecutionUtils;
 import org.springframework.util.StringUtils;
 
 /**
@@ -167,5 +169,62 @@ public class MemberJpaCustomImpl implements MemberJpaCustom {
 			.fetchCount();
 
 		return new PageImpl<MemberTeamDto>(results, pageable, count);
+	}
+
+	/** ch06-item4-스프링 데이터 페이징 활용2 - countQuery 최적화
+	 *   : 불필요하게 count 쿼리를 날리지 않도록 불필요하게 count 쿼리를 날리지 않도록, 필요한 경우에만 조건적으로 쿼리를 실행하도록
+	 *   	Spring Data 에서 제공하는 PageableExecutionUtils 를 사용한다.
+	 *
+	 * 	 : 1) 페이지의 시작이면서 컨텐츠 사이즈가 페이지의 사이즈보다 작을 때
+	 * 	 	- ex) 페이지의 사이즈는 30개로 정했는데 전체 DB에서는 20개의 글밖에 존재하지 않을 때
+	 *
+	 * 	 : 2) 마지막 페이지
+	 * 	 	- offset + 컨텐츠의 사이즈 를 통해 전체 사이즈를 구한다.
+	 * 	  	- 카운트 쿼리를 할 필요가 없다.
+	 *
+	 * 	 : PageableExecutionUtils.getPage(content, pageable, LongSupplier)
+	 * 	 	- LongSupplier 에 람다식을 전달한다.
+	 * 	    - 람다식 내부에서 fetchCount()를 한다.
+	 * 	    - 이 람다식은 위의 1), 2) 의 경우에는 실행되지 않고
+	 * 	    	: 이미 얻어온 contents의 사이즈를 구하거나
+	 * 	    	: offset + 컨텐츠 사이즈 를 통해 전체 사이즈를 구한다.
+	 **/
+	@Override
+	public Page<MemberTeamDto> searchPageOptimized(MemberSearchCondition condition, Pageable pageable) {
+		List<MemberTeamDto> results = queryFactory.select(new QMemberTeamDto(
+			member.id.as("memberId"),
+			member.username.as("username"),
+			member.age,
+			member.team.id.as("teamId"),
+			member.team.name.as("teamName")
+		))
+		.from(member)
+		.leftJoin(member.team, team)
+		.where(
+			userNameEq(condition),
+			teamNameEq(condition),
+			ageGoe(condition),
+			ageLoe(condition)
+		)
+		.offset(pageable.getOffset())
+		.limit(pageable.getPageSize())
+		.fetch();
+
+		/** Query 를 람다 표현식에 저장 */
+		JPAQuery<Member> countSql = queryFactory
+			.select(member)
+			.from(member)
+			.where(
+				userNameEq(condition),
+				teamNameEq(condition),
+				ageGoe(condition),
+				ageLoe(condition)
+			);
+
+		// SQL을 람다 표현식으로 감싸서 람다 또는 메서드 레퍼린스를 인자로 전달해준다.
+		// PageableExecutionUtils 에서 위의 1),2) 에 해당하면 SQL 호출을 따로 하지 않는다.
+//		return PageableExecutionUtils.getPage(results, pageable, ()->countSql.fetchCount());
+		// or
+		return PageableExecutionUtils.getPage(results, pageable, countSql::fetchCount);
 	}
 }
