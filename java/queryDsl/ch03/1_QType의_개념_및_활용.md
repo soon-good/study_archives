@@ -229,6 +229,16 @@ QMember 클래스를 on demand static import 하자. (opt + Enter)
 
 
 
+# QType 의 개념
+
+QType은 QueryDsl 컴파일/빌드를 통해 생성되는 Entity에 대한 QEntity를 기반으로 테이블을 조회하는 것이다. jpql의 경우 동적 쿼리 생성시 엔티티 단위로 클래스를 select절에 표시하여 불필요한 중복 코드를 줄여주었었다. QueryDsl은 쿼리 자체를 모두 메서드로 실행할 수 있도록 제공해주는 라이브러리이다. JPQL을 포장해서 하나의 편리한 라이브러리로 제공해주고 있다고 한다.  
+
+QType은 이러한 QueryDsl에서 조회에 대한 엔티티에 대한 객체 매핑이다.  
+
+자세한 내용은 추후 추가하자. 아이고... 
+
+
+
 
 
 
