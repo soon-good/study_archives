@@ -231,22 +231,15 @@ QMember 클래스를 on demand static import 하자. (opt + Enter)
 
 # QType 의 개념
 
-QType은 QueryDsl 컴파일/빌드를 통해 생성되는 Entity에 대한 QEntity를 기반으로 테이블을 조회하는 것이다. jpql의 경우 동적 쿼리 생성시 엔티티 단위로 클래스를 select절에 표시하여 불필요한 중복 코드를 줄여주었었다. QueryDsl은 쿼리 자체를 모두 메서드로 실행할 수 있도록 제공해주는 라이브러리이다. JPQL을 포장해서 하나의 편리한 라이브러리로 제공해주고 있다고 한다.  
+QueryDSL을 이용해 DB에 접근하는 코드를 작성시, @Entity 가 붙은 대상들에 대해 compileQueryDsl 태스크를 통해 컴파일 된 QType을 생성한 후 조회해야 한다. QueryDsl은 조회성 쿼리 작성시 사용하는 JPQL을 포장해서 조금 더 쉽게 만들어놓은 라이브러리이다. 이렇게 재 포장하여 사용하게끔 만들다 보니, 새로운 타입인 QType이라는게 생긴 듯 하다. 보통 이 QType을 select절, from절 또는 Join 절에 지정하여, 객체 단위로 select, from한다.  
 
-QType은 이러한 QueryDsl에서 조회에 대한 엔티티에 대한 객체 매핑이다.  
+  
 
-자세한 내용은 추후 추가하자. 아이고... 
+QType이라는게 뭘까? 하고 클래스를 직접 살펴보려 했었다. 하지만, 첫술에 어찌 배부르랴. 처음에 너무 많이 배경지식을 알려고 하는 것은 학습목표에도 맞지 않고, 필요에 의해 알아나가고, 철저히 예제기반으로 익혀가며 주변지식을 익히는게 나을 듯 히다.  
 
+  
 
-
-
-
-
-
- 
-
-
-
+JPQL 작성시 보통 from절과 select 절에 @Entity가 붙은 Member, Team 과 같은 영속성 객체들을 지정해줬었다. QueryDsl 역시 JPAQueryFactory 를 통해 Query를 실행할 때 보통 QMember, QTeam과 같은 QueryDsl을 위한 타입을 select, from 절에 지정하여 사용한다.  
 
 
 
