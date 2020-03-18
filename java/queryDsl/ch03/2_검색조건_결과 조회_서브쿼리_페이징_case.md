@@ -220,7 +220,29 @@ JPAQuery<Member> queryContext =
 List<Member> results = queryContext.fetch();
 ```
 
-이렇게 fetchXXX() 함수로 보통 SQL 동작을 마무리 짓는다. Java의 Stream API 사용시 마지막에 collect() 함수를 호출하는 것과 유사한 모양이다. 위의 구문의 queryContext 라는 이름의 JPAQuery\<T\> 타입의 인스턴스로 
+  
+
+이렇게 fetchXXX() 함수로 보통 SQL 동작을 마무리 짓는다. Java의 Stream API 사용시 마지막에 collect() 함수를 호출하는 것과 유사한 모양이다.  
+
+또는 모두 이어 붙여서 한번에 호출하기도 한다.  
+
+```java
+List<Member> results = 
+  	queryFactory
+  		.select(...)			// 얻어온 Entity 들 중에서 어떤 컬럼(필드)을 보일지 기술
+  		.from(...)				// Entity 에서 얻어온다.
+  		.where(...)				// 어떤 Entity에서 데이터를 가져올지 기술
+  		.join(...)				// join을 어떤 Entity와 할지 기술
+  		.fetch();					// 동적 생성된 SQL 구문 실행(Transaction 또는 영속성 연산 수행)
+```
+
+  
+
+```java
+List<Member> results = queryContext.fetch();
+```
+
+위의 구문에서 queryContext 라는 이름의 JPAQuery\<T\> 타입의 인스턴스로 
 
 - fetch(), 
 - fetchCount(), 
@@ -228,7 +250,15 @@ List<Member> results = queryContext.fetch();
 - fetchResult(), 
 - fetchCount() 
 
-를 호출할 수 있는데, 실제로 JPAQuery 클래스 내에는 fetch(), fetchCount(), fetchFirst(), fetchResult(), fetchCount() 를 멤버 메서드로 기술하고 있지 않다. 그럼 이 메서드들은 어디에 있는 것일까? JPAQuery 클래스의 부모인 AbstractQuery 클래스에서 fetch(), fetchCount(), fetchFirst(), fetchResult(), fetchCount() 를 구현하고 있다.  
+를 호출할 수 있다. 그런데, 실제로 JPAQuery 클래스 내에는 fetch(), fetchCount(), fetchFirst(), fetchResult(), fetchCount() 를 멤버 메서드로 기술하고 있지 않다. 그럼 이 메서드들은 어디에 있는 것일까?  
+
+JPAQuery 클래스의 부모인  
+
+>  AbstractJPAQuery 클래스
+
+에서 fetch(), fetchCount(), fetchFirst(), fetchResult(), fetchCount() 를 구현하고 있다.  
+
+  
 
 즉, JPAQuery 클래스는
 
