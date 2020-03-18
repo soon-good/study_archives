@@ -440,7 +440,7 @@ count() 만 수행한다.
 
 ## 3) 정렬
 
-QueryDsl로 뽑아내려는 SQL에 정렬을 적용하고 싶을때 orderBy()를 사용하면 된다. 실제 SQL을 연상할 수 있도록 메서드 이름도 잘지어져 있다!! order by가 적용된 SQL을 만들때 오름차순으로 할지, 내림차순으로 할지 등을 지정했었다. QueryDsl 역시 해당 기준을 제공해준다.
+QueryDsl로 뽑아내려는 SQL에 정렬을 적용하고 싶을때 orderBy()를 사용하면 된다. 실제 SQL을 연상할 수 있도록 메서드 이름도 잘지어져 있다!! 우리는 SQL을 작성할 때 보통 order by를 사용해야 할때 오름차순으로 할지, 내림차순으로 할지 등을 지정했었다. QueryDsl 역시 해당 기준을 제공해준다.
 
 - asc()
   - 오름차순 정렬
@@ -491,11 +491,86 @@ asc(), desc(), nullsLast(), nullsFirst() 를 활용해 정렬구문을 작성해
 
 
 
-## 4) 페이징
+## 4) 페이징(기본적인 기능만)
+
+전자정부 프레임워크 또는 마이바티스 사용시 우리는 보통 페이지네이션을 접했다. 비록 java 개발이 아니더라도 django와 같은 유명한 웹 프레임워크를 사용할 때에도 페이지네이션을 사용한다. 페이징 기능 개발은 개발자의 숙명이다.  
+
+QueryDsl을 사용하면, QueryDsl에서 기본적으로 제공하는 fetchResults(), limit(), offset() 등을 이용하여 페이지네이션을 구현 가능하다.  
+
+- fetchResults()
+- limit()
+- offset()
+
+fetchResults(), limit(), offset()을 활용해 기본적인 페이지네이션을 구현할 수 있다. 하지만, 데이터가 많을 경우에는 기본으로 제공되는 fetchResults() 함수 하나만을 사용하는 것은 추천하지 않는다. 단지 디폴트 옵션일 뿐이다. 서버나 이런 것들을 설치할 때도 디폴트 옵션이 있지 않은가? 그런 것이라고 이해만 해두자.  
+
+예) 아주 기본적인 예
+
+```java
+	@Test
+	public void paging2(){
+		QMember member = QMember.member;
+		QueryResults<Member> queryResults = queryFactory.selectFrom(member)
+			.orderBy(member.age.desc())
+			.offset(1)
+			.limit(2)
+			.fetchResults();
+
+		assertThat(queryResults.getTotal()).isEqualTo(10);
+		assertThat(queryResults.getLimit()).isEqualTo(2);
+		assertThat(queryResults.getOffset()).isEqualTo(1);
+		assertThat(queryResults.getResults().size()).isEqualTo(2);
+	}
+```
+
+
+
+항상 그렇듯 기본으로 제공되는 것에 너무 과한 기대를 하지 말자. 공짜로 얻는 물건에 너무 과한 기대를 하는 것은 가끔 양심에 찔릴때가 있다. QueryDsl 역시 실무에서는 기본적으로 제공되는 페이지네이션보다는 커스터마이징을 해서 사용하는 경우가 많다.  
+
+대용량의 테이블을 조회할 때 한번에 너무 많은 양을 한번에 들고 오거나, 또는 사이즈가 큰 테이블에 대해 카운트 쿼리와 같은 Aggregation 계열의 함수를 사용할 경우 성능상에 이슈가 된다. 페이징에 대해서는 따로 문서를 정리해둘 생각이다. 지금은 아래의 단순한 예제를 잠깐이나마 보고 그냥 넘어가자.  
+
+**예) 웹 계층에서 파라미터를 받아 직접 QueryDsl을 호출하는 예제**     
+
+```java
+	public Page<MemberTeamDto> searchPageOptimized(MemberSearchCondition condition, Pageable pageable) {
+		List<MemberTeamDto> results = queryFactory.select(new QMemberTeamDto(
+			member.id.as("memberId"),
+			member.username.as("username"),
+			member.age,
+			member.team.id.as("teamId"),
+			member.team.name.as("teamName")
+		))
+		.from(member)
+		.leftJoin(member.team, team)
+		.where(
+			userNameEq(condition),
+			teamNameEq(condition),
+			ageGoe(condition),
+			ageLoe(condition)
+		)
+		.offset(pageable.getOffset())
+		.limit(pageable.getPageSize())
+		.fetch();
+
+		/** Query 를 람다 표현식에 저장 */
+		JPAQuery<Member> countSql = queryFactory
+			.select(member)
+			.from(member)
+			.where(
+				userNameEq(condition),
+				teamNameEq(condition),
+				ageGoe(condition),
+				ageLoe(condition)
+			);
+
+		// SQL을 람다 표현식으로 감싸서 람다 또는 메서드 레퍼린스를 인자로 전달해준다.
+		// PageableExecutionUtils 에서 위의 1),2) 에 해당하면 SQL 호출을 따로 하지 않는다.
+//		return PageableExecutionUtils.getPage(results, pageable, ()->countSql.fetchCount());
+		// or
+		return PageableExecutionUtils.getPage(results, pageable, countSql::fetchCount);
+	}
+```
 
   
-
-
 
 ## 5) Aggregation (그루핑, 집합)
 
