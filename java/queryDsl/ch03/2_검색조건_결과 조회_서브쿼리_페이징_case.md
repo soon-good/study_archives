@@ -21,6 +21,8 @@
 
 QueryDsl을 이용한 조회 구문 작성시 여러개의 리스트를 조회시의 가장 일반적인 구조는 아래와 같다.
 
+# 이부분 설명 빈약하다. 설명 추가하자!!! 
+
 ```java
 QMember member = QMember.member;
 List<Member> result = queryFactory.select(member)
@@ -256,7 +258,7 @@ JPAQuery 클래스의 부모인
 
 >  AbstractJPAQuery 클래스
 
-에서 fetch(), fetchCount(), fetchFirst(), fetchResult(), fetchCount() 를 구현하고 있다.  
+에서 fetch(), fetchCount(), fetchFirst(), fetchResult(), fetchCount() 를 구현하고 있다. AbstractJPAQuery에서는 주로 fetch(), fetchCount(), ...  getResultList(), getSingleResult() 등의 데이터를 반환하는 역할의 함수들이 기술되어 있다.  
 
   
 
