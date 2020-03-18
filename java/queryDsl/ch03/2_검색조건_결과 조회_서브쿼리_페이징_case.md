@@ -1,6 +1,12 @@
 # 2. 검색조건,결과조회,서브쿼리,페이징,case, 상수 및 문자 처리
 
+## Files
 
+- QdslSearchConditionTest
+- QdslSelectResultTest
+- QdslSortingTest
+
+## 목차(임시)
 
 - 검색조건 where를 사용하는 다양한 방식
 - 결과조회
@@ -77,9 +83,11 @@ public class QdslSearchCondtionTest {
 
 		Team marketingTeam = new Team("Marketing");
 		Team analysisTeam = new Team("Analysis");
+		Team musicianTeam = new Team("Musician");
 
 		em.persist(marketingTeam);
 		em.persist(analysisTeam);
+		em.persist(musicianTeam);
 
 		Member john = new Member("John", 23, marketingTeam);
 		Member susan = new Member("Becky", 22, marketingTeam);
@@ -90,12 +98,22 @@ public class QdslSearchCondtionTest {
 		Member aladin = new Member("Aladdin", 35, analysisTeam);
 		Member genie = new Member("Genie", 41, analysisTeam);
 
+		Member beethoven = new Member("Beethoven", 251, musicianTeam);
+		Member chopin = new Member("Chopin", 210, musicianTeam);
+		Member genie2 = new Member("Genie", 210, musicianTeam);
+		Member nullName = new Member(null, 100, musicianTeam);
+    
 		em.persist(john);
 		em.persist(susan);
 		em.persist(kyle);
 		em.persist(stacey);
 		em.persist(aladin);
 		em.persist(genie);
+
+		em.persist(beethoven);
+		em.persist(chopin);
+		em.persist(genie2);
+		em.persist(nullName);
 	}
 }
 ```
@@ -422,13 +440,62 @@ count() 만 수행한다.
 
 ## 3) 정렬
 
-orderBy()  
+QueryDsl로 뽑아내려는 SQL에 정렬을 적용하고 싶을때 orderBy()를 사용하면 된다. 실제 SQL을 연상할 수 있도록 메서드 이름도 잘지어져 있다!! order by가 적용된 SQL을 만들때 오름차순으로 할지, 내림차순으로 할지 등을 지정했었다. QueryDsl 역시 해당 기준을 제공해준다.
+
+- asc()
+  - 오름차순 정렬
+- desc()
+  - 내림차순 정렬
+- nullsLast()
+  - 지정한 컬럼의 데이터 값이 null이 아닌 데이터를 우선으로 정렬
+- nullsFirst()
+  - 지정한 컬럼의 데이터 값이 null인 데이터를 우선으로 정렬
+
+asc(), desc(), nullsLast(), nullsFirst() 를 활용해 정렬구문을 작성해보자.  
+
+  
+
+**예제 1) 모든 회원들을 조회하는데 나이순으로 내림차순(desc), 이름순으로 오름차순(asc), 회원 이름이 없을 경우는 마지막에 출력하도록 한다. (nulls last)**  
+
+```java
+// ... 
+	@Test
+	public void sort(){
+		final QMember member = QMember.member;
+
+		List<Member> sortResult = queryFactory
+			.selectFrom(member)
+			.where(member.age.goe(100))
+			.orderBy(
+				member.age.desc(),
+				member.username.asc()
+					.nullsLast()
+			)
+			.fetch();
+
+		/** 예상 결과)
+		 * 		베토벤 -> 쇼팽 -> 지니 -> null
+		 **/
+		Member beethoven = sortResult.get(0);
+		Member chopin = sortResult.get(1);
+		Member genie = sortResult.get(2);
+		Member nullEntity = sortResult.get(3);
+
+		assertThat(beethoven.getUsername()).isEqualTo("Beethoven");
+		assertThat(chopin.getUsername()).isEqualTo("Chopin");
+		assertThat(genie.getUsername()).isEqualTo("Genie");
+		assertThat(nullEntity.getUsername()).isNull();
+	}
+// ...
+```
 
 
 
 ## 4) 페이징
 
   
+
+
 
 ## 5) Aggregation (그루핑, 집합)
 
