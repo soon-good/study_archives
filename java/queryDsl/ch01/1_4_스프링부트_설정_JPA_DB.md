@@ -25,6 +25,7 @@ spring:
       hibernate:
 #        show_sql: true
         format_sql: true
+#        use_sql_comments: true
 
 logging.level:
  org.hibernate.SQL: debug
@@ -50,6 +51,10 @@ logging.level:
   - show_sql: true
 
     > show_sql은 System.out.println을 사용한다. format_sql은 logger를 사용한다. 가급적 logger를 사용하는게 출력 포맷팅 등에서 기능의 다양함이 있기 때문에 format_sql 만 enable 시켜둔다.
+
+  - use_sql_comments
+
+    - true일 경우 JPQL 쿼리를 주석 (/* ... */)으로 감싸서 보여준다.
 
 - org.hibernate.type: trace
 

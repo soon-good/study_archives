@@ -2,10 +2,13 @@ package com.study.qdsl.ch03_basic_sql;
 
 import static org.assertj.core.api.Assertions.*;
 
+import com.querydsl.jpa.impl.JPAQuery;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import com.study.qdsl.entity.Member;
 import com.study.qdsl.entity.QMember;
 import com.study.qdsl.entity.Team;
+import java.util.List;
+import java.util.stream.Collectors;
 import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
 import org.assertj.core.api.Assertions;
@@ -73,6 +76,12 @@ public class QdslSearchCondtionTest {
 					.and(member.age.between(30, 40))
 			)
 			.fetchOne();
+
+		JPAQuery<Member> data = queryFactory.select(member)
+			.from(member).where();
+
+		List<Member> fetch = data.fetch();
+		List<Member> collect = fetch.stream().collect(Collectors.toList());
 
 		assertThat(selectedMember.getUsername()).isEqualTo("Aladdin");
 	}

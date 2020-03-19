@@ -12,7 +12,9 @@ spring:
       ddl-auto: create
     properties:
       hibernate:
-#        show_sql: true
+#        show_sql: true     # system.out 으로 콘솔에 출력된다. (추천하지 않는 옵션이다.)
+                            # logging.level.org.hibernate.SQL을 debug로 두면 로거를 사용해 SQL이 출력된다.
+                            # system.out 대신 logger를 쓰고 싶다면 spring.jpa.hibernate.properties.show_sql 은 사용하지 말자.
         format_sql: true
         use_sql_comments: true
 
