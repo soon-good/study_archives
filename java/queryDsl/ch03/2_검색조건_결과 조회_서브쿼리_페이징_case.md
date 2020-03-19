@@ -102,7 +102,7 @@ public class QdslSearchCondtionTest {
 		Member chopin = new Member("Chopin", 210, musicianTeam);
 		Member genie2 = new Member("Genie", 210, musicianTeam);
 		Member nullName = new Member(null, 100, musicianTeam);
-    
+
 		em.persist(john);
 		em.persist(susan);
 		em.persist(kyle);
@@ -503,7 +503,7 @@ QueryDsl을 사용하면, QueryDsl에서 기본적으로 제공하는 fetchResul
 
 fetchResults(), limit(), offset()을 활용해 기본적인 페이지네이션을 구현할 수 있다. 하지만, 데이터가 많을 경우에는 기본으로 제공되는 fetchResults() 함수 하나만을 사용하는 것은 추천하지 않는다. 단지 디폴트 옵션일 뿐이다. 서버나 이런 것들을 설치할 때도 디폴트 옵션이 있지 않은가? 그런 것이라고 이해만 해두자.  
 
-예) 아주 기본적인 예
+**예) 아주 기본적인 예**
 
 ```java
 	@Test
@@ -573,6 +573,90 @@ fetchResults(), limit(), offset()을 활용해 기본적인 페이지네이션�
   
 
 ## 5) Aggregation (그루핑, 집합)
+
+최소, 최대, 평균, sum 값을 구하는 방법을 알아보자. 최소, 최대, 평균, sum 값을 구하기 위해서는 유일하게 식별할 수 있는 기준(주로 pk 컬럼)으로 그루핑을 한 후 최소, 최대, 평균, sum을 구한다. 이렇게 집계를 내리기 위해 그루핑을 하는 것을 Aggregation 이라고 부른다.  
+
+실무에서는 보통 데이터의 양이 많아질 경우 Web 계층에서 WAS로 조회요청을 할 때 count, min, max, sum을 할때 성능상에 무리가 가는 경우가 많다. 많은 데이터에 대해 count, min, max, sum을 단 한번의 조회요청에 수행하게 될 뿐만 아니라, 여러 사용자가 이런 집계연산을 내리는 경우 DB에 부하가 많이 가게 된다. 이런 이유로 실무에서는 여러가지 방법을 고안해낸다.  
+
+여러가지 방법이 있겠지만, 아직까지 내가 경험해본 바로는 집계 테이블을 따로 설계한 후 batch 프로그램을 통해 직접 최소/최대/평균/sum 값을 직접 관리했었다. count 의 경우는 가장 최근의 데이터에 +1 하는 방식으로 누적했던 것으로 기억한다. 아무튼... 테이블 설계를 따로 두어 프로젝트를 진행한다고 해도, 배치 프로그램 작성 역시 우리의 몫으로 돌아오는 것은 맞다. 배치 프로그램 작성시에도 QueryDsl을 사용하면 좋겠지.  
+
+예제를 살펴보자!!!
+
+**예) 회원의 수, 회원들중 최고령자, 최소연령인 회원, 회원들의 평균 나이, 회원들의 나이의 총합을 구해보자**
+
+```java
+	@Test
+	public void basicAggregation(){
+		QMember member = QMember.member;
+    
+		List<Tuple> result = queryFactory
+			.select(
+				member.count(),
+				member.age.max(),
+				member.age.min(),
+				member.age.avg(),
+				member.age.sum()
+			).from(member)
+			.fetch();
+
+		int expectedSum = 23+22+28+24+35+41+251+210+210+100;
+		Double expectedAvg = expectedSum / 10.000;
+
+		int expectedMin = 22;
+		int expectedMax = 251;
+
+		Tuple tuple = result.get(0);
+		assertThat(tuple.get(member.age.max())).isEqualTo(expectedMax);
+		assertThat(tuple.get(member.age.min())).isEqualTo(expectedMin);
+		assertThat(tuple.get(member.count())).isEqualTo(10);
+		assertThat(tuple.get(member.age.sum())).isEqualTo(expectedSum);
+		assertThat(tuple.get(member.age.avg())).isEqualTo(expectedAvg);
+	}
+```
+
+각 QType 엔티티의 필드에
+
+- .max()
+- .min()
+- .avg()
+- .sum()
+- .count() 
+
+를 수행했다. 또 다른 예제를 살펴보자  
+
+**예제) 팀의 이름과 각 팀의 평균 연령 구하기**
+
+```java
+	@Test
+	public void groupBy() throws Exception{
+		QTeam team = QTeam.team;
+		QMember member = QMember.member;
+
+		List<Tuple> result = queryFactory
+			.select(team.name, member.age.avg())
+			.from(member)
+			.join(member.team, team)
+			.groupBy(team.name)
+			.fetch();
+
+		Tuple analysis = result.get(0);
+		Tuple marketing = result.get(1);
+		Tuple musician = result.get(2);
+
+		for(Tuple t : result){
+			System.out.println("t : " + t);
+		}
+
+		assertThat(analysis.get(team.name)).isEqualTo("Analysis");
+		assertThat(analysis.get(member.age.avg())).isEqualTo(32.0);
+
+		assertThat(marketing.get(team.name)).isEqualTo("Marketing");
+		assertThat(marketing.get(member.age.avg())).isEqualTo(22.5);
+
+		assertThat(musician.get(team.name)).isEqualTo("Musician");
+		assertThat(musician.get(member.age.avg())).isEqualTo(192.75);
+	}
+```
 
 
 
