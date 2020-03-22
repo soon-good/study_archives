@@ -18,7 +18,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 /**
  * QueryDsl - Ch03-9. 기본 조인
- *  - 기본조인, leftJoin, crossJoin을 다룬다.
+ *  - 기본조인, leftJoin, crossJoin 을 다룬다.
  *  - 이 역시 실무에서 사용하려면 SQL 을 잘 알아야 하고,
  *  - 변환된 SQL도 논리적으로 파악해야 한다.
  */
