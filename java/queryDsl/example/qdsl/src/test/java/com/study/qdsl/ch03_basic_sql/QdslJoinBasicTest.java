@@ -15,6 +15,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.Commit;
 
 /**
  * QueryDsl - Ch03-9. 기본 조인
@@ -24,6 +25,7 @@ import org.springframework.boot.test.context.SpringBootTest;
  */
 @SpringBootTest
 @Transactional
+@Commit
 public class QdslJoinBasicTest {
 
 	@Autowired
@@ -137,6 +139,16 @@ public class QdslJoinBasicTest {
 			where
 				team1_.name=?
 		 */
+	}
+	@Test
+	public void innerJoinTest(){
+//		on 절에 아무조건도 놓지 않았을 경우에 SQL이 어떻게 표현되는지 확인해보기
+		QMember member = QMember.member;
+		QTeam team = QTeam.team;
+
+		List<Member> fetch = queryFactory.selectFrom(member)
+			.innerJoin(member.team, team)
+			.fetch();
 	}
 
 	/**
