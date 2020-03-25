@@ -19,9 +19,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 /**
  * QueryDsl - Ch03-11. 기본 조인
- * 	- 페치 조인은 SQL에서 제공하는 것이 아닌, JPA 제공기능이다.
+ * 	- 페치 조인은 SQL 에서 제공하는 것이 아닌, JPA 제공기능이다.
  * 	- SQL 조인을 활용해서 매핑되어 있는 연관된 엔티티를 SQL 한번에 조회하는 기능.
- * 	- FetchType이 Lazy인 경우 매핑 연관관계의 엔티티를 한번에 불러오지 않기 때문에 필요한 경우에 fetchJoin을 사용
+ * 	- FetchType 이 Lazy 인 경우 매핑 연관관계의 엔티티를 한번에 불러오지 않기 때문에 필요한 경우에 fetchJoin을 사용
  * 	- 주로 성능최적화에 사용하는 방식
  *
  *  JPA 기본편, 활용편 2탄
@@ -104,7 +104,7 @@ public class QdslJoinFetchTest {
 	}
 
 	/**
-	 * Member 엔티티의 @JoinColumn으로 지정해준 Team 필드는 @ManyToOne 이 걸려 있는데
+	 * Member 엔티티의 @JoinColumn 으로 지정해준 Team 필드는 @ManyToOne 이 걸려 있는데
 	 * @ManyToOne의 fetch 의 타입이 FetchType.LAZY 로 지정되어 있다.
 	 *
 	 * FetchType 이 lazy 이기 때문에 DB에서 조회시 Member만 조회되고 Team은 조회되지 않는다.
