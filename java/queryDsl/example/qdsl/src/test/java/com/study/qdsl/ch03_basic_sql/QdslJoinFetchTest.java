@@ -123,6 +123,10 @@ public class QdslJoinFetchTest {
 
 		boolean loaded = emf.getPersistenceUnitUtil().isLoaded(chopin.getTeam());
 
+		System.out.println(" ======= Chopin's Team? ======= ");
+		System.out.println(" >>> loaded ? " + loaded);
+//		System.out.println(" >>> " + chopin.getTeam());	// chopin.getTeam() 을 하면 SQL을 한번더 호출한다!!
+
 		assertThat(loaded).as("페치(Team을 가져왔는지)되었는지 체크 - isLoaded ?? >>> ").isFalse();
 	}
 
