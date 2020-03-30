@@ -125,7 +125,33 @@ public class QdslJoinFetchTest {
 
 		System.out.println(" ======= Chopin's Team? ======= ");
 		System.out.println(" >>> loaded ? " + loaded);
-//		System.out.println(" >>> " + chopin.getTeam());	// chopin.getTeam() 을 하면 SQL을 한번더 호출한다!!
+		System.out.println(" >>> chopin ? " + chopin);
+		System.out.println(" >>> " + chopin.getTeam());	// chopin.getTeam() 을 하면 SQL을 한번더 호출한다!!
+
+		assertThat(loaded).as("페치(Team을 가져왔는지)되었는지 체크 - isLoaded ?? >>> ").isFalse();
+	}
+
+	@Test
+	public void useNormalJoin(){
+		em.flush();
+		em.clear();
+
+		QMember member = QMember.member;
+		QTeam team = QTeam.team;
+
+		Member genie = queryFactory.selectFrom(member)
+			.join(member.team, team)					// 이 부분이 변경되었다.
+			.where(
+				member.username.eq("Genie")
+					.and(member.age.eq(41)))
+			.fetchOne();
+
+		boolean loaded = emf.getPersistenceUnitUtil().isLoaded(genie.getTeam());
+
+		System.out.println(" ======= Chopin's Team? ======= ");
+		System.out.println(" >>> loaded ? " + loaded);
+		System.out.println(" >>> genie ? " + genie);
+		System.out.println(" >>> " + genie.getTeam());	// chopin.getTeam() 을 하면 SQL을 한번더 호출한다!!
 
 		assertThat(loaded).as("페치(Team을 가져왔는지)되었는지 체크 - isLoaded ?? >>> ").isFalse();
 	}
@@ -144,7 +170,10 @@ public class QdslJoinFetchTest {
 
 		Member genie = queryFactory.selectFrom(member)
 			.join(member.team, team).fetchJoin()	// 이 부분이 변경되었다.
-			.where(member.username.eq("Chopin"))
+			.where(
+				member.username.eq("Genie")
+				.and(member.age.eq(41))
+			)
 			.fetchOne();
 
 		boolean loaded = emf.getPersistenceUnitUtil().isLoaded(genie.getTeam());
