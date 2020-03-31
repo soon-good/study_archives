@@ -99,12 +99,12 @@ public class QdslTupleProjectionTest {
 	public void tupleProjection(){
 		QMember member = QMember.member;
 
-		List<Tuple> sample = queryFactory
+		List<Tuple> result = queryFactory
 			.select(member.age, member.username, member.team)
 			.from(member)
 			.fetch();
 
-		for(Tuple data : sample){
+		for(Tuple data : result){
 			String username = data.get(member.username);
 			Integer age = data.get(member.age);
 
