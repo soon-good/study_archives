@@ -136,5 +136,26 @@ public void testUpdate50Smokers(){
 
 # SQL Function
 
+SQL Function은 application.yml, application.properties에 등록한 DB의 타입에 등록된 Function만 사용가능하다. 또는 사용자 정의 Function의 경우 직접 해당 DB타입Dialect 클래스를 확장한 클래스르 application.yml에 설정하여 사용가능하다.
 
+H2를 사용할 경우에는 예로 들어보면 H2Dialect에 등록되어 있는 것만을 사용가능하다. 또는 H2Dialect를 확장(상속)하여 사용가능하다.
+
+## 예1)
+
+```java
+	@Test
+	public void testSqlFunction1(){
+		QMember member = QMember.member;
+		List<String> data = queryFactory
+			.select(
+				Expressions.stringTemplate(
+					"function('replace', {0}, {1}, {2})",
+					member.username, "Genie", "지니"
+				)
+			)
+			.from(member)
+			.where(member.username.eq("Genie"))
+			.fetch();
+	}
+```
 
