@@ -162,9 +162,6 @@ public class QdslDynamicSqlBooleanBuilderTest {
 		if(usernameCond != null){
 			builder.and(member.username.eq(usernameCond));
 		}
-		if(ageCond != null){
-			builder.and(member.age.eq(ageCond));
-		}
 
 		return queryFactory.selectFrom(member)
 			.where(builder)
