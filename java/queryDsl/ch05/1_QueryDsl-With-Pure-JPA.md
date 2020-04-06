@@ -2,7 +2,7 @@
 
 많은 사람들이 jpa를 떠올릴 때 보통 Spring Data JPA를 떠올리고, 단순히 JPA써봤어?라고 물어볼때 이 질문에는 Spring Data JPA 를 써봤냐는 의미가 내포되어있다. 아쉽게도 여기서는 일단 Spring Data JPA가 아닌 단순 JPA를 활용하여 QueryDsl의 활용을 정리한다. ch06에서 본격적으로 Spring Data JPA와 연동을 한다. 단순 JPA도 써보면 재밌다~.    
 
-여기서는 본격적으로 src/test 밑에서 샘플 쿼리를 날려보는 것 말고 src/main에 직접 Repository를 생성하여 멤버 조회 코드들을 만들어본다~...
+여기서는 src/test 밑에서 샘플 쿼리를 날려보는 것 말고 src/main에 직접 Repository를 생성하여 멤버 조회 코드들을 만들어본다~... 즉, Repository 코딩을 시작한다는 이야기...
 
 
 
