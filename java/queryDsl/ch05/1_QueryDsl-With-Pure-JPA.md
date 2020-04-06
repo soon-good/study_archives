@@ -1,6 +1,6 @@
 # 단순 JPA With QueryDsl
 
-많은 사람들이 jpa를 떠올릴 때 보통 Spring Data JPA를 떠올리고, 단순히 JPA써봤어?라고 물어볼때 이 질문에는 Spring Data JPA 를 써봤냐는 의미가 내포되어있다. 아쉽게도 여기서는 일단 Spring Data JPA가 아닌 단순 JPA를 활용하여 QueryDsl의 활용을 정리한다. ch06에서 본격적으로 Spring Data JPA와 연동을 한다. 단순 JPA도 써보면 재밌다~.    
+많은 사람들이 JPA를 떠올릴 때 보통 Spring Data JPA를 떠올리고, 단순히 JPA써봤어?라고 물어볼 때 이 질문에는 Spring Data JPA 를 써봤냐는 의미가 내포되어있다. 아쉽게도 여기서는 일단 Spring Data JPA가 아닌 단순 JPA를 활용하여 QueryDsl의 활용을 정리한다. ch06에서 본격적으로 Spring Data JPA와 연동을 한다. 단순 JPA도 써보면 재밌다~.    
 
 여기서는 src/test 밑에서 샘플 쿼리를 날려보는 것 말고 src/main에 직접 Repository를 생성하여 멤버 조회 코드들을 만들어본다~... 즉, Repository 코딩을 시작한다는 이야기...
 
@@ -153,15 +153,199 @@ public class MemberJpaQdslRepository {
 
 ## 2) 생성자 주입 + 동적생성
 
-내일 정리... ㄷㄷㄷ
+EntityManager 는 생성자를 통해 의존성 주입하고 JPAQueryFactory의 인스턴스는 동적생성한다. 이렇게 하는 이유는 테스트 코드 작성이 편해져서라고 이야기하시긴 한다. 테스트가 쉽다는 이유 만으로 JPAQueryFactory만 따로 인스턴스를 생성하는 방식을 설명하신 것 같지는 않다.  
 
+QueryDsl 자체가 아직은 안정단계라기보다는 개발단계여서 전역적으로 JPAQueryFactory를 빈으로 등록했을 때 성능이 생각보다 잘 안나와서이지 않을까하는 조심스러운 생각이다.  
 
+QueryDsl 자체가 JPA처럼 일반 CUD 연산을 수행하는 것이 목적이라기 보다는, 똥 쿼리 튜닝이 필요한 대용량 조회 로직에 자주 쓰이다보니 일반 JPA를 사용할 때보다 성능상으로 이슈가 되었던 적이 있어서 이지 않을까 하는 조심스러운 추측을... 해본다.  
+
+(직접적인 원인은 아니겠지만, 문제가 될 부분을 최소화하다보니 그런것 같다)  
+
+```java
+package com.study.qdsl.repository;
+
+// ...
+
+import com.querydsl.core.BooleanBuilder;
+import com.querydsl.core.types.Predicate;
+import com.querydsl.core.types.dsl.BooleanExpression;
+import com.querydsl.jpa.impl.JPAQueryFactory;
+import com.study.qdsl.dto.MemberTeamDto;
+import com.study.qdsl.dto.QMemberTeamDto;
+import com.study.qdsl.dto.condition.MemberSearchCondition;
+import com.study.qdsl.entity.Member;
+import com.study.qdsl.entity.QMember;
+import com.study.qdsl.entity.QTeam;
+import java.util.List;
+import java.util.Optional;
+import javax.persistence.EntityManager;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Repository;
+import org.springframework.util.StringUtils;
+
+@Repository
+public class MemberJpaQdslRepository {
+
+	private final EntityManager em;
+	private final JPAQueryFactory queryFactory;
+
+	public MemberJpaQdslRepository(EntityManager em) {
+		this.em = em;
+    // 이 부분에서 동적 생성한다. 동적 생성시 EntityManager를 넘겨주어 바인딩해준다.
+		this.queryFactory = new JPAQueryFactory(em);
+	}
+// ...
+}
+```
+
+  
 
 # Repository 코드작성
 
-코드~
+## 저장 로직
+
+QueryDsl을 사용하는 Repository에서 save 등의 연산은 보통 JPA의 EntityManager를 이용하여 수행하는 편이다. QueryDsl에서 특별히 제공하는 저장을 위한 메소드는 따로 없다.
+
+ex)  
+
+> ```java
+> private EntityManager em; 
+> 
+> // injection logics...
+> 
+> public void save(Member member){
+>   	em.persist(member);
+> }
+> ```
+
+전체 코드
+
+```java
+package com.study.qdsl.repository;
+
+// ...
+
+@Repository
+public class MemberJpaQdslRepository {
+  private final EntityManager em;
+	private final JPAQueryFactory queryFactory;
+  
+  public MemberJpaQdslRepository(EntityManager em) {
+		this.em = em;
+    // 이 부분에서 동적 생성한다. 동적 생성시 EntityManager를 넘겨주어 바인딩해준다.
+		this.queryFactory = new JPAQueryFactory(em);
+	}
+  
+  // ...
+  
+  public void save(Member member){
+    em.persist(member);
+  }
+}
+```
 
 
 
+## 멤버 조회 
 
+코드가 그리 어렵지 않아서 예제로만 남긴다.... 하하하...
+
+### findById
+
+예제)
+
+```java
+@Repository
+public class MemberJpaQdslRepository{
+  private final EntityManager em;
+  private final JPAQueryFactory queryFactory;
+  
+  // some injection logics ...
+  
+  public void findById(Long id){
+    QMember member = QMember.member;
+    List<Member> dataById = queryFactory
+			.selectFrom(member)
+			.where(member.id.eq(id))
+			.fetch();
+
+		return dataById;
+  }
+}
+```
+
+
+
+### findAll
+
+예제)
+
+```java
+@Repository
+public class MemberJpaQdslRepository{
+  private final EntityManager em;
+  private final JPAQueryFactory queryFactory;
+  
+  // some injection logics ...
+  
+  public List<Member> findAll(Long id){
+    QMember member = QMember.member;
+    return queryFactory.selectFrom(member).fetch();
+  }
+}
+```
+
+
+
+### findByUsername
+
+예제)
+
+```java
+@Repository
+public class MemberJpaQdslRepository{
+  private final EntityManager em;
+  private final JPAQueryFactory queryFactory;
+  
+  // some injection logics ...
+  
+  public List<Member> findByUsername(String username){
+    QMember member = QMember.member;
+    return queryFactory
+        .selectFrom(member)
+      	.where(member.username.eq(username))
+      	.fetch();
+  }
+}
+```
+
+
+
+## 참고 - JPQL을 사용할 때의 코드
+
+JPQL을 사용하면 Raw SQL을 텍스트로 직접 작성하는데, 이 과정에서 컴파일 타임에 에러를 내지 않으므로 작성시 조금 힘들긴 하다. MyBatis에서 Raw 쿼리를 작성하던 것과 비슷한 경우라고 생각해보면 된다. 물론 로컬에서 모두 테스트 및 디버깅해보니 이와 같은 점은 문제가 되지 않는다고 본다. 단순히 개발상에 조금 불편하다는 점과 가독성이 떨어진다는 점이 QueryDsl과의 차이점이긴 하다.
+
+  
+
+예제) 
+
+```java
+@Repository
+@RequiredArgsConstructor
+public class MemberJpaJpqlRepository{
+  private final EntityManager em;
+  
+  // ...
+  
+  public List<Member> findAll(){
+    return em.createQuery("select m from Member m", Member.class).getResultList();
+	}
+  
+  public List<Member> findByUsername(String username){
+		return em.createQuery("select m from Member m where m.username = :username", Member.class)
+			.setParameter("username", username)
+			.getResultList();
+	}
+}
+```
 
