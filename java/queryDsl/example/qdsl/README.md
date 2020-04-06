@@ -15,7 +15,8 @@
 >
 > - Spring Boot plugin requires Gradle 5 (5.6.x only) or Gradle 6 (6.3 or later). The current version is Gradle 6.0.1
 > - 원인은...
->   - Intellij 에서 참조하는 Gradle 버전은 Gradle 6.0.1 이다. 프로젝트 루트에 gradle-wrapper.properties 에 기본으로 명시된 Gradle 버전은 6.0.1 이기 때문이다. 
+>   - Intellij 에서 참조하는 Gradle 버전은 Gradle 6.0.1 이다. 프로젝트 루트에 gradle-wrapper.properties 에 기본으로 명시된 Gradle 버전은 6.0.1 이기 때문이다.  
+>     (이건 start.spring.io 에서 제공하는 spring initializer 에서 spring boot 프로젝트를 다운받았을 때 기본으로 지정되어 다운 되는 버전. 사용자가 직접 편집해도 무방하다.)  
 >   - gradle-wrapper.properties 에 명시한 gradle-xxxx.zip은 intellij에서 빌드시 사용하는 gradle 버전이다.
 >   - 이것을 고치려고 로컬 개발환경(PC)의 환경변수에 있는 Gradle 바이너리 디렉터리를 5.6.x버전으로 아무리 고쳐봐야 Intellij에서 빌드는 실패한다. 그 이유는 intellij에서 빌드시에는 OS에 전역으로 설치한 gradle이 아닌 gradlew를 사용하기 때문으로 보인다.(IDE에서 빌드하는 도구는 따로 있기 때문)
 > - 해결책은...  

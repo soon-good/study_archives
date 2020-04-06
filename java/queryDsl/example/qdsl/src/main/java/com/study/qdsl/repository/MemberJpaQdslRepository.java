@@ -71,6 +71,15 @@ public class MemberJpaQdslRepository {
 		Member foundMember = em.find(Member.class, id);
 		return Optional.ofNullable(foundMember);
 	}
+	
+	public List<Member> findById2(Long id){
+		List<Member> dataById = queryFactory
+			.selectFrom(member)
+			.where(member.id.eq(id))
+			.fetch();
+
+		return dataById;
+	}
 
 	public List<Member> findAll() {
 		return queryFactory.selectFrom(member)
