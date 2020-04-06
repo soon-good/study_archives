@@ -33,13 +33,25 @@
 ### 이 부분을 5.x 버전으로 고쳐준다. 또는 6.0.3 버전 이후로 맞춰줘도 좋다.
 distributionUrl=https\://services.gradle.org/distributions/gradle-5.6.2-all.zip
 ### 수정 전 
-# distributionUrl=https\://services.gradle.org/distributions/gradle-5.6.2-all.zip
+# distributionUrl=https\://services.gradle.org/distributions/gradle-6.0.1-all.zip
 distributionBase=GRADLE_USER_HOME
 distributionPath=wrapper/dists
 zipStorePath=wrapper/dists
 zipStoreBase=GRADLE_USER_HOME
 
 ```
+
+  
+
+> distributionUrl=https\://services.gradle.org/distributions/gradle-6.0.1-all.zip
+
+로 되어 있는 것을  
+
+  
+
+> distributionUrl=https\://services.gradle.org/distributions/gradle-5.6.2-all.zip
+
+와 같이 5.6.x 버전대로 맞춰 주거나, 또는 6.0.3 버전 이후로 맞춰주자.  
 
 
 
