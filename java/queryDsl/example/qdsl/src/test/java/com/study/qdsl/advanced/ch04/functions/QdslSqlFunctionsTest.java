@@ -87,7 +87,7 @@ public class QdslSqlFunctionsTest {
 			.select(
 				Expressions.stringTemplate(
 					"function('lower',{0})",
-					member.username,
+					member.username
 				)
 			)
 			.from(member)
