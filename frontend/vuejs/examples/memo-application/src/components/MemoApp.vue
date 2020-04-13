@@ -3,7 +3,12 @@
         <!-- <memo-form v-on::addMemo="addMemo"/> 과 같은 의미 -->
         <memo-form @addMemo="addMemo"/>
         <ul class="memo-list">
-            <memo v-for="memo in memos" :key="memo.id" :memo="memo"/>
+            <!-- props 로 memos[i]를 각각 전달해준다. -->
+            <!-- deleteMemo 이벤트 : -->
+            <!--    Memo 컴포넌트에서 올라오는 이벤트 이므로 @deleteMemo 이벤트 사용 -->
+            <!--    @deleteMemo 이벤트에 대한 핸들러는 deleteMemo () 함수, 스크립트에 작성했다. -->
+            <memo v-for="memo in memos" :key="memo.id" :memo="memo"
+                  @deleteMemo="deleteMemo"/>
         </ul>
     </div>
 </template>
@@ -46,6 +51,12 @@ export default {
         storeMemo (){
             const memosToString = JSON.stringify(this.memos);
             localStorage.setItem('memos', memosToString);
+        },
+        // <memo> 컴포넌트로부터 id를 전달받아 삭제를 진행한다.
+        deleteMemo (id){
+            const indexOfDelete = this.memos.findIndex(_memo=>_memo.id===id);
+            this.memos.splice(indexOfDelete, 1);
+            this.storeMemo();
         }
     }
 }

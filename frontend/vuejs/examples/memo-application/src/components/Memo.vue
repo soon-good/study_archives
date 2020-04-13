@@ -2,7 +2,7 @@
     <li class="memo-item">
         <strong>{{memo.title}}</strong>
         <p>{{memo.content}}</p>
-        <button type="button">
+        <button type="button" @click="deleteMemo">
             <i class="fas fa-times"></i>
         </button>
     </li>
@@ -15,6 +15,12 @@ export default {
         memo: {
             type: Object
         },
+    },
+    methods: {
+        deleteMemo() {
+            const id = this.memo.id;
+            this.$emit('deleteMemo', id);
+        }
     }
 }
 </script>

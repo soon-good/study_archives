@@ -500,4 +500,109 @@ export default {
 </style>
 ```
 
+# 7. 메모 데이터 삭제 기능 구현
+앞에서 우리는 MemoForm 컴포넌트의 props의 id로 new Date().getTime()을 지정하여 유일하게 식별할 수 있게해주었다. 이것은 각 자식 UI컴포넌트를 유일하게 식별할 수 있도록 하는 역할을 위해 지정했다. UID와 유사한 역할을 수행한다. 여기서는 이 UID를 이용하여 삭제로직을 구현한다.  
 
+- Memo 컴포넌트
+    - 템플릿  
+        - @click 이벤트에 대해 deleteMemo() 함수를 호출하도록 명시한다.
+    - 스크립트
+        - deleteMemo() 메서드를 작성한다.
+        - deleteMemo() 메서드에서는 
+            - 현재 memo 컴포넌트의 id를 얻어오고
+            - 'deleteMemo' 이벤트를 발생시킨다.
+            - 이 'deleteMemo' 이벤트는 부모 컴포넌트인 MemoApp 컴포넌트로 전파된다.
+- MemoApp 컴포넌트
+    - 템플릿
+        - \<memo\> 컴포넌트에 대해 @deleteMemo 이벤트에 대한 핸들러로 deleteMemo () 함수를 호출하도록 명시한다.
+    - 스크립트
+        - deleteMemo(id) 메서드를 작성한다.
+        - deleteMemo(id) 내에서는 id를 기반으로 memo[i]의 인덱스를 찾는다.
+        - 해당 memo[i]를 삭제한다.
+        - 해당 내용을 저장한다.
+  
+## Memo 컴포넌트
+```html
+<template>
+    <li class="memo-item">
+        <!-- ... -->
+        <button type="button" @click="deleteMemo">
+            <i class="fas fa-times"></i>
+        </button>
+    </li>
+</template>
+
+<script>
+export default {
+    name: "Memo",
+    props: {
+        memo: {
+            type: Object
+        },
+    },
+    methods: {
+        deleteMemo() {
+            const id = this.memo.id;
+            this.$emit('deleteMemo', id);
+        }
+    }
+}
+</script>
+```
+  
+## MemoApp 컴포넌트
+```html
+<template>
+    <div class="memo-app">
+        <!-- ... -->
+        <ul class="memo-list">
+            <!-- props 로 memos[i]를 각각 전달해준다. -->
+            <!-- deleteMemo 이벤트 : -->
+            <!--    Memo 컴포넌트에서 올라오는 이벤트 이므로 @deleteMemo 이벤트 사용 -->
+            <!--    @deleteMemo 이벤트에 대한 핸들러는 deleteMemo () 함수, 스크립트에 작성했다. -->
+            <memo v-for="memo in memos" :key="memo.id" :memo="memo"
+                  @deleteMemo="deleteMemo"/>
+        </ul>
+    </div>
+</template>
+<script>
+import MemoForm from './MemoForm';
+import Memo from './Memo';
+
+export default {
+    name: 'MemoApp',
+    components:{
+        MemoForm,
+        Memo,
+    },
+    data(){
+        return {
+            memos: [],
+        };
+    },
+    
+    // ...
+    // ...
+
+    methods: {
+        // ...
+        // 내부 데이터를 문자열로 변환하여, 로컬 스토리지에 저장한다.
+        storeMemo (){
+            const memosToString = JSON.stringify(this.memos);
+            localStorage.setItem('memos', memosToString);
+        },
+        // <memo> 컴포넌트로부터 id를 전달받아 삭제를 진행한다.
+        deleteMemo (id){
+            const indexOfDelete = this.memos.findIndex(_memo=>_memo.id===id);
+            this.memos.splice(indexOfDelete, 1);
+            this.storeMemo();
+        }
+    }
+}
+</script>
+<style scoped>
+/**
+    // ...
+*/
+</style>
+```
