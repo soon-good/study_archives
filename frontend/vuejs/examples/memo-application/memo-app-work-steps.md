@@ -37,7 +37,7 @@ reset.css는 초기화 CSS 코드이다. 초기화 CSS는 브라우저가 DOM에
     </template>
     ```
 
-# 3. 메모 생성기능 추가
+# 3. 메모 생성 기본 컴포넌트 추가
 여기서 만들 컴포넌트는 MemoApp.vue, MemoForm.vue 이다.
 추후 vuex를 적용시 Memo.vue를 만들 예정이다. 여기서는 MemoApp.vue, MemoForm.vue를 추가한다.  
 
@@ -162,3 +162,8 @@ export default {
 </style>
 ```
 
+# 4. MemoForm - submit 이벤트 추가, submit시 페이지 이동 방지 
+- methods 속성내에 메서드로 addMemo() 함수를 추가해준다. 
+- addMemo 함수에서는 this.$emit() 함수로 'addMemo'이벤트를 발생시키고,  
+  사용자 입력데이터(title, content)를 MemoApp 컴포넌트에 emit을 이용해 전파한다.  
+- Vue는 submit 이벤트가 발생할 때 개발자가 직접 event.preventDefault를 호출하지 않아도 되도록 prevent 옵션을 제공해준다. (5.1.4.5.2. v-on 장 참고)

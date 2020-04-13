@@ -49,3 +49,7 @@
 scoped 속성한 입력한 후 개발자도구를 통해 확인해보면 data-v 속성이 자동으로 입력되어 있는 것을 확인 가능하다.  
   
 스타일 영역에 scoped 속성을 부여하면 해당 컴포넌트의 DOM이 렌더될 때 DOM 자체에 고유한 data-v 속성을 부여한 후 부여된 속성에 따라 CSS 스타일을 부여한다. 이런 원리로 CSS 유효범위 설정이 가능하다.  
+
+# 비구조화 할당이란...
+180p  
+자세한 내용은 [MDN 문서](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment) 를 참고하자.  

@@ -1,6 +1,6 @@
 <template>
     <div class="memo-form">
-        <form>
+        <form @submit.prevent="addMemo">
             <fieldset>
                 <div>
                     <!-- v-model을 통해 data 속성의 값을 바인딩한다. -->
@@ -33,6 +33,26 @@ export default {
             title: '',
             content: '',
         }
+    },
+    methods: {
+        addMemo(){
+            // 변수 선언 (비구조화 할당)
+            const {title, content} = this;
+            // 데이터의 고유한 식별자를 생성
+            const id = new Date().getTime();
+
+            // 제목, 내용을 입력하지 않은 경우에 대한 예외 처리 
+            const isEmpty = title.length <=0 || content.length <=0;
+
+            if(isEmpty){
+                alert("메모 내용을 입력해주세요");
+                return false;
+            }
+
+            // addMemo 이벤트를 발생시킨다. 
+            // payload에 사용자가 입력한 데이터를 넣어준다. {id, titile, content}
+            this.$emit('addMemo', {id, title, content});
+        },
     }
 }
 </script>
