@@ -282,3 +282,222 @@ export default {
 입력된 데이터를 Vue.js의 개발자 도구에서 확인하는 방법은
 Application 탭 >> 좌측 사이드바 Storage 메뉴 >> 드랍다운 버튼 클릭 > http://... 로 나타나는 링크를 클릭하면 데이터의 상세 내용이 나타난다.  
 localStorage로 개발하는 경우는 그리 많지 않으니 자세한 설명은 스킵!!하고 넘어간다. 
+
+# 6. 메모 데이터 노출 기능 구현하기
+먼저 Memo 컴포넌트를 작성해보자.  
+  
+## Memo 컴포넌트 작성
+Memo 컴포넌트는 MemoApp에서 변수 memos를 v-for 디렉티브로 순회하며 Memo컴포넌트를 표현할 것이다. Memo 컴포넌트는 memos[i]에 대한 자식 컴포넌트이다. 참고로, MemoApp 컴포넌트는 현재 memos라는 메모 데이터를 localStorage에서 가져와 사용하고 있다. (localStorage 사용 코드는 추후 변경예정)  
+  
+부모 컴포넌트에서 자식 컴포넌트를 for문으로 돌릴 때 보통 props라는 개념을 통해 자식 컴포넌트에 데이터를 전달해준다. 주의할 점은 props는 읽기 전용이라는 점이다. react에서와 마찬가지로 props는 기본설정이 읽기 전용이다. vue.js에서는 자식 컴포넌트 내에서 props를 수정할 수는 있다. 하지만 권장하지는 않는 방법이다.  
+
+props 를 전달하는 형식은 아래와 같다.
+```html
+<template>
+    <!-- ... -->
+    <ul class="memo-list">
+        <memo v-for="memo in memos" :key="memo.id" :memo="memo"/>
+    </ul>
+</template>
+```
+- :key  
+위 코드를 보면 key를 지정하고 있는데, key에 어느 곳에서도 중복되지 않는 고유한 식별값을 넣어주어야 에러가 나지 않는다.   (각 자식 컴포넌트를 구별하는 식별자 역할을 하므로)  
+- :memo  
+:memo라는 속성을 지정해주었는데, 이 속성은 자식 컴포넌트에 넘어가는 값이다.  
+  
+
+참고) v-for 디렉티브에 대해서는 2.1.5.5 v-for 를 참고하자.  
+
+### Memo.vue
+```html
+<template>
+    <li class="memo-item"></li>
+</template>
+
+<script>
+export default {
+    name: 'Memo',
+}
+</script>
+
+<style scoped>
+
+</style>
+```
+## MemoApp 컴포넌트에 Memo 컴포넌트 연동
+참고로 새로운 컴포넌트를 부모 컴포넌트에 추가할 때마다 부주의하게 실수할 수 있는 부분이 있다.  
+[참고](https://stackoverflow.com/questions/49154490/did-you-register-the-component-correctly-for-recursive-components-make-sure-to)
+  
+- 자식 컴포넌트에서 export default {name: "이름"}
+- 부모 컴포넌트에서
+    - import Memo from "./Memo";
+    - export deffault { ... components: {MemoForm, Memo} }
+와 같은 방식으로 추가해주어야 한다.  
+
+### MemoApp 에 Memo 컴포넌트 등록
+#### 템플릿 (MemoApp)
+```html
+<template>
+    <div class="memo-app">
+        <memo-form @addMemo="addMemo"/>
+        <!-- 아래의 부분이 추가됨 -->
+        <!-- 자식 컴포넌트인 Memo에서 li 태그로 각각의 메모를 표현한다. -->
+        <ul class="memo-list">
+            <memo v-for="memo in memos" :key="memo.id" :memo="memo"/>
+        </ul>
+    </div>
+</template>
+```
+#### 스크립트 (MemoApp)
+```javascript
+// import 를 꼭 해주어야 한다.
+import Memo from './Memo';
+// ...
+export default {
+    ...
+    // components: {... } 을 꼭 등록해주어야 한다.
+    components:{
+        ..., 
+        Memo,   // 이 부분을 추가해준다.
+                // 자식 컴포넌트를 부모 컴포넌트 내에 등록하는 과정이다.
+    }
+}
+```
+
+#### CSS (MemoApp)
+```css
+  .memo-list {
+    padding: 20px 0;
+    margin: 0;
+  }
+```
+
+### Memo 컴포넌트 작성
+이제 Memo 컴포넌트를 만들어보자. 아무것도 추가하지 않은 기본적인 구조는 아래와 같다.  
+#### 기본적인 코드 구조
+```html
+<template>
+    <li class="memo-item"></li>
+</template>
+
+<script>
+export default {
+    name: "Memo",
+}
+</script>
+
+<style scoped>
+
+</style>
+```
+
+#### props 로 부모 컴포넌트 데이터 연동
+아직까지는 데이터가 컴포넌트로 보여지지 않을 것이다. 이유는 부모 컴포넌트로부터 데이터를 가져오지 않았기 때문이다. 부모 컴포넌트의 데이터를 자식 컴포넌트인 Memo와 연동하기 위해 props를 사용한다. 
+```html
+<template>
+    <li class="memo-item">
+        <strong>{{memo.title}}</strong>
+        <p>{{memo.content}}</p>
+        <button type="button">
+            <i class="fas fa-times"></i>
+        </button>
+    </li>
+</template>
+
+<script>
+export default {
+    name: "Memo",
+    // 이 부분이 추가 되었다. props로 memo 데이터를 추가
+    props: {
+        memo: {
+            type: Object
+        },
+    }
+}
+</script>
+
+<style scoped>
+ /** 
+  ...  */
+</style>
+```
+
+템플릿 에서는 
+```html
+    <!-- ... -->
+        <strong>{{memo.title}}</strong>
+        <p>{{memo.content}}</p>
+        <button type="button">
+            <i class="fas fa-times"></i>
+        </button>
+    <!-- ... -->
+```
+을 추가하여 부모로부터 전달받은 memos[i] 데이터를 표시하도록 하고 있다.  
+  
+스크립트에서는 props 속성에 부모로부터 받아오는 속성을 명시적으로 지정해 받아온다.  
+```javascript
+<script>
+export default {
+    name: "Memo",
+    // 이 부분을 추가했다.
+    props: {
+        memo: {
+            type: Object
+        },
+    }
+}
+</script>
+```
+
+## 스타일 적용
+여기까지 한 결과는 정상적으로 데이터를 불러오기는 하지만, CSS가 적용되어 있지 않아 다소 투박하다. 스타일을 적용해보자.
+```css
+<style scoped>
+  .memo-item {
+    overflow: hidden;
+    position: relative;
+    margin-bottom: 20px;
+    padding: 24px;
+    box-shadow: 0 4px 10px -4px rgba(0, 0, 0, 0.2);
+    background-color: #fff;
+    list-style: none;
+  }
+  .memo-item input[type="text"] {
+    border: 1px solid #ececec;
+    font-size: inherit;
+  }
+  .memo-item button {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    font-size: 20px;
+    color: #e5e5e5;
+    border: 0;
+  }
+  .memo-item strong {
+    display: block;
+    margin-bottom: 12px;
+    font-size: 18px;
+    font-weight: normal;
+    word-break: break-all;
+  }
+  .memo-item p {
+    margin: 0;
+    font-size: 14px;
+    line-height: 22px;
+    color: #666;
+  }
+  .memo-item p input[type="text"] {
+    box-sizing: border-box;
+    width: 100%;
+    font-size: inherit;
+  }
+  .memo-item p input[type="text"] {
+    box-sizing: border-box;
+    width: 100%;
+    font-size: inherit;
+  }
+</style>
+```
+
+
