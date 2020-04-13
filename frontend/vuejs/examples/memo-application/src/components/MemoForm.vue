@@ -3,10 +3,13 @@
         <form>
             <fieldset>
                 <div>
+                    <!-- v-model을 통해 data 속성의 값을 바인딩한다. -->
                     <input  class="momo-form__title-form"
                             type="text"
+                            v-model="title" 
                             placeholder="메모 제목을 입력해주세요."/>
                     <textarea   class="memo-form__content-form"
+                                v-model="content"
                                 placeholder="메모의 내용을 입력해주세요."/>
                     <button type="reset">
                         <i class="fas fa-sync-alt">
@@ -22,7 +25,15 @@
 <script>
 export default {
     // 컴포넌트의 이름을 MemoForm으로 변경한다. 
-    name: "MemoForm" 
+    name: "MemoForm",
+    data(){
+        return {
+            // 사용자가 입력한 데이터(content, title)에 대한 key, value
+            // 여기서 등록하는 데이터는 v-model 디렉티브를 이용해 입력폼의 입력필드에 연결해줘야 한다.
+            title: '',
+            content: '',
+        }
+    }
 }
 </script>
 <style scoped>

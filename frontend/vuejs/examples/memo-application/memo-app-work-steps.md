@@ -42,6 +42,7 @@ reset.css는 초기화 CSS 코드이다. 초기화 CSS는 브라우저가 DOM에
 추후 vuex를 적용시 Memo.vue를 만들 예정이다. 여기서는 MemoApp.vue, MemoForm.vue를 추가한다.  
 
 ## MemoApp.vue
+현재 작성되고 있는 우리의 애플리케이션에서는 별도의 API 서버 요청 없이 샘플로 로컬스토리지의 데이터를 받아오는 방식으로 작성중이다. 따라서 created 훅에서 실행시켜준다. created 훅은 Vue의 생명주기 중 하나이다. 
 ```javascript
 <template>
     <div class="memo-app">
@@ -83,8 +84,10 @@ export default {
                 <div>
                     <input  class="momo-form__title-form"
                             type="text"
+                            v-model="title"
                             placeholder="메모 제목을 입력해주세요."/>
                     <textarea   class="memo-form__content-form"
+                                v-model="content"
                                 placeholder="메모의 내용을 입력해주세요."/>
                     <button type="reset">
                         <i class="fas fa-sync-alt">
@@ -100,7 +103,15 @@ export default {
 <script>
 export default {
     // 컴포넌트의 이름을 MemoForm으로 변경한다. 
-    name: "MemoForm" 
+    name: "MemoForm",
+    data(){
+        return {
+            // 사용자가 입력한 데이터(content, title)에 대한 key, value
+            // 여기서 등록하는 데이터는 v-model 디렉티브를 이용해 입력폼의 입력필드에 연결해줘야 한다.
+            title: '',
+            content: '',
+        }
+    } 
 }
 </script>
 <style scoped>
@@ -150,3 +161,4 @@ export default {
   }
 </style>
 ```
+
