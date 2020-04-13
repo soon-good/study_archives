@@ -2,6 +2,9 @@
     <li class="memo-item">
         <strong>{{memo.title}}</strong>
         <p>{{memo.content}}</p>
+        
+        <input type="text" ref="content" :value="memo.content"/>
+
         <button type="button" @click="deleteMemo">
             <i class="fas fa-times"></i>
         </button>
@@ -59,11 +62,6 @@ export default {
     font-size: 14px;
     line-height: 22px;
     color: #666;
-  }
-  .memo-item p input[type="text"] {
-    box-sizing: border-box;
-    width: 100%;
-    font-size: inherit;
   }
   .memo-item p input[type="text"] {
     box-sizing: border-box;

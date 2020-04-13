@@ -521,6 +521,10 @@ export default {
         - 해당 memo[i]를 삭제한다.
         - 해당 내용을 저장한다.
   
+> **참고)**  
+> - Array.findIndex() 메서드
+> - Array.splice() 메서드
+
 ## Memo 컴포넌트
 ```html
 <template>
@@ -606,3 +610,76 @@ export default {
 */
 </style>
 ```
+
+# 8. 메모 수정 기능
+## 컴포넌트 기본 구조 작성 (1)
+부모 컴포넌트인 MemoApp에서의 @updateMemo 이벤트 처리 구문과, Memo 컴포넌트의 기본화면을 작성한다. 현재 Memo 컴포넌트(자식)에는 input 필드 적용이 되어있지 않기 때문에 데이터를 수정할 수 없다. 이런 이유로 "컴포넌트 기본 구조 작성(1)"에서는 
+- Memo 컴포넌트에 input 앨리먼트 적용, input 앨리먼트 CSS 적용
+- MemoApp 컴포넌트에 자식 컴포넌트의 이벤트인 @updateMemo 이벤트/이벤트 핸들러 연결
+을 작성한다.  
+### MemoApp 컴포넌트 (부모)
+템플릿 에서는 @updateMemo 이벤트에 대해 updateMemo()함수를 호출하도록 작성한다.
+```html
+<template>
+    ...
+    <ul class="memo-list">
+        <memo v-for="memo in memos" :key="memo.id" :memo="memo"
+              @deleteMemo="deleteMemo"
+              @updateMemo="updateMemo"/>
+    </ul>
+    ...
+</template>
+```
+  
+스크립트 에서는 updateMemo() 함수를 작성한다. 로직을 간단히 설명하자면, 
+- 자식컴포넌트(Memo)에서 update하려는 컨텐트의 id, content를 비구조화 할당으로 얻어낸다. (수정하려는 데이터의 id, content)
+- this.memos에서 해당 데이터의 index와 memo 객체를 얻어낸다. (원본 데이터)
+- this.memos의 해당 인덱스의 원본 데이터에서 content만 싹 골라서 수정한다. (비구조화 할당 사용 ...연산자)
+
+```javascript
+<script>
+    export default {
+        // ... 
+        methods: {
+            updateMemo (payload){
+                const {id, content} = payload;
+                const indexOfUpdate = this.memos.findIndex(_memo => _memo.id === id;);
+                const objOfUpdate = this.memos[indexOfUpdate];
+
+                this.memos.splice(indexOfUpdate, 1, {...objOfUpdate, content});
+                this.storeMemo();
+            }
+        }
+    }
+</script>
+```
+### Memo 컴포넌트 (자식)
+html 내에 input 태그를 아래와 같이 넣어주자. 
+- 화면 노출 시에는
+    - \<p\> 태그를 보여주고
+- 더블클릭하여 수정하려 할때는 
+    - input 태그를 보여주기 위한 기본 구조이다.
+```html
+<template>
+    <li class="memo-item">
+        <strong>{{memo.title}}</strong>
+        <p>{{memo.content}}</p>
+        
+        <input type="text" ref="content" :value="memo.content"/>
+
+        <button type="button" @click="deleteMemo">
+            <i class="fas fa-times"></i>
+        </button>
+    </li>
+</template>
+```
+
+## 컴포넌트 기본구조 작성 (2)
+아래의 요구사항을 boolean 조건값으로 제어하는 로직을 작성한다.
+> - 화면 노출 시에는
+>    - \<p\> 태그를 보여주고
+> - 더블클릭하여 수정하려 할때는 
+>    - input 태그를 보여준다. 
+
+
+

@@ -8,7 +8,8 @@
             <!--    Memo 컴포넌트에서 올라오는 이벤트 이므로 @deleteMemo 이벤트 사용 -->
             <!--    @deleteMemo 이벤트에 대한 핸들러는 deleteMemo () 함수, 스크립트에 작성했다. -->
             <memo v-for="memo in memos" :key="memo.id" :memo="memo"
-                  @deleteMemo="deleteMemo"/>
+                  @deleteMemo="deleteMemo"
+                  @updateMemo="updateMemo"/>
         </ul>
     </div>
 </template>
@@ -56,6 +57,16 @@ export default {
         deleteMemo (id){
             const indexOfDelete = this.memos.findIndex(_memo=>_memo.id===id);
             this.memos.splice(indexOfDelete, 1);
+            this.storeMemo();
+        },
+        // @updateMemo 이벤트에 대한 핸들러
+        // payload 는 자식 컴포넌트인 Memo 컴포넌트로부터 전달된다. 
+        updateMemo (payload){
+            const {id, content} = payload;
+            const indexOfUpdate = this.memos.findIndex(_memo => _memo.id === id);
+            const objOfUpdate = this.memos[indexOfUpdate];
+
+            this.memos.splice(indexOfUpdate, 1, {...objOfUpdate, content});
             this.storeMemo();
         }
     }
