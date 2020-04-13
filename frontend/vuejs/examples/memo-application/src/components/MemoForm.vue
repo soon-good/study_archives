@@ -35,6 +35,11 @@ export default {
         }
     },
     methods: {
+        resetFields(){
+            // 제목,내용을 빈 값으로 초기화한다. 
+            this.title = '';
+            this.content = '';
+        },
         addMemo(){
             // 변수 선언 (비구조화 할당)
             const {title, content} = this;
@@ -52,6 +57,9 @@ export default {
             // addMemo 이벤트를 발생시킨다. 
             // payload에 사용자가 입력한 데이터를 넣어준다. {id, titile, content}
             this.$emit('addMemo', {id, title, content});
+
+            // MemoApp 으로 이벤트와 데이터를 전파한 후 폼 텍스트 초기화
+            this.resetFields();
         },
     }
 }

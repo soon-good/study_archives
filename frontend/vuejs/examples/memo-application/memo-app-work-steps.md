@@ -162,11 +162,72 @@ export default {
 </style>
 ```
 
-# 4. MemoForm - submit 이벤트 추가, submit시 페이지 이동 방지 
+# 4. MemoForm - submit 이벤트 추가, submit 시 페이지 이동 방지 
 - methods 속성내에 메서드로 addMemo() 함수를 추가해준다. 
 - addMemo 함수에서는 this.$emit() 함수로 'addMemo'이벤트를 발생시키고,  
   사용자 입력데이터(title, content)를 MemoApp 컴포넌트에 emit을 이용해 전파한다.  
 - Vue는 submit 이벤트가 발생할 때 개발자가 직접 event.preventDefault를 호출하지 않아도 되도록 prevent 옵션을 제공해준다. (5.1.4.5.2. v-on 장 참고)  
+
+## MemoForm 템플릿 작성
+템플릿에서는 form 태그에 대해 preventDefault 를 걸고, addMemo() 함수를 호출하도록 한다.
+
+```html
+<template>
+    // ...
+    <form @submit.prevent="addMemo">
+        // ...
+    </form>
+</template>
+```
+그리고 addMemo()함수 내에서는 emit을 통해 이벤트를 전파한다. 
+스크립트는 바로 아래의 "MemoForm 스크립트 작성"에서 정리한다.  
+
+## MemoForm 스크립트 작성
+resetFields(), addMemo() 함수 추가!! 자세한 내용은 아래 코드 참고
+```javascript
+<script>
+export default {
+    // 컴포넌트의 이름을 MemoForm으로 변경한다. 
+    name: "MemoForm",
+    data(){
+        return {
+            // 사용자가 입력한 데이터(content, title)에 대한 key, value
+            // 여기서 등록하는 데이터는 v-model 디렉티브를 이용해 입력폼의 입력필드에 연결해줘야 한다.
+            title: '',
+            content: '',
+        }
+    },
+    methods: {
+        resetFields(){
+            // 제목,내용을 빈 값으로 초기화한다. 
+            this.title = '';
+            this.content = '';
+        },
+        addMemo(){
+            // 변수 선언 (비구조화 할당)
+            const {title, content} = this;
+            // 데이터의 고유한 식별자를 생성
+            const id = new Date().getTime();
+
+            // 제목, 내용을 입력하지 않은 경우에 대한 예외 처리 
+            const isEmpty = title.length <=0 || content.length <=0;
+
+            if(isEmpty){
+                alert("메모 내용을 입력해주세요");
+                return false;
+            }
+
+            // addMemo 이벤트를 발생시킨다. 
+            // payload에 사용자가 입력한 데이터를 넣어준다. {id, titile, content}
+            this.$emit('addMemo', {id, title, content});
+
+            // MemoApp 으로 이벤트와 데이터를 전파한 후 폼 텍스트 초기화
+            this.resetFields();
+        },
+    }
+}
+</script>
+```
   
 # 5. MemoApp - MemoForm 컴포넌트로부터 전달받은 데이터를 로컬 스토리지에 추가
 MemoApp 입장에서 MemoForm 컴포넌트는 자식컴포넌트이다. MemoForm 에서는 addMemo 이벤트를 부모인 MemoApp 에 전달하고 있다.  
