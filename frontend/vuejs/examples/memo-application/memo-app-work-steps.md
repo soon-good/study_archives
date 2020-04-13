@@ -75,7 +75,7 @@ export default {
 ```
   
 ## MemoForm.vue
-```javasript
+```javascript
 <template>
     <div class="memo-form">
         <form>
