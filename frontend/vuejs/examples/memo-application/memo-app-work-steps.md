@@ -166,4 +166,58 @@ export default {
 - methods 속성내에 메서드로 addMemo() 함수를 추가해준다. 
 - addMemo 함수에서는 this.$emit() 함수로 'addMemo'이벤트를 발생시키고,  
   사용자 입력데이터(title, content)를 MemoApp 컴포넌트에 emit을 이용해 전파한다.  
-- Vue는 submit 이벤트가 발생할 때 개발자가 직접 event.preventDefault를 호출하지 않아도 되도록 prevent 옵션을 제공해준다. (5.1.4.5.2. v-on 장 참고)
+- Vue는 submit 이벤트가 발생할 때 개발자가 직접 event.preventDefault를 호출하지 않아도 되도록 prevent 옵션을 제공해준다. (5.1.4.5.2. v-on 장 참고)  
+  
+# 5. MemoApp - MemoForm 컴포넌트로부터 전달받은 데이터를 로컬 스토리지에 추가
+MemoApp 입장에서 MemoForm 컴포넌트는 자식컴포넌트이다. MemoForm 에서는 addMemo 이벤트를 부모인 MemoApp 에 전달하고 있다.  
+여기서는, 전달받은 addMemo 이벤트를 처리하는 로직을 작성하는 과정을 정리한다.  
+
+## MemoApp 스크립트 작성
+MemoApp 컴포넌트 내의 script 영역 내에 addMemo(payload), storeMemo() 함수를 추가해주자.
+```javascript
+import MemoForm from './MemoForm';
+
+export default {
+    name: 'MemoApp',
+    components:{
+        MemoForm
+    },
+    // ... 
+    methods: {
+        // 템플릿의 <memo-form>에 addMemo 이벤트 콜백함수로 연결해줘야 한다. 
+        // addMemo 이벤트는 자식 컴포넌트인 MemoForm 으로부터 전달받는다. 
+        // (이벤트를 전달받으면서 payload도 함께 전달받는다)
+        // 위의 template 코드 참고
+        addMemo (payload){
+            // MemoForm 에서 전달해주는 데이터를 먼저 컴포넌트 내부 데이터에 추가한다. 
+            // (자식 컴포넌트인 MemoForm 에서 부모인 MemoApp 으로 데이터를 올려주는 것)
+            this.memos.push(payload);
+            
+            // storeMemo() 호출
+            this.storeMemo();
+        },
+        // 내부 데이터를 문자열로 변환하여, 로컬 스토리지에 저장한다.
+        storeMemo (){
+            const memosToString = JSON.stringify(this.memos);
+            localStorage.setItem('memos', memosToString);
+        }
+    }
+}
+```
+  
+## MemoApp 템플릿 작성
+이제 MemoApp에 정의한 함수인 addMemo() 를 호출해주는 곳이 필요하다. MemoApp에서 addMemo()를 호출하는 시점은 자식 컴포넌트인 MemoForm 으로부터 "addMemo" 이벤트를 전달받았을 때 이다. 템플릿 코드 내의 v-on 디렉티브로 MemoApp 에서도 addMemo 이벤트를 발생시키도록 하자.  
+
+```html
+<template>
+    <div class="memo-app">
+        <!-- <memo-form v-on::addMemo="addMemo"/> 과 같은 의미 -->
+        <memo-form @addMemo="addMemo"/>
+        <!-- <memo/> -->
+    </div>
+</template>
+```
+
+입력된 데이터를 Vue.js의 개발자 도구에서 확인하는 방법은
+Application 탭 >> 좌측 사이드바 Storage 메뉴 >> 드랍다운 버튼 클릭 > http://... 로 나타나는 링크를 클릭하면 데이터의 상세 내용이 나타난다.  
+localStorage로 개발하는 경우는 그리 많지 않으니 자세한 설명은 스킵!!하고 넘어간다. 
