@@ -1,12 +1,12 @@
 <template>
     <li class="memo-item">
         <strong>{{memo.title}}</strong>
-        <p>{{memo.content}}</p>
-        
-        <input type="text" ref="content" :value="memo.content"/>
-
+        <p>
+          <template>{{memo.content}}</template>
+          <input type="text" ref="content" :value="memo.content"/>
+        </p>
         <button type="button" @click="deleteMemo">
-            <i class="fas fa-times"></i>
+          <i class="fas fa-times"></i>
         </button>
     </li>
 </template>
