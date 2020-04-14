@@ -792,3 +792,43 @@ export default {
 }
 ```
   
+![이미자](./img/BEFORE_UPDATE_UPDATED.png)
+첨부된 결과화면을 보면 
+- beforeUpdate 시점에는 ui가 생성되지 않았다.  
+- updated 시점에는 ui가 생성되어 있으며 ui 앨리먼트를 셀렉트 가능하다.  
+
+updated 함수에서 $refs.content.focus()를 실행하면 될 것 같다. 하지만, 이렇게 할 경우 동작은 하지만 updated() 에서 수행된다. 즉, 이벤트가 발생했을 때가 아니라 컴퍼넌트가 새로 그려지는 시점에 포커스를 맞추게 된다.  
+  
+이런 이유로 이벤트 핸들러인 handleDblClick() 메서드에서 ui를 새로 그리는 작업이 마무리된 시점을 잡아채서 그 시점에 ui 조작 로직인 this.$refs.content.focus() 를 수행해야 한다. 이때 사용되는 함수가 $nextTick() 함수이다.  
+
+즉, 이벤트 핸들러 handleDblClick()에서 컴포넌트의 리렌더링 작업이 마무리된 시점에 해당 시점을 가로채어 수행되도록 보장하려면 $nextTick을 사용하면 된다.
+  
+예제)  
+```javascript
+export default {
+    // ...
+    methods : {
+        name: "Memo",
+        data(){
+            return {
+                isEditing: false,
+            }
+        }
+        // ...
+        handleDblClick(){
+            this.isEditing = true;
+            this.$nextTick(() => {
+                this.$refs.content.focus();
+            });
+        }
+    }
+}
+```
+  
+### 참고) nextTick
+$nextTick 메서드는 다음 렌더링 사이클 이후 실행될 콜백함수를 등록할 수 있는 기능을 제공하는 메소드이다.  
+  
+그리고 "Tick"은 Vue가 상태를 갱신한 후 갱신된 상태를 기반으로 화면을 다시 그리는 주기를 Tick이라고 한다.  
+  
+## 컴포넌트 기본구조 작성 (4) - 메모 수정 (Memo 컴포넌트)
+부모 컴포넌트인 MemoApp.vue 에서 @updateMemo 이벤트에 대한 핸들러를 등록했다. 이제 자식 컴포넌트인 Memo.vue에서 부모컴포넌트로 이벤트와 payload를 전파하는 로직을 작성하자.  

@@ -24,6 +24,12 @@ export default {
             type: Object
         },
     },
+    beforeUpdate() {
+      console.log("beforeUpdate :: ", this.$refs.content);
+    },
+    updated(){
+      console.log("updated :: ", this.$refs.content);
+    },
     methods: {
         deleteMemo() {
           const id = this.memo.id;
@@ -31,6 +37,7 @@ export default {
         },
         handleDblClick(){
           this.isEditing = true;
+          // console.log('handleDblClick :: ', this.$refs.content);
           this.$refs.content.focus();
           // this.$nextTick(()=>{
           //   this.$refs.content.focus();
