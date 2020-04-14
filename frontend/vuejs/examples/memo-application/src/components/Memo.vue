@@ -3,7 +3,9 @@
         <strong>{{memo.title}}</strong>
         <p @dblclick="handleDblClick">
           <template v-if="!isEditing">{{memo.content}}</template>
-          <input v-else type="text" ref="content" :value="memo.content"/>
+          <input v-else type="text" ref="content" :value="memo.content"
+                 @keydown.enter="updateMemo"
+                 @blur="handleBlur"/>
         </p>
         <button type="button" @click="deleteMemo">
           <i class="fas fa-times"></i>
@@ -31,6 +33,19 @@ export default {
     //   console.log("updated :: ", this.$refs.content);
     // },
     methods: {
+        updateMemo(e){
+          const id = this.memo.id;
+          const content = e.target.value.trim();
+          
+          if(content.length <=0){
+            return false;
+          }
+
+          // "updateMemo" 이벤트를 데이터 {id,content}와 함께 부모 컴포넌트로 전파 
+          this.$emit('updateMemo', {id, content});
+          // update가 완료된 후에는 수정가능 여부 플래그를 false 로 세팅
+          this.isEditing = false;
+        },
         deleteMemo() {
           const id = this.memo.id;
           this.$emit('deleteMemo', id);
@@ -42,6 +57,9 @@ export default {
           this.$nextTick(()=>{
             this.$refs.content.focus();
           });
+        },
+        handleBlur(){
+          this.isEditing = false;
         }
     }
 }

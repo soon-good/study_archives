@@ -832,3 +832,75 @@ $nextTick 메서드는 다음 렌더링 사이클 이후 실행될 콜백함수�
   
 ## 컴포넌트 기본구조 작성 (4) - 메모 수정 (Memo 컴포넌트)
 부모 컴포넌트인 MemoApp.vue 에서 @updateMemo 이벤트에 대한 핸들러를 등록했다. 이제 자식 컴포넌트인 Memo.vue에서 부모컴포넌트로 이벤트와 payload를 전파하는 로직을 작성하자.  
+
+### 템플릿
+템플릿에서는 input 태그에 
+- @keydown.enter 이벤트에 대한 핸들러 호출로직 추가
+    - @keydown.enter="updateMemo"  
+- @bluer 이벤트에 대한 핸들러 호출로직 추가
+    - @blur="handleBlur"
+
+@keydown.enter 이벤트는 키보드가 눌릴때 그중 엔터키가 눌릴때의 이벤트이며, vue.js에서 제공하는 이벤트이다. 개인적으로... 이벤트 이름도 뭔가 직관적이어서 마음에 든다...ㅋㅋ  
+  
+@blur 이벤트는 커서가 현재 컴포넌트에서 사라지는 이벤트를 의미한다. vue.js에서만 제공하는 이벤트인지는 찾아봐야 알 것 같다.  
+  
+```html
+<template>
+    <li class="memo-item">
+        <!-- ... -->
+          <template v-if="!isEditing">{{memo.content}}</template>
+          <input v-else type="text" ref="content" :value="memo.content"
+                 @keydown.enter="updateMemo"
+                 @blur="handleBlur"/>
+        </p>
+        <!-- ... -->
+    </li>
+</template>
+```
+
+### 스크립트
+메모컴포넌트 내의 
+- @updateMemo 이벤트에 대한 핸들러 로직
+    - 이벤트가 발생했을 때 input 태그의 텍스트 값을 가져오고
+    - 텍스트에 아무값도 없는지 체크하는 등의 유효성 체크 후
+    - 부모 컴포넌트로 this.$emit("updateMemo", {id,content})를 통한 이벤트를 전파하고 있다.
+    - 이벤트 전파를 완료한 후에는 isEditing 플래그를 false로 세팅한다.
+- @blur 이벤트에 대한 핸들러 로직
+    - 커서가 메모 컴포넌트 바깥으로 사라졌을 때의 로직이다.
+    - isEditing 플래그를 false로 세팅한다.  
+  
+```javascript
+export default {
+    name: "Memo",
+    data(){
+        return {
+            isEditing: false,
+        }
+    },
+    props: {
+        memo: {
+            type: Object,
+        }
+    },
+    methods :{
+        updateMemo(e){
+          const id = this.memo.id;
+          const content = e.target.value.trim();
+          
+          if(content.length <=0){
+            return false;
+          }
+
+          // "updateMemo" 이벤트를 데이터 {id,content}와 함께 부모 컴포넌트로 전파 
+          this.$emit('updateMemo', {id, content});
+          // update가 완료된 후에는 수정가능 여부 플래그를 false 로 세팅
+          this.isEditing = false;
+        },
+        // ...
+        // ...
+        hadnleBlur(){
+          this.isEditing = false;
+        }
+    }
+}
+```
