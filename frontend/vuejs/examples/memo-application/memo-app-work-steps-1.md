@@ -681,22 +681,37 @@ html 내에 input 태그를 아래와 같이 넣어주자.
 > - 더블클릭하여 수정하려 할때는 
 >    - input 태그를 보여준다. 
 
-위의 두 가지 (p태그를 보여주거나, input 태그를 보여주는)를 boolean 조건값에 따라 다르게 동작하도록 해야 하는데, 여기서는 일단 p태그를 더블클릭시 input태그로 포커스가 가도록 하는 로직을 작성한다.  
+위의 두 가지 (p태그를 보여주거나, input 태그를 보여주는)를 boolean 조건값에 따라 다르게 동작하도록 해야 한다. 여기서는 일단 더블클릭 한번에 input 태그로 전환하는 기능을 작성한다.  
+
+### 템플릿 (Memo.vue)
+isEditing === true 일 때에는 메모 내용만을 보여주고  
+isEditing === false 일 때에는 해당 영역을 input 태그로 전환되도록 한다.  
+v-if, v-else 에 따라 보여줄 html 태그를 선택하게끔 해준다.  
+  
+- v-if 에서는
+    - !isEditing, 즉, isEditing 이 false 일 때에만 memo.content 를 보여주도록 해준다.
+- v-else 에서는
+    - isEditing 이 true 일때 input 태그를 보여준다.
 
 ```html
 <template>
     <li class="memo-item">
         <strong>{{memo.title}}</strong>
-        <p @dblclick="handleDbClick">
-          <template>{{memo.content}}</template>
-          <input type="text" ref="content" :value="memo.content"/>
+        <p @dblclick="handleDblClick">
+          <template v-if="!isEditing">{{memo.content}}</template>
+          <input v-else type="text" ref="content" :value="memo.content"/>
         </p>
         <button type="button" @click="deleteMemo">
           <i class="fas fa-times"></i>
         </button>
     </li>
 </template>
-<script>
+```
+  
+### 스크립트 (Memo.vue)
+스크립트에서는 handleDblClick() 함수를 작성했다. 더블 클릭시에는 멤버필드인 isEditing 을 true로 초기화 해준다. data 속성에 isEditing 을 지정해준다.  
+
+```javascript
 export default {
     name: "Memo",
     data() {
@@ -707,14 +722,13 @@ export default {
     // ...
     methods: {
         // ...
-        handleDbClick(){
-            this.isEditing = true;
-            this.$refs.content.focus();
+        handleDblClick(){
+          this.isEditing = true;
+          this.$refs.content.focus();
         }
     }
 }
-</script>
 ```
-
+  
 ## 컴포넌트 기본구조 작성 (3) - 
 

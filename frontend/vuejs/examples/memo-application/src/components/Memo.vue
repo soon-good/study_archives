@@ -1,9 +1,9 @@
 <template>
     <li class="memo-item">
         <strong>{{memo.title}}</strong>
-        <p @dblclick="handleDbClick">
-          <template>{{memo.content}}</template>
-          <input type="text" ref="content" :value="memo.content"/>
+        <p @dblclick="handleDblClick">
+          <template v-if="!isEditing">{{memo.content}}</template>
+          <input v-else type="text" ref="content" :value="memo.content"/>
         </p>
         <button type="button" @click="deleteMemo">
           <i class="fas fa-times"></i>
@@ -29,9 +29,12 @@ export default {
           const id = this.memo.id;
           this.$emit('deleteMemo', id);
         },
-        handleDbClick(){
+        handleDblClick(){
           this.isEditing = true;
           this.$refs.content.focus();
+          // this.$nextTick(()=>{
+          //   this.$refs.content.focus();
+          // });
         }
     }
 }
