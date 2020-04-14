@@ -1,7 +1,7 @@
 <template>
     <li class="memo-item">
         <strong>{{memo.title}}</strong>
-        <p>
+        <p @dblclick="handleDbClick">
           <template>{{memo.content}}</template>
           <input type="text" ref="content" :value="memo.content"/>
         </p>
@@ -14,6 +14,11 @@
 <script>
 export default {
     name: "Memo",
+    data() {
+      return {
+        isEditing: false,
+      }
+    },
     props: {
         memo: {
             type: Object
@@ -21,8 +26,12 @@ export default {
     },
     methods: {
         deleteMemo() {
-            const id = this.memo.id;
-            this.$emit('deleteMemo', id);
+          const id = this.memo.id;
+          this.$emit('deleteMemo', id);
+        },
+        handleDbClick(){
+          this.isEditing = true;
+          this.$refs.content.focus();
         }
     }
 }

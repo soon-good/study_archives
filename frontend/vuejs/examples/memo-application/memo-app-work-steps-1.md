@@ -663,24 +663,58 @@ html 내에 input 태그를 아래와 같이 넣어주자.
 <template>
     <li class="memo-item">
         <strong>{{memo.title}}</strong>
-        <p>{{memo.content}}</p>
-        
-        <input type="text" ref="content" :value="memo.content"/>
-
+        <p @dblclick="handleDbClick">
+          <template>{{memo.content}}</template>
+          <input type="text" ref="content" :value="memo.content"/>
+        </p>
         <button type="button" @click="deleteMemo">
-            <i class="fas fa-times"></i>
+          <i class="fas fa-times"></i>
         </button>
     </li>
 </template>
 ```
 
-## 컴포넌트 기본구조 작성 (2)
+## 컴포넌트 기본구조 작성 (2) - @dblClick 이벤트 연결
 아래의 요구사항을 boolean 조건값으로 제어하는 로직을 작성한다.
 > - 화면 노출 시에는
 >    - \<p\> 태그를 보여주고
 > - 더블클릭하여 수정하려 할때는 
 >    - input 태그를 보여준다. 
 
-위의 두 가지 (p태그를 보여주거나, input 태그를 보여주는)를 boolean 조건값에 따라 다르게 동작하도록 작성해보자.  
+위의 두 가지 (p태그를 보여주거나, input 태그를 보여주는)를 boolean 조건값에 따라 다르게 동작하도록 해야 하는데, 여기서는 일단 p태그를 더블클릭시 input태그로 포커스가 가도록 하는 로직을 작성한다.  
 
+```html
+<template>
+    <li class="memo-item">
+        <strong>{{memo.title}}</strong>
+        <p @dblclick="handleDbClick">
+          <template>{{memo.content}}</template>
+          <input type="text" ref="content" :value="memo.content"/>
+        </p>
+        <button type="button" @click="deleteMemo">
+          <i class="fas fa-times"></i>
+        </button>
+    </li>
+</template>
+<script>
+export default {
+    name: "Memo",
+    data() {
+        return {
+            isEditing: false,
+        }
+    },
+    // ...
+    methods: {
+        // ...
+        handleDbClick(){
+            this.isEditing = true;
+            this.$refs.content.focus();
+        }
+    }
+}
+</script>
+```
+
+## 컴포넌트 기본구조 작성 (3) - 
 
