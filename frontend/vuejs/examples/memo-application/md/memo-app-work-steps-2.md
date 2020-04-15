@@ -108,7 +108,7 @@ export function fetchMemos({commit}){
 와 같이 'FETCH_MEMOS'라는 이름으로 Mutation 에 커밋을 하고 있다.  
 이제 Mutation에 FETCH_MEMOS 에 대응하는 함수를 만들어보자.
 
-## Mutation 정의
+## Mutation(변이) 정의 - src/store/mutations.js
 위에서 작성한 actions.js 에서 
 > commit('FETCH_MEMOS', memos);
 로 커밋한 'FETCH_MEMOS'에 대응하는 함수를 작성한다.  
@@ -136,9 +136,9 @@ export default {
 > **참고)**  
 > 위에서 Mutation의 이름을 'FETCH_MEMOS' 라고 이름을 지었다. 이 'FETCH_MEMOS'를 상수로 선언 후에 사용했는데, 이렇게 사용하는 것은 Flux 패턴에서 Mutation 명 (변이의 이름)을 상수로 선언하는 것이 일반적인 방법(코딩 컨벤션)이기 때문이다.
 
-## 액션으로 변이를 일으켜보자 (1)::(MemoApp 에서 fetchMemos 액션 호출)
+## 액션으로 변이를 일으켜보자 (1)::MemoApp 에서 fetchMemos 액션 호출
 MemoApp 컴포넌트 내의 첫 로딩시 memos 라고 이름을 지은 배열 형태의 데이터를 불러와야 한다. 여기서는 fetchMemos 액션으로 컴포넌트가 사용할 초기 데이터를 세팅하는 역할을 작성한다.  
-### MemoApp.vue
+### MemoApp.vue 전체 코드
 ```javascript
 // ...
 import {mapActions, mapState} from 'vuex';
@@ -172,8 +172,73 @@ export default {
     }
 }
 ```
+  
+### 1) actions 에 정의한 액션 함수를 MemoApp 컴포넌트(MemoApp.vue)에 등록
+먼저 actions.js 내에 등록한 fetchMemos()를 MemoApp 컴포넌트(MemoApp.vue)안으로 가져와야 하는데 이와 같은 역할을 하는 구문은 아래와 같다. 이 코드가 없으면 fetchMemos 함수를 찾을 수 없다는 에러를 낸다.  
+  
+> 참고) 에러 문구  
+> TypeError: this.fetchMemos is not a function  
+  
+```javascript
+import {mapActions} 'vuex';
+// ...
+export default {
+    // ...
+    methods: {
+        ...mapActions([
+            'fetchMemos'
+        ]),
+        // ...
+    }
+}
+```
+mapActions는 헬퍼함수이다. actions 내의 fetchMemos 함수를 **매핑**해주는 역할을 한다. 즉, mapActions()로 fetchMemos () 함수를 methods 내에 꼭 등록해주어야 한다.  
 
-#### 액션 호출 구문 
+### 2) MemoApp 컴포넌트 초기화 시 데이터 로딩 액션 트리거
+MemoApp 컴포넌트가 생성되는 시점에 fetchMemos() 함수를 호출해 'FETCH_MEMOS'라는 이름의 Mutation(변이)를 일으켜야 한다.  
+  
+```javascript
+export default {
+    // ...
+    created(){
+        this.fetchMemos();
+    }
+}
+```
+주의할 점은 **"1) actions 에 정의한 액션 함수를 MemoApp 컴포넌트(MemoApp.vue)에 등록"** 에서 언급했듯이, mapActions를 이용해 fetchMemos() 액션 함수를 매핑해서 MemoApp 컴포넌트 안에 메서드로 등록해주어야 한다.
+  
+### 3) MemoApp 컴포넌트의 memos 데이터 교체
+MemoApp 컴포넌트의 memos 데이터를 교체하는 과정이다.  
+- 기존의 data(){...} 영역을 지우고  
+- computed : {...mapState(['memos'])} 를 추가해준다.  
+  
+설명은 나중에 정리...  
+```javascript
+import {mapActions, mapState} from 'vuex';
+
+export default {
+    name: 'MemoApp',
+    components:{
+        MemoForm,
+        Memo,
+    },
+    // ...
+    /** 
+    data(){
+        return {
+            memos: [],
+        };
+    },
+    */
+    computed: {
+        ...mapState([
+            'memos'
+        ])
+    }
+}
+```
+  
+### 액션 호출 구문 (나중에 정리...)
 ```javascript
 // ...
 import {mapActions, mapState} from 'vuex';
@@ -198,59 +263,6 @@ export default {
             'fetchMemos'
         ]),
         // ...
-    }
-}
-```
-##### 1) actions 에 정의한 액션 함수를 MemoApp 컴포넌트(MemoApp.vue)에 등록
-먼저 actions.js 내에 등록한 fetchMemos()를 MemoApp 컴포넌트(MemoApp.vue)안으로 가져와야 하는데 이와 같은 역할을 하는 구문은 아래와 같다. 이 코드가 없으면 fetchMemos 함수를 찾을 수 없다는 에러를 낸다.  
-  
-> 참고) 에러 문구  
-> TypeError: this.fetchMemos is not a function  
-  
-```javascript
-import {mapActions} 'vuex';
-// ...
-export default {
-    // ...
-    methods: {
-        ...mapActions([
-            'fetchMemos'
-        ]),
-        // ...
-    }
-}
-```
-mapActions는 헬퍼함수이다. actions 내의 fetchMemos 함수를 **매핑**해주는 역할을 한다. 즉, mapActions()로 fetchMemos () 함수를 methods 내에 꼭 등록해주어야 한다.  
-
-##### 2) actions 에 정의한 액션 함수를 MemoApp 컴포넌트(MemoApp.vue)에 등록
-MemoApp 컴포넌트가 생성되는 시점에 fetchMemos() 함수를 호출해 'FETCH_MEMOS'라는 이름의 Mutation(변이)를 일으켜야 한다.  
-  
-```javascript
-export default {
-    // ...
-    created(){
-        this.fetchMemos();
-    }
-}
-```
-주의할 점은 **"1) actions 에 정의한 액션 함수를 MemoApp 컴포넌트(MemoApp.vue)에 등록"** 에서 언급했듯이, mapActions를 이용해 fetchMemos() 액션 함수를 매핑해서 MemoApp 컴포넌트 안에 메서드로 등록해주어야 한다.
-  
-#### computed
-요건 나중에 정리 ...
-```javascript
-import {mapActions, mapState} from 'vuex';
-
-export default {
-    name: 'MemoApp',
-    components:{
-        MemoForm,
-        Memo,
-    },
-    // ...
-    computed: {
-        ...mapState([
-            'memos'
-        ])
     }
 }
 ```
