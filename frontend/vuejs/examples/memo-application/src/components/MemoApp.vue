@@ -84,14 +84,16 @@ export default {
         */
         // @updateMemo 이벤트에 대한 핸들러
         // payload 는 자식 컴포넌트인 Memo 컴포넌트로부터 전달된다. 
-        // updateMemo (payload){
-        //     const {id, content} = payload;
-        //     const indexOfUpdate = this.memos.findIndex(_memo => _memo.id === id);
-        //     const objOfUpdate = this.memos[indexOfUpdate];
+        /**
+        updateMemo (payload){
+            const {id, content} = payload;
+            const indexOfUpdate = this.memos.findIndex(_memo => _memo.id === id);
+            const objOfUpdate = this.memos[indexOfUpdate];
 
-        //     this.memos.splice(indexOfUpdate, 1, {...objOfUpdate, content});
-        //     this.storeMemo();
-        // }
+            this.memos.splice(indexOfUpdate, 1, {...objOfUpdate, content});
+            this.storeMemo();
+        }
+        */
     }
 }
 </script>

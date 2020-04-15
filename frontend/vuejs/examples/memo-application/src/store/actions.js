@@ -30,7 +30,8 @@ export function updateMemo({commit}, payload){
     const memos = JSON.parse(localStorage.memos);
     const {id, content} = payload;
     const idxOfUpdate = memos.findIndex(_memo => _memo.id === id);
-    memos.splice(idxOfUpdate, 1, content);
+    const objOfUpdate = memos[idxOfUpdate];
+    memos.splice(idxOfUpdate, 1, {...objOfUpdate, content});
     storeMemo(memos);
 
     // Mutation 'UPDATE_MEMO' 발생시키기
