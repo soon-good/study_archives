@@ -309,6 +309,7 @@ export default {
 ### 3) MemoApp.vue - 액션함수 addMemo() 등록
 MemoApp 컴포넌트 내에 mapActions 헬퍼 함수로 actions 내의 addMemo 함수를 가져와서  등록한다.
 ```javascript
+import {mapActions, mapState} from 'vuex';
 // ...
 export default {
     name: 'MemoApp',
@@ -375,6 +376,7 @@ export default {
 
 ### 3) MemoApp.vue - 액션함수 deleteMemo() 등록
 ```javascript
+import {mapActions, mapState} from 'vuex';
 // ...
 export default {
     methods: {
@@ -399,7 +401,90 @@ export default {
 ```
 
 ## 액션으로 변이를 일으켜보자 (4)::메모 데이터 수정 기능
+### 1) mutations.js
+```javascript
+// ...
+const FETCH_MEMOS   = 'FETCH_MEMOS';
+const ADD_MEMO      = 'ADD_MEMO';
+const DELETE_MEMO   = 'DELETE_MEMO';
+const UPDATE_MEMO     = 'UPDATE_MEMO';
 
+// ...
+export default {
+    name: 'MemoApp',
+    components:{
+        MemoForm,
+        Memo,
+    }
+    // ...
+    [UPDATE_MEMO] (state, payload){
+        const {id, content} = payload;
+        const idxOfEdit = state.memos.findIndex(_memo => _memo.id === id);
+        const objOfEdit = state.memos[idxOfEdit];
+        state.memos.splice(idxOfEdit, 1, { ...objOfEdit, content });
+    }    
+}
+```
+### 2) actions.js
+```javascript
+export function updateMemo({commit}, payload){
+    // localStorage 에서 memo 수정하는 로직
+    const memos = JSON.parse(localStorage.memos);
+    const {id, content} = payload;
+    const idxOfUpdate = memos.findIndex(_memo => _memo.id === id);
+    memos.splice(idxOfUpdate, 1, content);
+    storeMemo(memos);
+
+    // Mutation 'UPDATE_MEMO' 발생시키기
+    commit('UPDATE_MEMO', payload);
+}
+// ...
+// ...
+export function storeMemo(memos){
+    const memosToString = JSON.stringify(memos);
+    localStorage.setItem('memos', memosToString);
+}
+
+export default {
+    fetchMemos,     // fetchMemos       액션 함수 등록
+    addMemo,        // addMemo          액션 함수 등록
+    deleteMemo,     // deleteMemo       액션 함수 등록
+    updateMemo,     // updateMemo       액션 함수 등록
+}
+```
+### 3) MemoApp.vue - 액션함수 deleteMemo() 등록
+```javascript
+import {mapActions, mapState} from 'vuex';
+// ...
+export default {
+    name: 'MemoApp',
+    components:{
+        MemoForm,
+        Memo,
+    },
+    // ... 
+    methods: {
+        ...mapActions([
+            'fetchMemos',       // fetchMemos   액션함수를 MemoApp 내에 메서드로 등록
+            'addMemo',          // addMemo      액션함수를 MemoApp 내에 메서드로 등록
+            'deleteMemo',       // deleteMemo   액션함수를 MemoApp 내에 메서드로 등록
+            'updateMemo',       // updateMemo   액션함수를 MemoApp 내에 메서드로 등록
+        ]),
+        // ...
+        // 이전 updateMemo 함수 주석처리 또는 제거
+        /**
+        updateMemo (payload){
+            const {id, content} = payload;
+            const indexOfUpdate = this.memos.findIndex(_memo => _memo.id === id);
+            const objOfUpdate = this.memos[indexOfUpdate];
+
+            this.memos.splice(indexOfUpdate, 1, {...objOfUpdate, content});
+            this.storeMemo();
+        }
+        */
+    }
+}
+```
 # 커스터마이징
 ## Mutation 코드 상수 커스터마이징 :: mutation-types.js
 ## AppHeader 컴포넌트 :: 메모 갯수 노출
