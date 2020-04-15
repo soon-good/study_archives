@@ -905,11 +905,133 @@ export default {
 }
 ```
 
-# 9. 메모 카운트 기능
-여기서는 메모의 갯수를 카운트하는 기능을 작성해보려고 한다. 카운트 기능을 단순히 props를 이용한 부모/자식 사이의 상태관리로 구현해보려 한다. 이 기능은 추후 vuex를 적용해 관리할 예정이다. count 변수는 단순히 읽기만 가능해서는 안되기 때문에 vuex를 이용한 상태관리가 필요하다. 여기서는 일단 props를 활용한 부모/자식 사이의 상태관리 예제를 정리한다.  
+# 9. 메모 카운트 기능 (props 활용)
+여기서는 메모의 갯수를 카운트하는 기능을 작성해보려고 한다. 카운트 기능을 단순히 props를 이용한 부모/자식 사이의 상태관리로 구현해보려 한다. 이 기능은 추후 vuex를 적용해 관리할 예정이다. count 변수는 단순히 읽기만 가능해서는 안되기 때문에 vuex를 이용한 상태관리가 필요하다. memo-app-work-steps-2.md 에서부터 vuex 활용 예제를 정리할 예정이다. 여기서는 일단 props를 활용한 부모/자식 사이의 상태관리 예제를 정리한다.  
   
-TL;DR 이다... 정리 필요  
+TMI 이다..... 필요없는 내용은 지우자~ 정리 필요!!!  
 - App 컴포넌트(App.vue)의 자식 컴포넌트인 MemoApp 컴포넌트에서 메모의 추가/삭제가 있을 경우 App 컴포넌트로 @change 이벤트를 전파하고, 
 - AppHeader는 App 컴포넌트(App.vue) 내에서 props 변수 memoCount 가 변할 때마다 화면에 해당 내용을 반영해주어야 한다.  
   
 
+### MemoApp.vue
+- addMemo
+- deleteMemo
+시에 이벤트 'change'를 부모 컴포넌트인 App.vue로 전송하는 역할을 한다.
+```javascript
+export default {
+    name: 'MemoApp',
+    components:{
+        MemoForm,
+        Memo
+    },
+    data(){
+        return {
+            memos: [],
+        };
+    },
+    // ...
+    methods: {
+        // ...
+        addMemo(payload){
+            // ...
+            this.$emit('change', this.memos.length);
+        },
+        deleteMemo(id){
+            // ...
+            this.$emit('change', this.memos.length);
+        }
+    }
+}
+```
+
+### App.vue
+
+#### 템플릿
+- app-header 컴포넌트에서는 
+    - memoCount 변수를 :memoCount="memoCount" 로 주어 props로 전달해준다.
+    - App.vue -> AppHeader.vue 로의 props 전달 흐름이다.
+- memo-app 컴포넌트의 템플릿에서는 
+    - @change 이벤트에 대해 "updateCount"함수를 호출하도록 해준다.
+    - MemoApp.vue -> App.vue 로의 이벤트 전파가 이루어진다.
+    - updateCount 함수에서는 data 영역에 선언된 변수인 memoCount를 수정한다.
+
+```html
+<template>
+  <div id="app">
+    <app-header :memoCount="memoCount"/>
+    <memo-app @change="updateCount"/>
+  </div>
+</template>
+<script>
+import AppHeader from './components/AppHeader';
+import MemoApp from './components/MemoApp';
+
+export default{
+    name: 'app',
+    components:{
+        AppHeader,
+        MemoApp,
+    },
+    data(){
+        return{
+            memoCount: 0,
+        }
+    },
+    methods: {
+        updateCount(count){
+            this.memoCount = count;
+        }
+    }
+}
+</script>
+// ...
+```
+
+### AppHeader.vue
+memoCoun는를 부모인 App.vue 로부터 전달받기 때문에 memoCount는 props 내에 선언해주어야 한다.  
+부모로부터 전달 받은 memoCount를 그대로 \<template\> 내의 p 태그 안에 바인딩 해주었다.
+
+```html
+<template>
+    <div class="app-header">
+        <h1>메모 애플리케이션</h1>
+        <p>{{memoCount}}</p>
+    </div>
+</template>
+
+<script>
+export default {
+    name: 'AppHeader',
+    props:{
+        memoCount : {
+            type: Number,
+            default: 0,
+        }
+    }
+}
+</script>
+
+<style scoped>
+    .app-header {
+        overflow: hidden;
+        padding: 52px 0 27px;
+    }
+
+    .app-header h1{
+        float: left;
+        font-size: 24px;
+        text-align: center;
+    }
+</style>
+```
+
+
+### 단점
+메모 폼 데이터 수정, 추가 등에서는 그나마 복잡하지 않았다. 그런데 부모와 연관된 형제 컴포넌트를 수정하면서 연관관계가 조금씩 복잡해졌다. 실제 업무로 진행하게 되면 관리 포인트가 많아지기 때문에 조금 불편해질 수도 있다는 생각이 들었다. 많이 알고서 일일이 수정하는 것보다 효율적으로 한방에 고칠수 있는 코드구조가 필요하다는 생각이다.  
+
+바로 요렇게 여러가지 컴포넌트가 얽혀 있을 때 상태관리로 사용하는 것이 vuex이다. redux를 계승했지만, vue.js 에 특화되어 있는 상태관리 컴포넌트이다. redux는 react관련 해서 대중적으로 사랑을 받은 컴포넌트로 알려져 있지만, 일반 javascript에서도 import해서 쓸수도 있다. react 전용이 아닌 범용이다. react에서도 기본 redux사용법과 조금 달라졌던걸로 기억한다.. vuex역시 기본 redux코드와 조금 달라진다.  
+  
+memo-app-work-steps-2.md 에서
+- vuex 적용 예제
+- axios 커스터마이징 등의 활용
+을 정리할 예정이다.

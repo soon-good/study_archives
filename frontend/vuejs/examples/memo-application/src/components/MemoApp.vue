@@ -47,6 +47,7 @@ export default {
             
             // storeMemo() 호출
             this.storeMemo();
+            this.$emit('change', this.memos.length);
         },
         // 내부 데이터를 문자열로 변환하여, 로컬 스토리지에 저장한다.
         storeMemo (){
@@ -58,6 +59,7 @@ export default {
             const indexOfDelete = this.memos.findIndex(_memo=>_memo.id===id);
             this.memos.splice(indexOfDelete, 1);
             this.storeMemo();
+            this.$emit('change', this.memos.length);
         },
         // @updateMemo 이벤트에 대한 핸들러
         // payload 는 자식 컴포넌트인 Memo 컴포넌트로부터 전달된다. 
