@@ -68,3 +68,191 @@ import store from './store';
 ![이미자](./img/AFTER_VUEX_WAS_REGISTERED.png)  
 
 # 2. vuex에 데이터 저장 & 데이터 표현
+
+## 상태 정의 - src/store/states.js
+스토어의 상태로 memos 라는 이름의 배열을 등록한다. redux는 상태(state)관리 도구다. 잊지 말자. 아래의 코드를 추가함으로써 우리가 관리해야 하는 상태는 memos 라는 객체 타입의 베열이다.  
+
+### states.js
+```javascript
+export default{
+    memos: []
+}
+```
+### Vue.js 개발자 도구 확인
+![이미자](./img/AFTER_STATE_WAS_REGISTERED.png)
+
+## 액션 정의 - src/store/actions.js
+states.js 내에서 memos 라는 배열을 상태로 지정했다. 즉, 데이터를 저장하고 있을 스토어가 생성되었다. 상태를 정의했으므로 이제 액션을 정의해보자.  
+  
+데이터를 가져온 후 가져온 데이터에 대해서 commit을 해야한다. commit을 한다는 것은 mutation에 커밋을 한다는 것이다. 아래 예제를 보자.
+
+### actions.js
+```javascript
+export function fetchMemos ({commit}){
+    // 아래 부분은 추후 axios 사용 로직으로 정리할 예정. 일단은 localStorage로 고고싱...
+    const memos = localStorage.memos ? JSON.parse(localStorage.memos) : [];
+    commit('FETCH_MEMOS', memos);
+}
+
+export default{
+    fetchMemos
+}
+```
+예제에서는 
+```javascript
+export function fetchMemos({commit}){
+    // ...
+    commit('FETCH_MEMOS', memos);
+}
+```
+와 같이 'FETCH_MEMOS'라는 이름으로 Mutation 에 커밋을 하고 있다.  
+이제 Mutation에 FETCH_MEMOS 에 대응하는 함수를 만들어보자.
+
+## Mutation 정의
+위에서 작성한 actions.js 에서 
+> commit('FETCH_MEMOS', memos);
+로 커밋한 'FETCH_MEMOS'에 대응하는 함수를 작성한다.  
+정리하자면  
+- actions.js 에서는
+    - "이벤트명" 으로 커밋(commit)을 한다.
+- mutations.js 에서는
+    - "이벤트명" 에 대응하는 함수를 정의한다.
+    - state에서 잡고있는(바인딩하고 있는) 변수에 접근한다.
+    
+- 이 "이벤트명"은 변이(Mutation)에 대해 이름을 지은것이다.
+- 즉, "이벤트명"이라고 하기보다는 "변이명"이라고 하는게 맞는데, 여기서는 처음부터 다시 공부하는 경우 "변이명" 이런식으로 정리하면 어렵게 다가올 것 같아 그냥 "이벤트명"이라고 이름지었다. 
+- 아래에서부터는 "Mutation 명" 또는 "Mutation 의 이름"이라고 부를 예정이다. 
+  
+```javascript
+const FETCH_MEMOS = 'FETCH_MEMOS';
+
+export default {
+    [FETCH_MEMOS] (state, payload){
+        state.memos = payload;
+    },
+}
+```
+
+> **참고)**  
+> 위에서 Mutation의 이름을 'FETCH_MEMOS' 라고 이름을 지었다. 이 'FETCH_MEMOS'를 상수로 선언 후에 사용했는데, 이렇게 사용하는 것은 Flux 패턴에서 Mutation 명 (변이의 이름)을 상수로 선언하는 것이 일반적인 방법(코딩 컨벤션)이기 때문이다.
+
+## 액션으로 변이를 일으켜보자 (1)::(MemoApp 에서 fetchMemos 액션 호출)
+MemoApp 컴포넌트 내의 첫 로딩시 memos 라고 이름을 지은 배열 형태의 데이터를 불러와야 한다. 여기서는 fetchMemos 액션으로 컴포넌트가 사용할 초기 데이터를 세팅하는 역할을 작성한다.  
+### MemoApp.vue
+```javascript
+// ...
+import {mapActions, mapState} from 'vuex';
+
+export default {
+    name: 'MemoApp',
+    components:{
+        MemoForm,
+        Memo,
+    },
+    /** 
+    data(){
+        return {
+            memos: [],
+        };
+    },
+    */
+    created(){
+        this.fetchMemos();
+    },
+    computed: {
+        ...mapState([
+            'memos'
+        ])
+    },
+    methods: {
+        ...mapActions([
+            'fetchMemos'
+        ]),
+        // ...
+    }
+}
+```
+
+#### 액션 호출 구문 
+```javascript
+// ...
+import {mapActions, mapState} from 'vuex';
+
+export default {
+    name: 'MemoApp',
+    components:{
+        MemoForm,
+        Memo,
+    },
+    // ... 
+    // 컴포넌트 생성시 fetchMemos 함수를 호출한다.
+    created(){
+        this.fetchMemos();
+    },
+    // ...
+    // mapActions 헬퍼 함수에 actions 내의 fetchMemos 함수를 주입한다.
+    // mapActions는 actions 내의 fetchMemos 함수를 매핑해주는 역할을 한다.
+    // 이 코드가 없으면
+    methods: {
+        ...mapActions([
+            'fetchMemos'
+        ]),
+        // ...
+    }
+}
+```
+##### 1) actions 에 정의한 액션 함수를 MemoApp 컴포넌트(MemoApp.vue)에 등록
+먼저 actions.js 내에 등록한 fetchMemos()를 MemoApp 컴포넌트(MemoApp.vue)안으로 가져와야 하는데 이와 같은 역할을 하는 구문은 아래와 같다. 이 코드가 없으면 fetchMemos 함수를 찾을 수 없다는 에러를 낸다.  
+  
+> 참고) 에러 문구  
+> TypeError: this.fetchMemos is not a function  
+  
+```javascript
+import {mapActions} 'vuex';
+// ...
+export default {
+    // ...
+    methods: {
+        ...mapActions([
+            'fetchMemos'
+        ]),
+        // ...
+    }
+}
+```
+mapActions는 헬퍼함수이다. actions 내의 fetchMemos 함수를 **매핑**해주는 역할을 한다. 즉, mapActions()로 fetchMemos () 함수를 methods 내에 꼭 등록해주어야 한다.  
+
+##### 2) actions 에 정의한 액션 함수를 MemoApp 컴포넌트(MemoApp.vue)에 등록
+MemoApp 컴포넌트가 생성되는 시점에 fetchMemos() 함수를 호출해 'FETCH_MEMOS'라는 이름의 Mutation(변이)를 일으켜야 한다.  
+  
+```javascript
+export default {
+    // ...
+    created(){
+        this.fetchMemos();
+    }
+}
+```
+주의할 점은 **"1) actions 에 정의한 액션 함수를 MemoApp 컴포넌트(MemoApp.vue)에 등록"** 에서 언급했듯이, mapActions를 이용해 fetchMemos() 액션 함수를 매핑해서 MemoApp 컴포넌트 안에 메서드로 등록해주어야 한다.
+  
+#### computed
+요건 나중에 정리 ...
+```javascript
+import {mapActions, mapState} from 'vuex';
+
+export default {
+    name: 'MemoApp',
+    components:{
+        MemoForm,
+        Memo,
+    },
+    // ...
+    computed: {
+        ...mapState([
+            'memos'
+        ])
+    }
+}
+```
+
+## 액션으로 변이를 일으켜보자 (2)::메모 데이터 생성 기능
