@@ -94,8 +94,8 @@ export function fetchMemos ({commit}){
     commit('FETCH_MEMOS', memos);
 }
 
-export default{
-    fetchMemos
+export default {
+    fetchMemos,     // fetchMemos 액션 함수 등록
 }
 ```
 예제에서는 
@@ -123,6 +123,7 @@ export function fetchMemos({commit}){
 - 즉, "이벤트명"이라고 하기보다는 "변이명"이라고 하는게 맞는데, 여기서는 처음부터 다시 공부하는 경우 "변이명" 이런식으로 정리하면 어렵게 다가올 것 같아 그냥 "이벤트명"이라고 이름지었다. 
 - 아래에서부터는 "Mutation 명" 또는 "Mutation 의 이름"이라고 부를 예정이다. 
   
+### mutation.js
 ```javascript
 const FETCH_MEMOS = 'FETCH_MEMOS';
 
@@ -166,7 +167,7 @@ export default {
     },
     methods: {
         ...mapActions([
-            'fetchMemos'
+            'fetchMemos',       // fetchMemos   액션함수를 MemoApp 내에 메서드로 등록
         ]),
         // ...
     }
@@ -186,7 +187,7 @@ export default {
     // ...
     methods: {
         ...mapActions([
-            'fetchMemos'
+            'fetchMemos'    // fetchMemos   액션함수를 MemoApp 내에 메서드로 등록
         ]),
         // ...
     }
@@ -260,7 +261,7 @@ export default {
     // 이 코드가 없으면
     methods: {
         ...mapActions([
-            'fetchMemos'
+            'fetchMemos'    // fetchMemos 액션함수를 MemoApp 내애 메서드로 등록
         ]),
         // ...
     }
@@ -300,21 +301,22 @@ function storeMemo(memos){
 }
 
 export default {
-    fetchMemos,
-    addMemo,
+    fetchMemos,     // fetchMemos   액션 함수 등록
+    addMemo,        // addMemo      액션 함수 등록
 }
 ```
   
 ### 3) MemoApp.vue - 액션함수 addMemo() 등록
 MemoApp 컴포넌트 내에 mapActions 헬퍼 함수로 actions 내의 addMemo 함수를 가져와서  등록한다.
 ```javascript
-export default{
+// ...
+export default {
     name: 'MemoApp',
     // ...
     methods: {
         ...mapActions([
-            'fetchMemos',
-            'addMemo',
+            'fetchMemos',       // fetchMemos   액션함수를 MemoApp 내에 메서드로 등록
+            'addMemo',          // addMemo      액션함수를 MemoApp 내에 메서드로 등록
         ]),
         /**
         addMemo (payload){
@@ -333,6 +335,68 @@ export default{
 이전의 함수인 MemoApp 컴포넌트 내부의 addMemo(payload){...} 는 mapActions 헬퍼 함수로 addMemo 함수를 가져와 오버로딩 하고 있기 때문에 주석처리하여 제거했다.
   
 ## 액션으로 변이를 일으켜보자 (3)::메모 데이터 삭제 기능
+### 1) mutations.js
+```javascript
+// ...
+const DELETE_MEMO   = 'DELETE_MEMO';
+
+export default {
+    // ...
+    [DELETE_MEMO] (state, id){
+        const idxOfDel = state.memos.findIndex(_memo => _memo.id === id);
+        state.memos.splice(idxOfDel, 1);
+    }
+}
+```
+### 2) actions.js
+```javascript
+export function deleteMemo({commit}, id){
+    // localStorage 에서 memo 삭제하는 로직 
+    const memos = JSON.parse(localStorage.memos);
+    const idxOfDel = memos.findIndex(_memo=>_memo.id === id);
+    memos.splice(idxOfDel, 1);
+    storeMemo(memos);
+
+    // Mutation 'DELETE_MEMO' 발생시키기
+    commit('DELETE_MEMO', id);
+}
+// ...
+export function storeMemo(memos){
+    const memosToString = JSON.stringify(memos);
+    localStorage.setItem('memos', memosToString);
+}
+
+export default {
+    fetchMemos,     // fetchMemos       액션 함수 등록
+    addMemo,        // addMemo          액션 함수 등록
+    deleteMemo,     // deleteMemo       액션 함수 등록
+}
+```
+
+### 3) MemoApp.vue - 액션함수 deleteMemo() 등록
+```javascript
+// ...
+export default {
+    methods: {
+        ...mapActions([
+            'fetchMemos',       // fetchMemos   액션함수를 MemoApp 내에 메서드로 등록
+            'addMemo',          // addMemo      액션함수를 MemoApp 내에 메서드로 등록
+            'deleteMemo',       // deleteMemo   액션함수를 MemoApp 내에 메서드로 등록
+        ]),        
+    },
+    // 예전 deleteMemo 함수는 지우자. 
+    // 지금부터는 MemoApp 에서 actions.js에 등록한 deleteMemo함수를 사용한다.
+    /**
+    // <memo> 컴포넌트로부터 id를 전달받아 삭제를 진행한다.
+    deleteMemo (id){
+        const indexOfDelete = this.memos.findIndex(_memo=>_memo.id===id);
+        this.memos.splice(indexOfDelete, 1);
+        this.storeMemo();
+        this.$emit('change', this.memos.length);
+    },
+    */
+}
+```
 
 ## 액션으로 변이를 일으켜보자 (4)::메모 데이터 수정 기능
 

@@ -49,8 +49,9 @@ export default {
     },
     methods: {
         ...mapActions([
-            'fetchMemos',
-            'addMemo',
+            'fetchMemos',       // fetchMemos   액션함수를 MemoApp 내에 메서드로 등록
+            'addMemo',          // addMemo      액션함수를 MemoApp 내에 메서드로 등록
+            'deleteMemo',       // deleteMemo   액션함수를 MemoApp 내에 메서드로 등록
         ]),
         // 템플릿의 <memo-form>에 addMemo 이벤트 콜백함수로 연결해줘야 한다. 
         // addMemo 이벤트는 자식 컴포넌트인 MemoForm 으로부터 전달받는다. (이벤트를 전달받으면서 payload도 함께 전달받는다)
@@ -71,6 +72,7 @@ export default {
             const memosToString = JSON.stringify(this.memos);
             localStorage.setItem('memos', memosToString);
         },
+        /**
         // <memo> 컴포넌트로부터 id를 전달받아 삭제를 진행한다.
         deleteMemo (id){
             const indexOfDelete = this.memos.findIndex(_memo=>_memo.id===id);
@@ -78,6 +80,7 @@ export default {
             this.storeMemo();
             this.$emit('change', this.memos.length);
         },
+        */
         // @updateMemo 이벤트에 대한 핸들러
         // payload 는 자식 컴포넌트인 Memo 컴포넌트로부터 전달된다. 
         updateMemo (payload){

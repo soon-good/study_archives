@@ -14,12 +14,24 @@ export function addMemo({commit}, payload){
     commit('ADD_MEMO', payload);
 }
 
+export function deleteMemo({commit}, id){
+    // localStorage 에서 memo 삭제하는 로직 
+    const memos = JSON.parse(localStorage.memos);
+    const idxOfDel = memos.findIndex(_memo=>_memo.id === id);
+    memos.splice(idxOfDel, 1);
+    storeMemo(memos);
+
+    // Mutation 'DELETE_MEMO' 발생시키기
+    commit('DELETE_MEMO', id);
+}
+
 export function storeMemo(memos){
     const memosToString = JSON.stringify(memos);
     localStorage.setItem('memos', memosToString);
 }
 
 export default {
-    fetchMemos,
-    addMemo,
+    fetchMemos,     // fetchMemos       액션 함수 등록
+    addMemo,        // addMemo          액션 함수 등록
+    deleteMemo,     // deleteMemo       액션 함수 등록
 }
