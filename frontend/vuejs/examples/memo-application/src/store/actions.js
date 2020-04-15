@@ -4,6 +4,22 @@ export function fetchMemos ({commit}){
     commit('FETCH_MEMOS', memos);
 }
 
-export default{
-    fetchMemos
+export function addMemo({commit}, payload){
+    // localStorage 에 memo 저장
+    const memos = JSON.parse(localStorage.memos);
+    memos.push(payload);
+    storeMemo(memos);
+
+    // Mutation 'ADD_MEMO' 발생시키기
+    commit('ADD_MEMO', payload);
+}
+
+export function storeMemo(memos){
+    const memosToString = JSON.stringify(memos);
+    localStorage.setItem('memos', memosToString);
+}
+
+export default {
+    fetchMemos,
+    addMemo,
 }

@@ -268,13 +268,76 @@ export default {
 ```
 
 ## 액션으로 변이를 일으켜보자 (2)::메모 데이터 생성 기능
+### 1) mutations.js
+```javascript
+// ...
+const ADD_MEMO = 'ADD_MEMO';
 
+export default {
+    // ...
+    [ADD_MEMO] (state, payload){
+        state.memos.push(payload);
+    }
+}
+```
+
+### 2) actions.js
+```javascript
+// ...
+export function addMemo({commit}, payload){
+    // localStorage 에 memo 저장
+    const memos = JSON.parse(localStorage.memos);
+    memos.push(payload);
+    storeMemo(memos);
+
+    // Mutation 'ADD_MEMO' 발생시키기
+    commit('ADD_MEMO', localStorage.memos);
+}
+
+function storeMemo(memos){
+    const memosToString = JSON.stringify(memos);
+    localStorage.setItem('memos', memosToString);
+}
+
+export default {
+    fetchMemos,
+    addMemo,
+}
+```
+  
+### 3) MemoApp.vue - 액션함수 addMemo() 등록
+MemoApp 컴포넌트 내에 mapActions 헬퍼 함수로 actions 내의 addMemo 함수를 가져와서  등록한다.
+```javascript
+export default{
+    name: 'MemoApp',
+    // ...
+    methods: {
+        ...mapActions([
+            'fetchMemos',
+            'addMemo',
+        ]),
+        /**
+        addMemo (payload){
+            // MemoForm 에서 전달해주는 데이터를 먼저 컴포넌트 내부 데이터에 추가한다. 
+            // (자식 컴포넌트인 MemoForm 에서 부모인 MemoApp 으로 데이터를 올려주는 것)
+            this.memos.push(payload);
+            
+            // storeMemo() 호출
+            this.storeMemo();
+            this.$emit('change', this.memos.length);
+        },
+         */
+    }
+}
+```
+이전의 함수인 MemoApp 컴포넌트 내부의 addMemo(payload){...} 는 mapActions 헬퍼 함수로 addMemo 함수를 가져와 오버로딩 하고 있기 때문에 주석처리하여 제거했다.
+  
 ## 액션으로 변이를 일으켜보자 (3)::메모 데이터 삭제 기능
 
 ## 액션으로 변이를 일으켜보자 (4)::메모 데이터 수정 기능
 
 # 커스터마이징
-## mutation-types.js
+## Mutation 코드 상수 커스터마이징 :: mutation-types.js
 ## AppHeader 컴포넌트 :: 메모 갯수 노출
 ### 1) mapState 헬퍼함수 활용
 ### 2) mapGetters 헬퍼함수 활용
