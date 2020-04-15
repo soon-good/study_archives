@@ -486,6 +486,7 @@ export default {
 }
 ```
 # 커스터마이징
+278p(리디북스 앱), 257p(실제 책) 부터 ... 나중에 정리하자.  
 ## Mutation 코드 상수 커스터마이징 :: mutation-types.js
 ## AppHeader 컴포넌트 :: 메모 갯수 노출
 ### 1) mapState 헬퍼함수 활용
