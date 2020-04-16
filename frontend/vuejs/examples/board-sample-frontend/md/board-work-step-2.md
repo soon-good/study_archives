@@ -1,4 +1,4 @@
-# 작업과정 정리 (회원가입, 로그인,인증(JWT))
+# 작업과정 정리 (회원가입, 로그인(JWT))
 # 샘플 REST API 서버 설치
 여기서는 Vue.js Front End 앱에서 
 - 회원가입
@@ -211,4 +211,222 @@ export default {
     }
 }
 ```
-![이미자](./img/SIGNUP_SCREENSHOT_1.png)
+![이미자](./img/SIGNUP_SCREENSHOT_1.png)  
+  
+# 로그인(JWT) 기능 구현
+## 컴포넌트 구성
+### Signup.vue - 로그인 페이지 이동 링크 추가
+회원가입 페이지에서 이미 가입한 회원일 경우에 로그인하도록 유도하는 링크를 추가해주자.
+#### 템플릿
+```html
+<template>
+    <div class="sign-up-page">
+        ...
+        <p>
+            이미 가입하셨나요?
+            <router-link :to="{name: 'Signin'}">
+                로그인하러 가기
+            </router-link>
+        </p>
+    </div>
+</template>
+```
+
+### Signin.vue 
+#### 컴포넌트 작성
+src/pages 밑에 Signin.vue 를 만들어주자.
+```html
+<template>
+    <div class="sign-in-page">
+        <h3>로그인</h3>
+        <p>회원이 아니신가요? 
+            <router-link :to="{name: 'Signup'}">
+                회원가입하러 가기
+            </router-link>
+        </p>
+    </div>
+</template>
+<script>
+export default {
+    name: 'Signin'
+}
+</script>
+```
+#### 라우터 등록
+**src/router/index.js**  
+```javascript
+import Vue from 'vue'
+import Router from 'vue-router'
+
+// ...
+
+// Signin 컴포넌트 import
+import Signin from '@/pages/Signin';
+
+Vue.use(Router)
+
+export default new Router({
+  mode: 'history',
+  routes: [
+    // ...
+    {
+      path: '/signin',
+      name: 'Signin',
+      component: Signin,
+    }
+  ]
+})
+```
+
+### SigninForm.vue
+로그인 폼을 표현해주는 컴포넌트이다. SigninForm.vue 라는 파일명으로 src/components/ 밑에 생성해주자.  
+  
+부모 컴포넌트인 Signin 컴포넌트에게 'submit' 이벤트를 전파하고 있다.
+**src/components/SigninForm.vue**  
+```html
+<template>
+    <form @submit.prevent="submit">
+        <fieldset>
+            <input type="text" v-model="email" placeholder="이메일">
+            <input type="password" v-model="password" placeholder="비밀번호">
+            <button type="submit"> 로그인 </button>
+        </fieldset>
+    </form>
+</template>
+<script>
+export default {
+    name: 'SigninForm',
+    data(){
+        return {
+            email: '',
+            password: '',
+        }
+    },
+    methods: {
+        submit(){
+            const {email, password} = this
+            this.$emit('submit', {email, password})
+        }
+    }
+}
+</script>
+```
+
+### Signin 컴포넌트에 SigninForm 컴포넌트 연결
+#### 템플릿
+SigninForm 컴포넌트를 템플릿에 추가해주고, SigninForm 으로부터 올라오는 @submit 이벤트에 대해 onSubmit() 메서드를 핸들러로 사용하도록 템플릿을 구성하자.  
+
+```html
+<template>
+    <div class="sign-in-page">
+        ...
+        <signin-form @submit="onSubmit"></signin-form>
+        <p>
+            ...
+        </p>
+    </div>
+</template>
+```
+이제 Sigin.vue의 스크립트 단에서
+- onSubmit() 함수 구현
+- SigninForm 컴포넌트를 script에서 import
+- components에 SigninForm을 등록
+해주는 작업이 남았다.  
+
+#### 스크립트
+```javascript
+// SigninForm 컴포넌트 import
+import SigninForm from '@/components/SigninForm';
+
+// 커스텀 axios 모듈 import
+import api from '@/api/'
+
+export default {
+    // ...
+    // component 'SigninForm' 등록
+    components:{
+        SigninForm
+    }
+    // 
+    methods: {
+        onSubmit(payload){
+            console.log(payload);
+        },
+    },
+}
+```
+![이미자](./img/SIGNIN_SCREENSHOT_1.png)
+
+#### API 요청 로직 추가
+Signin.vue 내의 onSubmit() 함수 내에 아래와 같이 로그인을 요청하는 로직을 작성하자.
+```javascript
+// SigninForm 컴포넌트 import 
+import SigninForm from '@/components/SigninForm';
+
+// 커스텀 axios 모듈 import 
+import api from '@/api/'
+
+export default {
+    // ...
+    methods: {
+        onSubmit(payload){
+            const { email, password } = payload;
+            api.post('/auth/signin', { email, password })
+            .then(res => {
+                console.log('success');
+                const { accessToken } = res.data;
+                console.log('accessToken :: ', accessToken)
+            })
+        },
+    }
+    // ...
+}
+```
+
+### Signup.vue :: 회원가입 성공시 로그인페이지로 리다이렉트
+회원가입 컴포넌트인 Signup.vue에서 우리가 하나 빼먹고 하지 않은 것이 있다. 회원가입이 완료되면 로그인 페이지로 이동하게 하는 것이다. 이제 소스를 보는게 더 익숙하니... 소스부터 보자!!...  
+```html
+<template>
+    ...
+    템플릿에서는 손댈게 없다.
+<template>
+<script>
+// ...
+import Signin from '@/pages/Signin' 
+// ...
+
+export default {
+    // ... 
+
+    methods: {
+        onSubmit(payload){
+            const{email,password,name} = payload;
+
+            api.post('/auth/signup', { name, email, password })
+            .then(res => {
+                alert('회원가입이 완료되었습니다.')
+                // 이 부분이 추가되었다. 
+                this.$router.push({ name: 'Signin' })
+            })
+            .catch(err => {
+                alert(err.response.data.msg)
+            })
+        }
+    }
+}
+</script>
+```
+onSubmit 함수에 회원가입 API 요청이 성공하면 
+> this.$router.push({name: 'Signin'});
+과 같은 소스를 입력해주어야 Signin으로 이동이된다. 라우터에 대한 자세한 내용은 추후 정리할..... 지 말지 고민중 ㅋㅋㅋ  
+
+## 애플리케이션(front-end)에서 JWT 인증
+우리가 이미 github에서 clone 받은 샘플 서버는 DB에 데이터(email, password)가 존재하면 accessToken을 만들어 브라우저에게 전송해준다.
+
+### accessToken 의 모습
+```
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiZW1haWwiOiJzZ2p1bmdAZ21haWwuY29tIiwibmFtZSI6InNnanVuZyIsImlhdCI6MTU4NzAyODg5NiwiZXhwIjoxNTg3NjMzNjk2fQ.QToQO8AG8HMjAHYcKLcd1IMCRXEaNNQGr7TEHCgswt8
+```
+
+### accessToken 의 형식
+... ㅋㅋㅋ 아.... 이건 진짜 내일 정리해야겠다... 너무 힘들쟈나~...  

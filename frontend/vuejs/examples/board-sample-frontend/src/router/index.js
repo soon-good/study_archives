@@ -9,6 +9,9 @@ import PostListPage from '@/pages/PostListPage';
 // Signup 컴포넌트 import
 import Signup from '@/pages/Signup';
 
+// Signin 컴포넌트 import
+import Signin from '@/pages/Signin';
+
 Vue.use(Router)
 
 export default new Router({
@@ -24,6 +27,11 @@ export default new Router({
       name: 'Signup',
       component: Signup,
     },
+    {
+      path: '/signin',
+      name: 'Signin',
+      component: Signin,
+    }
     // Vue CLI 가 생성해준 예제 라우트 삭제
     // {
     //   path: '/',
