@@ -4,7 +4,27 @@
 ![이미자](./img/INITIAL_SETTINGS.md)  
 
 # Vue Router
-src/router/index.js로 이동하여 모든 내용을 지우고 아래의 내용으로 덮어쓰자
+src/router/index.js로 이동하여 모든 내용을 지우고 아래의 내용으로 덮어쓰자  
+- mode: 'history'
+를 옵션으로 추가해주어야 한다. 
+
+> **참고) Vue Router의 히스토리(history) 모드**  
+> 히스토리(history) 모드는 HTML5의 스펙인 history API를 사용하는 방법이다. history API pushState 라는 메서드를 제공하는데, 이 메서드는  
+> - URL을 변경하고
+> - 브라우저의 히스토리도 남겨지지만
+> 실제 페이지는 이동하지 않는 기능을 제공해준다. URL 변경시  
+> - 해시모드처럼 URL에 해시(#)를 사용하지 않아도 되고
+> - 브라우저 히스토리에 URL 변경 내역이 저장되므로
+> 실제 페이지이동은 아니지만 페이지 이동과 유사한 사용자 경험을 제공한다는 장점이 있다.  
+> 히스토리 모드의 URL 구조
+> - http://localhost:8080/example/page
+> Vue Router 는 해시모드든 히스토리 모드든 모두 history API를 사용하여 라우팅을 진행하므로 해시모드라고 해서 브라우저의 히스토리가 쌓이지 않는 것은 아니다.  
+```
+해시 모드는 해당 브라우저가 History API를 지원하지 않을 경우 window.location.hash를 사용해 URL을 변경해준다. 따라서 실제로 페이지가 이동되지 않고 URL만 갱신된다.  
+  
+참고로, 브라우저가 History API를 지원하지 않을 경우, 
+window.location.assign 메서드를 사용해 URL을 변경하기 때문에 실제로 페이지가 이동해버린다는 단점이 있다.
+```
 
 ```javascript
 import Vue from 'vue'

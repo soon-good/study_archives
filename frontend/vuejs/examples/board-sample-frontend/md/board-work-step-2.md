@@ -131,4 +131,84 @@ export default {
 > **참고)**  
 > axios 관련 설정은 setting-axios-simple.md 를 확인하고 설정하자.  
 
+#### SignupForm
+##### 템플릿
+@submit.prevent 이벤트에 대해 submit 함수를 연결시켜주자.  
+```html
+<template>
+    <form @submit.prevent="submit" novalidate>
+        ...
+    </form>
+</template>
+```
+##### 스크립트
+submit 함수를 호출하도록 해주었으니 submit() 메서드를 컴포넌트내에서 찾을 수 있도록 methods 내에 선언해주자.  
 
+그리고 부모 컴포넌트인 Signup 컴포넌트로 데이터를 전달할 수 있도록 data() 영역 내에 데이터의 객체 리터럴을 지정해주자.  
+
+```javascript
+export default {
+    name: 'SignupForm',
+    data(){
+        return {
+            name: '',
+            email: '',
+            password: '',
+            passwordConfirm: ''
+        }
+    },
+    methods:{
+        submit(){
+            const {name, email, password, passwordConfirm} = this;
+            if(!name || !email || !password || !passwordConfirm){
+                alert('항목이 누락되었습니다.');
+            }
+            if(password !== passwordConfirm){
+                alert('비밀번호를 확인해주세요.');
+                return;
+            }
+            this.$emit('submit', {name, email, password});
+        }
+    }
+}
+```
+#### Signup
+##### 템플릿
+submit 이벤트를 onSubmit 함수에 연결시켜주자.
+```html
+<template>
+    <div class="sign-up-page">
+        ...
+        <signup-form @submit="onSubmit"/>
+    </div>
+</template>
+```
+##### 스크립트
+- axios 를 커스터마이징한 api 를 import 한다.
+- onSubmit() 함수를 methods 항목에 추가해주자.
+- onSubmit() 함수 내에는 api 모듈을 이용해 /auth/signup 에 회원가입 요청을 보내는 로직을 작성한다.
+```javascript
+// ...
+import api from '@/api';
+
+export default {
+    name: 'Signup',
+    // ... 
+    methods: {
+        onSubmit(payload){
+            console.log(payload);
+            const{email,password,name} = payload;
+
+            api.post('/auth/signup', { name, email, password })
+            .then(res => {
+                alert('회원가입이 완료되었습니다.')
+                // this.$router.push({ name: 'Signin' })
+            })
+            .catch(err => {
+                alert(err.response.data.msg)
+            })
+        }
+    }
+}
+```
+![이미자](./img/SIGNUP_SCREENSHOT_1.png)
