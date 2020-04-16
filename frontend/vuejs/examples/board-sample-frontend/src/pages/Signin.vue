@@ -26,11 +26,15 @@ export default {
         onSubmit(payload){
             const { email, password } = payload;
             api.post('/auth/signin', { email, password })
-            .then(res => {
-                console.log('success');
-                const { accessToken } = res.data;
-                console.log('accessToken :: ', accessToken)
-            })
+                .then(res => {
+                    console.log('success');
+                    const { accessToken } = res.data;
+                    console.log('accessToken :: ', accessToken);
+
+                    api.defaults.headers.common.Authorization = `Bearer ${accessToken}`;
+                    alert('로그인하였습니다.');
+                    this.$router.push({name: 'PostListPage'});
+                })
         },
     },
 }

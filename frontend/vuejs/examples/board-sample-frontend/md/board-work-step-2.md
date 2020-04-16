@@ -431,7 +431,75 @@ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiZW1haWwiOiJzZ2p1bmdAZ21haWwuY29
 ### accessToken 의 형식
 ... ㅋㅋㅋ 아.... 이건 진짜 내일 정리해야겠다... 너무 힘들쟈나~...  
 
-### 심플 로그인 로직 구현
+### JWT 토큰을 http 헤더에 심어주기
+Http 요청의 헤더에 토큰을 심어서 서버와의 통신시마다 토큰으로 서버와의 통신을 하도록 한다. 우리는 Axios 모듈을 사용하고 있으므로 커스텀 Axios 모듈로 작성한 axios모듈인 api 객체내의 http 옵션을 설정하자.  
+  
+defaults.headers의 common 필드는 Axios 객체에서 어떤 메소드든지 상관없이 헤더에 있는 이 값을 사용할 수 있다.  
+  
+> 참고)  
+> 만약 defaults.headers.get 에 accessToken 값을 부여 한다면 GET메서드를 사용할 때만 그 헤더를 사용한다.  
+  
+헤더 안의 여러 필드 중 우리는 Authorization 필드에 토큰 값을 담아주는 것이 목적이므로 api.defaults.headers.common.Authorization에 접근한 뒤에 Bearer 토큰 값과 같은 형식으로 값을 담아주면 이후 요청부터는 GET, POST 같은 메서드의 종류와 상관 없이 모든 HTTP 헤더의 Authorization 필드에 토큰이 담겨서 보내진다.  
+  
+#### Signin.vue
+```html
+<template>
+    ...
+</template>
+
+<script>
+// SigninForm 컴포넌트 import 
+import SigninForm from '@/components/SigninForm';
+
+// 커스텀 axios 모듈 import 
+import api from '@/api/'
+
+export default {
+    name: 'Signin',
+    components:{
+        SigninForm
+    },
+    methods: {
+        onSubmit(payload){
+            const { email, password } = payload;
+            api.post('/auth/signin', { email, password })
+                .then(res => {
+                    console.log('success');
+                    const { accessToken } = res.data;
+                    console.log('accessToken :: ', accessToken);
+
+                    // 여기서 header에 accessToken을 심어주고 있다.
+                    api.defaults.headers.common.Authorization = `Bearer ${accessToken}`;
+                    alert('로그인하였습니다.');
+                    this.$router.push({name: 'PostListPage'});
+                })
+        },
+    },
+}
+</script>
+```
+이렇게 해서 API에서 발급해준 토큰을 Http 헤더에 심었다.  
+지금까지 우리는 서버에 /auth/siginin API 서버에 통신하여 토큰을 얻어오고 토큰을 저장하는 로직을 작성했다.  
 ### vuex) 스토어 기반 로그인 로직으로의 전환
+- 서버의 API (ex. /api/auth/signin ) 에서 토큰을 발급받는다.
+- 이 토큰을 어딘가에 저장해야 하는데 우리는 Axios의 헤더에 심었다.  
+우리는 올바른 토큰만 가지고 있으면 서버입장에서는 우리를 인증된 사용자로 인식한다. 그런데, 지금 현재로서는 Signin 컴포넌트만 로그인 되어 있다는 사실을 인지하고 있다. 즉 로그인 '상태'를 가지고 있는 것은 아직은 'Signin'컴포넌트 뿐이라는 것이다.  
+#### 로그인 상태관리 어떻게 할까? 
+**이러한 로그인 되었는가?** 하는 **'상태'**를 공유하는 방법은
+- props
+- vuex 또는 redux
+를 이용해 공유하는 것이다.  
+props를 사용하는 방식은 부모 컴포넌트로 올려주어야 하고, 자식 컴포넌트마다 공유하는 코드를 일일이 해주어야 한다. 이러한 방식은 추후 유지보수시 굉장히 손이 많이 간다. 물론, Signin 컴포넌트 <---> Signin 컴포넌트 관계같이 자식과 부모간에만 상태를 공유하는 경우는 굳이 vuex 없이 props를 사용해도 무방하다.  
+  
+하지만 **'로그인된 상태'**는 애플리케이션 전역에서 모든 컴포넌트들이 서로 공유해야 하는 상태값이다. 우리는 이 **로그인된 상태**를 어플리케이션 전역에서 모든 컴포넌트들이 공유하기 위해 vuex의 store 기반의 상태관리 개념을 사용할 것이다.
+
+#### store.js
+
+#### mutations.js
+
+#### actions.js
+
+#### Signin.vue
+
 ### vuex) accessToken 으로 서버에 사용자 정보 요청
 
