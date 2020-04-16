@@ -127,5 +127,8 @@ export default {
 ![이미자](./img/ROUTER_SIGNUP_FORM_SCREENSHOT_1.png)  
 
 ### submit 이벤트 연결
+#### 참고) axios 커스텀 설정
+> **참고)**  
+> axios 관련 설정은 setting-axios-simple.md 를 확인하고 설정하자.  
 
 
