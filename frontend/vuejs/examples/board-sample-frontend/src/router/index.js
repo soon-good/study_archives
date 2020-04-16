@@ -5,14 +5,24 @@ import Router from 'vue-router'
 
 // PostListPage 컴포넌트 import
 import PostListPage from '@/pages/PostListPage';
+
+// Signup 컴포넌트 import
+import Signup from '@/pages/Signup';
+
 Vue.use(Router)
 
 export default new Router({
+  mode: 'history',
   routes: [
     {
       path: '/',
       name: 'PostListPage',
-      component: PostListPage
+      component: PostListPage,
+    },
+    {
+      path: '/signup',
+      name: 'Signup',
+      component: Signup,
     },
     // Vue CLI 가 생성해준 예제 라우트 삭제
     // {
