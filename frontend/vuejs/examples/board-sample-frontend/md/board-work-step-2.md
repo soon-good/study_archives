@@ -430,3 +430,8 @@ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiZW1haWwiOiJzZ2p1bmdAZ21haWwuY29
 
 ### accessToken 의 형식
 ... ㅋㅋㅋ 아.... 이건 진짜 내일 정리해야겠다... 너무 힘들쟈나~...  
+
+### 심플 로그인 로직 구현
+### vuex) 스토어 기반 로그인 로직으로의 전환
+### vuex) accessToken 으로 서버에 사용자 정보 요청
+
