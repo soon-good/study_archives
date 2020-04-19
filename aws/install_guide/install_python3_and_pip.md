@@ -4,11 +4,29 @@ aws amazon linux 2는 가장 안정적인 버전이지만 가장 큰 단점은 �
 
   
 
-초기 설치시 python3,pip,virtualenv 설치과정을 정리한다.
+# Cheat Sheet (TL; DR)
+
+```bash
+$ sudo yum list | grep python3
+$ sudo yum install -y python35.x86_64
+$ python3 get-pip.py —user
+
+$ vim ~/.bashrc
+alias python="python3"
+alias pip="pip3"
+
+:wq
+
+$ source ~/.bashrc
+$ pip install virtualenv
+...
+```
 
 
 
 # python3 설치
+
+## python 3.5 버전 선택이유
 
 amazon linux 리포지터리에서 가장 최신인 python 3.6을 설치하려 했는데 지원되는 패키지가 3.5에 비해 얼마 없더라. 그리고 가장 지원되는 패키지가 많은 python3.4는 pip 설치시 
 
