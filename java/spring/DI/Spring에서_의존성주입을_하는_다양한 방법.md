@@ -7,6 +7,7 @@
 - [https://zorba91.tistory.com/238](https://zorba91.tistory.com/238)
 - [https://preamtree.tistory.com/166](https://preamtree.tistory.com/166)
 - [https://yaboong.github.io/spring/2019/08/29/why-field-injection-is-bad/](https://yaboong.github.io/spring/2019/08/29/why-field-injection-is-bad/)
+- [https://smallgiant.tistory.com/m/78?category=595945](https://smallgiant.tistory.com/m/78?category=595945)
 
 
 
@@ -22,5 +23,6 @@
   - 생성자의 인자에 필요한 타입의 파라미터 를 선언
   - 이렇게 하면 Spring에서 주입을 해준다.
   - 테스트 등 여러가지 부분에서 연동하기 편리한 방식이지만, 생성자가 복잡해질 수 있다는 단점 존재.
+  - 생성자가 복잡해지는 문제는 Lombok의 @RequiredArgsConstructor 로 해결 가능하다.
 - **Setter Injection**
 
