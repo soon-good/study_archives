@@ -105,9 +105,51 @@ ES6 버전의 javascript 에서는 작은 따옴표, 큰 따옴표 외에도 역
 
   
 
-# 4. 변수 선언 방식 - const, let, var
+# 4. 변수 선언 방식 - var, const, let
 
-  
+참고자료
+- [MDN - var](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Statements/var)
+- [MDN - let](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Statements/let)
+- [MDN - const](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Statements/const)
+
+ ## 블록스코프 :: var 와 const, let 의 스코프 차이점
+
+ES6 부터는 const, let 이라는 키워드가 추가되었다. const, let은 블록 단위의 스코프를 가진다. 이것을 블록 스코프라고 부른다.
+
+- var
+  - **함수** 단위로 스코프를 가진다.
+  - 예를 들면, 함수 내의 if ~ else 문에 var로 선언한 변수가 if~else 문 바깥에서도 참조될 수 있다. 
+- let, const
+  - **블록** 단위로 스코프를 가진다.  
+  - 예를 들면, 함수 내의 if ~ else 문에 let, const로 선언한 변수는 if ~ else 문의 바깥에서 참조 불가능하다.
+
+## const 와 let 의 차이점
+
+- const
+  - 프로그래밍 언어에서 흔히 말하는 상수와 같은 개념
+  - 선언 후 바뀌지 않아야 하는 값을 담아야 하는 경우에 const를 사용하는 편.
+
+- let
+  - 프로그래밍 언어에서 흔히 말하는 변수와 같은 개념
+  - 선언 후 값을 바꿔가며 사용해야 하는 값을 담아야 하는 경우에 let을 사용하는 편. 
+
+## 예제 1) let vs var
+
+![이미자](./img/CONST_LET_1.png)
+
+
+
+## 예제 2) const vs var
+
+![이미자](./img/CONST_LET_2.png)
+
+
+
+## 예제 3) const vs let
+
+![이미자](./img/CONST_LET_3.png)
+
+
 
 # 5. 화살표 함수 및 함수 선언 방식
 
