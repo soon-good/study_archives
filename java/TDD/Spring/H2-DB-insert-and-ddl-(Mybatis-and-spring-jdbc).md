@@ -5,24 +5,26 @@
 
 먼저, 테스트가 시작되기 전에 스키마를 생성하고, INSERT 하는 SQL 스크립트 들을 실행해야 한다.
 
-보통 src/main/resources 밑에 schema.xml 파일을 두면 자동으로 파악하여 insert 할 수 있는데, 항상 그렇듯 커스텀한 설정 역시 필요하다. 기본 설정은 스키마 생성과 데이터 INSERT 를 하나의 파일에서 수행하는 방식이다. 스키마를 통으로 하나의 파일에 생성하면 여러 개발자들이 동시에 수정하므로 컨텐츠마다 기획이 달라질 경우 테스트하려는 데이터의 insert 구문이 꼬일 가능성이 크다.
+보통 src/main/resources 밑에 schema.sql 파일을 두면 자동으로 파악하여 insert 할 수 있는데, 항상 그렇듯 커스텀한 설정 역시 필요하다. 기본 설정은 스키마 생성과 데이터 INSERT 를 하나의 파일에서 수행하는 방식이다. 스키마를 통으로 하나의 파일에 생성하면 여러 개발자들이 동시에 수정하므로 컨텐츠마다 기획이 달라질 경우 테스트하려는 데이터의 insert 구문이 꼬일 가능성이 크다.
 
 여기서는 커스텀 설정을 다룬다. 기본 설정방식에 대해서는 https://howtodoinjava.com/spring-boot2/h2-database-example/ 을 참고하면 된다.
 
 ## 참고 - 자동설정 (스프링부트)
 참고) 스프링 부트에서의 자동적인 설정
 스프링 부트에서는 단순히 src/test/resources 아래에 
+
 * schema.sql
 * data.sql
+
 을 두면 자동으로 데이터를 생성한다.
 
 ## 커스텀 설정
 ### 참고할 만한 자료
-[baeldung.com](https://www.baeldung.com/spring-boot-data-sql-and-schema-sql)
+[baeldung - Quick Guide on Loading Initial Data with Spring Boot](https://www.baeldung.com/spring-boot-data-sql-and-schema-sql)
 
-스프링 부트 뿐만 아니라 스프링에서도 사용가능한 설정이다. 또한 schema를 테스트 케이스마다 다르게 생성했다가 지우고 싶을 때가 있다. 이러한 경우에 대한 설정이다.
+스프링 부트 뿐만 아니라 스프링에서도 사용가능한 설정이다. 또한 schema를 테스트 케이스마다 다르게 생성했다가 지우고 싶을 때가 있다. 또는 스키마생성/DDL/INSERT sql 파일을 테스트 케이스마다 다르게 해서 관리하고 싶을때가 있다. 이러한 경우에 대한 설정이다.
 
-여러가지 방법을 사용할 수 있다. 가능한 방법들은 아래와 같다.
+여러가지 방법이 있는데 가능한 방법들은 아래와 같다.
 1. jpa 속성값 설정
 - application.properties 또는 yml 내의 spring.jpa.hibernate.ddl-auto 속성에 대한 값을 정의하는 것으로도 해결이 가능하다. (create, update, create-drop, validate, none)
 2. jpa 속성 값을 none으로 두고 @Sql 어노테이션 활용
@@ -33,6 +35,7 @@
 ### 예제
 여기서는 스프링 부트가 아닌 스프링에서도 통하는 방식을 다룰 것이기 때문에 @Sql, @SqlConfig 방식을 다룬다.
 회사 일로 설정을 추가해서… 이름만 살짝 고쳐서 예제를 들어본다.
+
 #### StudyImplMockTestConfig.java
 ```java
 @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
@@ -121,7 +124,7 @@ public class StudyMockTest extends StudyImplMockTestConfig {
 
 
 
-# 2. Mock, Datasource 설정
+# 2. Mock 객체와 Mybatis SqlSession/DataSource 연결(예제)
 
 ## StudyImplMockTestConfig.java
 Test 에 관련된 애노테이션과 각종 설정들을 모아놓은 XXXTestConfig 클래스이다.
