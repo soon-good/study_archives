@@ -1,7 +1,5 @@
 # Spring-JDBC 를 이용한 가상 DB insert 로직 추가 (Mybatis)
 
-
-
 # 1. 스키마 생성/INSERT 스크립트 추가
 ## 스키마 생성/INSERT 하는 두가지 방법들 요약 (자동설정/커스텀설정)
 
@@ -84,7 +82,47 @@ public class StudyMockTest extends StudyImplMockTestConfig {
 }
 ```
 
+
+
+위의 코드를 작성하면서 혼동되었던 부분만을 주석으로 따로 설명을 추가해봤다.
+
+- @Mock 이 아닌 @InjectMocks를 사용해야 한다.
+- 이 객체에 필요한 실제 객체들을 로컬 멤버 필드에 의존성 주입으로 가져온다.
+
+```java
+	// ...
+
+	@Resource(name = "mpocSqlMapClientTemplate")
+	private MelonSqlMapClientTemplate mpocSqlMapTemplate;
+
+	@Resource(name = "mpocDataSource")
+	private DataSource dataSource;
+
+	// 아래 부분이 중요했다.
+	// @Mock 이 아닌 @InjectMocks 를 사용해야 했다.
+	@InjectMocks
+	private StudyImpl mock;
+
+	// ...
+```
+
+
+
+그리고 이 실제 객체들을 mock객체 내의 멤버필드에 연결해주어야 한다. 예제에서는 테스트가 시작되기 전에 항상 주입하도록 했다.
+
+```java
+	@BeforeEach
+	void setup() throws Exception{
+    	WhiteBox.setInternalState(mock, "mpocSqlMapClientTemplate", mpocSqlMapClientTemplate);
+    	WhiteBox.setInternalState(mock, "dataSource", dataSource);
+    	// ...
+  }
+```
+
+
+
 # 2. Mock, Datasource 설정
+
 ## StudyImplMockTestConfig.java
 Test 에 관련된 애노테이션과 각종 설정들을 모아놓은 XXXTestConfig 클래스이다.
 ```java
