@@ -1,4 +1,4 @@
-# Spring-JDBC 를 이용한 가상 DB insert 로직 추가 (Mybatis)
+# H2 DB INSERT/DDL 방법 (1) (Mybatis, Spring-JDBC)
 
 # 1. 스키마 생성/INSERT 스크립트 추가
 ## 스키마 생성/INSERT 하는 두가지 방법들 요약 (자동설정/커스텀설정)
