@@ -1,8 +1,10 @@
 # 테스트 용 docker mysql 예제
 
-테스트 실행시 테스트가 종료된 후에도 데이터를 확인해보고자 하는 경우가 있다.  
+testcontainers를 사용할 경우 테스트가 종료된 후에 mysql 클라이언트 프로그램(DataGrip, Workbench 등..)으로 접속해 테스트 후의 데이터를 확인할 수 없다.  
 
-이 경우 로컬에서 직접 mysql을 구동시키면 된다.
+이런 이유로 테스트 실행시 테스트가 종료된 후에도 데이터를 확인해보고자 하는 경우가 있다.  
+
+이 경우 로컬에서 직접 mysql 서버를 구동시키면 된다.
 
 로컬에 mysql database 서버를 설치하지 않고 직접 특정 포트에 mysql 을 구동시켜 보자
 
@@ -60,13 +62,73 @@ $ docker container rm chartnomy-mysql
 
 ## docker-mysql-start.sh (mysql 삭제 & 구동)
 
+```bash
+#!/bin/zsh
+
+name_chartnomy_mysql='chartnomy-mysql'
+
+cnt_chartnomy_mysql=`docker container ls --filter name=chartnomy-mysql | wc -l`
+cnt_chartnomy_mysql=$(($cnt_chartnomy_mysql -1))
+
+if [ $cnt_chartnomy_mysql -eq 0 ]
+then
+    echo "'$name_chartnomy_mysql' 컨테이너를 구동시킵니다."
+    docker container run --rm -d -p 23306:3306 --name chartnomy-mysql -e MYSQL_ROOT_PASSWORD=1111 -e MYSQL_DATABASE=ec2_web_stockdata -d mysql:latest
+
+else
+    echo "'$name_chartnomy_mysql' 컨테이너가 존재합니다. 기존 컨테이너를 중지하고 삭제합니다."
+    docker container stop chartnomy-mysql
+    echo "\n'$name_chartnomy_mysql' 컨테이너 삭제를 완료했습니다.\n"
+
+    echo "'$name_chartnomy_mysql' 컨테이너를 구동시킵니다."
+    docker container run --rm -d -p 23306:3306 --name chartnomy-mysql -e MYSQL_ROOT_PASSWORD=1111 -e MYSQL_DATABASE=ec2_web_stockdata -d mysql:latest
+fi
+```
+
 
 
 ## docker-mysql-stop.sh (mysql 정지 & 삭제)
 
+```bash
+#!/bin/zsh
+
+name_chartnomy_mysql='chartnomy-mysql'
+
+cnt_chartnomy_mysql=`docker container ls --filter name=chartnomy-mysql | wc -l`
+cnt_chartnomy_mysql=$(($cnt_chartnomy_mysql -1))
+
+if [ $cnt_chartnomy_mysql -eq 0 ]
+then
+    echo "'$name_chartnomy_mysql' 컨테이너가 없습니다. 삭제를 진행하지 않습니다."
+
+else
+    echo "'$name_chartnomy_mysql' 컨테이너가 존재합니다. 기존 컨테이너를 중지하고 삭제합니다."
+    docker container stop chartnomy-mysql
+    echo "\n'$name_chartnomy_mysql' 컨테이너 삭제를 완료했습니다.\n"
+fi
+```
+
 
 
 ## docker-mysql-repl.sh (mysql 쉘 접속)
+
+```bash
+#!/bin/zsh
+
+name_chartnomy_mysql='chartnomy-mysql'
+
+cnt_chartnomy_mysql=`docker container ls --filter name=chartnomy-mysql | wc -l`
+cnt_chartnomy_mysql=$(($cnt_chartnomy_mysql -1))
+
+if [ $cnt_chartnomy_mysql -eq 0 ]
+then
+    echo "'$name_chartnomy_mysql' 컨테이너가 없습니다. 컨테이너를 구동해주세요."
+
+else
+    echo "'$name_chartnomy_mysql' 컨테이너의 BASH 쉘 접속을 시작합니다."
+    docker container exec -it chartnomy-mysql sh
+fi
+```
 
 
 
