@@ -1,6 +1,6 @@
 # 테스트 용 docker mysql 예제
 
-testcontainers를 사용할 경우 테스트가 종료된 후에 mysql 클라이언트 프로그램(DataGrip, Workbench 등..)으로 접속해 테스트 후의 데이터를 확인할 수 없다.  
+testcontainers를 사용할 경우 테스트가 종료된 후에 mysql 클라이언트 프로그램(DataGrip, Workbench 등..)으로 접속해 데이터를 확인할 수 없다.  
 
 이런 이유로 테스트 실행시 테스트가 종료된 후에도 데이터를 확인해보고자 하는 경우가 있다.  
 
@@ -140,9 +140,54 @@ fi
 
 # 참고) mysql docker 와 로컬 개발환경의 파일시스템 연동
 
-참고 URL
+- 참고 URL :
+  - https://hub.docker.com/_/mysql
+    - 위 링크의 Caveats - Where to Store Data 절 참고
 
-- https://hub.docker.com/_/mysql
+  
+
+공식 문서에서 권장하는 방식은 두 가지 이다.
+
+- DB 데이터 스토리지를 도커가 관리하는 방식
+
+  - Docker Container가 자체적으로 내부의 볼륨 관리 기능을 사용하여 database file들을 쓰게끔 해서 Docker가 직접 database 데이터의 스토리지를 관리하도록 하는 방식
+
+  - 단점은 컨테이너 외부에서 직접 실행되는 툴이나 애플리케이션에서 도커 컨테이너 내부의 파일을 찾기 힘들다는 점이다.
+
+    
+
+- DB 데이터 스토리지를 도커 외부에 두는 방식 (호스트 시스템에 데이터 스토리지를 두는 방식)
+
+  - 데이터를 위한 디렉터리를 호스트 시스템(ex.로컬 개발 PC 물리 디렉터리)에 생성한다
+  - 생성한 디렉터리를 컨테이너 내부에서 마운트 한다.
+  - database file 을 호스트 시스템(ex. 로컬 개발 PC 개발환경)의 특정 위치(known location, 물리 디렉터리)에 두는 방식이다.
+  - 호스트 시스템(ex. 로컬 개발 PC 개발환경)의 툴이나 애플리케이션이 database file 들에 접근가능하다는 점이 장점이다.
+  - 단점은 도커 컨테이너를 사용하는 사용자가 디렉터리가 존재하는지, 호스트 시스템 디렉터리(ex. 로컬 PC 개발환경의 물리 디렉터리)의 사용자 그룹/권한 및 보안 룰을 알고 있어야 한다는 점이다.
+  - 주관적인 의견으로는 그리 크게 단점으로 다가오지 않는다.
+  - 참고할만한 자료
+    - https://docs.docker.com/storage/volumes/
+
+## 예제
+
+여기서는 두번째 방식을 채택해 간단히 호스트 시스템의 디렉터리를 연결하는 예를 든다. 
+
+### 디렉터리 생성
+
+~/env/docker/melon/volumes/melon-mysql-volume 디렉터리를 생성한다.
+
+```bash
+$ mkdir -p ~/env/docker/melon/volumes/melon-mysql
+```
+
+~/env/docker/melon/volumes/melon-mysql-volume 을 mysql 컨테이너 내부의 /var/lib/mysql 디렉터리로 연결해준다.
+
+```bash
+$ docker container run --rm -d -p 13306:3306 --name melon-mysql -v ~/env/docker/melon/volumes/melon-mysql:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=1111 -e MYSQL_DATABASE=melon-mysql -d mysql:latest
+```
+
+mysql docker 컨테이너 구동 후 볼륨 디렉터리 확인 결과
+
+![이미자](./img/LS_RESULT_DOCKER_VOLUME.png)
 
 
 
