@@ -17,11 +17,21 @@
 
 # 0. 참고자료들
 
-- [Junit5 공식문서 - TestTemplateInvocationContextProvider](https://junit.org/junit5/docs/5.0.0/api/org/junit/jupiter/api/extension/TestTemplateInvocationContextProvider.html)
+- [JUnit5 Extension 클래스](https://junit.org/junit5/docs/5.0.0/api/org/junit/jupiter/api/extension/Extension.html)
+- [JUnit5 공식문서 - ParameterizedTest](https://junit.org/junit5/docs/5.3.0/api/org/junit/jupiter/params/ParameterizedTest.html)
+- [JUnit5 공식문서 - TestTemplateInvocationContextProvider](https://junit.org/junit5/docs/5.0.0/api/org/junit/jupiter/api/extension/TestTemplateInvocationContextProvider.html)
 
   
 
-@ParameterizedTest 어노테이션의 선언을 Go To Definition 기능으로 탐색하다보면 @ParameterizedTest 어노테이션은 아래와 같이 선언되어 있다.
+@ParameterizedTest 어노테이션의 선언을 Go To Definition 기능으로 탐색하다보면 @ParameterizedTest 어노테이션이 관련된 junit5 내의 클래스들과의 관계도는 아래와 같다.
+
+![이미자](./img/CLASS_DIAGRAM_PARAMETERIZED_TEST.png)
+
+결론적으로 **ParameterizedTestExtension** 클래스는 **Extension** 타입(org.junit.jupiter.api.extension.Extension)으로 취급될 수 있다. (업캐스팅 다운캐스팅 이거 까먹었다. 정리하자. ㅋㅋㅋ 아...)  
+
+보통 커스텀 어노테이션을 사용하려면 내부 프레임워크 내에서의 Listener 역할을 하는 곳에서 프로그램이 로딩되었을때의 이벤트를 감지해서 로딩 시점에 reflection으로 해당 어노테이션을 등록했던 것으로 기억한다. 아직 확실하지는 않지만 org.junit.jupiter.api.extension.Extension 인터페이스를 상속한 클래스는 모두 JUnit @ExtendWith 할 수 있는 것으로 추측이 가능하다.  
+
+이제 소스를 보면서 파악해보고 JUnit5를 위한 커스텀 어노테이션을 작성해 @ExtendWith 하려 할 때는 어떻게 하면 될지 가늠해보자.
 
 # 1. @ParameterizedTest
 
