@@ -66,7 +66,7 @@ public @interface ParameterizedTest {
   
 ```java
 class ParameterizedTestExtension implements TestTemplateInvocationContextProvider {
-	@Override
+		@Override
     public boolean supportsTestTemplate(ExtensionContext context) {
         if (!context.getTestMethod().isPresent()) {
             return false;
@@ -157,13 +157,21 @@ class ParameterizedTestExtension implements TestTemplateInvocationContextProvide
 ```java
 @API(status = STABLE, since = "5.0")
 public interface TestTemplateInvocationContextProvider extends Extension {
-	// ...
+  // 1)
+  boolean supportsTestTemplate(ExtensionContext var1);
+  
+  // 2)
 	Stream<TestTemplateInvocationContext> provideTestTemplateInvocationContexts(ExtensionContext context);
 
 }
 ```
 
+  
 
+- 1) boolean supportsTestTemplate(ExtensionContext var1);
+  - Determine if this provider supports providing invocation contexts for the test template method represented by the supplied `context`.
+- 2) Stream\<TestTemplateInvocationContext\> provideTestTemplateInvocationContexts(ExtensionContext context);
+  - Provide [invocation contexts](https://junit.org/junit5/docs/5.3.0/api/org/junit/jupiter/api/extension/TestTemplateInvocationContext.html) for the test template method represented by the supplied `context`.
 
 # 4. Extension
 
