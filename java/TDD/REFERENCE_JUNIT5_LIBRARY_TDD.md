@@ -5,7 +5,7 @@
 - [Mockito 한글 번역 자료](https://github.com/mockito/mockito/wiki/Mockito-features-in-Korean)
 - [Mockito 공식자료](https://www.javadoc.io/static/org.mockito/mockito-core/3.3.3/org/mockito/Mockito.html)
 
-## Mockito 기본적인 사용법 및 Use Case들
+## Mockito 기본적인 사용법 및 Use Case 레퍼런스
 
 - Mockito 기본적인 사용법 
   - [JDM 블로그](https://jdm.kr/blog/222)
@@ -24,8 +24,11 @@
   - Iterator-style stubbing, 
   - @Mock 어노테이션
 - Mocking void Methods with Mockito
-  - Argument Capture, Answering 등에 대해 설명되어 있다.
   - [Mocking void Methods with Mockito](https://www.baeldung.com/mockito-void-methods)
+  - Argument Capture, Answering 등에 대해 설명되어 있다.
+- Mockito - Verifying Behavior
+  - [Mockito - Verifying Behavior](https://www.tutorialspoint.com/mockito/mockito_verifying_behavior.htm)
+  - Mockito 의 verify 를 이용할 때 argument를 어떤 식으로 검증하는 지에 대한 자료
 - Mockito : doReturn vs thenReturn
   - http://sangsoonam.github.io/2019/02/04/mockito-doreturn-vs-thenreturn.html
 - Mockito Argument Matchers - any()
