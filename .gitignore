@@ -1,8 +1,18 @@
-.class
+**/.class
 .idea
-*.iws
+**/.idea
+
+.iws
+**/*.iws
+
 *.iml
+**/*.iml
+
 *.ipr
+**/*.ipr
+
 out/
+**/out
+
 .mvn
 
