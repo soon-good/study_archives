@@ -2,6 +2,10 @@
 
 항상 누군가가 이거 알아? 하면서 설명해줬다. 교육을 들으면서 항상 이거 중요해요. 하며 설명을 들었다. 머릿속에는 넣어놨었다. 그런데 또 막상 몇 개월 지난 후 쓰려고 하면 겁이 난다. 그럴 때 있다. 간단하게 레시피처럼 기본적인 개념들만 정리해본다. 
 
+# 0. ES6 ? ES2015+
+
+
+
 # 1. 구조분해 할당, 비구조화 할당 (destructuring assignment)
 
 배열이나 객체에서 원하는 값 만을 추려내고자 할 때 사용하는 개념이다. 표현의 편리함 때문에 자주 사용되는 편이다.
@@ -107,7 +111,10 @@ ES6 버전의 javascript 에서는 작은 따옴표, 큰 따옴표 외에도 역
 
 # 4. 변수 선언 방식 - var, const, let
 
-참고자료
+ES6 부터는 let, const, 블록스코프의 개념이 나타났다. var는 let과 const로 대체 가능하다. var가 오래된 문법이라고 안쓸 이유는 없지만, let,const가 제공하는 블록스코프라는 문법적인 편리함과, 실행 문맥에서의 안전함 때문에 자주 사용되는 편으로 보인다.  
+
+**참고자료**
+
 - [MDN - var](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Statements/var)
 - [MDN - let](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Statements/let)
 - [MDN - const](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Statements/const)
