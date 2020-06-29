@@ -1,7 +1,9 @@
 **/*.class
 .idea
 **/.idea
-**/.idea/*
+**/.idea/*.xml
+
+**/*.lst
 
 .iws
 **/*.iws
