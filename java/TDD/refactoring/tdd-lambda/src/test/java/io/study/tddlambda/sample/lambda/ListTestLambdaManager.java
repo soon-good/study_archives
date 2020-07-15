@@ -8,10 +8,9 @@ import java.util.List;
 public class ListTestLambdaManager {
 
 	public static ListTestLambda<List> listTestLambda(){
-		ListTestLambda<List> l = (list)->{
-			list.add("1");
-			verify(list, times(1)).add("1");
-			verify(list).add("1");
+		ListTestLambda<List> l = (mockList)->{
+			verify(mockList, times(1)).add("1");
+			verify(mockList).add("1");
 		};
 
 		return l;
