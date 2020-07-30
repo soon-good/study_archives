@@ -1,0 +1,26 @@
+spring:
+  profiles:
+    active: testdocker
+---
+spring:
+  profiles: testdocker
+  datasource:
+    url: jdbc:mariadb://localhost:23306/ec2_web_stockdata
+    username: root
+    password: 1111
+    hikari:
+      auto-commit: true
+    jpa:
+      hibernate:
+        ddl-auto: create-drop
+      properties:
+        hibernate:
+          format_sql: true
+          use_sql_comments: true
+    driver-class-name: org.mariadb.jdbc.Driver
+  logging.level:
+    org.hibernate.SQL: debug
+
+logging.level:
+  org.hibernate.SQL: debug
+# org.hibernate.type: trace
