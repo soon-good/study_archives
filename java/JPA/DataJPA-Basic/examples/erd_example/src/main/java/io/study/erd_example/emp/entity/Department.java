@@ -15,11 +15,11 @@ import lombok.NoArgsConstructor;
 
 @Data
 @Entity
-//@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Table(name = "DEPARTMENT")
 public class Department {
 
-	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Id @GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "DEPT_NO")
 	private Long deptNo;
 
@@ -28,7 +28,7 @@ public class Department {
 	@OneToMany(mappedBy = "dept")
 	private List<Employee> employees = new ArrayList<>();
 
-	public Department(){}
+//	public Department(){}
 
 	public Department(String deptName){
 		this.deptName = deptName;

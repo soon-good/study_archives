@@ -2,6 +2,7 @@ package io.study.erd_example.emp.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -14,11 +15,11 @@ import lombok.NoArgsConstructor;
 
 @Entity
 @Data
-//@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Table(name = "EMPLOYEE")
 public class Employee {
 
-	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Id @GeneratedValue(strategy = GenerationType.AUTO)
 	private Long empNo;
 
 	@Column(name = "USERNAME")
@@ -27,11 +28,11 @@ public class Employee {
 	@Column(name = "SALARY")
 	private Double salary;
 
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "DEPT_NO")
 	private Department dept;
 
-	public Employee(){}
+//	public Employee(){}
 
 	public Employee (String username, Double salary, Department dept){
 		this.username = username;
