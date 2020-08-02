@@ -74,7 +74,15 @@ $ docker container run --rm -d --name es-chartnomy --net net-es-chartnomy -p 920
 
 
 
-# 3. docker Elastic Search 정지시키기
+# 3. docker Elastic Search bash 접속
+
+```bash
+$ docker container exec -it es-chartnomy sh
+```
+
+
+
+# 4. docker Elastic Search 정지시키기
 
 ```bash
 $ docker container stop es-chartnomy
@@ -82,7 +90,7 @@ $ docker container stop es-chartnomy
 
 
 
-# 4. GET/POST/PUT/DELETE 실습
+# 5. GET/POST/PUT/DELETE 실습
 
 ## GET 
 
@@ -245,7 +253,7 @@ classes 는 인덱스 명이다. class는 타입 명이다. 여기서 타입명�
 
 
 
-# 5. document 를 파일로 저장하여 파일 기반으로 document 생성하기
+# 6. document 를 파일로 저장하여 파일 기반으로 document 생성하기
 
 샘플 다큐먼트 (testclass.json)
 
