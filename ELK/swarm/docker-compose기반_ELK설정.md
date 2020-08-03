@@ -40,9 +40,9 @@ $ git clone https://github.com/deviantony/docker-elk.git
 
 
 
-# 2. startup & cleanup
+# 2. Startup & Cleanup
 
-## startup
+## Startup
 
 ```bash
 $ docker-compose up
@@ -57,6 +57,18 @@ persist data volume 등 여러가지 데이터들을 깔끔하게 지우려면 �
 ```bash
 $ docker-compose down -v
 ```
+
+
+
+## docker container 확인
+
+```bash
+$ docker container ls
+```
+
+
+
+![이미자](./img/1.png)
 
 
 
@@ -90,6 +102,14 @@ ELASTIC_PASSWORD 라는 환경변수를 elasticsearch 내에서 제거하는 과
 
 ## Configuration File 내의 username/password 수정
 
+설치 후 재기동 없이 초기 설치시부터 비밀번호 변경해서 적용하기 위해서 사용하는 설정인듯 하다. 
+
+- kibana/config/kibana.yml
+  - user명 : kibana_system
+  - user명 : kibana (< kibana release 7.8.0)
+- logstash/config/logstash.yml
+  - user명 : logstash_system
+
 Use the `kibana_system` user (`kibana` for releases <7.8.0) inside the Kibana configuration file (`kibana/config/kibana.yml`) and the `logstash_system` user inside the Logstash configuration file (`logstash/config/logstash.yml`) in place of the existing `elastic` user.
 
 Replace the password for the `elastic` user inside the Logstash pipeline file (`logstash/pipeline/logstash.conf`).
@@ -112,7 +132,10 @@ $ docker-compose restart kibana logstash
 
 참고 : 
 
-- [Install Elasticsearch with Docker](https://www.elastic.co/guide/en/elasticsearch/reference/current/docker.html)
+- [Install Elasticsearch with Docker](https://www.elastic.co/guide/en/elasticsearch/reference/current/docker.html) (다른 자료에 비해 굉장히 자세하다)
+- Learn how to [configure Elasticsearch](https://www.elastic.co/guide/en/elasticsearch/reference/current/settings.html).
+- Configure [important Elasticsearch settings](https://www.elastic.co/guide/en/elasticsearch/reference/current/important-settings.html).
+- Configure [important system settings](https://www.elastic.co/guide/en/elasticsearch/reference/current/system-config.html).
 - 이전에 정리한 docker elasticsearch 스크립트 주소 여기에 추가
 
 ## ElasticSearch
@@ -127,7 +150,19 @@ elasticsearch:
     cluster.name: my-cluster
 ```
 
+### 추가 설정
 
+공식 제공 문서에는 설정들이 별로 없다. 필수적인 설정들만을 세팅하고 있다. 커스터마이징 해야 하는 옵션들을 정리해보자.
+
+- X-PACK 설정 OFF 하기
+  - xpack.security.enabled: true
+  - xpack.monitoring.collection.enabled: true
+
+### 참고자료
+
+- [2.3.2 elasticsearch.yml - Elastic 가이드북](https://esbook.kimjmin.net/02-install/2.3-elasticsearch/2.3.2-elasticsearch.yml)
+- [ES-ETC #1 elasticsearch.yml 에서 설정하는 것들 - velog](https://velog.io/@jakeseo_me/ES-ETC-1-elasticsearch.yml%EC%97%90%EC%84%9C-%EC%84%A4%EC%A0%95%ED%95%98%EB%8A%94-%EA%B2%83%EB%93%A4)
+- [ELK 셋팅부터 알람까지 - 우아한형제들](https://woowabros.github.io/experience/2020/01/16/set-elk-with-alarm.html)
 
 ## Kibana
 
@@ -157,7 +192,7 @@ however you must be aware that Logstash will be expecting a [`log4j2.properties`
 
 
 
-# 5. 유료 기능(X-Pack) 비활성화
+# 5. 유료 기능(X-Pack) 비활성화 --- 수정 필요
 
 > [https://github.com/deviantony/docker-elk#how-to-disable-paid-features](https://github.com/deviantony/docker-elk#how-to-disable-paid-features)
 
@@ -199,4 +234,13 @@ XPACK의 경우 유료서비스이다. 이미 license를 구매를 했을때와 
   - [https://github.com/deviantony/docker-elk](https://github.com/deviantony/docker-elk)
 - ELK 셋팅부터 알람까지 - 우아한형제들
   - [https://woowabros.github.io/experience/2020/01/16/set-elk-with-alarm.html](https://woowabros.github.io/experience/2020/01/16/set-elk-with-alarm.html)
+- https://medium.com/chequer/elkr-elasticsearch-logstash-kibana-redis-%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%9C-%EB%A1%9C%EA%B7%B8%EB%B6%84%EC%84%9D-%ED%99%98%EA%B2%BD-%EA%B5%AC%EC%B6%95%ED%95%98%EA%B8%B0-f3dd9dfae622
+- https://1226choi.tistory.com/20
+- https://wedul.site/484?category=680504
+
+  
+
+- [2.3.2 elasticsearch.yml - Elastic 가이드북](https://esbook.kimjmin.net/02-install/2.3-elasticsearch/2.3.2-elasticsearch.yml)
+- [ES-ETC #1 elasticsearch.yml 에서 설정하는 것들 - velog](https://velog.io/@jakeseo_me/ES-ETC-1-elasticsearch.yml%EC%97%90%EC%84%9C-%EC%84%A4%EC%A0%95%ED%95%98%EB%8A%94-%EA%B2%83%EB%93%A4)
+- [ELK 셋팅부터 알람까지 - 우아한형제들](https://woowabros.github.io/experience/2020/01/16/set-elk-with-alarm.html)
 

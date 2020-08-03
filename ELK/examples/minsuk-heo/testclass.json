@@ -1,0 +1,9 @@
+{
+    "title": "Business Intelligence",
+    "Professor": "JiGi",
+    "major": "Computer Science",
+    "semester": ["spring", "fall"],
+    "student_count": 100,
+    "unit": 3,
+    "rating": 5
+}
