@@ -288,7 +288,7 @@ $ curl -XGET http://localhost:9200/classes/class/1\?pretty
     curl -H 'Content-Type:application/json' -XPUT 'http://localhost:9200/classes/class/_mapping?include_type_name=true&pretty' -d @classesRating_mapping.json
     ```
 
-- type 들중 string으로 되어 있는 부분들은 type으로 설정해주어야 한다. (7.x 버전사용할 경우)
+- type 들중 string으로 되어 있는 부분들은 text로 설정해주어야 한다. (7.x 버전사용할 경우)
 
   - [관련 링크 - stackvoerflow](https://stackoverflow.com/questions/47452770/no-handler-for-type-string-declared-on-field-name)
 
