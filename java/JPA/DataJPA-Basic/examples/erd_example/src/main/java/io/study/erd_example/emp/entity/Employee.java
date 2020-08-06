@@ -11,10 +11,16 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import lombok.AccessLevel;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
+
+//@Data
+@Getter @Setter
+@ToString(exclude = "dept")
 @Entity
-@Data
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Table(name = "EMPLOYEE")
 public class Employee {

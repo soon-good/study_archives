@@ -11,11 +11,16 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import lombok.AccessLevel;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
-@Data
-@Entity
+//@Data
+@Getter @Setter
+@ToString(exclude = "employees", of = {"deptNo", "deptName"})
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Entity
 @Table(name = "DEPARTMENT")
 public class Department {
 

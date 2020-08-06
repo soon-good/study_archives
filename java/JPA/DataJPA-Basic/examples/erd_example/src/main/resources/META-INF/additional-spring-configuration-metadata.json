@@ -1,0 +1,8 @@
+{
+  "properties": [
+    {
+      "name": "spring.datasource.jpa.hibernate.use-new-id-generator-mappings",
+      "type": "java.lang.String",
+      "description": "Description for spring.datasource.jpa.hibernate.use-new-id-generator-mappings."
+  }
+] }
