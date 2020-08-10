@@ -4,6 +4,12 @@ spring:
 ---
 spring:
   profiles: testdocker
+
+  data:
+    web:
+      pageable:
+        default-page-size: 10
+
   jpa:
     hibernate:
       ddl-auto: update

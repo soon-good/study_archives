@@ -1,5 +1,6 @@
 package io.study.erd_example.emp.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -23,7 +24,7 @@ import lombok.ToString;
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Table(name = "EMPLOYEE")
-public class Employee {
+public class Employee extends JpaBaseEntity{
 
 	@Id @GeneratedValue(strategy = GenerationType.AUTO)
 	private Long empNo;
@@ -36,6 +37,7 @@ public class Employee {
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "DEPT_NO")
+	@JsonIgnore
 	private Department dept;
 
 //	public Employee(){}

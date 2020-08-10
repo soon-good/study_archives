@@ -33,9 +33,11 @@ public class EmpRepositoryTest {
 	@Autowired
 	private DeptDataRepository deptDataRepository;
 
+	private Department police;
+
 	@BeforeEach
 	void insertData(){
-		Department police = new Department("POLICE");
+		police = new Department("POLICE");
 		Department firefighter = new Department("FIREFIGHTER");
 
 		deptDataRepository.save(police);
@@ -109,5 +111,23 @@ public class EmpRepositoryTest {
 	public void testBulkSalaryUpdate(){
 		int i = empRepository.bulkSalaryUpdate(0.2D);
 		assertThat(i).isEqualTo(6);
+	}
+
+	@Test
+	@DisplayName("Auditing #1 - 순수 JPA 기반 테스트")
+	public void testAuditingByRawJPA() throws Exception{
+		Employee employee = new Employee("경찰관 #99", 1000D, police);
+		empDataRepository.save(employee); 	// save 메서드는 순수 JPA를 사용하기에는 시간이 많지 않아서... Data JPA를 썼다...
+											// 추후 순수 JPA 기반 메서드 만들 예정!!
+
+		Thread.sleep(1000);
+		employee.setUsername("경찰관 #100");
+
+		em.flush();
+		em.clear();
+
+		Employee e = empDataRepository.findById(employee.getEmpNo()).get();
+		System.out.println("createDate  :: " + e.getCreatedDate());
+		System.out.println("updatedDate :: " + e.getUpdatedDate());
 	}
 }
