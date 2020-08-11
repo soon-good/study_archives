@@ -158,11 +158,769 @@ public class EmpCustomDataRepositoryTest {
 
 # 2. Auditing
 
+엔티티의 생성/변경 시점에 
+
+- 등록일
+- 수정일
+- 등록자
+- 수정자
+
+를 기록으로 남겨놓을 수 있다. 엔티티마다 이러한 내용들을 남겨놓으면 추후 운영단계에서 번거로움을 많이 덜어낼 수 있다.  
+
+상용서비스의 경우 가끔 과거 이력을 추적하고, 이력으로 남겨야만 법적인 문제가 되지 않는 경우도 있다. 뭐라는거지? 일단 정리 고고싱  
+
+
+
+## 예제1) 순수 JPA - 등록일/수정일
+
+### JpaBaseEntity
+
+```
+package io.study.erd_example.emp.entity;
+
+import java.time.LocalDateTime;
+import javax.persistence.Column;
+import javax.persistence.MappedSuperclass;
+import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter @Setter
+@MappedSuperclass
+public class JpaBaseEntity {
+
+  @Column(updatable = false)
+  private LocalDateTime createdDate;
+  private LocalDateTime updatedDate;
+
+  @PrePersist
+  public void prePersist(){
+    LocalDateTime now = LocalDateTime.now();
+    createdDate = now;  // 데이터 초기 생성시 현재 시점의 시간을 지정
+    updatedDate = now;  // 데이터 초기 생성시 현재 시점의 시간을 지정
+//    updatedDate = null;
+//    디폴트 데이터를 null 로 지정하게 되면 추후 불편해지기도 한다.
+  }
+
+  @PreUpdate
+  public void preUpdate(){
+    updatedDate = LocalDateTime.now();
+  }
+}
+@Getter @Setter
+@ToString(exclude = "dept")
+@Entity
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Table(name = "EMPLOYEE")
+public class Employee extends JpaBaseEntity{
+
+  @Id @GeneratedValue(strategy = GenerationType.AUTO)
+  private Long empNo;
+
+  @Column(name = "USERNAME")
+  private String username;
+
+  @Column(name = "SALARY")
+  private Double salary;
+
+  @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(name = "DEPT_NO")
+  @JsonIgnore
+  private Department dept;
+
+//  public Employee(){}
+
+  public Employee (String username, Double salary, Department dept){
+    this.username = username;
+    this.salary = salary;
+    this.dept = dept;
+    dept.getEmployees().add(this);
+  }
+
+}
+@SpringBootTest
+@Transactional
+public class EmpRepositoryTest {
+
+  @Autowired
+  private EntityManager em;
+
+  @Autowired
+  private EmpRepository empRepository;
+
+  @Autowired
+  private EmpDataRepository empDataRepository;
+
+  @Autowired
+  private DeptDataRepository deptDataRepository;
+
+  private Department police;
+
+  @BeforeEach
+  void insertData(){
+    police = new Department("POLICE");
+    Department firefighter = new Department("FIREFIGHTER");
+
+    deptDataRepository.save(police);
+    deptDataRepository.save(firefighter);
+
+    Employee empPolice1 = new Employee("경찰관1", 1000D, police);
+    Employee empPolice2 = new Employee("경찰관2", 1000D, police);
+    Employee empPolice3 = new Employee("경찰관3", 1000D, police);
+    Employee empPolice4 = new Employee("경찰관4", 1000D, police);
+    Employee empPolice5 = new Employee("경찰관5", 1000D, police);
+    Employee empFireFighter = new Employee("소방관1", 1000D, firefighter);
+
+    empDataRepository.save(empPolice1);
+    empDataRepository.save(empPolice2);
+    empDataRepository.save(empPolice3);
+    empDataRepository.save(empPolice4);
+    empDataRepository.save(empPolice5);
+
+    empDataRepository.save(empFireFighter);
+
+    em.flush();
+    em.clear();
+  }
+
+  // ...
+  
+  @Test
+  @DisplayName("Auditing #1 - 순수 JPA 기반 테스트")
+  public void testAuditingByRawJPA() throws Exception{
+    Employee employee = new Employee("경찰관 #99", 1000D, police);
+    empDataRepository.save(employee);   // save 메서드는 순수 JPA를 사용하기에는 시간이 많지 않아서... Data JPA를 썼다...
+                      // 추후 순수 JPA 기반 메서드 만들 예정!!
+
+    Thread.sleep(100);
+    employee.setUsername("경찰관 #100");
+
+    em.flush();
+    em.clear();
+
+    Employee e = empDataRepository.findById(employee.getEmpNo()).get();
+    System.out.println("createDate  :: " + e.getCreatedDate());
+    System.out.println("updatedDate :: " + e.getUpdatedDate());
+  }
+}
+createDate  :: 2020-08-10T23:24:03
+updatedDate :: 2020-08-10T23:24:04
+```
+
+- 순수 JPA를 사용할 때
+
+  - @PrePersise @PreUpdate 에서 프로그래머가 직접 작성하게 될때 부주의하게 실수할 수 있는 부분이 있다.
+
+- Data JPA를 사용할 때
+
+  - 내부에 내재화 되어 있다는 것이 다른 점으로 보인다.  
+
+  - 아래와 같은 중복될 수밖에 없는 코드들을 공통화한 @CreatedDate, @LastModifiedDate 어노테이션을 사용한다.
+
+    ```
+    LocalDateTime now = LocalDateTime.now();
+    createdDate = now;
+    ```
+
+    
+
+  Spring Data JPA 기반으로 Auditing 을 사용하는 한가지 장점이 있다.
+
+  - 등록자, 수정자를 AuditorAware 와 연동하여 @CreatedBy, @LastModifiedBy 등으로 지정해줄 수 있다는 점이다.
+
+    
+
+  Spring Data JPA 기반으로 Auditing 엔티티를 작성할 때 사용하는 어노테이션을 정리해보면 아래와 같다.
+
+  - @EnableJpaAuditing
+    - 스프링 부트 설정 클래스에 적용
+  - @MappedSuperclass
+    - 엔티티에 적용
+  - @EntityListeners(AuditingEntityListener.class)
+    - 엔티티에 적용
+  - @CreatedDate
+    - 엔티티 생성 시점 
+    - org.springframework.data.annotation
+  - @LastModifiedDate
+    - 엔티티 수정 시점
+    - org.springframework.data.annotation
+
+  
+
+  ### DataJpaBaseEntity.java
+
+  ```
+  package io.study.erd_example.emp.entity;
+  
+  import java.time.LocalDateTime;
+  import javax.persistence.Column;
+  import javax.persistence.EntityListeners;
+  import javax.persistence.MappedSuperclass;
+  import lombok.Getter;
+  import org.springframework.data.annotation.CreatedDate;
+  import org.springframework.data.annotation.LastModifiedDate;
+  import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+  
+  @EntityListeners(AuditingEntityListener.class)
+  @MappedSuperclass
+  @Getter
+  public class DataJpaBaseEntity {
+  
+    @CreatedDate
+    @Column(updatable = false)
+    LocalDateTime createdDate;
+  
+    @LastModifiedDate
+    LocalDateTime lastModifiedDate;
+  }
+  ```
+
+  ```
+  //@Data
+  @Getter @Setter
+  @ToString(exclude = "dept")
+  @Entity
+  @NoArgsConstructor(access = AccessLevel.PROTECTED)
+  @Table(name = "EMPLOYEE")
+  //public class Employee extends JpaBaseEntity{
+  public class Employee extends DataJpaBaseEntity{
+  
+    @Id @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long empNo;
+  
+    @Column(name = "USERNAME")
+    private String username;
+  
+    @Column(name = "SALARY")
+    private Double salary;
+  
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "DEPT_NO")
+    @JsonIgnore
+    private Department dept;
+  
+  //  public Employee(){}
+  
+    public Employee (String username, Double salary, Department dept){
+      this.username = username;
+      this.salary = salary;
+      this.dept = dept;
+      dept.getEmployees().add(this);
+    }
+  
+  }
+  ```
+
+  ```
+  package io.study.erd_example;
+  
+  import org.springframework.boot.SpringApplication;
+  import org.springframework.boot.autoconfigure.SpringBootApplication;
+  import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
+  
+  @EnableJpaAuditing
+  @SpringBootApplication
+  public class ErdApplication {
+  
+    public static void main(String[] args) {
+      SpringApplication.run(ErdApplication.class, args);
+    }
+  
+  }
+  ```
+
+  ```
+  @SpringBootTest
+  @Transactional
+  public class EmpDataRepositoryTest {
+  
+    @Autowired
+    private EntityManager em;
+  
+    @Autowired
+    private EmpDataRepository empDataRepository;
+  
+    @Autowired
+    private DeptDataRepository deptDataRepository;
+  
+    private Department police;
+  
+    @BeforeEach
+    void insertData(){
+      police = new Department("POLICE");
+      Department firefighter = new Department("FIREFIGHTER");
+  
+      deptDataRepository.save(police);
+      deptDataRepository.save(firefighter);
+  
+      Employee empPolice1 = new Employee("경찰관1", 1000D, police);
+      Employee empPolice2 = new Employee("경찰관2", 1000D, police);
+      Employee empPolice3 = new Employee("경찰관3", 1000D, police);
+      Employee empPolice4 = new Employee("경찰관4", 1000D, police);
+      Employee empPolice5 = new Employee("경찰관5", 1000D, police);
+      Employee empFireFighter = new Employee("소방관1", 1000D, firefighter);
+  
+      empDataRepository.save(empPolice1);
+      empDataRepository.save(empPolice2);
+      empDataRepository.save(empPolice3);
+      empDataRepository.save(empPolice4);
+      empDataRepository.save(empPolice5);
+  
+      empDataRepository.save(empFireFighter);
+  
+      em.flush();
+      em.clear();
+    }
+  
+    // ...
+  
+    @Test
+    @DisplayName("Data JPA 에서의 Auditing #1")
+    void testDataJpaAuditing() throws Exception {
+      Employee employee = new Employee("경찰관 #99", 1000D, police);
+      empDataRepository.save(employee);
+  
+      Thread.sleep(1000);
+      employee.setUsername("경찰관 #100");
+  
+      em.flush();
+      em.clear();
+  
+      Employee e = empDataRepository.findById(employee.getEmpNo()).get();
+      System.out.println("createDate  :: " + e.getCreatedDate());
+      System.out.println("updatedDate :: " + e.getLastModifiedDate());
+    }
+  }
+  ```
+
+  ```
+  createDate  :: 2020-08-11T21:11:50
+  updatedDate :: 2020-08-11T21:11:51
+  ```
+
+  ```
+  package io.study.erd_example;
+  
+  import java.util.Optional;
+  import java.util.UUID;
+  import org.springframework.boot.SpringApplication;
+  import org.springframework.boot.autoconfigure.SpringBootApplication;
+  import org.springframework.context.annotation.Bean;
+  import org.springframework.data.domain.AuditorAware;
+  import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
+  
+  @EnableJpaAuditing
+  @SpringBootApplication
+  public class ErdApplication {
+  
+    public static void main(String[] args) {
+      SpringApplication.run(ErdApplication.class, args);
+    }
+  
+    // 샘플 예제를 위한 fake 데이터 생성
+    // UUID를 이용해 난수를 생성했다.
+    // 보통은 SecurityContextHolder 를 이용해 현재 세션의 사용자를 얻어내는 편이다.
+    // SecurityContextHolder 를 이용해 현재 세션의 사용자를 얻어냈을 때 아래의 람다 구문의
+    // Optional.of( ... ) 메서드 내에 해당 세션에 대한 요청 ID를 넣어주면 된다.
+    @Bean
+    public AuditorAware<String> auditorAware(){
+      return () -> Optional.of(UUID.randomUUID().toString());
+    }
+  
+  }
+  
+  ```
+
+  ```
+  @EntityListeners(AuditingEntityListener.class)
+  @MappedSuperclass
+  @Getter
+  public class DataJpaBaseEntity {
+  
+    @CreatedDate
+    @Column(updatable = false)
+    LocalDateTime createdDate;
+  
+    @LastModifiedDate
+    LocalDateTime lastModifiedDate;
+  
+    @CreatedBy
+    @Column(updatable = false)
+    String createdBy;
+  
+    @LastModifiedBy
+    String lastModifiedBy;
+  }
+  ```
+
+  ```
+  @SpringBootTest
+  @Transactional
+  public class EmpDataRepositoryTest {
+  
+    @Autowired
+    private EntityManager em;
+  
+    @Autowired
+    private EmpDataRepository empDataRepository;
+  
+    @Autowired
+    private DeptDataRepository deptDataRepository;
+  
+    private Department police;
+  
+    @BeforeEach
+    void insertData(){
+      police = new Department("POLICE");
+      Department firefighter = new Department("FIREFIGHTER");
+  
+      deptDataRepository.save(police);
+      deptDataRepository.save(firefighter);
+  
+      Employee empPolice1 = new Employee("경찰관1", 1000D, police);
+      Employee empPolice2 = new Employee("경찰관2", 1000D, police);
+      Employee empPolice3 = new Employee("경찰관3", 1000D, police);
+      Employee empPolice4 = new Employee("경찰관4", 1000D, police);
+      Employee empPolice5 = new Employee("경찰관5", 1000D, police);
+      Employee empFireFighter = new Employee("소방관1", 1000D, firefighter);
+  
+      empDataRepository.save(empPolice1);
+      empDataRepository.save(empPolice2);
+      empDataRepository.save(empPolice3);
+      empDataRepository.save(empPolice4);
+      empDataRepository.save(empPolice5);
+  
+      empDataRepository.save(empFireFighter);
+  
+      em.flush();
+      em.clear();
+    }
+  
+    // ...
+    
+    @Test
+    @DisplayName("Data JPA 에서의 Auditing #2")
+    void testDataJpaAuditing2() throws Exception {
+      Employee employee = new Employee("경찰관 #99", 1000D, police);
+      empDataRepository.save(employee);
+  
+      Thread.sleep(1000);
+      employee.setUsername("경찰관 #100");
+  
+      em.flush();
+      em.clear();
+  
+      Employee e = empDataRepository.findById(employee.getEmpNo()).get();
+      System.out.println("createDate  :: " + e.getCreatedDate());
+      System.out.println("updatedDate :: " + e.getLastModifiedDate());
+      System.out.println("createdBy :: " + e.getCreatedBy());
+      System.out.println("updatedBy :: " + e.getLastModifiedBy());
+    }
+  }
+  ```
+
+  ```
+  createDate  :: 2020-08-11T21:29:05
+  updatedDate :: 2020-08-11T21:29:06
+  createdBy :: 8566f8cf-7d63-4172-b7c2-7cbd9ebb62f6
+  updatedBy :: e19fbedc-1a39-4241-83ea-2c440e3c29c0
+  ```
+
+  ```
+  package io.study.erd_example;
+  
+  import java.util.Optional;
+  import java.util.UUID;
+  import org.springframework.boot.SpringApplication;
+  import org.springframework.boot.autoconfigure.SpringBootApplication;
+  import org.springframework.context.annotation.Bean;
+  import org.springframework.data.domain.AuditorAware;
+  import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
+  
+  @EnableJpaAuditing(modifyOnCreate = false)
+  @SpringBootApplication
+  public class ErdApplication {
+  
+    public static void main(String[] args) {
+      SpringApplication.run(ErdApplication.class, args);
+    }
+    
+    @Bean
+    public AuditorAware<String> auditorAware(){
+      return () -> Optional.of(UUID.randomUUID().toString());
+    }
+  
+  }
+  
+  ```
+
+  ```
+  <?xml version=“1.0” encoding="UTF-8”?>
+  <entity-mappings xmlns=“http://xmlns.jcp.org/xml/ns/persistence/orm”
+  xmlns:xsi=“http://www.w3.org/2001/XMLSchema-instance”
+  xsi:schemaLocation=“http://xmlns.jcp.org/xml/ns/persistence/
+  orm http://xmlns.jcp.org/xml/ns/persistence/orm_2_2.xsd”
+  version=“2.2">
+    <persistence-unit-metadata>
+      <persistence-unit-defaults>
+        <entity-listeners>
+          <entity-listener
+  class="org.springframework.data.jpa.domain.support.AuditingEntityListener”/>
+        </entity-listeners>
+      </persistence-unit-defaults>
+    </persistence-unit-metadata>
+  </entity-mappings>
+  ```
+
+  ```
+  package io.study.erd_example.emp.entity.base;
+  
+  import java.time.LocalDateTime;
+  import javax.persistence.EntityListeners;
+  import javax.persistence.MappedSuperclass;
+  import lombok.Getter;
+  import org.springframework.data.annotation.CreatedDate;
+  import org.springframework.data.annotation.LastModifiedDate;
+  import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+  
+  @Getter
+  @MappedSuperclass
+  @EntityListeners(AuditingEntityListener.class)
+  public class ErdBaseTimeEntity {
+  
+    @CreatedDate
+    private LocalDateTime createdDate;
+  
+    @LastModifiedDate
+    private LocalDateTime lastModifiedDate;
+  }
+  ```
+
+  ```
+  package io.study.erd_example.emp.entity.base;
+  
+  import javax.persistence.EntityListeners;
+  import javax.persistence.MappedSuperclass;
+  import lombok.Getter;
+  import org.springframework.data.annotation.CreatedBy;
+  import org.springframework.data.annotation.LastModifiedBy;
+  import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+  
+  @Getter
+  @EntityListeners(AuditingEntityListener.class)
+  @MappedSuperclass
+  public class ErdBaseEntity extends ErdBaseTimeEntity{
+  
+    @CreatedBy
+    private String createdBy;
+  
+    @LastModifiedBy
+    private String lastModifiedBy;
+  }
+  ```
+
+  ```
+  package io.study.erd_example.emp.entity;
+  
+  import com.fasterxml.jackson.annotation.JsonIgnore;
+  import io.study.erd_example.emp.entity.base.ErdBaseEntity;
+  import javax.persistence.Column;
+  import javax.persistence.Entity;
+  import javax.persistence.FetchType;
+  import javax.persistence.GeneratedValue;
+  import javax.persistence.GenerationType;
+  import javax.persistence.Id;
+  import javax.persistence.JoinColumn;
+  import javax.persistence.ManyToOne;
+  import javax.persistence.Table;
+  import lombok.AccessLevel;
+  import lombok.Data;
+  import lombok.Getter;
+  import lombok.NoArgsConstructor;
+  import lombok.Setter;
+  import lombok.ToString;
+  
+  //@Data
+  @Getter @Setter
+  @ToString(exclude = "dept")
+  @Entity
+  @NoArgsConstructor(access = AccessLevel.PROTECTED)
+  @Table(name = "EMPLOYEE")
+  //public class Employee extends JpaBaseEntity{
+  //public class Employee extends DataJpaBaseEntity{
+  public class Employee extends ErdBaseEntity {
+  
+    @Id @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long empNo;
+  
+    @Column(name = "USERNAME")
+    private String username;
+  
+    @Column(name = "SALARY")
+    private Double salary;
+  
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "DEPT_NO")
+    @JsonIgnore
+    private Department dept;
+  
+  //  public Employee(){}
+  
+    public Employee (String username, Double salary, Department dept){
+      this.username = username;
+      this.salary = salary;
+      this.dept = dept;
+      dept.getEmployees().add(this);
+    }
+  
+  }
+  ```
+
+  
+
+  ### Employee.java
+
+  ### ErdBaseEntity.java
+
+  ### ErdBaseTimeEntity.java
+
+  로 분리하는 방식을 용도에 맞게 각 Entity 클래스에서 상속받아 사용하면 분리가 간편해진다. 
+
+  - ErdBaseTimeEntity
+    - 생성일, 수정일을 관리하는 클래스
+  - ErdBaseEntity
+    - 생성일, 수정일
+    - 작성자, 수정자
+    - 네가지 필드 모두를 관리하는 클래스
+    - ErdBaseTimeEntity 클래스를 상속받은 클래스
+
+  ## 예제 6) 상속관계로 용도에 따라 분리
+
+  
+
+  @EntityListeners(AuditingListener.class) 를 BaseEntity 마다 지정해주기는 조금 번거로울 경우가 있다. 이 경우 src/resources/META-INF/ 밑에 아래와 같이 orm.xml 파일을 작성해준다.
+
+  ## 예제 5) @EntityListeners 대신 전역적으로 Auditing을 강제로 지정할 경우
+
+  
+
+  ### 예제
+
+  위와 같은 어노테이션을 추가해준다.
+
+  > @EnableJpaAuditing(modifyOnCreate = false)
+
+  권장되는 방법은 아니다. 등록할 때에만 데이터를 입력하고, 수정할 때에는 null 로 지정하고자 할 때가 있다. 설정 파일위에 작성한 @EnableJpaAuditing 어노테이션에 아래와 같이 추가해준다. (이번 예제에서는 ErdApplication.java, 보통 @EnableJpaAuditing 은 설정 클래스에 따로 분리해놓는 편이다. 명심하자.)
+
+  ## 예제 4) Spring Data JPA - 등록자, 수정자 (2) :: update시에는 null 로 지정
+
+  
+
+  ### 출력결과
+
+  
+
+  ### EmpDataRepositoryTest.java
+
+  
+
+  - @CreatedBy
+
+    - 등록자
+    - 보통은 SecurityContextHolder에서 가져온 현재 요청을 보낸 사용자에 대한 아이디를 얻어와 지정해준다.
+    - 아이디를 얻어와 지정해주는 로직은 설정으로 따로 분리해놓았는데, 바로 앞전에서 본 AuditingAware 함수를 @Bean으로 등록하는 구문에서 등록하고 있다.
+    - 이번 예제에서는 등록자에 단순히 난수를 등록해주고 있다.
+
+  - @LastModifiedBy
+
+    - 수정자
+    - 보통은 SecurityContextHolder에서 가져온 현재 요청을 보낸 사용자에 대한 아이디를 얻어와 지정해준다.
+    - 아이디를 얻어와 지정해주는 로직은 설정(Configuration 또는 Bean)으로 따로 분리해놓았는데, 바로 앞전에서 본 AuditingAware 함수를 @Bean으로 등록하는 구문에서 등록하고 있다.
+    - 이번 예제에서는 수정자에 단순히 난수를 등록해주고 있다.
+
+    
+
+  ### DataJpaBaseEntity.java
+
+  
+
+  - 이번 예제에서는 UUID를 이용해 난수를 생성했다.
+    - 스프링 시큐리티 설정까지 정리하기엔 예제가 너무 TMI가 되어 한눈에 보기 어려워질것 같다는 생각에 이렇게 정리.
+  - 보통은 SecurityContextHolder 를 이용해 현재 세션의 사용자를 얻어내는 편이다.
+  - SecurityContextHolder 를 이용해 현재 세션의 사용자를 얻어냈을 때 아래의 람다 구문의 Optional.of( ... ) 메서드 내에 해당 세션에 대한 요청 ID를 넣어주면 된다.
+  - 아이디를 얻어와 지정해주는 로직은 설정(Configuration 또는 Bean)으로 따로 분리해놓았는데, 여기서는 @Bean으로 등록했다.
+
+  ### ErdApplication.java
+
+  ## 예제3) Spring Data JPA - 등록자, 수정자 (1)
+
+  
+
+  ### 출력결과
+
+  
+
+  ### Test :: EmpDataRepositoryTest.java
+
+  
+
+  왠만하면 깔끔하게 @Configuration 어노테이션과 함께 @EnableJpaAudting을 추가해서 설정 파일을 만들자. 여기서는 단순예제를 빨리 만들어보기 위해 main() 문을 가지고 있는 Spring Boot Application 클래스에 해당 설정 어노테이션을 추가해주었다. (귀찮다는 핑계이긴 하다.)
+
+  ### ErdApplication.java
+
+  
+
+  순수 JPA 기반 Auditing 예제에서는 Employee 클래스가 JpaBaseEntity를 상속하도록 했었다. Data JPA 기반 Auditing 예제에서는 DataJpaBaseEntity 를 상속받도록 하자.
+
+  ### Employee.java
+
+  
+
+  - @EntityListeners(AuditingEntityListener.class)
+    - 정리하자. 정리열매~!!!
+  - @CreatedDate
+    - 엔티티 생성 시점 지정
+  - @LastModifiedDate
+    - 엔티티 수정 시점 지정
+
+  Data JPA를 사용할 때 사용하는 어노테이션은 아래와 같다.
+
+순수 JPA를 사용할 때에 비해 코드가 짧아지거나 간결해지진 않는다. 작성하는 코드의 양은 비슷하다. 다만, 차이점은 아래와 같다.
+
+## 예제2) Spring Data JPA 를 사용할 때
+
+
+
+출력결과
+
+### Test :: EmpRepositoryTest
+
+
+
+Employee 엔티티는 방금 작성한  JpaBaseEntity 클래스를 상속받은 것 외에는 따로 해준 것이 없다.
+
+### Employee.java
+
+- @MappedSuperclass
+  - Entity 클래스 (e.g. Employee, Department 등등) 가 상속받아서 사용한다.
+  - 우리가 작성한 JpaBaseEntity라는 이름의 클래스는 Employee 엔티티에서 사용하기 위해서는 @MappedSuperclass 라는 어노테이션을 사용해야만 엔티티가 JpaBaseEntity 타입의 클래스를 인식가능하다.
+  - 자세한 원리는 JPA 기본편에서 자세하게 설명해준다.
+- @Column(updatable = false)
+  - 데이터의 초기 생성시점은 변경되면 안된다는 조건을 걸고 싶을 때 사용한다.
+  - 과거 이력에 대해서 수정을 하는 것이 조작이라고 판단되는 법적인 문제?도 있지 않은가... 또 헛소리를 했다. 얼ㄹ른 자야할 듯.
+  - 초기 생성 시점에 대한 기록이 자주 변경된다면 조회상으로도 모호함을 낳기 때문에 좋지 않기 때문에 createdDate와 같은 필드에는 가급적 @Column(updatable = false)를 사용하는 것을 권장하는 편이다.
+  - @Column(updatable = false, insertable = true) 와 같이 지정할 수 도 있다.
+- @PrePersist
+  - Persist, 즉 DB에 저장하기 직전에 호출되도록 하고 싶은 메서드에 @PrePersist 를 지정해준다.
+- @PreUpdate
+  - Entity 에 대해 Update 동작이 발생할 때에 수행할 동작을 기술한 메서드에 @PreUpdate 를 지정해준다.
+
 
 
 # 3. 도메인 클래스 컨버터
 
-
+  
 
 
 
