@@ -128,6 +128,6 @@ public class EmpRepositoryTest {
 
 		Employee e = empDataRepository.findById(employee.getEmpNo()).get();
 		System.out.println("createDate  :: " + e.getCreatedDate());
-		System.out.println("updatedDate :: " + e.getUpdatedDate());
+//		System.out.println("updatedDate :: " + e.getUpdatedDate());
 	}
 }

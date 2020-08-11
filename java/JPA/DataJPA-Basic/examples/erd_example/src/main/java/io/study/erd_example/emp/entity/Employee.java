@@ -1,6 +1,7 @@
 package io.study.erd_example.emp.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import io.study.erd_example.emp.entity.base.ErdBaseEntity;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -24,7 +25,9 @@ import lombok.ToString;
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Table(name = "EMPLOYEE")
-public class Employee extends JpaBaseEntity{
+//public class Employee extends JpaBaseEntity{
+//public class Employee extends DataJpaBaseEntity{
+public class Employee extends ErdBaseEntity {
 
 	@Id @GeneratedValue(strategy = GenerationType.AUTO)
 	private Long empNo;

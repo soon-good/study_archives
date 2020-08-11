@@ -32,12 +32,14 @@ public class EmpController {
 		this.em = em;
 	}
 
+	// 도메인 클래스 컨버터 예제 - 일반 요청 (비교를 위해 예제로)
 	@GetMapping("/employee/v1/{id}")
 	public String getEmployeeById(@PathVariable("id") Long id){
 		Employee employee = empDataRepository.findById(id).get();
 		return employee.getUsername();
 	}
 
+	// 도메인 클래스 컨버터 예제 - 도메인 클래스 컨버터를 사용
 	@GetMapping("/employee/v2/{id}")
 	public String getEmployeeById2(@PathVariable("id") Employee employee){
 		return employee.getUsername();

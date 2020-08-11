@@ -34,9 +34,11 @@ public class EmpDataRepositoryTest {
 	@Autowired
 	private DeptDataRepository deptDataRepository;
 
+	private Department police;
+
 	@BeforeEach
 	void insertData(){
-		Department police = new Department("POLICE");
+		police = new Department("POLICE");
 		Department firefighter = new Department("FIREFIGHTER");
 
 		deptDataRepository.save(police);
@@ -316,5 +318,41 @@ public class EmpDataRepositoryTest {
 		System.out.println("경찰관 5의 연봉 >>> " + emp_after.getSalary());
 
 		assertThat(i).isEqualTo(6);
+	}
+
+	@Test
+	@DisplayName("Data JPA 에서의 Auditing #1")
+	void testDataJpaAuditing1() throws Exception {
+		Employee employee = new Employee("경찰관 #99", 1000D, police);
+		empDataRepository.save(employee);
+
+		Thread.sleep(1000);
+		employee.setUsername("경찰관 #100");
+
+		em.flush();
+		em.clear();
+
+		Employee e = empDataRepository.findById(employee.getEmpNo()).get();
+		System.out.println("createDate  :: " + e.getCreatedDate());
+		System.out.println("updatedDate :: " + e.getLastModifiedDate());
+	}
+
+	@Test
+	@DisplayName("Data JPA 에서의 Auditing #2")
+	void testDataJpaAuditing2() throws Exception {
+		Employee employee = new Employee("경찰관 #99", 1000D, police);
+		empDataRepository.save(employee);
+
+		Thread.sleep(1000);
+		employee.setUsername("경찰관 #100");
+
+		em.flush();
+		em.clear();
+
+		Employee e = empDataRepository.findById(employee.getEmpNo()).get();
+		System.out.println("createDate  :: " + e.getCreatedDate());
+		System.out.println("updatedDate :: " + e.getLastModifiedDate());
+		System.out.println("createdBy :: " + e.getCreatedBy());
+		System.out.println("updatedBy :: " + e.getLastModifiedBy());
 	}
 }
