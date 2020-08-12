@@ -920,9 +920,78 @@ Employee 엔티티는 방금 작성한  JpaBaseEntity 클래스를 상속받은 
 
 # 3. 도메인 클래스 컨버터
 
+그다지 권장하는 방식은 아니다. Controller 내의 HTTP 요청을 받는 메서드에서 메서드의 파라미터로 도메인 클래스(엔티티 클래스)를 두면, HTTP 요청에 의해 전달되는 데이터를 스프링 내부에서 실제 인자값을 도메인 클래스내의 해당 멤버 필드로 바인딩해준다.  
+
+> ex)
+>
+> ```java
+> @GetMapping("/employee/v2/{id}")
+> public String getEmployeeById2(@PathVariable("id") Employee employee){
+>   return employee.getUsername();
+> }
+> ```
+
   
 
+단점은 화면에 종속적인 정보를 도메인에 연결시킨다는 점이다. 이렇게 할 경우, 기획이 자주 바뀔수 밖에 없는 화면단의 관점에 따라 도메인이 변하게 되고, 도메인에 종속된 repository 들의 로직들도 일괄적으로 변할 수 밖에 없다는 점이 단점이다.  
 
+  
+
+가급적이면, 굉장히 급한 프로토타입을 만드는 경우가 아니고서는 권장되지 않는 방식이다. 주의할것!!!
+
+## 예제
+
+### EmpController.java
+
+```java
+@Controller
+public class EmpController {
+
+	private final EmpDataRepository empDataRepository;
+
+	private final DeptDataRepository deptDataRepository;
+
+	private final EntityManager em;
+
+	public EmpController(EmpDataRepository empDataRepository,
+							DeptDataRepository deptDataRepository,
+							EntityManager em){
+		this.empDataRepository = empDataRepository;
+		this.deptDataRepository = deptDataRepository;
+		this.em = em;
+	}
+
+	// 도메인 클래스 컨버터 예제 - 일반 요청 (비교를 위해 예제로)
+	@GetMapping("/employee/v1/{id}")
+	public String getEmployeeById(@PathVariable("id") Long id){
+		Employee employee = empDataRepository.findById(id).get();
+		return employee.getUsername();
+	}
+
+	// 도메인 클래스 컨버터 예제 - 도메인 클래스 컨버터를 사용
+	@GetMapping("/employee/v2/{id}")
+	public String getEmployeeById2(@PathVariable("id") Employee employee){
+		return employee.getUsername();
+	}
+
+	@PostConstruct
+	public void initData(){
+		Department police = new Department("POLICE");
+		deptDataRepository.save(police);
+
+		for(int i=0; i<100; i++){
+			final Employee e = new Employee("경찰관 #"+String.valueOf(i), 1000D, police);
+			empDataRepository.save(e);
+		}
+    
+    em.flush();
+    em.clear();
+	}
+}
+
+```
+
+  
 
 # 4. Web 계층에서의 페이징 & 정렬
 
