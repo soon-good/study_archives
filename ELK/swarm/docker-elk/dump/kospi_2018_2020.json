@@ -1,0 +1,804 @@
+{"index": {"_index": "kospi", "_id": "20190102"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2010", "ITEM_NAME3": " ", "TIME": "20190102"}
+{"index": {"_index": "kospi", "_id": "20190103"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "1993.7", "ITEM_NAME3": " ", "TIME": "20190103"}
+{"index": {"_index": "kospi", "_id": "20190104"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2010.25", "ITEM_NAME3": " ", "TIME": "20190104"}
+{"index": {"_index": "kospi", "_id": "20190107"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2037.1", "ITEM_NAME3": " ", "TIME": "20190107"}
+{"index": {"_index": "kospi", "_id": "20190108"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2025.27", "ITEM_NAME3": " ", "TIME": "20190108"}
+{"index": {"_index": "kospi", "_id": "20190109"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2064.71", "ITEM_NAME3": " ", "TIME": "20190109"}
+{"index": {"_index": "kospi", "_id": "20190110"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2063.28", "ITEM_NAME3": " ", "TIME": "20190110"}
+{"index": {"_index": "kospi", "_id": "20190111"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2075.57", "ITEM_NAME3": " ", "TIME": "20190111"}
+{"index": {"_index": "kospi", "_id": "20190114"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2064.52", "ITEM_NAME3": " ", "TIME": "20190114"}
+{"index": {"_index": "kospi", "_id": "20190115"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2097.18", "ITEM_NAME3": " ", "TIME": "20190115"}
+{"index": {"_index": "kospi", "_id": "20190116"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2106.1", "ITEM_NAME3": " ", "TIME": "20190116"}
+{"index": {"_index": "kospi", "_id": "20190117"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2107.06", "ITEM_NAME3": " ", "TIME": "20190117"}
+{"index": {"_index": "kospi", "_id": "20190118"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2124.28", "ITEM_NAME3": " ", "TIME": "20190118"}
+{"index": {"_index": "kospi", "_id": "20190121"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2124.61", "ITEM_NAME3": " ", "TIME": "20190121"}
+{"index": {"_index": "kospi", "_id": "20190122"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2117.77", "ITEM_NAME3": " ", "TIME": "20190122"}
+{"index": {"_index": "kospi", "_id": "20190123"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2127.78", "ITEM_NAME3": " ", "TIME": "20190123"}
+{"index": {"_index": "kospi", "_id": "20190124"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2145.03", "ITEM_NAME3": " ", "TIME": "20190124"}
+{"index": {"_index": "kospi", "_id": "20190125"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2177.73", "ITEM_NAME3": " ", "TIME": "20190125"}
+{"index": {"_index": "kospi", "_id": "20190128"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2177.3", "ITEM_NAME3": " ", "TIME": "20190128"}
+{"index": {"_index": "kospi", "_id": "20190129"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2183.36", "ITEM_NAME3": " ", "TIME": "20190129"}
+{"index": {"_index": "kospi", "_id": "20190130"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2206.2", "ITEM_NAME3": " ", "TIME": "20190130"}
+{"index": {"_index": "kospi", "_id": "20190131"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2204.85", "ITEM_NAME3": " ", "TIME": "20190131"}
+{"index": {"_index": "kospi", "_id": "20190201"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2203.46", "ITEM_NAME3": " ", "TIME": "20190201"}
+{"index": {"_index": "kospi", "_id": "20190207"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2203.42", "ITEM_NAME3": " ", "TIME": "20190207"}
+{"index": {"_index": "kospi", "_id": "20190208"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2177.05", "ITEM_NAME3": " ", "TIME": "20190208"}
+{"index": {"_index": "kospi", "_id": "20190211"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2180.73", "ITEM_NAME3": " ", "TIME": "20190211"}
+{"index": {"_index": "kospi", "_id": "20190212"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2190.47", "ITEM_NAME3": " ", "TIME": "20190212"}
+{"index": {"_index": "kospi", "_id": "20190213"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2201.48", "ITEM_NAME3": " ", "TIME": "20190213"}
+{"index": {"_index": "kospi", "_id": "20190214"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2225.85", "ITEM_NAME3": " ", "TIME": "20190214"}
+{"index": {"_index": "kospi", "_id": "20190215"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2196.09", "ITEM_NAME3": " ", "TIME": "20190215"}
+{"index": {"_index": "kospi", "_id": "20190218"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2210.89", "ITEM_NAME3": " ", "TIME": "20190218"}
+{"index": {"_index": "kospi", "_id": "20190219"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2205.63", "ITEM_NAME3": " ", "TIME": "20190219"}
+{"index": {"_index": "kospi", "_id": "20190220"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2229.76", "ITEM_NAME3": " ", "TIME": "20190220"}
+{"index": {"_index": "kospi", "_id": "20190221"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2228.66", "ITEM_NAME3": " ", "TIME": "20190221"}
+{"index": {"_index": "kospi", "_id": "20190222"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2230.5", "ITEM_NAME3": " ", "TIME": "20190222"}
+{"index": {"_index": "kospi", "_id": "20190225"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2232.56", "ITEM_NAME3": " ", "TIME": "20190225"}
+{"index": {"_index": "kospi", "_id": "20190226"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2226.6", "ITEM_NAME3": " ", "TIME": "20190226"}
+{"index": {"_index": "kospi", "_id": "20190227"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2234.79", "ITEM_NAME3": " ", "TIME": "20190227"}
+{"index": {"_index": "kospi", "_id": "20190228"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2195.44", "ITEM_NAME3": " ", "TIME": "20190228"}
+{"index": {"_index": "kospi", "_id": "20190304"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2190.66", "ITEM_NAME3": " ", "TIME": "20190304"}
+{"index": {"_index": "kospi", "_id": "20190305"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2179.23", "ITEM_NAME3": " ", "TIME": "20190305"}
+{"index": {"_index": "kospi", "_id": "20190306"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2175.6", "ITEM_NAME3": " ", "TIME": "20190306"}
+{"index": {"_index": "kospi", "_id": "20190307"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2165.79", "ITEM_NAME3": " ", "TIME": "20190307"}
+{"index": {"_index": "kospi", "_id": "20190308"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2137.44", "ITEM_NAME3": " ", "TIME": "20190308"}
+{"index": {"_index": "kospi", "_id": "20190311"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2138.1", "ITEM_NAME3": " ", "TIME": "20190311"}
+{"index": {"_index": "kospi", "_id": "20190312"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2157.18", "ITEM_NAME3": " ", "TIME": "20190312"}
+{"index": {"_index": "kospi", "_id": "20190313"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2148.41", "ITEM_NAME3": " ", "TIME": "20190313"}
+{"index": {"_index": "kospi", "_id": "20190314"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2155.68", "ITEM_NAME3": " ", "TIME": "20190314"}
+{"index": {"_index": "kospi", "_id": "20190315"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2176.11", "ITEM_NAME3": " ", "TIME": "20190315"}
+{"index": {"_index": "kospi", "_id": "20190318"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2179.49", "ITEM_NAME3": " ", "TIME": "20190318"}
+{"index": {"_index": "kospi", "_id": "20190319"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2177.62", "ITEM_NAME3": " ", "TIME": "20190319"}
+{"index": {"_index": "kospi", "_id": "20190320"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2177.1", "ITEM_NAME3": " ", "TIME": "20190320"}
+{"index": {"_index": "kospi", "_id": "20190321"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2184.88", "ITEM_NAME3": " ", "TIME": "20190321"}
+{"index": {"_index": "kospi", "_id": "20190322"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2186.95", "ITEM_NAME3": " ", "TIME": "20190322"}
+{"index": {"_index": "kospi", "_id": "20190325"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2144.86", "ITEM_NAME3": " ", "TIME": "20190325"}
+{"index": {"_index": "kospi", "_id": "20190326"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2148.8", "ITEM_NAME3": " ", "TIME": "20190326"}
+{"index": {"_index": "kospi", "_id": "20190327"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2145.62", "ITEM_NAME3": " ", "TIME": "20190327"}
+{"index": {"_index": "kospi", "_id": "20190328"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2128.1", "ITEM_NAME3": " ", "TIME": "20190328"}
+{"index": {"_index": "kospi", "_id": "20190329"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2140.67", "ITEM_NAME3": " ", "TIME": "20190329"}
+{"index": {"_index": "kospi", "_id": "20190401"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2168.28", "ITEM_NAME3": " ", "TIME": "20190401"}
+{"index": {"_index": "kospi", "_id": "20190402"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2177.18", "ITEM_NAME3": " ", "TIME": "20190402"}
+{"index": {"_index": "kospi", "_id": "20190403"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2203.27", "ITEM_NAME3": " ", "TIME": "20190403"}
+{"index": {"_index": "kospi", "_id": "20190404"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2206.53", "ITEM_NAME3": " ", "TIME": "20190404"}
+{"index": {"_index": "kospi", "_id": "20190405"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2209.61", "ITEM_NAME3": " ", "TIME": "20190405"}
+{"index": {"_index": "kospi", "_id": "20190408"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2210.6", "ITEM_NAME3": " ", "TIME": "20190408"}
+{"index": {"_index": "kospi", "_id": "20190409"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2213.56", "ITEM_NAME3": " ", "TIME": "20190409"}
+{"index": {"_index": "kospi", "_id": "20190410"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2224.39", "ITEM_NAME3": " ", "TIME": "20190410"}
+{"index": {"_index": "kospi", "_id": "20190411"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2224.44", "ITEM_NAME3": " ", "TIME": "20190411"}
+{"index": {"_index": "kospi", "_id": "20190412"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2233.45", "ITEM_NAME3": " ", "TIME": "20190412"}
+{"index": {"_index": "kospi", "_id": "20190415"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2242.88", "ITEM_NAME3": " ", "TIME": "20190415"}
+{"index": {"_index": "kospi", "_id": "20190416"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2248.63", "ITEM_NAME3": " ", "TIME": "20190416"}
+{"index": {"_index": "kospi", "_id": "20190417"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2245.89", "ITEM_NAME3": " ", "TIME": "20190417"}
+{"index": {"_index": "kospi", "_id": "20190418"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2213.77", "ITEM_NAME3": " ", "TIME": "20190418"}
+{"index": {"_index": "kospi", "_id": "20190419"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2216.15", "ITEM_NAME3": " ", "TIME": "20190419"}
+{"index": {"_index": "kospi", "_id": "20190422"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2216.65", "ITEM_NAME3": " ", "TIME": "20190422"}
+{"index": {"_index": "kospi", "_id": "20190423"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2220.51", "ITEM_NAME3": " ", "TIME": "20190423"}
+{"index": {"_index": "kospi", "_id": "20190424"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2201.03", "ITEM_NAME3": " ", "TIME": "20190424"}
+{"index": {"_index": "kospi", "_id": "20190425"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2190.5", "ITEM_NAME3": " ", "TIME": "20190425"}
+{"index": {"_index": "kospi", "_id": "20190426"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2179.31", "ITEM_NAME3": " ", "TIME": "20190426"}
+{"index": {"_index": "kospi", "_id": "20190429"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2216.43", "ITEM_NAME3": " ", "TIME": "20190429"}
+{"index": {"_index": "kospi", "_id": "20190430"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2203.59", "ITEM_NAME3": " ", "TIME": "20190430"}
+{"index": {"_index": "kospi", "_id": "20190502"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2212.75", "ITEM_NAME3": " ", "TIME": "20190502"}
+{"index": {"_index": "kospi", "_id": "20190503"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2196.32", "ITEM_NAME3": " ", "TIME": "20190503"}
+{"index": {"_index": "kospi", "_id": "20190507"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2176.99", "ITEM_NAME3": " ", "TIME": "20190507"}
+{"index": {"_index": "kospi", "_id": "20190508"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2168.01", "ITEM_NAME3": " ", "TIME": "20190508"}
+{"index": {"_index": "kospi", "_id": "20190509"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2102.01", "ITEM_NAME3": " ", "TIME": "20190509"}
+{"index": {"_index": "kospi", "_id": "20190510"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2108.04", "ITEM_NAME3": " ", "TIME": "20190510"}
+{"index": {"_index": "kospi", "_id": "20190513"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2079.01", "ITEM_NAME3": " ", "TIME": "20190513"}
+{"index": {"_index": "kospi", "_id": "20190514"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2081.84", "ITEM_NAME3": " ", "TIME": "20190514"}
+{"index": {"_index": "kospi", "_id": "20190515"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2092.78", "ITEM_NAME3": " ", "TIME": "20190515"}
+{"index": {"_index": "kospi", "_id": "20190516"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2067.69", "ITEM_NAME3": " ", "TIME": "20190516"}
+{"index": {"_index": "kospi", "_id": "20190517"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2055.8", "ITEM_NAME3": " ", "TIME": "20190517"}
+{"index": {"_index": "kospi", "_id": "20190520"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2055.71", "ITEM_NAME3": " ", "TIME": "20190520"}
+{"index": {"_index": "kospi", "_id": "20190521"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2061.25", "ITEM_NAME3": " ", "TIME": "20190521"}
+{"index": {"_index": "kospi", "_id": "20190522"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2064.86", "ITEM_NAME3": " ", "TIME": "20190522"}
+{"index": {"_index": "kospi", "_id": "20190523"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2059.59", "ITEM_NAME3": " ", "TIME": "20190523"}
+{"index": {"_index": "kospi", "_id": "20190524"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2045.31", "ITEM_NAME3": " ", "TIME": "20190524"}
+{"index": {"_index": "kospi", "_id": "20190527"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2044.21", "ITEM_NAME3": " ", "TIME": "20190527"}
+{"index": {"_index": "kospi", "_id": "20190528"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2048.83", "ITEM_NAME3": " ", "TIME": "20190528"}
+{"index": {"_index": "kospi", "_id": "20190529"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2023.32", "ITEM_NAME3": " ", "TIME": "20190529"}
+{"index": {"_index": "kospi", "_id": "20190530"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2038.8", "ITEM_NAME3": " ", "TIME": "20190530"}
+{"index": {"_index": "kospi", "_id": "20190531"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2041.74", "ITEM_NAME3": " ", "TIME": "20190531"}
+{"index": {"_index": "kospi", "_id": "20190603"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2067.85", "ITEM_NAME3": " ", "TIME": "20190603"}
+{"index": {"_index": "kospi", "_id": "20190604"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2066.97", "ITEM_NAME3": " ", "TIME": "20190604"}
+{"index": {"_index": "kospi", "_id": "20190605"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2069.11", "ITEM_NAME3": " ", "TIME": "20190605"}
+{"index": {"_index": "kospi", "_id": "20190607"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2072.33", "ITEM_NAME3": " ", "TIME": "20190607"}
+{"index": {"_index": "kospi", "_id": "20190610"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2099.49", "ITEM_NAME3": " ", "TIME": "20190610"}
+{"index": {"_index": "kospi", "_id": "20190611"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2111.81", "ITEM_NAME3": " ", "TIME": "20190611"}
+{"index": {"_index": "kospi", "_id": "20190612"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2108.75", "ITEM_NAME3": " ", "TIME": "20190612"}
+{"index": {"_index": "kospi", "_id": "20190613"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2103.15", "ITEM_NAME3": " ", "TIME": "20190613"}
+{"index": {"_index": "kospi", "_id": "20190614"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2095.41", "ITEM_NAME3": " ", "TIME": "20190614"}
+{"index": {"_index": "kospi", "_id": "20190617"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2090.73", "ITEM_NAME3": " ", "TIME": "20190617"}
+{"index": {"_index": "kospi", "_id": "20190618"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2098.71", "ITEM_NAME3": " ", "TIME": "20190618"}
+{"index": {"_index": "kospi", "_id": "20190619"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2124.78", "ITEM_NAME3": " ", "TIME": "20190619"}
+{"index": {"_index": "kospi", "_id": "20190620"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2131.29", "ITEM_NAME3": " ", "TIME": "20190620"}
+{"index": {"_index": "kospi", "_id": "20190621"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2125.62", "ITEM_NAME3": " ", "TIME": "20190621"}
+{"index": {"_index": "kospi", "_id": "20190624"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2126.33", "ITEM_NAME3": " ", "TIME": "20190624"}
+{"index": {"_index": "kospi", "_id": "20190625"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2121.64", "ITEM_NAME3": " ", "TIME": "20190625"}
+{"index": {"_index": "kospi", "_id": "20190626"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2121.85", "ITEM_NAME3": " ", "TIME": "20190626"}
+{"index": {"_index": "kospi", "_id": "20190627"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2134.32", "ITEM_NAME3": " ", "TIME": "20190627"}
+{"index": {"_index": "kospi", "_id": "20190628"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2130.62", "ITEM_NAME3": " ", "TIME": "20190628"}
+{"index": {"_index": "kospi", "_id": "20190701"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2129.74", "ITEM_NAME3": " ", "TIME": "20190701"}
+{"index": {"_index": "kospi", "_id": "20190702"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2122.02", "ITEM_NAME3": " ", "TIME": "20190702"}
+{"index": {"_index": "kospi", "_id": "20190703"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2096.02", "ITEM_NAME3": " ", "TIME": "20190703"}
+{"index": {"_index": "kospi", "_id": "20190704"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2108.73", "ITEM_NAME3": " ", "TIME": "20190704"}
+{"index": {"_index": "kospi", "_id": "20190705"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2110.59", "ITEM_NAME3": " ", "TIME": "20190705"}
+{"index": {"_index": "kospi", "_id": "20190708"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2064.17", "ITEM_NAME3": " ", "TIME": "20190708"}
+{"index": {"_index": "kospi", "_id": "20190709"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2052.03", "ITEM_NAME3": " ", "TIME": "20190709"}
+{"index": {"_index": "kospi", "_id": "20190710"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2058.78", "ITEM_NAME3": " ", "TIME": "20190710"}
+{"index": {"_index": "kospi", "_id": "20190711"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2080.58", "ITEM_NAME3": " ", "TIME": "20190711"}
+{"index": {"_index": "kospi", "_id": "20190712"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2086.66", "ITEM_NAME3": " ", "TIME": "20190712"}
+{"index": {"_index": "kospi", "_id": "20190715"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2082.48", "ITEM_NAME3": " ", "TIME": "20190715"}
+{"index": {"_index": "kospi", "_id": "20190716"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2091.87", "ITEM_NAME3": " ", "TIME": "20190716"}
+{"index": {"_index": "kospi", "_id": "20190717"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2072.92", "ITEM_NAME3": " ", "TIME": "20190717"}
+{"index": {"_index": "kospi", "_id": "20190718"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2066.55", "ITEM_NAME3": " ", "TIME": "20190718"}
+{"index": {"_index": "kospi", "_id": "20190719"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2094.36", "ITEM_NAME3": " ", "TIME": "20190719"}
+{"index": {"_index": "kospi", "_id": "20190722"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2093.34", "ITEM_NAME3": " ", "TIME": "20190722"}
+{"index": {"_index": "kospi", "_id": "20190723"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2101.45", "ITEM_NAME3": " ", "TIME": "20190723"}
+{"index": {"_index": "kospi", "_id": "20190724"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2082.3", "ITEM_NAME3": " ", "TIME": "20190724"}
+{"index": {"_index": "kospi", "_id": "20190725"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2074.48", "ITEM_NAME3": " ", "TIME": "20190725"}
+{"index": {"_index": "kospi", "_id": "20190726"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2066.26", "ITEM_NAME3": " ", "TIME": "20190726"}
+{"index": {"_index": "kospi", "_id": "20190729"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2029.48", "ITEM_NAME3": " ", "TIME": "20190729"}
+{"index": {"_index": "kospi", "_id": "20190730"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2038.68", "ITEM_NAME3": " ", "TIME": "20190730"}
+{"index": {"_index": "kospi", "_id": "20190731"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2024.55", "ITEM_NAME3": " ", "TIME": "20190731"}
+{"index": {"_index": "kospi", "_id": "20190801"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2017.34", "ITEM_NAME3": " ", "TIME": "20190801"}
+{"index": {"_index": "kospi", "_id": "20190802"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "1998.13", "ITEM_NAME3": " ", "TIME": "20190802"}
+{"index": {"_index": "kospi", "_id": "20190805"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "1946.98", "ITEM_NAME3": " ", "TIME": "20190805"}
+{"index": {"_index": "kospi", "_id": "20190806"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "1917.5", "ITEM_NAME3": " ", "TIME": "20190806"}
+{"index": {"_index": "kospi", "_id": "20190807"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "1909.71", "ITEM_NAME3": " ", "TIME": "20190807"}
+{"index": {"_index": "kospi", "_id": "20190808"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "1920.61", "ITEM_NAME3": " ", "TIME": "20190808"}
+{"index": {"_index": "kospi", "_id": "20190809"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "1937.75", "ITEM_NAME3": " ", "TIME": "20190809"}
+{"index": {"_index": "kospi", "_id": "20190812"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "1942.29", "ITEM_NAME3": " ", "TIME": "20190812"}
+{"index": {"_index": "kospi", "_id": "20190813"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "1925.83", "ITEM_NAME3": " ", "TIME": "20190813"}
+{"index": {"_index": "kospi", "_id": "20190814"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "1938.37", "ITEM_NAME3": " ", "TIME": "20190814"}
+{"index": {"_index": "kospi", "_id": "20190816"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "1927.17", "ITEM_NAME3": " ", "TIME": "20190816"}
+{"index": {"_index": "kospi", "_id": "20190819"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "1939.9", "ITEM_NAME3": " ", "TIME": "20190819"}
+{"index": {"_index": "kospi", "_id": "20190820"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "1960.25", "ITEM_NAME3": " ", "TIME": "20190820"}
+{"index": {"_index": "kospi", "_id": "20190821"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "1964.65", "ITEM_NAME3": " ", "TIME": "20190821"}
+{"index": {"_index": "kospi", "_id": "20190822"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "1951.01", "ITEM_NAME3": " ", "TIME": "20190822"}
+{"index": {"_index": "kospi", "_id": "20190823"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "1948.3", "ITEM_NAME3": " ", "TIME": "20190823"}
+{"index": {"_index": "kospi", "_id": "20190826"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "1916.31", "ITEM_NAME3": " ", "TIME": "20190826"}
+{"index": {"_index": "kospi", "_id": "20190827"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "1924.6", "ITEM_NAME3": " ", "TIME": "20190827"}
+{"index": {"_index": "kospi", "_id": "20190828"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "1941.09", "ITEM_NAME3": " ", "TIME": "20190828"}
+{"index": {"_index": "kospi", "_id": "20190829"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "1933.41", "ITEM_NAME3": " ", "TIME": "20190829"}
+{"index": {"_index": "kospi", "_id": "20190830"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "1967.79", "ITEM_NAME3": " ", "TIME": "20190830"}
+{"index": {"_index": "kospi", "_id": "20190902"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "1969.19", "ITEM_NAME3": " ", "TIME": "20190902"}
+{"index": {"_index": "kospi", "_id": "20190903"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "1965.69", "ITEM_NAME3": " ", "TIME": "20190903"}
+{"index": {"_index": "kospi", "_id": "20190904"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "1988.53", "ITEM_NAME3": " ", "TIME": "20190904"}
+{"index": {"_index": "kospi", "_id": "20190905"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2004.75", "ITEM_NAME3": " ", "TIME": "20190905"}
+{"index": {"_index": "kospi", "_id": "20190906"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2009.13", "ITEM_NAME3": " ", "TIME": "20190906"}
+{"index": {"_index": "kospi", "_id": "20190909"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2019.55", "ITEM_NAME3": " ", "TIME": "20190909"}
+{"index": {"_index": "kospi", "_id": "20190910"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2032.08", "ITEM_NAME3": " ", "TIME": "20190910"}
+{"index": {"_index": "kospi", "_id": "20190911"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2049.2", "ITEM_NAME3": " ", "TIME": "20190911"}
+{"index": {"_index": "kospi", "_id": "20190916"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2062.22", "ITEM_NAME3": " ", "TIME": "20190916"}
+{"index": {"_index": "kospi", "_id": "20190917"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2062.33", "ITEM_NAME3": " ", "TIME": "20190917"}
+{"index": {"_index": "kospi", "_id": "20190918"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2070.73", "ITEM_NAME3": " ", "TIME": "20190918"}
+{"index": {"_index": "kospi", "_id": "20190919"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2080.35", "ITEM_NAME3": " ", "TIME": "20190919"}
+{"index": {"_index": "kospi", "_id": "20190920"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2091.52", "ITEM_NAME3": " ", "TIME": "20190920"}
+{"index": {"_index": "kospi", "_id": "20190923"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2091.7", "ITEM_NAME3": " ", "TIME": "20190923"}
+{"index": {"_index": "kospi", "_id": "20190924"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2101.04", "ITEM_NAME3": " ", "TIME": "20190924"}
+{"index": {"_index": "kospi", "_id": "20190925"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2073.39", "ITEM_NAME3": " ", "TIME": "20190925"}
+{"index": {"_index": "kospi", "_id": "20190926"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2074.52", "ITEM_NAME3": " ", "TIME": "20190926"}
+{"index": {"_index": "kospi", "_id": "20190927"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2049.93", "ITEM_NAME3": " ", "TIME": "20190927"}
+{"index": {"_index": "kospi", "_id": "20190930"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2063.05", "ITEM_NAME3": " ", "TIME": "20190930"}
+{"index": {"_index": "kospi", "_id": "20191001"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2072.42", "ITEM_NAME3": " ", "TIME": "20191001"}
+{"index": {"_index": "kospi", "_id": "20191002"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2031.91", "ITEM_NAME3": " ", "TIME": "20191002"}
+{"index": {"_index": "kospi", "_id": "20191004"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2020.69", "ITEM_NAME3": " ", "TIME": "20191004"}
+{"index": {"_index": "kospi", "_id": "20191007"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2021.73", "ITEM_NAME3": " ", "TIME": "20191007"}
+{"index": {"_index": "kospi", "_id": "20191008"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2046.25", "ITEM_NAME3": " ", "TIME": "20191008"}
+{"index": {"_index": "kospi", "_id": "20191010"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2028.15", "ITEM_NAME3": " ", "TIME": "20191010"}
+{"index": {"_index": "kospi", "_id": "20191011"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2044.61", "ITEM_NAME3": " ", "TIME": "20191011"}
+{"index": {"_index": "kospi", "_id": "20191014"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2067.4", "ITEM_NAME3": " ", "TIME": "20191014"}
+{"index": {"_index": "kospi", "_id": "20191015"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2068.17", "ITEM_NAME3": " ", "TIME": "20191015"}
+{"index": {"_index": "kospi", "_id": "20191016"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2082.83", "ITEM_NAME3": " ", "TIME": "20191016"}
+{"index": {"_index": "kospi", "_id": "20191017"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2077.94", "ITEM_NAME3": " ", "TIME": "20191017"}
+{"index": {"_index": "kospi", "_id": "20191018"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2060.69", "ITEM_NAME3": " ", "TIME": "20191018"}
+{"index": {"_index": "kospi", "_id": "20191021"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2064.84", "ITEM_NAME3": " ", "TIME": "20191021"}
+{"index": {"_index": "kospi", "_id": "20191022"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2088.86", "ITEM_NAME3": " ", "TIME": "20191022"}
+{"index": {"_index": "kospi", "_id": "20191023"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2080.62", "ITEM_NAME3": " ", "TIME": "20191023"}
+{"index": {"_index": "kospi", "_id": "20191024"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2085.66", "ITEM_NAME3": " ", "TIME": "20191024"}
+{"index": {"_index": "kospi", "_id": "20191025"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2087.89", "ITEM_NAME3": " ", "TIME": "20191025"}
+{"index": {"_index": "kospi", "_id": "20191028"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2093.6", "ITEM_NAME3": " ", "TIME": "20191028"}
+{"index": {"_index": "kospi", "_id": "20191029"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2092.69", "ITEM_NAME3": " ", "TIME": "20191029"}
+{"index": {"_index": "kospi", "_id": "20191030"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2080.27", "ITEM_NAME3": " ", "TIME": "20191030"}
+{"index": {"_index": "kospi", "_id": "20191031"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2083.48", "ITEM_NAME3": " ", "TIME": "20191031"}
+{"index": {"_index": "kospi", "_id": "20191101"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2100.2", "ITEM_NAME3": " ", "TIME": "20191101"}
+{"index": {"_index": "kospi", "_id": "20191104"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2130.24", "ITEM_NAME3": " ", "TIME": "20191104"}
+{"index": {"_index": "kospi", "_id": "20191105"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2142.64", "ITEM_NAME3": " ", "TIME": "20191105"}
+{"index": {"_index": "kospi", "_id": "20191106"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2144.15", "ITEM_NAME3": " ", "TIME": "20191106"}
+{"index": {"_index": "kospi", "_id": "20191107"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2144.29", "ITEM_NAME3": " ", "TIME": "20191107"}
+{"index": {"_index": "kospi", "_id": "20191108"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2137.23", "ITEM_NAME3": " ", "TIME": "20191108"}
+{"index": {"_index": "kospi", "_id": "20191111"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2124.09", "ITEM_NAME3": " ", "TIME": "20191111"}
+{"index": {"_index": "kospi", "_id": "20191112"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2140.92", "ITEM_NAME3": " ", "TIME": "20191112"}
+{"index": {"_index": "kospi", "_id": "20191113"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2122.45", "ITEM_NAME3": " ", "TIME": "20191113"}
+{"index": {"_index": "kospi", "_id": "20191114"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2139.23", "ITEM_NAME3": " ", "TIME": "20191114"}
+{"index": {"_index": "kospi", "_id": "20191115"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2162.18", "ITEM_NAME3": " ", "TIME": "20191115"}
+{"index": {"_index": "kospi", "_id": "20191118"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2160.69", "ITEM_NAME3": " ", "TIME": "20191118"}
+{"index": {"_index": "kospi", "_id": "20191119"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2153.24", "ITEM_NAME3": " ", "TIME": "20191119"}
+{"index": {"_index": "kospi", "_id": "20191120"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2125.32", "ITEM_NAME3": " ", "TIME": "20191120"}
+{"index": {"_index": "kospi", "_id": "20191121"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2096.6", "ITEM_NAME3": " ", "TIME": "20191121"}
+{"index": {"_index": "kospi", "_id": "20191122"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2101.96", "ITEM_NAME3": " ", "TIME": "20191122"}
+{"index": {"_index": "kospi", "_id": "20191125"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2123.5", "ITEM_NAME3": " ", "TIME": "20191125"}
+{"index": {"_index": "kospi", "_id": "20191126"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2121.35", "ITEM_NAME3": " ", "TIME": "20191126"}
+{"index": {"_index": "kospi", "_id": "20191127"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2127.85", "ITEM_NAME3": " ", "TIME": "20191127"}
+{"index": {"_index": "kospi", "_id": "20191128"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2118.6", "ITEM_NAME3": " ", "TIME": "20191128"}
+{"index": {"_index": "kospi", "_id": "20191129"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2087.96", "ITEM_NAME3": " ", "TIME": "20191129"}
+{"index": {"_index": "kospi", "_id": "20191202"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2091.92", "ITEM_NAME3": " ", "TIME": "20191202"}
+{"index": {"_index": "kospi", "_id": "20191203"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2084.07", "ITEM_NAME3": " ", "TIME": "20191203"}
+{"index": {"_index": "kospi", "_id": "20191204"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2068.89", "ITEM_NAME3": " ", "TIME": "20191204"}
+{"index": {"_index": "kospi", "_id": "20191205"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2060.74", "ITEM_NAME3": " ", "TIME": "20191205"}
+{"index": {"_index": "kospi", "_id": "20191206"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2081.85", "ITEM_NAME3": " ", "TIME": "20191206"}
+{"index": {"_index": "kospi", "_id": "20191209"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2088.65", "ITEM_NAME3": " ", "TIME": "20191209"}
+{"index": {"_index": "kospi", "_id": "20191210"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2098", "ITEM_NAME3": " ", "TIME": "20191210"}
+{"index": {"_index": "kospi", "_id": "20191211"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2105.62", "ITEM_NAME3": " ", "TIME": "20191211"}
+{"index": {"_index": "kospi", "_id": "20191212"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2137.35", "ITEM_NAME3": " ", "TIME": "20191212"}
+{"index": {"_index": "kospi", "_id": "20191213"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2170.25", "ITEM_NAME3": " ", "TIME": "20191213"}
+{"index": {"_index": "kospi", "_id": "20191216"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2168.15", "ITEM_NAME3": " ", "TIME": "20191216"}
+{"index": {"_index": "kospi", "_id": "20191217"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2195.68", "ITEM_NAME3": " ", "TIME": "20191217"}
+{"index": {"_index": "kospi", "_id": "20191218"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2194.76", "ITEM_NAME3": " ", "TIME": "20191218"}
+{"index": {"_index": "kospi", "_id": "20191219"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2196.56", "ITEM_NAME3": " ", "TIME": "20191219"}
+{"index": {"_index": "kospi", "_id": "20191220"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2204.18", "ITEM_NAME3": " ", "TIME": "20191220"}
+{"index": {"_index": "kospi", "_id": "20191223"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2203.71", "ITEM_NAME3": " ", "TIME": "20191223"}
+{"index": {"_index": "kospi", "_id": "20191224"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2190.08", "ITEM_NAME3": " ", "TIME": "20191224"}
+{"index": {"_index": "kospi", "_id": "20191226"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2197.93", "ITEM_NAME3": " ", "TIME": "20191226"}
+{"index": {"_index": "kospi", "_id": "20191227"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2204.21", "ITEM_NAME3": " ", "TIME": "20191227"}
+{"index": {"_index": "kospi", "_id": "20191230"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2197.67", "ITEM_NAME3": " ", "TIME": "20191230"}
+{"index": {"_index": "kospi", "_id": "20200102"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2175.17", "ITEM_NAME3": " ", "TIME": "20200102"}
+{"index": {"_index": "kospi", "_id": "20200103"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2176.46", "ITEM_NAME3": " ", "TIME": "20200103"}
+{"index": {"_index": "kospi", "_id": "20200106"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2155.07", "ITEM_NAME3": " ", "TIME": "20200106"}
+{"index": {"_index": "kospi", "_id": "20200107"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2175.54", "ITEM_NAME3": " ", "TIME": "20200107"}
+{"index": {"_index": "kospi", "_id": "20200108"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2151.31", "ITEM_NAME3": " ", "TIME": "20200108"}
+{"index": {"_index": "kospi", "_id": "20200109"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2186.45", "ITEM_NAME3": " ", "TIME": "20200109"}
+{"index": {"_index": "kospi", "_id": "20200110"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2206.39", "ITEM_NAME3": " ", "TIME": "20200110"}
+{"index": {"_index": "kospi", "_id": "20200113"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2229.26", "ITEM_NAME3": " ", "TIME": "20200113"}
+{"index": {"_index": "kospi", "_id": "20200114"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2238.88", "ITEM_NAME3": " ", "TIME": "20200114"}
+{"index": {"_index": "kospi", "_id": "20200115"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2230.98", "ITEM_NAME3": " ", "TIME": "20200115"}
+{"index": {"_index": "kospi", "_id": "20200116"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2248.05", "ITEM_NAME3": " ", "TIME": "20200116"}
+{"index": {"_index": "kospi", "_id": "20200117"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2250.57", "ITEM_NAME3": " ", "TIME": "20200117"}
+{"index": {"_index": "kospi", "_id": "20200120"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2262.64", "ITEM_NAME3": " ", "TIME": "20200120"}
+{"index": {"_index": "kospi", "_id": "20200121"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2239.69", "ITEM_NAME3": " ", "TIME": "20200121"}
+{"index": {"_index": "kospi", "_id": "20200122"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2267.25", "ITEM_NAME3": " ", "TIME": "20200122"}
+{"index": {"_index": "kospi", "_id": "20200123"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2246.13", "ITEM_NAME3": " ", "TIME": "20200123"}
+{"index": {"_index": "kospi", "_id": "20200128"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2176.72", "ITEM_NAME3": " ", "TIME": "20200128"}
+{"index": {"_index": "kospi", "_id": "20200129"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2185.28", "ITEM_NAME3": " ", "TIME": "20200129"}
+{"index": {"_index": "kospi", "_id": "20200130"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2148", "ITEM_NAME3": " ", "TIME": "20200130"}
+{"index": {"_index": "kospi", "_id": "20200131"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2119.01", "ITEM_NAME3": " ", "TIME": "20200131"}
+{"index": {"_index": "kospi", "_id": "20200203"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2118.88", "ITEM_NAME3": " ", "TIME": "20200203"}
+{"index": {"_index": "kospi", "_id": "20200204"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2157.9", "ITEM_NAME3": " ", "TIME": "20200204"}
+{"index": {"_index": "kospi", "_id": "20200205"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2165.63", "ITEM_NAME3": " ", "TIME": "20200205"}
+{"index": {"_index": "kospi", "_id": "20200206"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2227.94", "ITEM_NAME3": " ", "TIME": "20200206"}
+{"index": {"_index": "kospi", "_id": "20200207"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2211.95", "ITEM_NAME3": " ", "TIME": "20200207"}
+{"index": {"_index": "kospi", "_id": "20200210"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2201.07", "ITEM_NAME3": " ", "TIME": "20200210"}
+{"index": {"_index": "kospi", "_id": "20200211"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2223.12", "ITEM_NAME3": " ", "TIME": "20200211"}
+{"index": {"_index": "kospi", "_id": "20200212"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2238.38", "ITEM_NAME3": " ", "TIME": "20200212"}
+{"index": {"_index": "kospi", "_id": "20200213"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2232.96", "ITEM_NAME3": " ", "TIME": "20200213"}
+{"index": {"_index": "kospi", "_id": "20200214"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2243.59", "ITEM_NAME3": " ", "TIME": "20200214"}
+{"index": {"_index": "kospi", "_id": "20200217"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2242.17", "ITEM_NAME3": " ", "TIME": "20200217"}
+{"index": {"_index": "kospi", "_id": "20200218"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2208.88", "ITEM_NAME3": " ", "TIME": "20200218"}
+{"index": {"_index": "kospi", "_id": "20200219"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2210.34", "ITEM_NAME3": " ", "TIME": "20200219"}
+{"index": {"_index": "kospi", "_id": "20200220"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2195.5", "ITEM_NAME3": " ", "TIME": "20200220"}
+{"index": {"_index": "kospi", "_id": "20200221"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2162.84", "ITEM_NAME3": " ", "TIME": "20200221"}
+{"index": {"_index": "kospi", "_id": "20200224"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2079.04", "ITEM_NAME3": " ", "TIME": "20200224"}
+{"index": {"_index": "kospi", "_id": "20200225"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2103.61", "ITEM_NAME3": " ", "TIME": "20200225"}
+{"index": {"_index": "kospi", "_id": "20200226"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2076.77", "ITEM_NAME3": " ", "TIME": "20200226"}
+{"index": {"_index": "kospi", "_id": "20200227"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2054.89", "ITEM_NAME3": " ", "TIME": "20200227"}
+{"index": {"_index": "kospi", "_id": "20200228"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "1987.01", "ITEM_NAME3": " ", "TIME": "20200228"}
+{"index": {"_index": "kospi", "_id": "20200302"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2002.51", "ITEM_NAME3": " ", "TIME": "20200302"}
+{"index": {"_index": "kospi", "_id": "20200303"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2014.15", "ITEM_NAME3": " ", "TIME": "20200303"}
+{"index": {"_index": "kospi", "_id": "20200304"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2059.33", "ITEM_NAME3": " ", "TIME": "20200304"}
+{"index": {"_index": "kospi", "_id": "20200305"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2085.26", "ITEM_NAME3": " ", "TIME": "20200305"}
+{"index": {"_index": "kospi", "_id": "20200306"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2040.22", "ITEM_NAME3": " ", "TIME": "20200306"}
+{"index": {"_index": "kospi", "_id": "20200309"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "1954.77", "ITEM_NAME3": " ", "TIME": "20200309"}
+{"index": {"_index": "kospi", "_id": "20200310"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "1962.93", "ITEM_NAME3": " ", "TIME": "20200310"}
+{"index": {"_index": "kospi", "_id": "20200311"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "1908.27", "ITEM_NAME3": " ", "TIME": "20200311"}
+{"index": {"_index": "kospi", "_id": "20200312"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "1834.33", "ITEM_NAME3": " ", "TIME": "20200312"}
+{"index": {"_index": "kospi", "_id": "20200313"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "1771.44", "ITEM_NAME3": " ", "TIME": "20200313"}
+{"index": {"_index": "kospi", "_id": "20200316"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "1714.86", "ITEM_NAME3": " ", "TIME": "20200316"}
+{"index": {"_index": "kospi", "_id": "20200317"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "1672.44", "ITEM_NAME3": " ", "TIME": "20200317"}
+{"index": {"_index": "kospi", "_id": "20200318"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "1591.2", "ITEM_NAME3": " ", "TIME": "20200318"}
+{"index": {"_index": "kospi", "_id": "20200319"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "1457.64", "ITEM_NAME3": " ", "TIME": "20200319"}
+{"index": {"_index": "kospi", "_id": "20200320"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "1566.15", "ITEM_NAME3": " ", "TIME": "20200320"}
+{"index": {"_index": "kospi", "_id": "20200323"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "1482.46", "ITEM_NAME3": " ", "TIME": "20200323"}
+{"index": {"_index": "kospi", "_id": "20200324"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "1609.97", "ITEM_NAME3": " ", "TIME": "20200324"}
+{"index": {"_index": "kospi", "_id": "20200325"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "1704.76", "ITEM_NAME3": " ", "TIME": "20200325"}
+{"index": {"_index": "kospi", "_id": "20200326"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "1686.24", "ITEM_NAME3": " ", "TIME": "20200326"}
+{"index": {"_index": "kospi", "_id": "20200327"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "1717.73", "ITEM_NAME3": " ", "TIME": "20200327"}
+{"index": {"_index": "kospi", "_id": "20200330"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "1717.12", "ITEM_NAME3": " ", "TIME": "20200330"}
+{"index": {"_index": "kospi", "_id": "20200331"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "1754.64", "ITEM_NAME3": " ", "TIME": "20200331"}
+{"index": {"_index": "kospi", "_id": "20200401"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "1685.46", "ITEM_NAME3": " ", "TIME": "20200401"}
+{"index": {"_index": "kospi", "_id": "20200402"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "1724.86", "ITEM_NAME3": " ", "TIME": "20200402"}
+{"index": {"_index": "kospi", "_id": "20200403"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "1725.44", "ITEM_NAME3": " ", "TIME": "20200403"}
+{"index": {"_index": "kospi", "_id": "20200406"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "1791.88", "ITEM_NAME3": " ", "TIME": "20200406"}
+{"index": {"_index": "kospi", "_id": "20200407"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "1823.6", "ITEM_NAME3": " ", "TIME": "20200407"}
+{"index": {"_index": "kospi", "_id": "20200408"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "1807.14", "ITEM_NAME3": " ", "TIME": "20200408"}
+{"index": {"_index": "kospi", "_id": "20200409"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "1836.21", "ITEM_NAME3": " ", "TIME": "20200409"}
+{"index": {"_index": "kospi", "_id": "20200410"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "1860.7", "ITEM_NAME3": " ", "TIME": "20200410"}
+{"index": {"_index": "kospi", "_id": "20200413"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "1825.76", "ITEM_NAME3": " ", "TIME": "20200413"}
+{"index": {"_index": "kospi", "_id": "20200414"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "1857.08", "ITEM_NAME3": " ", "TIME": "20200414"}
+{"index": {"_index": "kospi", "_id": "20200416"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "1857.07", "ITEM_NAME3": " ", "TIME": "20200416"}
+{"index": {"_index": "kospi", "_id": "20200417"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "1914.53", "ITEM_NAME3": " ", "TIME": "20200417"}
+{"index": {"_index": "kospi", "_id": "20200420"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "1898.36", "ITEM_NAME3": " ", "TIME": "20200420"}
+{"index": {"_index": "kospi", "_id": "20200421"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "1879.38", "ITEM_NAME3": " ", "TIME": "20200421"}
+{"index": {"_index": "kospi", "_id": "20200422"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "1896.15", "ITEM_NAME3": " ", "TIME": "20200422"}
+{"index": {"_index": "kospi", "_id": "20200423"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "1914.73", "ITEM_NAME3": " ", "TIME": "20200423"}
+{"index": {"_index": "kospi", "_id": "20200424"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "1889.01", "ITEM_NAME3": " ", "TIME": "20200424"}
+{"index": {"_index": "kospi", "_id": "20200427"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "1922.77", "ITEM_NAME3": " ", "TIME": "20200427"}
+{"index": {"_index": "kospi", "_id": "20200428"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "1934.09", "ITEM_NAME3": " ", "TIME": "20200428"}
+{"index": {"_index": "kospi", "_id": "20200429"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "1947.56", "ITEM_NAME3": " ", "TIME": "20200429"}
+{"index": {"_index": "kospi", "_id": "20200504"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "1895.37", "ITEM_NAME3": " ", "TIME": "20200504"}
+{"index": {"_index": "kospi", "_id": "20200506"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "1928.76", "ITEM_NAME3": " ", "TIME": "20200506"}
+{"index": {"_index": "kospi", "_id": "20200507"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "1928.61", "ITEM_NAME3": " ", "TIME": "20200507"}
+{"index": {"_index": "kospi", "_id": "20200508"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "1945.82", "ITEM_NAME3": " ", "TIME": "20200508"}
+{"index": {"_index": "kospi", "_id": "20200511"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "1935.4", "ITEM_NAME3": " ", "TIME": "20200511"}
+{"index": {"_index": "kospi", "_id": "20200512"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "1922.17", "ITEM_NAME3": " ", "TIME": "20200512"}
+{"index": {"_index": "kospi", "_id": "20200513"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "1940.42", "ITEM_NAME3": " ", "TIME": "20200513"}
+{"index": {"_index": "kospi", "_id": "20200514"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "1924.96", "ITEM_NAME3": " ", "TIME": "20200514"}
+{"index": {"_index": "kospi", "_id": "20200515"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "1927.28", "ITEM_NAME3": " ", "TIME": "20200515"}
+{"index": {"_index": "kospi", "_id": "20200518"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "1937.11", "ITEM_NAME3": " ", "TIME": "20200518"}
+{"index": {"_index": "kospi", "_id": "20200519"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "1980.61", "ITEM_NAME3": " ", "TIME": "20200519"}
+{"index": {"_index": "kospi", "_id": "20200520"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "1989.64", "ITEM_NAME3": " ", "TIME": "20200520"}
+{"index": {"_index": "kospi", "_id": "20200521"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "1998.31", "ITEM_NAME3": " ", "TIME": "20200521"}
+{"index": {"_index": "kospi", "_id": "20200522"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "1970.13", "ITEM_NAME3": " ", "TIME": "20200522"}
+{"index": {"_index": "kospi", "_id": "20200525"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "1994.6", "ITEM_NAME3": " ", "TIME": "20200525"}
+{"index": {"_index": "kospi", "_id": "20200526"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2029.78", "ITEM_NAME3": " ", "TIME": "20200526"}
+{"index": {"_index": "kospi", "_id": "20200527"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2031.2", "ITEM_NAME3": " ", "TIME": "20200527"}
+{"index": {"_index": "kospi", "_id": "20200528"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2028.54", "ITEM_NAME3": " ", "TIME": "20200528"}
+{"index": {"_index": "kospi", "_id": "20200529"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2029.6", "ITEM_NAME3": " ", "TIME": "20200529"}
+{"index": {"_index": "kospi", "_id": "20200601"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2065.08", "ITEM_NAME3": " ", "TIME": "20200601"}
+{"index": {"_index": "kospi", "_id": "20200602"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2087.19", "ITEM_NAME3": " ", "TIME": "20200602"}
+{"index": {"_index": "kospi", "_id": "20200603"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2147", "ITEM_NAME3": " ", "TIME": "20200603"}
+{"index": {"_index": "kospi", "_id": "20200604"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2151.18", "ITEM_NAME3": " ", "TIME": "20200604"}
+{"index": {"_index": "kospi", "_id": "20200605"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2181.87", "ITEM_NAME3": " ", "TIME": "20200605"}
+{"index": {"_index": "kospi", "_id": "20200608"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2184.29", "ITEM_NAME3": " ", "TIME": "20200608"}
+{"index": {"_index": "kospi", "_id": "20200609"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2188.92", "ITEM_NAME3": " ", "TIME": "20200609"}
+{"index": {"_index": "kospi", "_id": "20200610"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2195.69", "ITEM_NAME3": " ", "TIME": "20200610"}
+{"index": {"_index": "kospi", "_id": "20200611"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2176.78", "ITEM_NAME3": " ", "TIME": "20200611"}
+{"index": {"_index": "kospi", "_id": "20200612"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2132.3", "ITEM_NAME3": " ", "TIME": "20200612"}
+{"index": {"_index": "kospi", "_id": "20200615"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2030.82", "ITEM_NAME3": " ", "TIME": "20200615"}
+{"index": {"_index": "kospi", "_id": "20200616"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2138.05", "ITEM_NAME3": " ", "TIME": "20200616"}
+{"index": {"_index": "kospi", "_id": "20200617"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2141.05", "ITEM_NAME3": " ", "TIME": "20200617"}
+{"index": {"_index": "kospi", "_id": "20200618"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2133.48", "ITEM_NAME3": " ", "TIME": "20200618"}
+{"index": {"_index": "kospi", "_id": "20200619"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2141.32", "ITEM_NAME3": " ", "TIME": "20200619"}
+{"index": {"_index": "kospi", "_id": "20200622"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2126.73", "ITEM_NAME3": " ", "TIME": "20200622"}
+{"index": {"_index": "kospi", "_id": "20200623"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2131.24", "ITEM_NAME3": " ", "TIME": "20200623"}
+{"index": {"_index": "kospi", "_id": "20200624"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2161.51", "ITEM_NAME3": " ", "TIME": "20200624"}
+{"index": {"_index": "kospi", "_id": "20200625"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2112.37", "ITEM_NAME3": " ", "TIME": "20200625"}
+{"index": {"_index": "kospi", "_id": "20200626"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2134.65", "ITEM_NAME3": " ", "TIME": "20200626"}
+{"index": {"_index": "kospi", "_id": "20200629"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2093.48", "ITEM_NAME3": " ", "TIME": "20200629"}
+{"index": {"_index": "kospi", "_id": "20200630"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2108.33", "ITEM_NAME3": " ", "TIME": "20200630"}
+{"index": {"_index": "kospi", "_id": "20200701"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2106.7", "ITEM_NAME3": " ", "TIME": "20200701"}
+{"index": {"_index": "kospi", "_id": "20200702"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2135.37", "ITEM_NAME3": " ", "TIME": "20200702"}
+{"index": {"_index": "kospi", "_id": "20200703"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2152.41", "ITEM_NAME3": " ", "TIME": "20200703"}
+{"index": {"_index": "kospi", "_id": "20200706"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2187.93", "ITEM_NAME3": " ", "TIME": "20200706"}
+{"index": {"_index": "kospi", "_id": "20200707"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2164.17", "ITEM_NAME3": " ", "TIME": "20200707"}
+{"index": {"_index": "kospi", "_id": "20200708"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2158.88", "ITEM_NAME3": " ", "TIME": "20200708"}
+{"index": {"_index": "kospi", "_id": "20200709"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2167.9", "ITEM_NAME3": " ", "TIME": "20200709"}
+{"index": {"_index": "kospi", "_id": "20200710"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2150.25", "ITEM_NAME3": " ", "TIME": "20200710"}
+{"index": {"_index": "kospi", "_id": "20200713"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2186.06", "ITEM_NAME3": " ", "TIME": "20200713"}
+{"index": {"_index": "kospi", "_id": "20200714"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2183.61", "ITEM_NAME3": " ", "TIME": "20200714"}
+{"index": {"_index": "kospi", "_id": "20200715"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2201.88", "ITEM_NAME3": " ", "TIME": "20200715"}
+{"index": {"_index": "kospi", "_id": "20200716"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2183.76", "ITEM_NAME3": " ", "TIME": "20200716"}
+{"index": {"_index": "kospi", "_id": "20200717"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2201.19", "ITEM_NAME3": " ", "TIME": "20200717"}
+{"index": {"_index": "kospi", "_id": "20200720"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2198.2", "ITEM_NAME3": " ", "TIME": "20200720"}
+{"index": {"_index": "kospi", "_id": "20200721"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2228.83", "ITEM_NAME3": " ", "TIME": "20200721"}
+{"index": {"_index": "kospi", "_id": "20200722"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2228.66", "ITEM_NAME3": " ", "TIME": "20200722"}
+{"index": {"_index": "kospi", "_id": "20200723"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2216.19", "ITEM_NAME3": " ", "TIME": "20200723"}
+{"index": {"_index": "kospi", "_id": "20200724"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2200.44", "ITEM_NAME3": " ", "TIME": "20200724"}
+{"index": {"_index": "kospi", "_id": "20200727"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2217.86", "ITEM_NAME3": " ", "TIME": "20200727"}
+{"index": {"_index": "kospi", "_id": "20200728"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2256.99", "ITEM_NAME3": " ", "TIME": "20200728"}
+{"index": {"_index": "kospi", "_id": "20200729"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2263.16", "ITEM_NAME3": " ", "TIME": "20200729"}
+{"index": {"_index": "kospi", "_id": "20200730"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2267.01", "ITEM_NAME3": " ", "TIME": "20200730"}
+{"index": {"_index": "kospi", "_id": "20200731"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2249.37", "ITEM_NAME3": " ", "TIME": "20200731"}
+{"index": {"_index": "kospi", "_id": "20200803"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2251.04", "ITEM_NAME3": " ", "TIME": "20200803"}
+{"index": {"_index": "kospi", "_id": "20200804"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2279.97", "ITEM_NAME3": " ", "TIME": "20200804"}
+{"index": {"_index": "kospi", "_id": "20200805"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2311.86", "ITEM_NAME3": " ", "TIME": "20200805"}
+{"index": {"_index": "kospi", "_id": "20200806"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2342.61", "ITEM_NAME3": " ", "TIME": "20200806"}
+{"index": {"_index": "kospi", "_id": "20200807"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2351.67", "ITEM_NAME3": " ", "TIME": "20200807"}
+{"index": {"_index": "kospi", "_id": "20200810"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2386.38", "ITEM_NAME3": " ", "TIME": "20200810"}
+{"index": {"_index": "kospi", "_id": "20200811"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2418.67", "ITEM_NAME3": " ", "TIME": "20200811"}
+{"index": {"_index": "kospi", "_id": "20200812"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2432.35", "ITEM_NAME3": " ", "TIME": "20200812"}
+{"index": {"_index": "kospi", "_id": "20200813"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2437.53", "ITEM_NAME3": " ", "TIME": "20200813"}
+{"index": {"_index": "kospi", "_id": "20200814"}}
+{"UNIT_NAME": "1980.01.04=100 ", "STAT_NAME": "6.1.1 \uc8fc\uc2dd\uc2dc\uc7a5(\uc77c\ubcc4)", "ITEM_CODE1": "0001000", "STAT_CODE": "064Y001", "ITEM_CODE2": " ", "ITEM_CODE3": " ", "ITEM_NAME1": "KOSPI\uc9c0\uc218", "ITEM_NAME2": " ", "DATA_VALUE": "2407.49", "ITEM_NAME3": " ", "TIME": "20200814"}

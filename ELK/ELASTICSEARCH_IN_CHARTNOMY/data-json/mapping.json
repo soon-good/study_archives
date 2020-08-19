@@ -1,0 +1,40 @@
+{
+	"class": {
+		"properties": {
+			"UNIT_NAME": {
+				"type": "text"
+			},
+			"STAT_NAME": {
+				"type": "text"
+			},
+			"ITEM_CODE1": {
+				"type": "text"
+			},
+			"STAT_CODE": {
+				"type": "text"
+			},
+			"ITEM_CODE2": {
+				"type": "text"
+			},
+			"ITEM_CODE3": {
+				"type": "text"
+			},
+			"ITEM_NAME1": {
+				"type": "text"
+			},
+			"ITEM_NAME2": {
+				"type": "text"
+			},
+			"DATA_VALUE": {
+				"type": "double"
+			},
+			"ITEM_NAME3": {
+				"type": "text"
+			},
+			"TIME": {
+				"type": "date",
+				"format": "yyyy-MM-dd"
+			},
+		}
+	}
+}
