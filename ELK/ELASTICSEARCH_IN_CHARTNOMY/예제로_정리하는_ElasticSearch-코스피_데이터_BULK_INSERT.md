@@ -8,23 +8,45 @@
 
 
 
+## 준비작업 - ELK 셋업/구동/중지
+
+여기서는 docker-compose 기반의 ELK를 이용할 것이다. 
+
+### ELK 구동
+
+```bash
+$ docker-compose up
+```
+
+
+
+### ELK 중지
+
+```bash
+$ docker-compose down -v
+```
+
+
+
 # 1. KOSPI 인덱스 생성
 
 인덱스를 생성한다는 것은 관계형 DB에 비교해 설명해보면 데이터베이스 스키마를 생성한다는 의미와 같다.
 
 ## KOSPI 인덱스 생성
 
-여기서는 데이터의 생성을 키바나 콘솔에서 수행했다.(귀찮아서)
+여기서는 인덱스의 생성을 키바나 콘솔에서 수행했다.(귀찮아서)
 
 ![이미지](./img/BULK_INSERT/1.png)
 
 
 
-## Indicator 인덱스 생성
+## Indicators 인덱스 생성
 
-이 Indicators 라는 인덱스 내에 kospi 라는 type을 생성하고, 데이터를 insert 할 것이다.
+위에서는 kospi 라는 인덱스를 생성했다. 이번에는 Indicators 라는 이름의 인덱스를 생성해보자.  
 
-키바나 콘솔에서 인덱스 Indicator를 생성하기 위해 아래와 같이 실행했다.
+이 Indicators 라는 인덱스 내에 kospi 라는 type을 생성하고, 데이터(document)들을 insert 할 것이다.  
+
+키바나 콘솔에서 인덱스 Indicators 를 생성하기 위해 아래와 같이 실행했다.
 
 ![이미지](./img/BULK_INSERT/1-1.png)
 
@@ -140,24 +162,6 @@ Bulk Insert는
 에 json 형식을 파라미터를 전달하여 Insert 하는 것이 가능하다.  
 
 여기서는 localhost:9200/_bulk 에 insert 요청을 보내는 방식을 다룬다.
-
-## ElasticSearch 구동
-
-여기서는 docker-compose 기반의 ELK를 이용할 것이다. 
-
-### ELK 구동
-
-```bash
-$ docker-compose up
-```
-
-
-
-### ELK 중지
-
-```bash
-$ docker-compose down -v
-```
 
 
 
