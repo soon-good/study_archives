@@ -16,14 +16,14 @@ public class MainApp {
 		transaction.begin();
 
 		try{
-			Employee emp_jordan = em.find(Employee.class, 1L);
-			emp_jordan.setName("AIR JORDAN");
+			System.out.println("======= em.find(Employee.class, 1L) =======");
+			Employee emp1 = em.find(Employee.class, 1L);
 
-//			em.persist(emp_jordan);
+			System.out.println("======= em.remove(\"소방관\") =======");
+			em.remove(emp1);
 
-			System.out.println("before transaction.commit ======= ");
+			System.out.println("======= transaction.commit() =======");
 			transaction.commit();
-			System.out.println("after transaction.commit ======= ");
 		}
 		catch (Exception e){
 			transaction.rollback();
@@ -34,5 +34,3 @@ public class MainApp {
 		emf.close();
 	}
 }
-
-
