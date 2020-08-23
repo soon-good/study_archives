@@ -305,3 +305,12 @@ $ curl -XPOST http://localhost:9200/indicators/_bulk\?pretty -H 'Content-Type: a
 
 샘플 데이터는 [참고](https://github.com/soongujung/study_archives/blob/master/ELK/ELASTICSEARCH_IN_CHARTNOMY/data-json/kospi_2018_2020_withtype.json)에 올려두었다.
 
+
+
+# 6. 데이터 조회
+
+키바나 콘솔에서
+
+> GET indicators/kospi/_search
+
+![이미지](./img/BULK_INSERT/7.png)
