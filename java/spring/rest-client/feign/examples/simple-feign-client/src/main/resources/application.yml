@@ -1,0 +1,12 @@
+feign:
+  json-placeholder:
+    url: https://jsonplaceholder.typicode.com/
+
+#  client:
+#    config:
+#      feignName:
+#        connectTimeout: 5000
+#        readTimeout: 5000
+#        loggerLever: full
+#        errorDecoder: com.example.SimpleErrorDecoder
+#        retryer: com.example.SimpleRetryer
