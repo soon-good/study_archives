@@ -1,6 +1,6 @@
 feign:
   json-placeholder:
-    url: https://jsonplaceholder.typicode.com/
+    url: https://jsonplaceholder.typicode.com
 
 #  client:
 #    config:
