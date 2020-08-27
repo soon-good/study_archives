@@ -20,7 +20,7 @@ public class FeignClientConfig {
 			.encoder(new JacksonEncoder())
 			.decoder(new JacksonDecoder())
 			.logger(new Slf4jLogger(JsonPlaceholderClient.class))
-			.logLevel(Logger.Level.BASIC)
+			.logLevel(Logger.Level.FULL)
 			.target(JsonPlaceholderClient.class, "https://jsonplaceholder.typicode.com");
 	}
 }
