@@ -31,28 +31,29 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
     compileOnly 'org.projectlombok:lombok'
     runtimeOnly 'mysql:mysql-connector-java'
-    // https://mvnrepository.com/artifact/org.mariadb.jdbc/mariadb-java-client
     compile group: 'org.mariadb.jdbc', name: 'mariadb-java-client', version: '2.6.2'
     testCompile group: 'com.h2database', name: 'h2', version: '1.4.200'
-//    runtimeOnly 'h2:com.h2database'
     annotationProcessor 'org.projectlombok:lombok'
 
-    // spring-cloud-starter-config
+    //-- spring-cloud-starter-config
     // https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-starter-config
     compile group: 'org.springframework.cloud', name: 'spring-cloud-starter-config', version: '2.2.4.RELEASE'
 
-    // netflix
-    // https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-starter-feign
-//    compile group: 'org.springframework.cloud', name: 'spring-cloud-starter-feign', version: '1.4.7.RELEASE'
-
-    //spring-cloud-starter-openfeign
+    //-- spring-cloud-starter-openfeign
     // https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-starter-openfeign
     compile group: 'org.springframework.cloud', name: 'spring-cloud-starter-openfeign', version: '2.2.4.RELEASE'
 
+    // netflix
+    // https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-starter-feign
+    // compile group: 'org.springframework.cloud', name: 'spring-cloud-starter-feign', version: '1.4.7.RELEASE'
+
+    //-- openfeign utility (okhttp, jackson, etc)
     // https://mvnrepository.com/artifact/io.github.openfeign/feign-okhttp
     compile group: 'io.github.openfeign', name: 'feign-okhttp', version: '11.0'
     // https://mvnrepository.com/artifact/com.netflix.feign/feign-jackson
     compile group: 'com.netflix.feign', name: 'feign-jackson', version: '8.18.0'
+
+    //-- test
     testImplementation('org.springframework.boot:spring-boot-starter-test') {
         exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
     }
