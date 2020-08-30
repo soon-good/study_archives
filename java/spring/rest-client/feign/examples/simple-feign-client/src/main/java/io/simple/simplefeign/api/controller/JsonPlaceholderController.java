@@ -31,8 +31,8 @@ public class JsonPlaceholderController {
 	}
 
 	@GetMapping(value = "/json-placeholder/comments")
-	public List<Comment> getPostByParam(@RequestParam(name = "postId", required = false) final Long postId){
-		List<Comment> comments = jsonPlaceholderClient.getComment(postId);
+	public List<Comment> getPostByParam(@RequestParam(name = "postId") final Long postId){
+		List<Comment> comments = jsonPlaceholderClient.getComments(postId);
 		return comments;
 	}
 }

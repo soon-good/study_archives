@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 @FeignClient(name = "json-placeholder", url = "${feign.json-placeholder.url}")
 public interface JsonPlaceholderClient {
 
-	// 1. @GetMapping 같은 어노테이션은 사용하지 않는다.
+	// 1. 참고)
+	// netflix 구현체에서는 @GetMapping 같은 어노테이션은 사용하지 않는다.
+	// (netflix 구현체는 지원을 중단했다. openfeign 을 사용해야 한다.)
 	@GetMapping("/posts")
 	@RequestLine("GET /posts")
 	List<Post> getPosts();
@@ -24,11 +26,13 @@ public interface JsonPlaceholderClient {
 //	@RequestLine("GET /posts")
 //	Post getByBody(@RequestBody Post post);
 
-	// 2. PathVariable과 같은 Spring 어노테이션은 netflix 구현체에서 사용불가.
+	// 2. 참고)
+	// PathVariable과 같은 Spring 어노테이션은 netflix 구현체에서 사용불가.
+	// (netflix 구현체는 지원을 중단했다. openfeign 을 사용해야 한다.)
 //	Post get(@PathVariable("id") Long id);
 
 	@GetMapping(value = "/comments")
-	@RequestLine("GET /comments")
-	List<Comment> getComment(@Param("postId") Long postId);
+	@RequestLine("GET /comments?postId={postId}")
+	List<Comment> getComments(@Param("postId") Long postId);
 
 }
