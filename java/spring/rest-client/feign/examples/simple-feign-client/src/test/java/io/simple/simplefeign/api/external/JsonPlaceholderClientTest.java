@@ -6,14 +6,13 @@ import feign.jackson.JacksonDecoder;
 import feign.jackson.JacksonEncoder;
 import feign.okhttp.OkHttpClient;
 import feign.slf4j.Slf4jLogger;
+import io.simple.simplefeign.api.dto.Comment;
 import io.simple.simplefeign.api.dto.Post;
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 @ExtendWith(SpringExtension.class)
@@ -45,6 +44,13 @@ public class JsonPlaceholderClientTest {
 	void testJsonPlaceholderById(){
 		Post post = jsonPlaceholderClient.get(1L);
 		System.out.println(post);
+	}
+
+	@Test
+	@DisplayName("json-placeholder > comments")
+	void testCommentsById(){
+		List<Comment> comments = jsonPlaceholderClient.getComments(1L);
+		System.out.println(comments);
 	}
 
 //	@Disabled
