@@ -43,6 +43,11 @@ dependencies {
     // https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-starter-openfeign
     compile group: 'org.springframework.cloud', name: 'spring-cloud-starter-openfeign', version: '2.2.4.RELEASE'
 
+    //-- feign-core
+    // : 가끔가다 있는 에러들 중 데이터가 정상인데 json 에 특정 프로퍼티 위치가 잘못됐다 이런 메시지가 나오는데 이 부분에 관련된 의존성으로 보인다.
+    // https://mvnrepository.com/artifact/io.github.openfeign/feign-core
+    compile group: 'io.github.openfeign', name: 'feign-core', version: '11.0'
+
     // netflix
     // https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-starter-feign
     // compile group: 'org.springframework.cloud', name: 'spring-cloud-starter-feign', version: '1.4.7.RELEASE'
@@ -52,6 +57,9 @@ dependencies {
     compile group: 'io.github.openfeign', name: 'feign-okhttp', version: '11.0'
     // https://mvnrepository.com/artifact/com.netflix.feign/feign-jackson
     compile group: 'com.netflix.feign', name: 'feign-jackson', version: '8.18.0'
+    // https://mvnrepository.com/artifact/io.github.openfeign/feign-annotation-error-decoder
+    compile group: 'io.github.openfeign', name: 'feign-annotation-error-decoder', version: '1.2.0'
+
 
     //-- test
     testImplementation('org.springframework.boot:spring-boot-starter-test') {
