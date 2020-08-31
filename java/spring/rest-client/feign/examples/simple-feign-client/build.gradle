@@ -55,8 +55,8 @@ dependencies {
     //-- openfeign utility (okhttp, jackson, etc)
     // https://mvnrepository.com/artifact/io.github.openfeign/feign-okhttp
     compile group: 'io.github.openfeign', name: 'feign-okhttp', version: '11.0'
-    // https://mvnrepository.com/artifact/com.netflix.feign/feign-jackson
-    compile group: 'com.netflix.feign', name: 'feign-jackson', version: '8.18.0'
+    // https://mvnrepository.com/artifact/io.github.openfeign/feign-jackson
+    compile group: 'io.github.openfeign', name: 'feign-jackson', version: '11.0'
     // https://mvnrepository.com/artifact/io.github.openfeign/feign-annotation-error-decoder
     compile group: 'io.github.openfeign', name: 'feign-annotation-error-decoder', version: '1.2.0'
 

@@ -6,9 +6,12 @@
 
 # 1. 예제로 사용할 외부 API
 
-[https://jsonplaceholder.typicode.com/](https://jsonplaceholder.typicode.com/) 에서는 다양한... 은 아니고, Post, comment 등의 샘플 Rest API를 제공해준다. 외부API 예제로는 [jsonplaceholder.typicode.com](https://jsonplaceholder.typicode.com/)의 API를 사용할 것이다.  
+샘플 REST API 를 라이브로 제공해주는 온라인 웹 서비스들이 있다. 이곳에서 제공하는 API를 외부 API로 해서 Feign 클라이언트를 작성해보자.
 
-  
+- [https://jsonplaceholder.typicode.com/](https://jsonplaceholder.typicode.com/)
+- [https://reqres.in/](https://reqres.in/)
+
+
 
 # 2. 의존성 (build.gradle)
 
