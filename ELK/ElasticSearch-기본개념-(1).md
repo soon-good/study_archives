@@ -257,3 +257,232 @@ POST /catalog
 
 
 
+# 4. 조회 API
+
+위에서 생성한 데이터를 기반으로 예제를 돌려보자.  
+
+조회시에는  GET 메서드를 사용한다.  
+
+6.x) 이 명령은 7.x 에서는 Deprecated 되었다.  
+
+```
+GET /catalog/product/HnMMOnQB0026QqLvzmLm
+```
+
+7.x) 
+
+```
+GET /catalog/_doc/1
+```
+
+출력결과
+
+```
+{
+  "_index" : "catalog",
+  "_type" : "_doc",
+  "_id" : "1",
+  "_version" : 2,
+  "_seq_no" : 3,
+  "_primary_term" : 1,
+  "found" : true,
+  "_source" : {
+    "sku" : "SP000001",
+    "title" : "ElasticSearch for Hadoop",
+    "description" : "ElasticSearch for Hadoop",
+    "author" : "Vishal Shukla",
+    "ISBN" : "1785288997",
+    "price" : "39.21"
+  }
+}
+```
+
+
+
+# 5. 업데이트 API
+
+## 주요 개념
+
+- 업데이트 API는 기존 도큐먼트를 ID로 업데이트하는 데에 유용하다.
+- 일래스틱서치는 내부적으로각 도큐먼트의 버전을 관리한다. 도큐먼트가 변경될 때마다 버전 번호는 증가한다.
+- 부분 업데이트(업데이트 API(1) 참고)는 도큐먼트가 미리 존재하는 경우에만 동작한다.
+  - 주어진 ID를 가진 도큐먼트가 없는 경우, 일래스틱 서치는 도큐먼트가 없다는 오류를 반환한다.
+- 일래스틱 서치에서는 upsert 를 할 수 있다.
+- upsert 는 update 또는 insert 를 모두 할 수 있는 기능을 의미한다.
+- doc_as_upsert 는 주어진 ID를 가진 도큐먼트가 이미 존재하는지 확인하고, 요청한 도큐먼트를 기존 도큐먼트와 병합한다.
+
+- 주어진 ID를 가진 도큐먼트가 존재하지 않으면 주어진 도큐먼트 내용을 가진 새로운 도큐먼트를 삽입한다.
+
+
+
+## 일반 업데이트 API
+
+- 6.x) POST /catalog/product/1/_update
+- 7.x) POST /catalog/_update/1
+
+
+
+## upsert
+
+- 6.x) POST /catalog/product/1/_update
+- 7.x) POST /{index}/_update/1
+
+
+
+## 업데이트 API 예제 (1)
+
+### 6.x)  
+
+```
+POST /catalog/product/1/_update
+{
+  "doc":{
+    "price": "39.39"
+  }
+}
+```
+
+
+
+ 출력결과) 위의 6.x 대의 명령을 실행하면 아래와 같은 경고 문구가 나타난다.  
+
+```
+#! Deprecation: [types removal] Specifying types in document update requests is deprecated, use the endpoint /{index}/_update/{id} instead.
+{
+  "_index" : "catalog",
+  "_type" : "product",
+  "_id" : "1",
+  "_version" : 3,
+  "result" : "updated",
+  "_shards" : {
+    "total" : 2,
+    "successful" : 1,
+    "failed" : 0
+  },
+  "_seq_no" : 4,
+  "_primary_term" : 1
+}
+```
+
+
+
+### 7.x)
+
+```
+POST /catalog/_update/1
+{
+  "doc":{
+    "price": "39.3939"
+  }
+}
+```
+
+
+
+출력결과)
+
+```
+{
+  "_index" : "catalog",
+  "_type" : "_doc",
+  "_id" : "1",
+  "_version" : 4,
+  "result" : "updated",
+  "_shards" : {
+    "total" : 2,
+    "successful" : 1,
+    "failed" : 0
+  },
+  "_seq_no" : 5,
+  "_primary_term" : 1
+}
+```
+
+
+
+## 업데이트 API 예제 (2)
+
+업데이트 API는 기존 도큐먼트를 ID로 업데이트하는 데에 유용하다.  
+매개변수로 doc_as_upsert 를 이용해 ID가 3인 도큐먼트를 병합하거나, 존재하지 않는 다면 새로운 도큐먼트를 삽입한다.  
+
+### 6.x)
+
+```
+POST /catalog/product/3/_update
+{
+  "doc":{
+    "author": "Albert Paro",
+    "title": "ElasticSearch 5.0 Cookbook",
+    "description": "ElasticSearch 5.0 Cookbook Third Edition",
+    "price": "54.99"
+  },
+  "doc_as_upsert": true
+}
+```
+
+
+
+출력결과) 출력결과를 보면 역시나 DEPRECATED 된 명령어 형식이다.
+
+```
+#! Deprecation: [types removal] Specifying types in document update requests is deprecated, use the endpoint /{index}/_update/{id} instead.
+{
+  "_index" : "catalog",
+  "_type" : "product",
+  "_id" : "3",
+  "_version" : 1,
+  "result" : "created",
+  "_shards" : {
+    "total" : 2,
+    "successful" : 1,
+    "failed" : 0
+  },
+  "_seq_no" : 6,
+  "_primary_term" : 1
+}
+```
+
+
+
+### 7.x)
+
+> POST /{index}/_update/{id}
+
+```
+POST /catalog/_update/3
+{
+  "doc":{
+    "author": "Albert Paro",
+    "title": "ElasticSearch 5.0 Cookbook",
+    "description": "ElasticSearch 5.0 Cookbook Third Edition",
+    "price": "54.99"
+  },
+  "doc_as_upsert": true
+}
+```
+
+
+
+출력결과
+
+```
+{
+  "_index" : "catalog",
+  "_type" : "_doc",
+  "_id" : "3",
+  "_version" : 1,
+  "result" : "noop",
+  "_shards" : {
+    "total" : 0,
+    "successful" : 0,
+    "failed" : 0
+  },
+  "_seq_no" : 6,
+  "_primary_term" : 1
+}
+```
+
+
+
+
+
