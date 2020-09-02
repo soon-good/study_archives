@@ -1,8 +1,40 @@
 # Spring Boot 에서 Feign 사용하기
 
-프로젝트를 진행하다보면 외부 API와 통신할 일이 많다. Feign 을 사용하지 않는다면 보통 rest-client 를 이용해서 외부 API를 사용한다. Feign에 대한 간단한 개념들은 정리해야지.. !TODO 수요일!!! 수요일에 정리  
+프로젝트를 진행하다보면 외부 API에 데이터를 가져오거나, 외부 API 서버에 요청을 보내 특정 동작을 수행하도록 요청하는 경우(결제 요청 등등)가 자주 있다. 이런 경우 javascript 에서 ajax 통신을 통해 REST API에 요청을 보내는 것도 하나의 방법이다. 하지만 요청을 보낼 REST API서버의 위치가 
+
+- 사내 망에서만 접근이 가능하거나
+- 서버단에서 요청을 보내는 것이 더 맞는 경우
+- Java로 크롤링을 하는 경우 
+
+등등의 경우도 생각해봐야 한다. 이런 경우는 서버단에서 외부 API를 호출해야 한다. Spring/Maven 에서는 다른 서버의 REST API와 통신하기 위한 기본적인 기능들을 제공하는 라이브러리를 제공해주고 있다. 
+
+- [springframework.http.client](https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/http/client/package-summary.html)
+- [jersey-client](https://mvnrepository.com/artifact/org.glassfish.jersey.core/jersey-client)
+
+
+
+그런데 위의 라이브러리는 REST API 통신을 위한 정말 기초적인 기능들만을 제공해준다. REST API 의 상태를 체크해서 예외상황이라 판단하여 해당 API를 끝내거나 하는 기능들을 부가적으로 제공하지는 않는다. 즉, 사용자가 직접 구현해야 한다. 상용서비스들은 비지니스 로직이 굉장히 길고 호출들도 다양하다. 그런데 만약 외부 REST API 호출을 할때 네트워크 장애 등의 예외상황에 대한 처리를 직접 구현하지 않을 경우, 그 중간의 흐름에서 특정 외부 API로 호출을 했으나 응답이 없을경우 CONNECTION ERROR 등의 RESPONSE가 오기 전까지는 기다려야 하게 되고, 이 구간이 병목구간이 되어 운영상의 성능을 저하시키게 될 가능성 또한 있다.  
 
   
+
+이런 이유로 circuitbreaker 라는 개념을 다뤄볼 예정인데... circuitBreaker에 대해서는 다음에 정리할 예정이고 오늘은 Feign 라이브러리를 정리해보려 한다. Circuit Breaker 는 Feign을 사용할 경우에 대한 설정 역시 제공해주고 있다.  
+
+  
+
+오늘 사용해볼 Feign 라이브러리는 REST API Client 를 구현할 때 사용하는 로직들을 공통화하고, 추상화하여 라이브러리화 한 오픈소스이다. 처음 사용해봤지만, 정말 편리하다. 가져오려는 외부 REST API에 대한 스프링 설정을 통해
+
+- Http Client 의 종류
+- Json Encoder/Json Decoder 의 종류
+- Logger
+- 외부 API에 따른 별도의 Log Level, Loger의 종류
+
+를 조립식으로 설정하고 입맛대로 커스터마이징해서 코드를 공통화 할 수 있다는 장점이 있다.  
+
+
+
+서론이 길었다. Feign 을 사용하는 장점을 짧고 굵게 요약해보면, "굉장히 편리하고 변경이 용이하다. 개발 속도가 빠르다. 모듈화가 굉장히 잘 되어있다"는 점이 장점이다.
+
+
 
 # 1. 예제로 사용할 외부 API
 
@@ -10,6 +42,8 @@
 
 - [https://jsonplaceholder.typicode.com/](https://jsonplaceholder.typicode.com/)
 - [https://reqres.in/](https://reqres.in/)
+- [http://dummy.restapiexample.com/](http://dummy.restapiexample.com/)
+- [https://fakerestapi.azurewebsites.net/](https://fakerestapi.azurewebsites.net/)
 
 
 
@@ -70,8 +104,6 @@ compile group: 'org.springframework.cloud', name: 'spring-cloud-starter-openfeig
 #### feign-core
 
 - feign-core
-
-> 가끔가다 있는 에러들 중 데이터가 정상인데 json 에 특정 프로퍼티 위치가 잘못됐다 이런 메시지가 나오는데 이 부분에 관련된 의존성으로 보인다.  !TODO 수요일 정리
 
 ```groovy
 //-- feign-core
@@ -152,7 +184,6 @@ dependencies {
     compile group: 'org.springframework.cloud', name: 'spring-cloud-starter-openfeign', version: '2.2.4.RELEASE'
 
     //-- feign-core
-    // : 가끔가다 있는 에러들 중 데이터가 정상인데 json 에 특정 프로퍼티 위치가 잘못됐다 이런 메시지가 나오는데 이 부분에 관련된 의존성으로 보인다.
     // https://mvnrepository.com/artifact/io.github.openfeign/feign-core
     compile group: 'io.github.openfeign', name: 'feign-core', version: '11.0'
 
@@ -309,9 +340,11 @@ public class Comment {
 
 
 
-## FeinClient
+## FeignClient
 
-!TODO 설명은 수요일에 흐하하하하..... 
+### GET 메서드 예제
+
+FeignClient 는 interface 내에 @GetMapping, @RequestLine 등의 어노테이션을 사용하여 통신 가능하다. 이러한 interface를 구현해서 사용하는 경우는 아직까지는 못봤다. 굳이 그럴 이유가 없어서 실제로 그렇게 해본 사람들은 없는 듯 하다.
 
 ```java
 package io.simple.simplefeign.api.external;
@@ -356,11 +389,31 @@ public interface JsonPlaceholderClient {
 
 
 
+- @FeignClient
+  - name 에는 FeignClient의 이름을 지정해준다.
+  - url 에는 요정하려는 외부 REST API의 base url을 지정해준다. 
+    - application.yml의 feign.json-placeholder.url 에는 https://jsonplaceholder.typicode.com 을 입력해두었다.
+- @RequestLine("GET /posts/{id}")
+  - https://jsonplaceholder/typicode.com/posts/{id} 에 GET 요청을 한다.
+- @GetMapping
+  - openfeign 을 사용할 때 @RequestMapping, @GetMapping을 Feign Client 내의 외부요청 메서드에 명시해주어야 한다.
+- @Param
+  - @RequestParam 과 같은 역할을 한다.
+  - 외부 API에 요청할 때에 @Param 어노테이션을 사용한다.
+
+
+
+### POST 메서드 예제
+
+
+
+
+
 # 6. Test Code
 
 Web 을 구동시켜서 확인해보기 전에 Test Code로 동작을 확인해보자. Test 의존성은 Junit5를 사용했다. junit4를 사용할 경웅에도 몇개의 코드만 수정해서 적용하면 된다.  
 
-!TODO setup() 에서 FeignClient 객체인 JsonPlaceholderClient 타입의 인스턴스를 생성하고 있다. 이 부분에 대해서는 추후에 정리할 예정 (수요일~!!!! ㅋㅋㅋ)
+!TODO setup() 에서 FeignClient 객체인 JsonPlaceholderClient 타입의 인스턴스를 생성하고 있다. 이 부분에 대해서는 추후에 정리할 예정 (목요일~!!!! ㅋㅋㅋ)
 
 ```java
 package io.simple.simplefeign.api.external;

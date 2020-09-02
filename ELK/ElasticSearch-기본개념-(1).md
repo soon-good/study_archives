@@ -484,5 +484,157 @@ POST /catalog/_update/3
 
 
 
+## 업데이트 API 예제 (3)
+
+스크립트를 활용해 특정 제품 가격을 2로 증가시키는 것 역시 가능하다.
+
+### 6.x (DEPRECATED)
+
+> POST /catalog/product/{id}/_update
+
+현재 6.x 명령은 DEPRECATED 되었다.
+
+```
+POST /catalog/product/HnMMOnQB0026QqLvzmLm/_update
+{
+  "script":{
+    "inline": "ctx._source.price += params.increment",
+    "lang": "painless",
+    "params": {
+      "increment": 2
+    }
+  }
+}
+```
+
+  
+
+출력결과
+
+```
+출력결과
+#! Deprecation: [types removal] Specifying types in document update requests is deprecated, use the endpoint /{index}/_update/{id} instead.
+#! Deprecation: [script][3:15] Deprecated field [inline] used, expected [source] instead
+{
+  "_index" : "catalog",
+  "_type" : "product",
+  "_id" : "HnMMOnQB0026QqLvzmLm",
+  "_version" : 2,
+  "result" : "updated",
+  "_shards" : {
+    "total" : 2,
+    "successful" : 1,
+    "failed" : 0
+  },
+  "_seq_no" : 7,
+  "_primary_term" : 1
+}
+```
+
+
+
+### 7.x
+
+> POST /catalog/_update/{id}
+
+```
+POST /catalog/_update/HnMMOnQB0026QqLvzmLm
+{
+  "script":{
+    "source": "ctx._source.price += params.increment",
+    "lang": "painless",
+    "params": {
+      "increment": 2
+    }
+  }
+}
+```
+
+  
+
+출력결과
+
+```
+{
+  "_index" : "catalog",
+  "_type" : "_doc",
+  "_id" : "HnMMOnQB0026QqLvzmLm",
+  "_version" : 3,
+  "result" : "updated",
+  "_shards" : {
+    "total" : 2,
+    "successful" : 1,
+    "failed" : 0
+  },
+  "_seq_no" : 8,
+  "_primary_term" : 1
+}
+```
+
+
+
+# 삭제 API
+
+## 6.x (DEPRECATED)
+
+> DELETE /catalog/product/{id}
+
+6.x 대의 명령은 현재 DEPRECATED 되었다.
+
+```
+#! Deprecation: [types removal] Specifying types in document index requests is deprecated, use the /{index}/_doc/{id} endpoint instead.
+{
+  "_index" : "catalog",
+  "_type" : "product",
+  "_id" : "HnMMOnQB0026QqLvzmLm",
+  "_version" : 4,
+  "result" : "deleted",
+  "_shards" : {
+    "total" : 2,
+    "successful" : 1,
+    "failed" : 0
+  },
+  "_seq_no" : 9,
+  "_primary_term" : 1
+}
+```
+
+
+
+## 7.x 
+
+> DELETE /{index}/_doc/{id}
+
+```
+DELETE /catalog/_doc/3
+```
+
+  
+
+출력결과
+
+```
+{
+  "_index" : "catalog",
+  "_type" : "_doc",
+  "_id" : "3",
+  "_version" : 2,
+  "result" : "deleted",
+  "_shards" : {
+    "total" : 2,
+    "successful" : 1,
+    "failed" : 0
+  },
+  "_seq_no" : 10,
+  "_primary_term" : 1
+}
+```
+
+
+
+
+
+
+
 
 
