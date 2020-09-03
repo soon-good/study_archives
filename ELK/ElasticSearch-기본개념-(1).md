@@ -82,11 +82,23 @@ type을 지정해서 INSERT하는 방식은 DEPRECATED 되었다고 한다. 7.x 
 
   
 
-## 동적 매핑
+## 매핑, 동적 매핑
 
-> 인덱스와 도큐먼트를 한번에 INSERT시 도큐먼트가 아직 존재하지 않을 경우 필드의 데이터 타입을 추론한다. 이것을 동적 매핑이라고 한다.  
+> 기본적으로 매핑은 데이터의 자료 형을 맞춰주는 작업이다. 데이터의 자료 형을 ElasticSearch 외의 다른 분야에서는 타입이라고 부른다. ElasticSearch에서는 6.x 까지는 Type 이 관겨형 DB에서의 테이블과 같은 개념이었다. 그런데 이 Type 이라는 개념이 7.x 부터는 DEPRECATED 되었다. 아마도 자료형을 말하는 Type과 테이블의 개념을 의미하는 Type 이라는 용어 사이에 혼동이 되는 점 때문에 DEPRECATED 되지 않았을까 하는 생각이 든다.
 
-  
+매핑을 생성하는 방식은 크게 세 가지의 방법이 있다.
+- 동적 매핑
+  - 인덱스와 도큐먼트를 한번에 INSERT시 도큐먼트가 아직 존재하지 않을 경우 필드의 데이터 타입을 추론한다. 이것을 동적 매핑이라고 한다.
+  - 인덱스에 첫 번째 도큐먼트를 색인하면 새로운 인덱스를 생성하면서 매핑 타입을 자동으로 생성한다.
+  - 하지만 매핑 타입이 이렇게 자동으로 생성되는 것 보다는 직접 제어되는 것이 더 좋다.
+- 인덱스 생성시
+  - 인덱스 생성시 타입에 대한 매핑을 지정할 수 있다.
+    - 6.x 버전의 명령어는 더이상 지원되지 않고 에러를 뿜는다.
+    - 7.x 부터는 타입이 없다. 어떻게 지정하는지 확인해봐야 할 듯 하다.
+- 기존 인덱스에 타입 매핑 생성
+- 매핑 업데이트  
+
+
 
 # 3. 인덱스 추가 연산
 
@@ -860,13 +872,146 @@ PUT /catalog/_mapping
 
 ### 매핑 결과 확인
 
-### 데이터 INSERT 해보기
+> GET /catalog/_mapping  
 
-code라는 필드가 제대로 출력되는지, 매핑은 제대로 되었는지를 확인해보기 위한 목적이다.  
+```
+{
+  "catalog" : {
+    "mappings" : {
+      "properties" : {
+        "ISBN" : {
+          "type" : "text",
+          "fields" : {
+            "keyword" : {
+              "type" : "keyword",
+              "ignore_above" : 256
+            }
+          }
+        },
+        "author" : {
+          "type" : "text",
+          "fields" : {
+            "keyword" : {
+              "type" : "keyword",
+              "ignore_above" : 256
+            }
+          }
+        },
+        "code" : {
+          "type" : "keyword"
+        },
+        "description" : {
+          "type" : "text",
+          "fields" : {
+            "keyword" : {
+              "type" : "keyword",
+              "ignore_above" : 256
+            }
+          }
+        },
+        "name" : {
+          "type" : "text"
+        },
+        "os" : {
+          "type" : "text",
+          "fields" : {
+            "keyword" : {
+              "type" : "keyword",
+              "ignore_above" : 256
+            }
+          }
+        },
+        "price" : {
+          "type" : "float"
+        },
+        "resolution" : {
+          "type" : "text",
+          "fields" : {
+            "keyword" : {
+              "type" : "keyword",
+              "ignore_above" : 256
+            }
+          }
+        },
+        "sku" : {
+          "type" : "text",
+          "fields" : {
+            "keyword" : {
+              "type" : "keyword",
+              "ignore_above" : 256
+            }
+          }
+        },
+        "title" : {
+          "type" : "text",
+          "fields" : {
+            "keyword" : {
+              "type" : "keyword",
+              "ignore_above" : 256
+            }
+          }
+        }
+      }
+    }
+  }
+}
+```
 
-### 6.x
+
+
+## 데이터 INSERT 해보기
+
+code라는 필드가 제대로 출력되는지, 매핑은 제대로 되었는지를 확인해보기 위한 목적이다.    
+
+### 6.x (DEPRECATED)
+
+> POST /catalog/category { ... }
+
+```
+POST /catalog/category
+{
+  "name": "sports",
+  "code": "C004",
+  "description": "Sports equipment"
+}
+```
+
+출력결과  
+
+6.x 는 DEPRECATED 되었으므로 생략.  
 
 ### 7.x
+
+> POST /catalog/_doc { ... }
+
+```
+POST /catalog/_doc
+{
+  "name": "sports",
+  "code": "C004",
+  "description": "Sports equipment"
+}
+```
+
+출력결과  
+
+```
+출력결과
+{
+  "_index" : "catalog",
+  "_type" : "_doc",
+  "_id" : "lHOQOnQB0026QqLvtm6Q",
+  "_version" : 1,
+  "result" : "created",
+  "_shards" : {
+    "total" : 2,
+    "successful" : 1,
+    "failed" : 0
+  },
+  "_seq_no" : 11,
+  "_primary_term" : 1
+}
+```
 
 
 
