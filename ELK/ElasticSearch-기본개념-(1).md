@@ -573,7 +573,7 @@ POST /catalog/_update/HnMMOnQB0026QqLvzmLm
 
 
 
-# 삭제 API
+# 6. 삭제 API
 
 ## 6.x (DEPRECATED)
 
@@ -629,6 +629,244 @@ DELETE /catalog/_doc/3
   "_primary_term" : 1
 }
 ```
+
+
+
+# 7. 인덱스 생성 및 매핑 관리 
+
+81p)   
+
+매핑을 생성하는 방식은 크게 세 가지의 방법이 있다.
+
+(81p)
+매핑을 생성하는 방식은 크게 세 가지의 방법이 있다.
+- 동적 매핑
+  - 인덱스와 도큐먼트를 한번에 INSERT시 도큐먼트가 아직 존재하지 않을 경우 필드의 데이터 타입을 추론한다. 이것을 동적 매핑이라고 한다.
+  - 인덱스에 첫 번째 도큐먼트를 색인하면 새로운 인덱스를 생성하면서 매핑 타입을 자동으로 생성한다.
+  - 하지만 매핑 타입이 이렇게 자동으로 생성되는 것 보다는 직접 제어되는 것이 더 좋다.
+- 인덱스 생성시
+  - 인덱스 생성시 타입에 대한 매핑을 지정할 수 있다.
+    - 6.x 버전의 명령어는 더이상 지원되지 않고 에러를 뿜는다.
+    - 7.x 부터는 타입이 없다. 어떻게 지정하는지 확인해봐야 할 듯 하다.
+- 기존 인덱스에 매핑 생성
+- 매핑 업데이트
+
+
+
+## 인덱스 생성시 매핑 추가
+
+### 6.x) DEPRECATED
+
+DEPRECATED 되었지만, 현업에서 이미 6.x 를 사용하고 있는 시스템이 많을 수도 있기 때문에 정리해둔다.
+
+> PUT /my_index {...}
+
+```
+PUT /my_index
+{
+  "settings": {
+    "index":{
+      "number_of_shards": 5,
+      "number_of_replicas": 2
+    }
+  },
+  "mappings": {
+    "my_type":{
+      "properties":{
+        "f1":{
+          "type": "text"
+        },
+        "f2":{
+          "type": "keyword"
+        }
+      }
+    }
+  }
+}
+```
+
+
+
+출력결과  
+
+DEPRECATED 되었다는 경고문구없이 에러를 낸다. 7.x 매핑에서는 아예 6.x 버전대를 지원하지 않으므로 출력결과는 생략.  
+
+  
+
+### 7.x)
+
+> PUT /my_index {...}
+
+예제
+
+```
+PUT /my_index
+{
+  "settings": {
+    "index":{
+      "number_of_shards": 5,
+      "number_of_replicas": 2
+    }
+  },
+  "mappings": {
+    "my_type":{
+      "properties":{
+        "f1":{
+          "type": "text"
+        },
+        "f2":{
+          "type": "keyword"
+        }
+      }
+    }
+  }
+}
+```
+
+  
+
+출력결과
+
+```
+{
+  "acknowledged" : true,
+  "shards_acknowledged" : true,
+  "index" : "my_index"
+}
+```
+
+
+
+## 기존 인덱스에 매핑 생성 
+
+- 6.x) 기존 인덱스 밑에 생성한 타입의 매핑 생성
+- 7.x) 기존 인덱스에 대한 매핑 생성
+
+### 6.x) DEPRECATED - 7.x 에서는 사용불가
+
+인덱스를 생성한 후에 타입을 추가할 수 있다. (7.x 에서는 타입이 없어졌다. 이 부분은 6.x 에만 해당된다.)  
+
+```
+PUT /catalog/_mapping/my_type2
+{
+  "properties":{
+    "name":{
+      "type": "text"
+    }
+  }
+}
+```
+
+
+
+출력결과  
+
+7.x에서는 에러가 나므로 따로 출력결과를 기록하지 않으려 한다.  
+
+
+
+### 7.x)
+
+> PUT /catalog/_mapping
+
+```
+PUT /catalog/_mapping
+{
+  "properties":{
+    "name":{
+      "type": "text"
+    }
+  }
+}
+```
+
+  
+
+출력결과  
+
+```
+{
+  "acknowledged" : true
+}
+```
+
+
+
+>  !TODO 
+>
+> - 추가 정리 필요한 부분 : 83p ~ 84p
+
+
+
+## 매핑 업데이트
+
+> - 6.x) 
+>   - 새로운 필드에 대한 매핑은 타입 생성 후 추가할 수 있다. (물론 이것은 6.x 에만 해당되는 이야기이다. 7.x에서는 타입 자체가 없다.)  
+> - 7.x) 
+>   - 인덱스가 이미 생성되어 있다면, 이 인덱스에 대해 _mapping 요소에 쿼리를 실행해 매핑을 업데이트 할 수 있다.
+>   - 7.x 에서부터는 인덱스 자체가 데이터를 저장할 수 있는 역할을 한다. 인덱스 하나 자체가 데이터 엔티티가 되어 독립적인 존재이다.
+
+
+
+### 6.x (DEPRECATED)
+
+현업에서 아직 6.x 대의 인덱스/타입을 운영중인 경우가 있을 수 있으므로 명령어를 정리. 7.x 에서는 실행자체가 안되므로 주의!  
+
+> PUT /catalog/_mapping/catalog { ... }
+
+```
+PUT /catalog/_mapping/catalog
+{s
+  "properties":{
+    "code":{
+      "type": "keyword"
+    }
+  }
+}
+```
+
+
+
+### 7.x 
+
+> PUT /catalog/_mapping {...}  
+
+catalog 라는 인덱스 내의 type 이라는 필드의 데이터 타입을 keyword 로 변경 
+
+```
+PUT /catalog/_mapping
+{
+  "properties":{
+    "code":{
+      "type": "keyword"
+    }
+  }
+}
+```
+
+
+
+출력결과
+
+```
+{
+  "acknowledged" : true
+}
+```
+
+
+
+!TODO 금요일... 분량이 많아서 다음날로 패스
+
+### 매핑 결과 확인
+
+### 데이터 INSERT 해보기
+
+code라는 필드가 제대로 출력되는지, 매핑은 제대로 되었는지를 확인해보기 위한 목적이다.  
+
+### 6.x
+
+### 7.x
 
 
 
