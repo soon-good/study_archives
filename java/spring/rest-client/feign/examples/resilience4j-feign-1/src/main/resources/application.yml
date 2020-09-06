@@ -1,0 +1,13 @@
+feign:
+  json-placeholder:
+    url: https://jsonplaceholder.typicode.com
+#  client:
+#    config:
+spring:
+  datasource:
+    url: jdbc:mariadb://localhost:23306/ec2_web_stockdata
+    username: testuser
+    password: 1111
+    hikari:
+      auto-commit: true
+    driver-class-name: org.mariadb.jdbc.Driver
