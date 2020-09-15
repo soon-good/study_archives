@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Slf4j
 @Controller
-public class Step1Controller {
+public class Step2Controller {
 
 	@GetMapping(value = "/step2/home")
 	public String getStep1Test(Locale locale, Model model){

@@ -1,4 +1,4 @@
-package io.study.tdd.tddforall.step3.entity;
+package io.study.tdd.tddforall.entity;
 
 import java.util.ArrayList;
 import java.util.List;

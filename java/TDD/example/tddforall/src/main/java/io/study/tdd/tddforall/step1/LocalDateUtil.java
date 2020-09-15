@@ -1,11 +1,10 @@
-package io.study.tdd.tddforall.step;
+package io.study.tdd.tddforall.step1;
 
 import java.time.LocalDate;
 
 public class LocalDateUtil {
 
-	public LocalDate currentDate(){
-		final LocalDate now = LocalDate.now();
-		return now;
+	public static LocalDate currentDate(){
+		return LocalDate.now();
 	}
 }
