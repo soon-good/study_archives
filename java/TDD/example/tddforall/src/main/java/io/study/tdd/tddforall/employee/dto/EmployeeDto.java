@@ -1,9 +1,8 @@
-package io.study.tdd.tddforall.step4.dto;
+package io.study.tdd.tddforall.employee.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import io.study.tdd.tddforall.entity.Employee;
-import lombok.Builder;
+import io.study.tdd.tddforall.employee.entity.Employee;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;

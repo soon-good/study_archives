@@ -1,13 +1,13 @@
-package io.study.tdd.tddforall.step4;
+package io.study.tdd.tddforall.employee;
 
-import io.study.tdd.tddforall.step4.dto.EmployeeDto;
+import io.study.tdd.tddforall.employee.dto.EmployeeDto;
 import java.util.List;
 
-public class Step4ServiceImpl implements Step4Service {
+public class EmpServiceImpl implements EmpService {
 
 	private final EmpRawJpaRepository repository;
 
-	public Step4ServiceImpl(EmpRawJpaRepository repository){
+	public EmpServiceImpl(EmpRawJpaRepository repository){
 		this.repository = repository;
 	}
 

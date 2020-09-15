@@ -1,4 +1,4 @@
-package io.study.tdd.tddforall.step2;
+package io.study.tdd.tddforall.employee;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -10,8 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Slf4j
 @Controller
-public class Step2Controller {
-
+public class EmpController {
 	@GetMapping(value = "/step2/home")
 	public String getStep1Test(Locale locale, Model model){
 		log.debug("Step1Controller, GetMapping");

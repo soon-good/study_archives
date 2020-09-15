@@ -2,14 +2,13 @@ package io.study.tdd.tddforall.step3.entity;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import io.study.tdd.tddforall.entity.Department;
-import io.study.tdd.tddforall.entity.Employee;
+import io.study.tdd.tddforall.employee.entity.Department;
+import io.study.tdd.tddforall.employee.entity.Employee;
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.Resource;
 import javax.persistence.EntityManager;
 import lombok.extern.slf4j.Slf4j;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

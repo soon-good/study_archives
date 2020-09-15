@@ -1,5 +1,6 @@
 package io.study.tdd.tddforall.step2;
 
+import io.study.tdd.tddforall.employee.EmpController;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -12,10 +13,10 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 @SpringBootTest
-class Step2ControllerTest {
+class EmpControllerTest {
 
 	@Autowired
-	private Step2Controller controller;
+	private EmpController controller;
 
 	private MockMvc mockMvc;
 

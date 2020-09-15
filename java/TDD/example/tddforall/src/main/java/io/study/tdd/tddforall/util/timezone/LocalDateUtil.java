@@ -1,4 +1,4 @@
-package io.study.tdd.tddforall.step1;
+package io.study.tdd.tddforall.util.timezone;
 
 import java.time.LocalDate;
 

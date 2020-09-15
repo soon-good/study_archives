@@ -1,7 +1,7 @@
-package io.study.tdd.tddforall.step4;
+package io.study.tdd.tddforall.employee;
 
-import io.study.tdd.tddforall.entity.Employee;
-import io.study.tdd.tddforall.step4.dto.EmployeeDto;
+import io.study.tdd.tddforall.employee.entity.Employee;
+import io.study.tdd.tddforall.employee.dto.EmployeeDto;
 import java.util.List;
 import java.util.stream.Collectors;
 import javax.persistence.EntityManager;

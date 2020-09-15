@@ -1,5 +1,7 @@
 package io.study.tdd.tddforall.step4;
 
+import io.study.tdd.tddforall.employee.EmpRawJpaRepository;
+import io.study.tdd.tddforall.employee.EmpServiceImpl;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -20,7 +22,7 @@ class Step4Test {
 	private EmpRawJpaRepository mockRepository;
 
 	@InjectMocks
-	private Step4ServiceImpl mockService;
+	private EmpServiceImpl mockService;
 
 	@Autowired
 	private EmpRawJpaRepository empRawJpaRepository;

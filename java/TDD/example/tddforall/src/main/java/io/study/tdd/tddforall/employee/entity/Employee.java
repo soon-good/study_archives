@@ -1,4 +1,4 @@
-package io.study.tdd.tddforall.entity;
+package io.study.tdd.tddforall.employee.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
