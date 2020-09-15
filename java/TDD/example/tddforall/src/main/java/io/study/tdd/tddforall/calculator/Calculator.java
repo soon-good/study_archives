@@ -5,7 +5,7 @@ import io.study.tdd.tddforall.util.timezone.LocaleProcessor;
 
 public class Calculator {
 
-	private LocaleProcessor localeProcessor;
+	private final LocaleProcessor localeProcessor;
 
 	public Calculator (LocaleProcessor localeProcessor){
 		this.localeProcessor = localeProcessor;
