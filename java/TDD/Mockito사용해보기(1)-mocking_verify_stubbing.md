@@ -175,7 +175,7 @@ Spring 을 프레임워크로 채택해서 개발을 할 때 자주 궁금해지
 
 > 그런데, 디버깅은 개발자 한 사람만 증상을 확인할 수 있다. 협업하는 다른 개발자들도 이런 경우에 대해 확인이 필요할 때 디버깅을 똑같이 하기에는 시간적으로 조금은 낭비가 될 수 있다. 컨트롤러나 서비스가 특정환경에서 이런 결과를 낸다는 것에 대해 정형화된 케이스가 필요한데 이런 이유로 테스트 코드를 작성하는 편이다. 그리고 Mocking과 Stubbing을 사용해 특정 입력값에 대해서 이러한 결과값이 나온다는 것을 보증하는 테스트 케이스를 작성하는 편이다.  
 >
-> 이렇게 하면 서로 같은 모니터를 보며 디버깅을 하지 않아도 되고, 원하는 시간에 원하는 장소에서 테스트 결과의 정합성을 1차적으로 우선 확인할 수 있다.   
+> 이렇게 하면 여러 명의 개발자들이 서로 같은 모니터를 보며 디버깅을 하지 않아도 되고, 개발자 각각이 원하는 시간에 원하는 장소에서 테스트 결과의 정합성을 1차적으로 우선 확인할 수 있다.   
 
   
 
@@ -199,9 +199,134 @@ DB의 데이터의 정합성을 테스트하는 경우 역시 존재할 수 있�
 
 
 
-### 2) 객체 Mocking (1) : 테스트 클래스의 멤버필드에 @Mock, @InjectMocks로 필드 인젝션
+### 객체 Mocking (1) - 테스트 클래스의 멤버필드에 @Mock, @InjectMocks로 필드 인젝션
+
+테스트 클래스 내에 멤버필드로 LocaleProcessor, Calculator 타입의 필드들을 선언했다.  Calculator 클래스 내의 멤버필드인 LocaleProcessor 타입의 객체를 Caculator 목 객체 안에 주입하는 간단한 예제이다.  
+
+#### 테스트 코드
+
+```java
+@ExtendWith(MockitoExtension.class)
+class MockitoStep1Test {
+
+    @Mock
+    private LocaleProcessor localeProcessor;
+
+    @InjectMocks
+    private Calculator calculator;
+
+    // ...
+
+    @Test
+    @DisplayName("#0 객체 Mocking (1) >>> 테스트 클래스의 멤버필드에 @Mock, @InjectMocks로 필드 인젝션")
+    void testObjectMocking1(){
+        Mockito.when(localeProcessor.getServerCountryCode())
+            .thenReturn(CountryCode.JAPAN);
+
+        int result = calculator.add(1, 2);
+        Assertions.assertThat(result).isEqualTo(1+2);
+    }
+}
+```
 
 
+
+- @Mcok
+  - 개별 의존성 주입은 @Mock 어노테이션으로 주입가능하다.
+  - 테스트 클래스 내의 LocalePRocessor 타입의 인스턴스는 @Mock 으로 선언했다.
+- @InjectMocks
+  - 하나의 객체 A 안에 다른 여러가지의 객체들을 주입해야 하는 경우 객체 A에 대해 @InjectMocks 어노테이션을 지정하면 객체 A안의 멤버필드에 타입이 맞는 개별 의존성들을 주입한다.
+  - 테스트 클래스 내의 Calculator 타입의 인스턴스에 대한 의존성들을 @InjectMocks로 목업(Mocking)하면서, Calculator 타입의 인스턴스 calculator 역시 목업(Mocking)했다.
+
+Calculator 클래스 내의 LocaleProcessor 타입의 인스턴스로 localeProcessor.getServerConuntryCode()를 호출했을때 localeProcessor.getServerCountryCode()의 반환값이 CountryCode.JAPAN 이 되도록 가정(Stubbing)했다.  
+
+
+
+#### 출력결과
+
+![이미지](./img/mock1/1.png)
+
+
+
+# CountryCode.java
+
+Enum 으로 작성한 국가 코드 클래스이다. 
+
+```java
+package io.study.tdd.tddforall.util.timezone;
+
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Locale;
+import java.util.Map;
+
+public enum CountryCode {
+	KOREA (Locale.KOREA.getCountry(), Locale.KOREA){
+		@Override
+		public String getGreeting() {
+			return "안녕하세용 ~!!";
+		}
+	},
+	JAPAN (Locale.JAPAN.getCountry(), Locale.JAPAN){
+		@Override
+		public String getGreeting() {
+			return "모시모시 ~ 스미마센";
+		}
+	},
+	CHINA (Locale.CHINA.getCountry(), Locale.CHINA){
+		@Override
+		public String getGreeting() {
+			return "니하오, 따쟈하오~ 짜이찌엔~!!";
+		}
+	};
+
+	private String codeNm;
+	private Locale locale;
+
+	private static Map<Locale, CountryCode> codeMap = new HashMap<>();
+
+	static {
+		Arrays.stream(CountryCode.values()).forEach(
+			countryCode -> codeMap.put(countryCode.locale, countryCode)
+		);
+		// 참고) Java 8 이전의 방식으로 풀어서 써보면...
+//		for (CountryCode c : CountryCode.values()){
+//			codeMap.put(c.locale, c);
+//		}
+	}
+
+	CountryCode(String codeNm, Locale locale ){
+		this.codeNm = codeNm;
+		this.locale = locale;
+	}
+
+	public static CountryCode valueOf(Locale locale){
+		return codeMap.get(locale);
+	}
+
+	public abstract String getGreeting();
+
+	public String getFullCodeNm(){
+		return this.locale.toString();
+	}
+
+	public String getLanguageCode(){
+		return this.locale.getLanguage();
+	}
+
+	public String getDisplayLanguage(){
+		return this.locale.getDisplayLanguage();
+	}
+
+	public String getCodeNm() {
+		return codeNm;
+	}
+
+	public Locale getLocale() {
+		return locale;
+	}
+}
+```
 
 
 
