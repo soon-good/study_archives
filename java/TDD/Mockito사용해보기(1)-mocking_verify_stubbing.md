@@ -1,0 +1,212 @@
+# Mockito 사용해보기 (1) - mocking, verify, stubbing
+
+Stubbing, Mockito, when~then, verify, stubbing 을 예제 용도의 클래스로 연습해볼 예정이다. 테스트 용도로 사용할 예제 용도의 간단한 클래스 두 개를 만들었는데 아래와 같다.  
+
+- Calculator.java
+  - 테스트 할 메서드
+    - add (int left, int right) : int
+  - add 연산을 수행할 때 각 나라별 환영 메시지("안녕하세요~ 모시모시~ 따쟈하오 등등)를 출력하도록 할 예정이다.
+  - 덧셈연산에서 환영메시지를 출력하는 것은 조금 억지이긴 하지만, 그래도 뭔가 딱 떨어지는 예제를 떠올리기가 쉽지 않았다.
+  - 의존성 주입
+    - 생성자를 통해 의존성을 주입하도록 지정했다.
+    - 빈으로 등록하지 않았을 경우에는 직접 인스턴스를 생성해서 넘겨주면 된다.
+- LocaleProcessor.java
+  - 테스트 할 메서드
+    - getServerCountryCode() : CountryCode
+  - getServerCountryCode() 메서드는 CountryCode 라는 Enum 을 리턴한다.
+  - CountryCode 는 enum 으로 직접 작성한 enum 이다.
+  - 이 문서의 하단부에 CountryCode enum 코드를 첨부했다.
+
+
+
+# 1. 테스트 용도의 예제 클래스 (Calculator, LocaleProcessor)
+
+## 1) Calculator.java
+
+- 생성자를 이용해 의존성 주입을 한다.
+- 테스트에도 용이한 방식이다.
+- add (int left, int right) : int
+
+```java
+public class Calculator {
+
+   private final LocaleProcessor localeProcessor;
+
+   public Calculator (LocaleProcessor localeProcessor){
+      this.localeProcessor = localeProcessor;
+   }
+
+   public int add (int left, int right){
+      CountryCode serverCountryCode = localeProcessor.getServerCountryCode();
+      String greeting = serverCountryCode.getGreeting();
+      System.out.println(greeting);
+
+
+      return left + right;
+   }
+
+}
+```
+
+
+
+## 2) LocaleProcessor.java
+
+```java
+public class LocaleProcessor {
+
+   public CountryCode getServerCountryCode(){
+      Locale serverLocale = Locale.getDefault();
+      return CountryCode.valueOf(serverLocale);
+   }
+
+}
+```
+
+
+
+# 2. mocking
+
+Mockito.mock 으로 테스트를 수행할 클래스를 Mocking 하는 과정이다.  
+
+Mocking을 한다는 것은 테스트를 위한 가짜 클래스를 생성하는 것이다.  
+
+실제 객체가 아닌 Mock 객체를 굳이 생성하는 이유는 뭘까?  
+
+실제 서버 코드나 애플리케이션 코드의 경우 로그만으로 데이터의 값을 검증하기 힘들다. 이런 이유로 특정 입력 값에 대해 원하는 값이 나오는지를 가정해 테스트해보고자 할 때 가짜객체를 이용한다. 실제 코드를 Mocking할 수도 있다. 이것은 Spy를 사용하면 된다.  
+
+
+
+가짜 객체를 사용하는 경우는 애플리케이션 코드 전반적으로 펼쳐져 있는 여러가지 어려운 상황들 때문이다. 예를 들면 아래와 같은 경우이다.
+
+- Exception 검증
+  - Null Pointer Exception 과 같은 Exception 을 미리 테스트해보고자 할 때에도 유용할 수 있다.
+- Validation 작업
+  - 수없이 많이 퍼져있는 파라미터들의 정합성 Validation 작업(입력값 체크 등)
+- if ~ else if ~ else
+  - 굉장히 여러 곳에 산발적으로 퍼져있는 if ~ else if ~ else 의 경우 코드의 흐름을 파악하기 어렵게 하는 요소다.
+  - 어떤 동작에 대한 기댓값을 예상하기 어렵다. (디버깅이 어려워진다.)
+
+테스트를 수행하는 이유 자체는 사실, 누군가가 교과서처럼 정해놓지는 않은것으로 보인다.  
+
+단지 필요에 의해 여러가지 라이브러리의 생태계들이 Java/Kotlin 등의 언어 생태계에서는 잘 갖춰진 것으로 보인다.  
+
+마틴파울러와 같은 유명한 대가인 분들이 계시지만, 아직 그 분이 쓴 책을 읽어보지 못했다. 시간이 없다는 핑계이긴 하지만, 정말로 그렇다. 내년도 쯤이면 정리를 하게 되지 않을까 싶은 생각이다.  
+
+
+
+## 1) Mocking 쌩기초
+
+실제로 존재하는 클래스에 대한 Mocking을 해보자
+
+- Mocking 쌩기초는 굉장히 간단한 Hello World 같은 예제로 준비했다.
+- 처음 Mocking을 배울때 어떤걸 Mocking해야 하는 거야? 할 수 있는데, Mockito.mock(클래스명.class)를 통해 테스트를 위한 가짜 객체를 생성할 수 있다.
+- 이렇게 가짜 객체를 만드는 과정을 Mocking 이라고 한다.
+- static, private, final 등이 붙지 않은 대부분의 클래스를 Mocking을 할수 있다. 
+- 이렇게 Mockito.mock(클래스명.class)를 통해 return 되는 값은 Mockito에서 리턴하는 가짜 객체이다.
+
+```java
+@ExtendWith(MockitoExtension.class)
+class MockitoStep1Test {
+    // …
+    @Test
+    @DisplayName("#0 Mocking 쌩기초")
+    void testObjectMockingBasic(){
+       List mockedList = Mockito.mock(List.class);
+
+        // Mockito.when에 대해서는 뒤에서 정리 (stubbing이라는 개념)
+        Mockito.when(mockedList.get(0))
+          .thenReturn("sample1")
+          .thenReturn("sample2");
+
+
+        System.out.println(mockedList.get(0));
+        Assertions.assertThat(mockedList.get(0)).isEqualTo("sample2");
+    }
+}
+```
+
+
+
+- List mockedList = Mockito.mock(List.class)
+  - 가짜 객체를 만들어내는 과정이다.
+  - mockedList라고 이름의 가짜 객체를 만들었는데, 이것이 우리가 테스트를 위해 감사하려 하는 객체이다.
+- Mockito.when(mockedList.get(0)). ~ .thenReturn(…);
+  - 뒤에서 정리할 예정인 스터빙(Stubbing)을 하는 과정이다.
+  - thenReturn("sample1")
+    - mockedList.get(0)을 첫번째로 호출시
+    - 문자열 "sample1"을 리턴한다.
+  - thenReturn("sample2")
+    - mockedList.get(0)을 두번째로 호출시
+    - 문자열 "sample2"를 리턴한다.
+- System.out.println(mockedList.get(0))
+  - mockedList.get(0)
+    - 첫 번째로 mockedList.get(0)을 호출할 때는 "sample1"을 return 한다.
+- Assertions.assertThat(mockedList.get(0)).isEqualTo("sample2");
+  - Assertions.assertThat
+    - assertj 라이브러리에서 제공하는 assertThat() 메서드이다.
+    - assert 계열 라이브러리 중에서 대중적으로 많이 사용되는 라이브러리이다.junit jupiter 에서 제공하는 assert 계열 라이브러리를 사용하는 것 역시 권장되는 편이다.
+    - 테스트 케이스 내에서 굉장히 자주 사용되는 메서드이기 때문에 static import를 해서 assertThat으로 줄여서 사용하는 편이다.
+    - assertj 라이브러리
+      - [https://assertj.github.io/doc/](https://joel-costigliola.github.io/assertj/)
+      - [https://joel-costigliola.github.io/assertj/](https://joel-costigliola.github.io/assertj/)
+  - mockedList.get(0)
+    - 첫 번째로 mockedList.get(0)을 호출할 때는 "sample2"를 return 한다.
+
+
+
+## 2) 객체 Mocking
+
+가짜 객체를 만드는 방법은 위에서 살펴봤다. 그런데, 실제 존재하는 클래스 또는 @Service, @Repository를 목업(Mocking)하고 싶을 때가 많다. 
+
+### 자주 보이는 테스트가 필요한 경우들
+
+Spring 을 프레임워크로 채택해서 개발을 할 때 자주 궁금해지고, 디버깅을 통해 자주 확인하게 되는 요소들을 정리해보자.  
+
+보통 아래의 경우들을 자주 확인하게 되는 편이다.  
+
+- Controller 내에서 Service가 어떤 결과를 낼 때를 가정했을 때 
+  - Response Code를 제대로 뱉어내는지
+  - 템플릿 코드(html) 의 경로를 제대로 지정해줬는지
+  - 결과 데이터를 json path 등을 이용해서 특정 결과값을 포함(contains)하는지
+- Service 내에서 Repository 가 어떤 결과를 낼 때를 가정했을 때
+  - 각종 validation 등의 로직이 기대한 결과를 리턴하는지
+  - 수많은 if ~ else if ~ else 로직의 검증
+
+> 그런데, 디버깅은 개발자 한 사람만 증상을 확인할 수 있다. 협업하는 다른 개발자들도 이런 경우에 대해 확인이 필요할 때 디버깅을 똑같이 하기에는 시간적으로 조금은 낭비가 될 수 있다. 컨트롤러나 서비스가 특정환경에서 이런 결과를 낸다는 것에 대해 정형화된 케이스가 필요한데 이런 이유로 테스트 코드를 작성하는 편이다. 그리고 Mocking과 Stubbing을 사용해 특정 입력값에 대해서 이러한 결과값이 나온다는 것을 보증하는 테스트 케이스를 작성하는 편이다.  
+>
+> 이렇게 하면 서로 같은 모니터를 보며 디버깅을 하지 않아도 되고, 원하는 시간에 원하는 장소에서 테스트 결과의 정합성을 1차적으로 우선 확인할 수 있다.   
+
+  
+
+요약해보면, 이렇게 테스트가 필요한 경우에 대해서
+
+- Controller 내에서 사용되는 Service 객체들을 목업 (Mocking)
+- Service 내에서 사용되는 Repository 객체들을 목업 (Mocking)
+
+을 통해서 테스트 케이스를 작성할 수 있다.  
+
+  
+
+이렇게 테스트 코드들을 작성했을 때의 장점은
+
+- 특정 조건 값에서의 기대되는 결과 값을 가정할 수 있다는 장점
+- 특정 파라미터에서는 이런 결과를 낼 수 있다는 것을 정의할 수 있다는 장점
+
+이 있다.  
+
+DB의 데이터의 정합성을 테스트하는 경우 역시 존재할 수 있다. 이런 경우도 역시 테스트를 수행하는데, 예측가능한 규모의 데이터의 값들을 가정해서, 정합성을 테스트 할 수 있다. 이 경우 운영 DB를 직접 테스트 환경으로 사용할 수 없기 때문에 Docker와 spring-jdbc에서 제공하는 test 용도의 어노테이션들을 사용하는데 DB 계층 테스트는 추후 다른 문서에서 정리할 예정이다.
+
+
+
+### 2) 객체 Mocking (1) : 테스트 클래스의 멤버필드에 @Mock, @InjectMocks로 필드 인젝션
+
+
+
+
+
+# 참고)
+
+- assertj
+  - [https://assertj.github.io/doc/](https://assertj.github.io/doc/)
+  - [https://joel-costigliola.github.io/assertj/](https://joel-costigliola.github.io/assertj/)
