@@ -248,6 +248,74 @@ Calculator 클래스 내의 LocaleProcessor 타입의 인스턴스로 localeProc
 
 
 
+### 객체 Mocking (2) - 직접 Mocking 하기
+
+#### 테스트 코드
+
+```java
+package io.study.tdd.tddforall.mockito;
+
+import io.study.tdd.tddforall.calculator.Calculator;
+import io.study.tdd.tddforall.util.timezone.CountryCode;
+import io.study.tdd.tddforall.util.timezone.LocaleProcessor;
+import java.util.List;
+import java.util.Map;
+import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.mockito.junit.jupiter.MockitoExtension;
+
+@ExtendWith(MockitoExtension.class)
+class MockitoStep1Test {
+	/**
+	 * 이 경우 Calculator 클래스는 실제 객체이다.
+	 * 생성자를 활용한 Mocking 코드가 잘 되어 있다면 코드로 직접 Mocking할 수 있다.
+	 * */
+	@Test
+	@DisplayName("#0 객체 Mocking (2) >>> 직접 Mocking 하기")
+	void testObjectMocking2(){
+		LocaleProcessor mockedLoc = Mockito.mock(LocaleProcessor.class);
+		Calculator cal = new Calculator(mockedLoc);
+
+		Mockito.when(mockedLoc.getServerCountryCode())
+			.thenReturn(CountryCode.CHINA);
+
+		int result = cal.add(1, 2);
+		Assertions.assertThat(result).isEqualTo(1+2);
+	}
+
+}
+```
+
+
+
+- 직접 함수 내에서 코드로 생성한 LocaleProcessor 타입의 Mockito 객체의 동작을 Caculator 클래스 내에서 감시하는 예제이다.
+- Calculator cal = new Calculator(mockedLoc);
+  - Calculator 클래스 내의 멤버변수 localeProcessor 를 Caculator의 생성자를 통해 의존성주입하고 있다.
+  - 이렇게 생성자를 통해 의존성 주입을 하도록 코드를 작성하면, 테스트에 용이하다는 장점이 있다.
+- stubbing
+  - Mockito.when(mockedLoc.getServerCountryCode()).thenReturn(Country.CHINA);
+  - 멤버 필드 localeProcessor 가 getServerCountryCode()를 호출하면 CountryCode.CHINA 를 리턴하도록 해주었다.
+- 지금의 예제는 stubbing을 한 후, add()함수가 리턴하는 결과를 검증하는데에 아무 연관성이 없기는 하다. 의존성 주입을 확인하기 위한 단순한 예제이므로 깊게 생각하지 않고 만든 예제이다.
+- Assertions.assertThat(result).isEqualTo(1+2);
+  - 결과를 테스트하고 있다.
+
+
+
+#### 출력결과
+
+![이미지](./img/mock1/2.png)
+
+
+
+
+
+
+
 # CountryCode.java
 
 Enum 으로 작성한 국가 코드 클래스이다. 
