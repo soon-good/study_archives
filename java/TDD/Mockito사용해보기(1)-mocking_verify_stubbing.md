@@ -253,22 +253,6 @@ Calculator 클래스 내의 LocaleProcessor 타입의 인스턴스로 localeProc
 #### 테스트 코드
 
 ```java
-package io.study.tdd.tddforall.mockito;
-
-import io.study.tdd.tddforall.calculator.Calculator;
-import io.study.tdd.tddforall.util.timezone.CountryCode;
-import io.study.tdd.tddforall.util.timezone.LocaleProcessor;
-import java.util.List;
-import java.util.Map;
-import org.assertj.core.api.Assertions;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.Mockito;
-import org.mockito.junit.jupiter.MockitoExtension;
-
 @ExtendWith(MockitoExtension.class)
 class MockitoStep1Test {
 	/**
@@ -311,6 +295,62 @@ class MockitoStep1Test {
 ![이미지](./img/mock1/2.png)
 
 
+
+### 객체 Mocking (3) - 테스트 메서드의 파라미터로 Mock 객체를 만들어 전달
+
+테스트를 위해 stubbing을 하기 위한 LocaleProcessor 타입의 Mock 객체를 테스트 메서드의 파라미터에 생성하여 넘겨주는 방식이다. 
+
+#### 테스트 코드
+
+```java
+@ExtendWith(MockitoExtension.class)
+class MockitoStep1Test {
+
+   /**
+    * 이 경우 Calculator 클래스는 실제 객체이다.
+    * 생성자를 활용한 Mocking 코드가 잘 되어 있다면 임시 테스트용으로 간단히 빠르게 테스트를 수행해볼 수 있다.
+    * */
+   @Test
+   @DisplayName("#0 객체 Mocking (3) >>> 파라미터를 Mocking")
+   void testObjectMocking3(@Mock LocaleProcessor mockedLoc){
+      Calculator calculator = new Calculator(mockedLoc);
+
+
+      Mockito.when(mockedLoc.getServerCountryCode())
+         .thenReturn(CountryCode.KOREA);
+
+
+      int result = calculator.add(1, 2);
+      Assertions.assertThat(result).isEqualTo(1+2);
+   }
+
+}
+```
+
+
+
+- void testObjectMocking3 (@Mock LocaleProcessor mockedLoc){...}
+  - 테스트 메서드의 파라미터에 @Mock 어노테이션을 주입하여 LocalProcessor 인스턴스를 Mock 인스턴스로 전달해준다.
+- Mockito.when(mockedLoc.getServerCountryCode()).thenReturn(CountryCode.KOREA);
+  - mocking된 객체 mockedLoc 가 getServerCountryCode()를 호출할 때 리턴되는 값을 CountryCode.KOREA 로 지정해 가정해놓았다.
+- Assertions.assertThat(result).isEqualTo(1+2);
+  - stubbing 구문에서 mockedLoc의 getServerCountryCode()가 CountryCode.KOREA를 리턴하도록 가정했었다.
+  - CountryCode.KOREA를 리턴할 때 1+2가 정확히 수행되었는지 체크한다.
+  - 단순히 Mocking 만을 테스트하는 예제여서 조금 연관성이 떨어지고 쌩뚱맞긴한데 Stubbing 에대해 뒤에서 정리하면서 연관성 있는 예제로 발전시킬 예정이다ㅠㅜ
+
+
+
+#### 출력결과
+
+![이미지](./img/mock1/3.png)
+
+
+
+# 3. verify
+
+
+
+# 4. stubbing
 
 
 
@@ -395,6 +435,8 @@ public enum CountryCode {
 	}
 }
 ```
+
+
 
 
 
