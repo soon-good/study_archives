@@ -15,12 +15,15 @@ public class GradeServiceImpl implements GradeService{
 		this.gradeRepository = gradeRepository;
 	}
 
-	//
+	/**
+	 * 전 사원의 점수 평균 구하기
+	 * @return CalculatorDto
+	 */
 	public CalculatorDto getAverageScoreForAllEmployees(){
 		List<Score> allScore = gradeRepository.findAllScore();
 
 		double sum = allScore.stream()
-			.mapToDouble(s -> s.getScore())
+			.mapToDouble(Score::getScore)
 			.sum();
 
 		int numOfEmployees = allScore.size();
@@ -29,6 +32,17 @@ public class GradeServiceImpl implements GradeService{
 			.fxType(FxType.AVG)
 			.value(sum/numOfEmployees)
 			.build();
+	}
+
+	/**
+	 * 전 사원 평균 점수의 등급 구하기
+	 * @return GradeLevel
+	 */
+	@Override
+	public GradeLevel getGradeLevelForAllEmployees() {
+		CalculatorDto avg = getAverageScoreForAllEmployees();
+		Double score = avg.getValue();
+		return GradeLevel.gradeLevel(score);
 	}
 
 }

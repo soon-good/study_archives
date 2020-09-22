@@ -4,4 +4,6 @@ import io.study.tdd.tddforall.calculator.CalculatorDto;
 
 public interface GradeService {
 	public CalculatorDto getAverageScoreForAllEmployees();
+
+	public GradeLevel getGradeLevelForAllEmployees();
 }

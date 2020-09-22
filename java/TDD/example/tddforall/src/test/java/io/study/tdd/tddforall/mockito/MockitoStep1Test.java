@@ -1,10 +1,18 @@
 package io.study.tdd.tddforall.mockito;
 
 import io.study.tdd.tddforall.calculator.Calculator;
+import io.study.tdd.tddforall.grade.GradeLevel;
+import io.study.tdd.tddforall.grade.GradeRepository;
+import io.study.tdd.tddforall.grade.GradeRepositoryImpl;
+import io.study.tdd.tddforall.grade.GradeService;
+import io.study.tdd.tddforall.grade.GradeServiceImpl;
+import io.study.tdd.tddforall.grade.entity.Score;
 import io.study.tdd.tddforall.util.timezone.CountryCode;
 import io.study.tdd.tddforall.util.timezone.LocaleProcessor;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import javax.persistence.EntityManager;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -13,7 +21,10 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 
+@SpringBootTest
 @ExtendWith(MockitoExtension.class)
 class MockitoStep1Test {
 
@@ -22,6 +33,9 @@ class MockitoStep1Test {
 
 	@InjectMocks
 	private Calculator calculator;
+
+	@Autowired
+	EntityManager entityManager;
 
 	@Test
 	@DisplayName("#0 Mocking 쌩기초")
@@ -114,10 +128,32 @@ class MockitoStep1Test {
 	}
 
 	@Test
-	@DisplayName("#1 mockito > verify 로 Calculator 행위 검증하기")
+	@DisplayName("#1 stubbing 중급 ")
 	void testVerifyCalculator(){
-		calculator.add(1,2);
-		Mockito.verify(calculator).add(1,2);
+		Score score1 = Score.builder()
+			.score(100D)
+			.subject("국어")
+			.build();
+
+		Score score2 = Score.builder()
+			.score(99D)
+			.subject("국어")
+			.build();
+
+		List<Score> scores = Arrays.asList(score1, score2);
+
+		// given ~ when
+		GradeRepository gradeRepository = Mockito.mock(GradeRepositoryImpl.class);
+		Mockito.when(gradeRepository.findAllScore())
+			.thenReturn(scores);
+
+		GradeService gradeService = new GradeServiceImpl(gradeRepository);
+		// gradeService.getGradeLevelForAllEmployees() 에서는 내부적으로 gradeRepository.findAllScore() 을 호출한다.
+		// 내부적으로 gradeRepository.findAllScore() 을 호출할때 scores 를 return 하도록 해서
+		// 		기대 결과값에 맞는 GradeLevel이 나오는지를 측정한다.
+		GradeLevel gradeLevel = gradeService.getGradeLevelForAllEmployees();
+
+		Assertions.assertThat(gradeLevel).isEqualTo(GradeLevel.A);
 	}
 
 	@Test
