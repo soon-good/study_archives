@@ -55,7 +55,7 @@ class MockitoStep1Test {
 	 * 생성자를 활용한 Mocking 코드가 잘 되어 있다면 임시 테스트용으로 간단히 빠르게 테스트를 수행해볼 수 있다.
 	 * */
 	@Test
-	@DisplayName("#0 객체 Mocking (2) >>> 함수 내의 로컬 변수를 Mocking")
+	@DisplayName("#0 객체 Mocking (2) >>> 직접 Mocking 하기")
 	void testObjectMocking2(){
 		LocaleProcessor mockedLoc = Mockito.mock(LocaleProcessor.class);
 		Calculator cal = new Calculator(mockedLoc);
@@ -100,7 +100,7 @@ class MockitoStep1Test {
 	 * 행위 검증 : verify
 	 */
 	@Test
-	@DisplayName("#0 mockito > verify 를 이용한 행위 검증 쌩 기초")
+	@DisplayName("#1 mockito > verify 를 이용한 행위 검증 쌩 기초")
 	void testVerifyList(){
 		List mockedList = Mockito.mock(List.class);
 		mockedList.add("one");
@@ -113,4 +113,16 @@ class MockitoStep1Test {
 		Mockito.verify(mockedMap).put("test",1);
 	}
 
+	@Test
+	@DisplayName("#1 mockito > verify 로 Calculator 행위 검증하기")
+	void testVerifyCalculator(){
+		calculator.add(1,2);
+		Mockito.verify(calculator).add(1,2);
+	}
+
+	@Test
+	@DisplayName("#2 stubbing > Calcultor 를 stubbing 하기")
+	void testStubbingCalculator(){
+
+	}
 }
