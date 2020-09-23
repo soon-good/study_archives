@@ -149,8 +149,8 @@ class MockitoStep1Test {
 
 		GradeService gradeService = new GradeServiceImpl(gradeRepository);
 		// gradeService.getGradeLevelForAllEmployees() 에서는 내부적으로 gradeRepository.findAllScore() 을 호출한다.
-		// 내부적으로 gradeRepository.findAllScore() 을 호출할때 scores 를 return 하도록 해서
-		// 		기대 결과값에 맞는 GradeLevel이 나오는지를 측정한다.
+		// 내부적으로 gradeRepository.findAllScore() 을 호출할 때 scores 를 return 하도록 해서
+		// 		기대 결과 값에 맞는 GradeLevel 이 나오는 지를 측정한다.
 		GradeLevel gradeLevel = gradeService.getGradeLevelForAllEmployees();
 
 		Assertions.assertThat(gradeLevel).isEqualTo(GradeLevel.A);

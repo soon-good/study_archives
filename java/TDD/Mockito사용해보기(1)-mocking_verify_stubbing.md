@@ -1,6 +1,10 @@
 # Mockito 사용해보기 (1) - mocking, verify, stubbing
 
-Stubbing, Mockito, when~then, verify, stubbing 을 예제 용도의 클래스로 연습해볼 예정이다. 테스트 용도로 사용할 예제 용도의 간단한 클래스 두 개를 만들었는데 아래와 같다.  
+Mockito, when~then, verify, stubbing 을 예제 용도의 클래스로 연습해볼 예정이다. 예제의 전체 코드는 [tddforall](https://github.com/soongujung/tddforall) 에서 확인 가능하다.  
+
+# 1. 테스트 용도의 예제 클래스 (Calculator, LocaleProcessor)
+
+테스트 용도로 사용할 예제 용도의 간단한 클래스 두 개를 만들었는데 아래와 같다.  
 
 - Calculator.java
   - 테스트 할 메서드
@@ -18,8 +22,6 @@ Stubbing, Mockito, when~then, verify, stubbing 을 예제 용도의 클래스로
   - 이 문서의 하단부에 CountryCode enum 코드를 첨부했다.
 
 
-
-# 1. 테스트 용도의 예제 클래스 (Calculator, LocaleProcessor)
 
 ## 1) Calculator.java
 
@@ -346,11 +348,230 @@ class MockitoStep1Test {
 
 
 
-# 3. verify
+# 3. 중급 예제
+
+> 위에서 살펴본 간단 예제만으로는 쉽지 stubbing, verify 의 의미를 파악하는게 쉽지가 않을 것 같아 예제를 하나 더 준비했다.  [예제링크](https://github.com/soongujung/tddforall)
+
+전 직원들의 국어시험 점수를 DB에서 가져와서 평균을 낸 후에 아래와 같이 전직원 국어점수의 등급을 매긴다고 해보자.
+
+- 90 ~ 100 : A
+- 80 ~ 90 : B
+- 70 ~ 80 : C
+- 60 ~ 70 : D
+- 50 ~ 60 : E
+- 40 ~ 50 : F
+
+  
+
+구현한 메서드는 아래와 같다.  
+
+- GradeRepositoryImpl.java
+  - findAllScore() : List\<Score\>
+  - DB에 있는 모든 직원들의 점수 데이터를 가져온다.
+  - 여기서는 쿼리를 깊게 작성하지 않았다. GradeLevel의 동작을 테스트하는 데에 집중할 예정이기 때문이다.
+- GradeServiceImpl.java
+  - getAverageScoreForAllEmployees() : CalculatorDto
+    - 전 직원들의 국어점수 평균을 계산한다.
+  - getGradeLevelForAllEmployees() : GradeLevel
+    - 전 직원들의 국어점수 평균의 등급을 산출한다.
 
 
 
-# 4. stubbing
+## GradeRepositoryImpl.java
+
+```java
+@Repository
+public class GradeRepositoryImpl implements GradeRepository{
+
+	private final EntityManager entityManager;
+
+	public GradeRepositoryImpl(EntityManager entityManager){
+		this.entityManager = entityManager;
+	}
+
+	@Override
+	public List<Score> findAllScore() {
+		return entityManager.createQuery("SELECT s FROM Score s").getResultList();
+	}
+
+}
+```
+
+
+
+## GradeServiceImpl.java
+
+```java
+@Service
+public class GradeServiceImpl implements GradeService{
+
+	private final GradeRepository gradeRepository;
+
+	public GradeServiceImpl(GradeRepository gradeRepository){
+		this.gradeRepository = gradeRepository;
+	}
+
+	/**
+	 * 전 사원의 점수 평균 구하기
+	 * @return CalculatorDto
+	 */
+	public CalculatorDto getAverageScoreForAllEmployees(){
+		List<Score> allScore = gradeRepository.findAllScore();
+
+		double sum = allScore.stream()
+			.mapToDouble(Score::getScore)
+			.sum();
+
+		int numOfEmployees = allScore.size();
+
+		return CalculatorDto.builder()
+			.fxType(FxType.AVG)
+			.value(sum/numOfEmployees)
+			.build();
+	}
+
+	/**
+	 * 전 사원 평균 점수의 등급 구하기
+	 * @return GradeLevel
+	 */
+	@Override
+	public GradeLevel getGradeLevelForAllEmployees() {
+		CalculatorDto avg = getAverageScoreForAllEmployees();
+		Double score = avg.getValue();
+		return GradeLevel.gradeLevel(score);
+	}
+
+}
+```
+
+
+
+# 4. verify
+
+
+
+# 5. stubbing
+
+여기서는 DB 값을 실제로 가져오지는 않는다. 실제 데이터를 검증하는 테스트 코드 역시 작성하는 경우가 있다. 하지만, 여기서는 **Java 로직레벨에서 Mockito 를 통해 주어진 입력값에 대해 의도한 결과가 나오는지 테스트 코드 내에서 로직단의 검증을 하는 것이 목표**이다.  
+
+(Mockito를 통해 애플리케이션을 테스트하는 주된 목적은 잠수함처럼 가려져 있는 Java 로직들에 대해 특정 입력조건 환경을 가지도록 가정을 하고 이에 대해 기대하는 결과값이 나오는지 검증하는 것이 목적이다.)  
+
+**DB의 테이블에 데이터가 올바르게 들어갔는지 테스트하는 정합성 테스트는 따로 다른 문서에 정리해둘 예정**이다.  
+
+## 테스트 stubbing (조건 결과값 가정)
+
+> 주어진 입력 값에 대해서 기대한 결과값을 리턴하는 예제이다. 
+>
+> - DB에서 특정한 값들이 온다고 가정(가상으로 전제)하고 
+> - 이 값을 토대로 A,B,C,D,E,F 등급을 매기려 한다.
+>
+> 그리고 등급을 매기는 함수인 getGradeLevelForAllEmployees() 의 동작이 올바른지 검사하는 것이 이 예제의 목적이다.  
+>
+> 즉,
+>
+> - getGradeLevelForAllEmployees() 가 제대로 GradeLevel을 측정하는지 타당성을 검토하는 것이 목적이다.
+
+
+
+전 직원 들의 국어점수 값을 가정해 Database 에서는 아래의 결과값을 리턴한다고 가정하자.
+
+```json
+List<Score> scores = [
+  {
+    "score": 100,
+    "subject": "국어",
+  },
+  {
+    "score": 99D,
+    "subject": "국어"
+  }
+]
+```
+
+
+
+우리의 목적은 GradeService 객체가 getGradeLevelForAllEmployees(); 를 호출할 때 위에 미리 가정해둔 가짜 결과값을 DB에서 리턴하도록 stubbing (묶어주는 것)하는 것이다.  
+
+이렇게 stubbing 할때 Mockito.when 구문을 사용하고, 전제조건으로 사용할 가짜 결과값은 thenReturn을 통해 가정하는 것이 대표적이다. (참고로 thenReturn 외에도 다양한 방식이 있다.)
+
+```java
+Mockito
+  .when(mockRepository.findAllScore())
+  .thenReturn(scores)
+```
+
+
+
+그리고 stubbing 해둔 조건값에 대한 getGradeLevelForAllEmployees() 의 결과값은 GradeLevel.A가 되는지 Assertion 해볼 예정이다.
+
+
+
+## 테스트 코드
+
+```java
+package io.study.tdd.tddforall.mockito;
+
+import io.study.tdd.tddforall.calculator.Calculator;
+import io.study.tdd.tddforall.grade.GradeLevel;
+import io.study.tdd.tddforall.grade.GradeRepository;
+import io.study.tdd.tddforall.grade.GradeRepositoryImpl;
+import io.study.tdd.tddforall.grade.GradeService;
+import io.study.tdd.tddforall.grade.GradeServiceImpl;
+import io.study.tdd.tddforall.grade.entity.Score;
+import io.study.tdd.tddforall.util.timezone.CountryCode;
+import io.study.tdd.tddforall.util.timezone.LocaleProcessor;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
+import javax.persistence.EntityManager;
+import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+
+@SpringBootTest
+@ExtendWith(MockitoExtension.class)
+class MockitoStep1Test {
+
+	@Test
+	@DisplayName("#1 stubbing 중급 ")
+	void testVerifyCalculator(){
+		Score score1 = Score.builder()
+			.score(100D)
+			.subject("국어")
+			.build();
+
+		Score score2 = Score.builder()
+			.score(99D)
+			.subject("국어")
+			.build();
+
+		List<Score> scores = Arrays.asList(score1, score2);
+
+		// given ~ when
+		GradeRepository gradeRepository = Mockito.mock(GradeRepositoryImpl.class);
+		Mockito.when(gradeRepository.findAllScore())
+			.thenReturn(scores);
+
+		GradeService gradeService = new GradeServiceImpl(gradeRepository);
+		// gradeService.getGradeLevelForAllEmployees() 에서는 내부적으로 gradeRepository.findAllScore() 을 호출한다.
+		// 내부적으로 gradeRepository.findAllScore() 을 호출할 때 scores 를 return 하도록 해서
+		// 		기대 결과 값에 맞는 GradeLevel 이 나오는 지를 측정한다.
+		GradeLevel gradeLevel = gradeService.getGradeLevelForAllEmployees();
+
+		Assertions.assertThat(gradeLevel).isEqualTo(GradeLevel.A);
+	}
+
+}
+```
+
+
 
 
 

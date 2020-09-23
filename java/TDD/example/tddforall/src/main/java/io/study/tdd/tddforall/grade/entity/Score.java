@@ -14,11 +14,8 @@ import lombok.Setter;
 @Builder
 @Table(name = "SCORE")
 public class Score {
-
-	public Score(){}
-
 	@Id @GeneratedValue
-	@Column(name = "score_id")
+	@Column(name = "SCORE_ID")
 	private Long id;
 
 	private String subject;
