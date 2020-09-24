@@ -446,11 +446,7 @@ public class GradeServiceImpl implements GradeService{
 
 
 
-# 4. verify
-
-
-
-# 5. stubbing
+# 4. stubbing
 
 여기서는 DB 값을 실제로 가져오지는 않는다. 실제 데이터를 검증하는 테스트 코드 역시 작성하는 경우가 있다. 하지만, 여기서는 **Java 로직레벨에서 Mockito 를 통해 주어진 입력값에 대해 의도한 결과가 나오는지 테스트 코드 내에서 로직단의 검증을 하는 것이 목표**이다.  
 
@@ -500,11 +496,7 @@ Mockito
   .thenReturn(scores)
 ```
 
-
-
-그리고 stubbing 해둔 조건값에 대한 getGradeLevelForAllEmployees() 의 결과값은 GradeLevel.A가 되는지 Assertion 해볼 예정이다.
-
-
+그리고 stubbing 해둔 조건값에 대한 getGradeLevelForAllEmployees() 의 결과값은 GradeLevel.A가 되는지 Assertion 해볼 예정이다.  
 
 ## 테스트 코드
 
@@ -573,7 +565,53 @@ class MockitoStep1Test {
 
 
 
+# 5. verify
 
+verify 는 주로 어떤 함수 A 내에서 다른 함수 B를 호출하는지 여부를 테스트하기 위해 사용한다. 한 함수 내에서 꼭 호출되어야 하는 함수 B가 있는데 이 함수가 
+
+- Exception 등을 만나지 않고 결국 함수 B가 호출되는지
+- 특정 조건 값에서만 함수 B가 호출되어야 할 경우 정상적으로 함수 B가 호출되는지
+
+를 판단하기 위해 테스트 코드에서 사용된다.  
+
+## 테스트 코드
+
+예외 없이 findAllScores() 가 호출되는지 확인되었는지 verify를 이용한 테스트 코드다.
+
+```java
+@SpringBootTest
+@ExtendWith(MockitoExtension.class)
+class MockitoStep1Test {
+
+  // ...
+  
+	@Test
+	@DisplayName("verify")
+	void testVerify(){
+		Score score1 = Score.builder()
+			.score(100D)
+			.subject("국어")
+			.build();
+
+		Score score2 = Score.builder()
+			.score(99D)
+			.subject("국어")
+			.build();
+
+		List<Score> scores = Arrays.asList(score1, score2);
+
+		// given ~ when
+		GradeRepository mockRepository = Mockito.mock(GradeRepositoryImpl.class);
+		Mockito.when(mockRepository.findAllScore())
+			.thenReturn(scores);
+
+		GradeService gradeService = new GradeServiceImpl(mockRepository);
+		gradeService.getGradeLevelForAllEmployees();
+
+		Mockito.verify(mockRepository).findAllScore();
+	}
+}
+```
 
 
 
@@ -656,8 +694,6 @@ public enum CountryCode {
 	}
 }
 ```
-
-
 
 
 
