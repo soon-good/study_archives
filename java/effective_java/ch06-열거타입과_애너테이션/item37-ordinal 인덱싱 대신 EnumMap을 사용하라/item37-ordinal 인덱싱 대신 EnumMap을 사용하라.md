@@ -1,47 +1,64 @@
-# item37 - ordinal 인덱싱 대신 EnumMap을 사용하라
+# item37 - ordinal() 인덱싱 대신 EnumMap을 사용하라
+> 생애주기(LifeCycle) 별로 정원내의 화초들을 순회하는 예제를 이 장에서 들고 있다. 클라이언트 내에서 Enum 상수의 종류에 따라 다른 Set을 가진 Map을 가지고 싶을때 EnumMap을 사용하라고 권고하는 챕터이다. HashMap이나 HashSet을 쓸수도 있다. 그런데도 굳이 EnumMap을 쓰라고 하는건 장점이 있어서다. 그 장점에 대해서도 뒤에서 정리해보자.
 
-## 핵심정리
+  
 
-**배열의 인덱스를 얻기위해 ordinal을 쓰는 것은 일반적으로 좋지 않으니, 대신 EnumMap을 사용하라.** 다차원 관계는 EnumMap\<..., EnumMap\<...\>\> 으로 표현하라. "애플리케이션 프로그래머는 Enum.ordinal을 (웬만헤서는) 사용하지 말아야 한다.(아이템 35)" 는 일반 원칙의 특수한 사례이다.
+# 핵심정리
+
+- **배열의 인덱스를 얻기위해 ordinal()을 쓰는 것은 일반적으로 좋지 않으니, 대신 EnumMap을 사용하라.** 
+- 다차원 관계는 EnumMap\<..., EnumMap\<...\>\> 으로 표현하라. 
+- "애플리케이션 프로그래머는 Enum.ordinal을 (웬만헤서는) 사용하지 말아야 한다.(아이템 35)" 는 일반 원칙의 특수한 사례이다.
+  
+    
+  
+  
+# EnumMap의 장점
+EnumMap은 내부에서 배열을 사용한다. EnumMap은 이런 내부 구현방식을 안으로 숨겨서  
+
+- Map의 안정성
+- 배열의 성능(index를 직접 지정하는)
+
+을 충족시켰다.
+
+또한 EnumMap의 생성자가 받는 키 타입의 Class 객체는 한정적 타입 토큰으로, 런타임 제네릭 정보를 제공한다. (ITEM 33 - 타입 안전 이종 컨테이너를 고려하라)  
 
 
-
-## 의도
-
-EnumMap 타입의 인스턴스를 선언 후에 로직 내에서 아래와 같은 자료를 저장하는 경우를 예로 들고 있다. 알아보기 쉽도록 조금 단순화 했다. 
-
+​    
+# 중첩구조 열거타입 선언 예
+책에서는 EnumMap 타입의 인스턴스를 선언 후에 로직 내에서 아래와 같은 자료를 저장하는 경우를 예로 들고 있다. java 문법에는 맞지 않지만 데이터를 알아보기 쉽도록 조금 단순화 해서 적어봤다.  
 ```java
 Map<LifeCycle, Set<Plant>> plantsByLifeCycle = 
 {
   ANNUAL 		: {APPLE, ROSE},
-  BIENNIAL	: {Cherry Blossom},
-  PERENNIAL : {BAMBOO, DAISY}
+  BIENNIAL		: {Cherry Blossom},
+  PERENNIAL 		: {BAMBOO, DAISY}
 }
 ```
 
-  
-
 위와 같은 자료를 저장할 때 좋지 않은 방식으로 아래의 예를 들고 있다.  
 
+  
+
+## 나쁜 예
 ```java
 enum LifeCycle { ANNUAL, PERENNIAL, BIENNIAL }
 
 Set<Plant> [] plantsByLifeCycle = 
 {
   0 : {APPLE, ROSE},		// ANNUAL의 상수값에 해당
-  1 : {Cherry Blossom},	// PERENNIAL의 상수값에 해당
+  1 : {Cherry Blossom},	    // PERENNIAL의 상수값에 해당
   2 : {BAMBOO, DAISY}		// BIENNIAL의 상수값에 해당
 }
 ```
-
-
-
-생애주기(LifeCycle) 별로 정원내의 화초들을 순회하는 예제를 이 장에서 들고 있다. 클라이언트 내에서 Enum 상수의 종류에 따라 다른 Set을 가진 Map을 가지고 싶을때 EnumMap을 사용하라고 권고하는 챕터이다. HashMap이나 HashSet을 쓸수도 있다. 그런데도 굳이 EnumMap을 쓰라고 하는건 장점이 있어서다. 그 장점에 대해서도 뒤에서 정리해보자.
-
-
-
+plantsByLifeCycle\[i\] 에 Set\<Plant\> 를 저장하는 방식이다. 그리고 각각의 인덱스 번호에 부여된 의미는 아래와 같다.
+- 0 : ANNUAL
+- 1 : PERENNIAL
+- 2 : BIENNIAL
+배열 요소를 인덱싱해서 상수를 처리하고 있다. 확실히 나쁜예가 맞긴하다.  
+  
+  
+  
 # Plant 의 LifeCycle 시나리오
-
 화분의 생애 주기 유형을 enum으로 가지고 있는 클래스를 표현하고 있다.
 
 ex)
@@ -64,10 +81,9 @@ class Plant{
 }
 ```
 
+  
 
-
-# 나쁜 예 - ordinal을 사용해 상수접근을 하는예 
-
+## 나쁜 예 - ordinal을 사용해 상수접근을 하는예 
 절대 따라하지 말라고 주의를 주는 예이다. 
 
 ```java
@@ -90,19 +106,16 @@ for(int i=0; i<plantsByLifeCycle.length; i++){
 }
 ```
 
-배열 인덱스 하나에 enum Plant하나가 대응되고 있다. 이 경우 
+배열 인덱스 하나에 enum Plant하나가 대응되고 있다. 이 경우 아래의 단점들이 있다.
 
 - enum내의 대응되는 상수의 숫자를 기억하고 있어야 한다는 단점  
-- 상수 추가시 배열내의 index위치도 달라지기 때문에 일일이 인덱스가 비게 되지 않도록 상수값을 잘 선택해줘야 한다는 단점
-
-이 있다.
-
-
-
-# 권장 - EnumMap 활용
-
-정원에 화초가 2~3개 이상 있다고 가정해보자. 정원에 있는 화초들은 각각 자기 자신의 생애주기 정보(LifeCycle)를 가지고 있다. 아래는 정원내에 생애 주기별로 화초들의 목록을 EnumMap으로 정리하는 코드이다.
-
+- 상수 추가시 배열내의 index위치도 달라지기 때문에 일일이 인덱스가 비게 되지 않도록 상수값을 잘 선택해줘야 한다는 단점  
+  
+  
+  
+  
+## 권장 - EnumMap 활용
+정원에 화초가 2~3개 이상 있다고 가정해보자. 정원에 있는 화초들은 각각 자기 자신의 생애주기 정보(LifeCycle)를 가지고 있다. 아래는 정원내에 생애 주기별로 화초들의 목록을 EnumMap으로 정리하는 코드이다.  
 ```java
 // EnumMap 타입인 plantsByLifeCycle 선언
 Map<Plant.LifeCycle, Set<Plant>> plantsByLifeCycle = 
@@ -124,27 +137,13 @@ for(Plant p : garden)
 System.out.println(plantsByLifeCycle);
 ```
 
+  
 
-
-# EnumMap의 장점
-
-EnumMap은 내부에서 배열을 사용한다. EnumMap은 이런 내부 구현방식을 안으로 숨겨서  
-
-- Map의 안정성
-- 배열의 성능(index를 직접 지정하는)
-
-을 충족시켰다.
-
-또한 EnumMap의 생성자가 받는 키 타입의 Class 객체는 한정적 타입 토큰으로, 런타임 제네릭 정보를 제공한다. (ITEM 33)  
-
-
-
-# 스트림 활용 (1)
-
+# 스트림 활용
+## 스트림 활용 (1)
 참고로, 이 예제는 EnumMap을 사용하지 않는다. List\<Plant\> 형태인 garden에서 LifeCycle의 상수의 종류별로 그루핑해 리스트를 도출하고 있다.  
 
 예제1) LifeCycle의 종류별로 그루핑하여 Map\<LifeCycle, List\<Plant\>\> 형태로 도출
-
 ```java
 import java.util.Arrays;
 import java.util.List;
@@ -202,18 +201,13 @@ public class Plant {
 }
 ```
 
+  
 
-
-# 스트림 활용 (2)
-
+## 스트림 활용 (2)
 EnumMap을 사용하는 경우의 예제이다.  
-
 - 매개변수 3개 짜리 Collectors.groupingBy 메서드를 사용했다.  
-
 - 매개변수가 3개인 Collectors.groupingBy 메서드는 mapFactory 매개변수에 원하는 맵 구현체(여기서는 EnumMap)를 명시해 호출할 수 있다.  
-
-
-
+  
 ```java
 package example.stream.second;
 
@@ -277,35 +271,25 @@ public class Plant {
 
 ```
 
-
-
 스트림을 사용하면 단순히 EnumMap만 사용했을 때와는 조금은 다르게 동작한다.  
-
 EnumMap을 사용하면  
-
-- 식물의 LifeCycle의 종류별 하나씩의 중첩 맵을 만들지만
-
-스트림 버전에서는
-
-- 해당 생애주기에 속하는 식물이 있을 때만 만든다.  
-
+- 식물의 LifeCycle의 종류별 하나씩의 중첩 맵을 만들지만  
   
 
-예를 들어, 정원에 한해살이와 두해 살이 식물만 있다면,  
+스트림 버전에서는  
+- 해당 생애주기에 속하는 식물이 있을 때만 만든다.  
 
-- EnumMap버전은 맵을 3개 만들고
+예를 들어, 정원에 한해살이와 두해 살이 식물만 있다면,  
+- EnumMap버전은 맵을 3개 만들고  
+  
 
 스트림 버전에서는
-
 - 2개만 만든다.
-
-
-
+  
+  
 # 중첩 EnumMap 예제 
 
-
-
-#### ex) 상태 변화 맵 예제
+## ex) 상태 변화 맵 예제
 
 ```java
 package example.stream.third;
@@ -376,18 +360,16 @@ Map\<Phase, EnumMap\<Phase, Transition\>\> map 은 현재 상태(Phase from)에 
 
 
 
-#### Ex) 위의 예제에서 새로운 상태인 플라스마(PLASMA)를 추가할 경우
+## ex) 위의 예제에서 새로운 상태인 플라스마(PLASMA)를 추가할 경우
 
-플라스마는 아래 두 가지의 상태전이를 갖는다.
+플라스마는 아래 두 가지의 상태전이를 갖는다.  
 
 - 이온화 (IONIZE)
   기체 -> 플라스마
 
 - 탈이온화 (DEONIZE)
   플라스마 -> 기체
-
   
-
 ```java
 public enum Phase{
 	SOLID, LIQUID, GAS, 
@@ -403,22 +385,11 @@ public enum Phase{
 }
 ```
 
-
-
 배열, ordinal을 사용할 경우와는 다르게 원소를 추가하고 순서를 잘못나열하지 않아도 되는 점이 편하다. EnumMap 버전에서는 단순히
 
-- Enum Phase내에 PLASMA를 추가하고
-- Enum Transition내에 IONIZE(GAS, PLASMA), DEIONIZE(PLASMA, GAS)를 추가한다.
+- Enum Phase내에 PLASMA를 추가하고  
+- Enum Transition내에 IONIZE(GAS, PLASMA), DEIONIZE(PLASMA, GAS)를 추가한다.  
 
 배열,ordinal() 버전처럼 따로 로직내에서 for문을 수정해야 한다던가, 인덱스를 수정할 일이 극히 적어지고, 단순히 상수만 추가해주고 있다. 새로 추가하는 상수에 대해 부가적인 동작이 필요하므로 유연한 방식이라고 할 수 있다.  
 
-  
-
-또한 EnumMap의 내부에서는 실제 동작이 Map들의 Map이 배열로 구현되므로 낭비되는 공간, 시간도 거의 없이 명확하며 유지보수하기 좋다.
-
-
-
-
-
-
-
+또한 EnumMap의 내부에서는 실제 동작이 Map들의 Map이 배열로 구현되므로 낭비되는 공간, 시간도 거의 없이 명확하며 유지보수하기 좋다.  
