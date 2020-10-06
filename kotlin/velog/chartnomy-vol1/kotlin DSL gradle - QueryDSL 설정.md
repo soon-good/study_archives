@@ -64,7 +64,10 @@ sourceSets["main"].withConvention(org.jetbrains.kotlin.gradle.plugin.KotlinSourc
 ```
 
 ## build.gradle.kts
-부분만 봐서는 이해가 안되고 build.gradle.kts의 전체 내용을 올려야지 의심되는 부분들이 이해가 될때가 있다. 그래서 글이 길어지더라도... 투머치이긴 하지만 전체 내용을 적어본다.
+부분만 봐서는 의심되는 부분들이 이해가 안갈때가 있다. 그래서 build.gradle.kts의 전체 내용을 올려본다. 글이 길어지더라도... 투머치이긴 하지만 전체 내용을 기록으로 남겨봤다.  
+
+  
+
 ```kotlin
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
@@ -185,7 +188,7 @@ data class Employee(
 //    }
 //}
 ```
-  
+
 
 ## 샘플 Repository, QRepository 작성하기
 
@@ -502,7 +505,7 @@ else
                 --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
 fi
 ```
-  
+
 
 ## docker-mariadb-ls.sh
 
@@ -511,7 +514,7 @@ fi
 
 docker container ls --filter name=lognomy-mariadb
 ```
-  
+
 
 ## docker-mariadb-stop.sh
 
