@@ -18,13 +18,13 @@
 
 ### 예제 1)
 
-![이미자](./img/DESTRUCTURING_ARRAY_1.png)
+![이미지](./img/DESTRUCTURING_ARRAY_1.png)
 
   
 
 ### 예제 2)
 
-![이미자](./img/DESTRUCTURING_ARRAY_2.png)
+![이미지](./img/DESTRUCTURING_ARRAY_2.png)
 
   
 
@@ -32,7 +32,7 @@
 
 ### 예제 1)
 
-![이미자](./img/DESTRUCTURING_OBJECT.png)
+![이미지](./img/DESTRUCTURING_OBJECT.png)
 
   
 
@@ -56,13 +56,13 @@
 
 예를 들기 위해 선언한 array 라는 이름의 배열을 선언했다.
 
-![이미자](./img/SPREAD_EXAMPLE_DATA.png)
+![이미지](./img/SPREAD_EXAMPLE_DATA.png)
 
   
 
 예를 들기 위해 saySpread() 라는 이름의 함수를 만들었다.
 
-![이미자](./img/SPREAD_1.png)
+![이미지](./img/SPREAD_1.png)
 
 이 때 Spread 연산자로 아무 인자를 전달해보는 예제들은 아래와 같다.  
 
@@ -70,19 +70,19 @@
 
 ### 예제 1) array의 0 ~ n 중에서 array[0], array[1] 만을 골라서 할당해 saySpread(...) 에 전달
 
-![이미자](./img/SPREAD_2.png)
+![이미지](./img/SPREAD_2.png)
 
   
 
 ### 예제 2) array[0] 을 두번째 인자로 전달
 
-![이미자](./img/SPREAD_3.png)
+![이미지](./img/SPREAD_3.png)
 
 
 
 ### 예제 3) 전개(Spread)연산자를 사용하지 않고 array를 전달할 경우의 출력결과
 
-![이미자](./img/SPREAD_4.png)
+![이미지](./img/SPREAD_4.png)
 
 
 
@@ -105,7 +105,7 @@ ES6 버전의 javascript 에서는 작은 따옴표, 큰 따옴표 외에도 역
 
 예제
 
-![이미자](./img/TEMPLATE_LITERAL_1.png)
+![이미지](./img/TEMPLATE_LITERAL_1.png)
 
   
 
@@ -142,19 +142,19 @@ ES6 부터는 const, let 이라는 키워드가 추가되었다. const, let은 �
 
 ## 예제 1) let vs var
 
-![이미자](./img/CONST_LET_1.png)
+![이미지](./img/CONST_LET_1.png)
 
 
 
 ## 예제 2) const vs var
 
-![이미자](./img/CONST_LET_2.png)
+![이미지](./img/CONST_LET_2.png)
 
 
 
 ## 예제 3) const vs let
 
-![이미자](./img/CONST_LET_3.png)
+![이미지](./img/CONST_LET_3.png)
 
 
 
@@ -177,25 +177,25 @@ ES6 부터는 const, let 이라는 키워드가 추가되었다. const, let은 �
 
 (map 함수에는 보통 callback 함수를 전달하여 배열에 대해 처리할 로직을 구현한다. 그리고, map 함수를 통해 가공되어 리턴된 배열은 새로운 변수이다.)
 
-![이미자](./img/ARROW_EXAMPLE_1.png)
+![이미지](./img/ARROW_EXAMPLE_1.png)
 
   
 
 ### 예제 2) 화살표 함수를 map 내에 인자로 전달해보기
 
-![이미자](./img/ARROW_EXAMPLE_2.png)
+![이미지](./img/ARROW_EXAMPLE_2.png)
 
   
 
 ### 예제 3) return 문을 생략한 화살표함수를 map 함수에 전달하는 예
 
-![이미자](./img/ARROW_EXAMPLE_3.png)
+![이미지](./img/ARROW_EXAMPLE_3.png)
 
   
 
 ### 예제 4) 하나 이상의 매개변수를 화살표함수에 전달할 때
 
-![이미자](./img/ARROW_EXAMPLE_4.png)
+![이미지](./img/ARROW_EXAMPLE_4.png)
 
   
 
@@ -203,7 +203,7 @@ ES6 부터는 const, let 이라는 키워드가 추가되었다. const, let은 �
 
 return 구문을 생략하고 객체를 리턴할 경우는 {} 로 감싸서 리턴해주어야 한다.  
 
-![이미자](./img/ARROW_EXAMPLE_5.png)
+![이미지](./img/ARROW_EXAMPLE_5.png)
 
 
 
