@@ -1,5 +1,9 @@
 # KOSPI 데이터 인덱스 Create/Insert/Mapping (ELK Cloud)
 
+>  [velog 문서](https://velog.io/@gosgjung/chartnomy-KOSPI-%EA%B2%BD%EC%A0%9C%EC%A7%80%ED%91%9C-InsertMapping-ELK-Cloud) 에 게시한 글. git을 통해 버전관리중!!
+
+  
+
 # KOSPI 데이터 json 파일 생성
 KOSPI 데이터는 [한국은행 경제 통계 시스템](http://ecos.bok.or.kr/)에서 REST API로 제공해준다. KOSPI 데이터 API 를 크롤링하는 것은 python 기반으로 크롤링하기로 했다. 추후 API를 주기적으로 끌어와서 Elastic Cloud에 Bulk 연산을 수행하는 작업은 Spring Batch를 활용해서 고도화할 예정이다.
 

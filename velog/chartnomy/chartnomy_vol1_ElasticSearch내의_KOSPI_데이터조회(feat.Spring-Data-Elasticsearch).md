@@ -1,4 +1,6 @@
 # ElasticSearch 내의 KOSPI 데이터 조회 (feat. Spring Data ElasticSearch)
+> [velog 문서](https://velog.io/@gosgjung/chartnomy-ElasticSearch-%EB%82%B4%EC%9D%98-KOSPI-%EA%B2%BD%EC%A0%9C%EC%A7%80%ED%91%9C-%EC%A1%B0%ED%9A%8C-feat.-Spring-Data-ElasticSearch) 에 게시한 글. git을 통해 버전관리중!!
+
 이번 글에서는 Elastic Search 를 Spring Data Elasticsearch에 연동하는 과정을 다뤄보려 한다. 사용한 프로그래밍 언어는 Kotlin 이다.  
 
 
