@@ -1,5 +1,9 @@
 # Open Feign을 이용해 네이버 검색 API 연동하기
 
+> velog 에 게시할 내용을 미리 작성하고, velog의 내용을 백업으로 남겨놓기 위해 github repository에 정리.
+
+
+
 lognomy 클라이언트 기능에는 뉴스 키워드 검색을 활용할 예정이고, React 기반으로 뉴스 뷰어를 구현했다. React 클라이언트 내에서 axios를 이용해 네이버 검색 API를 사용할때 CORS 관련 에러를 접했었다. 이유는 Client Id, Client Secret을 이용해서 javascript 단에서 단독으로 통신하는 것이 불가능한데... 서버 내에서 클라이언트에 데이터를 내려줄 때 response header 에 특정 헤더를 포함해주어야 React 클라이언트에서 접근이 가능하도록 open api의 정책이 정해져 있기 때문이다.
 
   
