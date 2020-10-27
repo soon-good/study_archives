@@ -57,18 +57,9 @@ $ yarn add react-redux
 
   
 
-# 3. Reducer 작성
+# 3. Reducer 작성 
 
-## API Reference
-
-- [combineReducers](https://redux.js.org/api/combinereducers)
-  - 여러개의 리듀서들을 합칠때 사용하는 함수이다. combineReducers(...) 가 반환하는 값은 루트리듀서이다.
-
-  
-
-## 장바구니 리듀서 생성 (cart.js)
-
-### reducer 의 개념요약 
+## Reducer 의 개념 (요약)
 
 > 액션에 대한 반응을 기술한다. 
 
@@ -76,11 +67,22 @@ $ yarn add react-redux
 
 리듀서는 action에 대한 반응이다. store로 전달되는 액션에 대해 애플리케이션의 상태변화를 어떻게 할 지에 대해 기술하는 역할을 한다. 액션은 애플리케이션의 state가 어떻게 변하는지를 묘사하는 것이 아니라, 무엇이 일어났는지만을 묘사해야 한다.  
 
-### cart.js
+
+
+## API Reference
+
+- [combineReducers](https://redux.js.org/api/combinereducers)
+  - 여러개의 리듀서들을 합칠때 사용하는 함수이다. combineReducers(...) 가 반환하는 값은 루트리듀서이다.
+
+
+
+## 장바구니 리듀서 생성 (cart.js)
+
+>  **cart.js**  
 
 장바구니 예제 애플리케이션에서 장바구니에 ADD,REMOVE 할때의 액션에 대한 reducer 의 이름은 cart로 정했다. 
 
-#### 액션 타입 정의
+### 액션 타입 정의
 
 - `+ 버튼` 액션 (장바구니에 물품추가 액션)
   - 액션 타입명 : 'cart/INCREMENT'
@@ -94,7 +96,7 @@ $ yarn add react-redux
 - payload : {type: 'cart/DECREMENT', itemKind: '물품명'}
   - 이 '물품명' 값은 각각의 컴포넌트의 이벤트 핸들러로부터 인자값으로 전달받는다.
 
-#### 리듀서(cart.js) 정의
+### 리듀서(cart.js) 정의
 
 **src/store/modules/cart.js**
 
