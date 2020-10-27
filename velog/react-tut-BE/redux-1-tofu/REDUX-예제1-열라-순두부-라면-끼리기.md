@@ -6,6 +6,8 @@
 
   
 
+redux가 flux 와 많이 비교되는 편인 것 같다. redux flux 라는 검색어로 구글 검색을 해보면 정말 많은 자료가 나오는데... 심심할때 많이 봐두어야 할 것 같다.  
+
 # 참고자료들
 
 - [redux.js.org](https://redux.js.org/)
@@ -45,33 +47,56 @@ $ yarn add redux
 $ yarn add react-redux
 ```
 
-  
-
-# 3. store, reducer 작성
-
-리덕스의 개념에 대해서는 추후 다른 글에 정리할 예정이다. 스토어와 reducer의 개념을 이해해야 하는데, 예제를 정리하는 이 글에서 개념을 정리하게 되면 글이 길어지므로 생략.  
-
-  
-
-## reducer - cart.js
-
-reducer 의 이름은 cart로 정했다. 코드를 보자.  
-- 버튼 누를 때의 액션 type 명
-  
-  - 'cart/INCREMENT'
-- 버튼 누를 때의 액션 type 명
-  - 'cart/DECREMENT'
+- redux
+  - [npm 리포지터리 (Redux)](https://www.npmjs.com/package/redux) 가 공식 리포지터리이다.
+  - redux.js.org 보다 더 많은 예제를 제공해준다는 점에서... react를 공부하고 나서 한번 볼만하다고 생각된다.
+- react-redux
+  - react 컴포넌트에 redux를 연동할 경우의 라이브러리이다.
+  - 대중적으로 많이 쓰이는 듯한 라이브러리이다.
+  - [npm 리포지터리 (React-Redux)](https://www.npmjs.com/package/react-redux) 가 공식 리포지터리이다.
 
   
 
-**!TODO : 정리할 내용**  
+# 3. Reducer 작성
 
-- reducer의 간단한 개념, 공식 페이지 핵심 문구 쬐끔 인용(핵심만 인용)
+## API Reference
+
+- [combineReducers](https://redux.js.org/api/combinereducers)
+  - 여러개의 리듀서들을 합칠때 사용하는 함수이다. combineReducers(...) 가 반환하는 값은 루트리듀서이다.
+
   
 
-  
+## 장바구니 리듀서 생성 (cart.js)
 
-### src/store/modules/cart.js
+### reducer 의 개념요약 
+
+> 액션에 대한 반응을 기술한다. 
+
+[참고](https://redux.js.org/basics/reducers)) **Reducers** specify how the application's state changes in response to [actions](https://redux.js.org/basics/actions) sent to the store. Remember that actions only describe *what happened*, but don't describe how the application's state changes.  
+
+리듀서는 action에 대한 반응이다. store로 전달되는 액션에 대해 애플리케이션의 상태변화를 어떻게 할 지에 대해 기술하는 역할을 한다. 액션은 애플리케이션의 state가 어떻게 변하는지를 묘사하는 것이 아니라, 무엇이 일어났는지만을 묘사해야 한다.  
+
+### cart.js
+
+장바구니 예제 애플리케이션에서 장바구니에 ADD,REMOVE 할때의 액션에 대한 reducer 의 이름은 cart로 정했다. 
+
+#### 액션 타입 정의
+
+- `+ 버튼` 액션 (장바구니에 물품추가 액션)
+  - 액션 타입명 : 'cart/INCREMENT'
+  - payload : {type: 'cart/INCREMENT', itemKind: '물품명'}
+  - 이 '물품명' 값은 각각의 컴포넌트의 이벤트 핸들러로부터 인자값으로 전달받는다.
+
+
+
+- `- 버튼` 액션 (장바구니에 물품제거 액션)
+  - 액션 타입명 : 'cart/DECREMENT'
+- payload : {type: 'cart/DECREMENT', itemKind: '물품명'}
+  - 이 '물품명' 값은 각각의 컴포넌트의 이벤트 핸들러로부터 인자값으로 전달받는다.
+
+#### 리듀서(cart.js) 정의
+
+**src/store/modules/cart.js**
 
 ```javascript
 // 액션 타입 정의
@@ -91,12 +116,8 @@ export default function cart(state = initialState, action){
 
     switch (action.type){
         case INCREMENT:
-            console.log('reducer (inc) >>> ', state);
-            console.log('reducer (inc) >>> action ::: ', action);
             const incState = {
                 ...state,
-                // number: state.number + 1,
-                // itemKind: action.itemKind,
             };
 
             incState[itemType] = incState[itemType] || {};
@@ -105,11 +126,8 @@ export default function cart(state = initialState, action){
             return incState;
 
         case DECREMENT:
-            console.log('reducer (dec) >>> ', state);
             const decState = {
                 ...state,
-                // number: state.number -1,
-                // itemKind: action.itemKind,
             };
 
             decState[itemType] = decState[itemType] || {};
@@ -151,29 +169,27 @@ state 의 형태는 아래와 같이 구성했다.
 }
 ```
 
-  
 
-## index.js - 루트리듀서 등록
 
-redux 모듈의 combineRedcers 함수를 통해 위에서 작성했던 cart 함수를 combineReducers({...}) 내에 등록한다. cart 함수는 Reducer 역할을 하도록 작성한 함수이다. reducer의 개념에 대해서는 redux.org에서 아주 명확하고 간결하게 설명하고 있는데 !TODO 이부분 역시 발췌!!!  
+## 루트리듀서 생성 (index.js - combineReducer(...) )
 
-### combineReducers(reducers) API 명세
+cart.js (src/store/modules/cart.js) 에서 방금전 리듀서로 생성했던 cart(...) 함수는 리듀싱 함수이다. 이 리듀싱 함수는 애플리케이션 전역에 하나일 수도 있지만, 용도별로, 컴포넌트별로 나누어 여러개의 리듀싱 함수로 생성할 수 있다. 그런데 최종적으로는 이 리듀서 함수들을 하나로 합쳐야 하는데, 이때 사용하는 것이 `combineReducer (...)` 함수이다.  
 
-참고자료 : [combineReducers(reducers) - redux.js.org](https://redux.js.org/api/combinereducers)
-
-> **combineReducers (reducers) : Function **
->
-> #### Arguments[#](https://redux.js.org/api/combinereducers#arguments)
->
-> 1. `reducers` (*Object*): An object whose values correspond to different reducing functions that need to be combined into one. See the notes below for some rules every passed reducer must follow.
->
-> #### Returns[#](https://redux.js.org/api/combinereducers#returns)
->
-> (*Function*): A reducer that invokes every reducer inside the `reducers` object, and constructs a state object with the same shape.
+이 combineReducers() 함수는  `순수 redux` 에서 제공하는 함수이다.
 
   
 
-### src/store/modules/index.js
+[공식 문서(redux.js.org) - combineReducers](https://redux.js.org/api/combinereducers) 에서는 아래와 같이 설명하고 있다.
+
+```plain
+As your app grows more complex, you'll want to split your reducing function into separate functions, each managing independent parts of the state.
+
+애플리케이션이 점점 복잡해질 수록, reducing 함수를 분리된 함수들로 분리해서, 각 함수가 state의 독립적인 부분을 관리하게끔 하는게 나을 수 있다. 이렇게 각각의 분리된 reducer 함수들을 하나로 합쳐주는 역할을 하는 것이 combineReducer() 라는 이름의 helper function 이다.  
+```
+
+  
+
+**src/store/modules/index.js**
 
 ```javascript
 import { combineReducers } from 'redux';
@@ -188,19 +204,55 @@ export default combineReducers({
 
   
 
-# 4. Provider + App
+combineReducers (... ) 의 API 형식은 아래와 같다.
+
+참고자료 : [combineReducers(reducers) - redux.js.org](https://redux.js.org/api/combinereducers)
+
+> **combineReducers (reducers) : Function**  
+>
+> #### Arguments[#](https://redux.js.org/api/combinereducers#arguments)
+>
+> 1. `reducers` (*Object*): An object whose values correspond to different reducing functions that need to be combined into one. See the notes below for some rules every passed reducer must follow.
+>
+> #### Returns[#](https://redux.js.org/api/combinereducers#returns)
+>
+> (*Function*): A reducer that invokes every reducer inside the `reducers` object, and constructs a state object with the same shape.
+
+  
+
+# 4. Store, Provider + App  
+
+## API Reference
+
+- [store](https://redux.js.org/api/store)
+  - A store holds the whole [state tree](https://redux.js.org/understanding/thinking-in-redux/glossary#state) of your application.
+  - The only way to change the state inside it is to dispatch an [action](https://redux.js.org/understanding/thinking-in-redux/glossary#action) on it.
+  - 스토어는 애플리케이션의 전체 state tree 를 가지고 있는데, 이 state 내에 변화를 일으키는 단 한가지 방법은 액션을 스토어에 dispatch 하는 것이다.
+  - 위에서 사용하고 있는 state tree 라는 용어는 여러 컴포넌트들에서 사용하는 각각의 여러개의 state 들을 하나의 스토어 내에서 모두 관리하려면 결국 key/value 형태의 obejct 내에 중첩된 구조로 관리해야 한다. 이렇게 여러가지의 state들이 하나의 스토어에 중첩구조로 가지가 뻗어나가는 것을 공식문서에서는 state tree 라고 묘사하고 있다.
+  - dispatch 라는 것은 액션을 전달해주는 것을 이야기하는 것이다.
+  - 순수 redux에서는 dispatch를 하고나면 subscribe 하는 쪽에서 변화가 일어나는데... 해당 내용은 나중에 다른 문서에 예제로 따로 정리할 예정이다.
+- [createStore](https://redux.js.org/api/createstore)
+  - Creates a Redux [store](https://redux.js.org/api/store) that holds the complete state tree of your app. There should only be a single store in your app.
+  - 애플리케이션의 완전한 state tree를 바인딩하고 잇는 Redux Store를 생성한다. 
+  - 애플리케이션 하나에는 하나의 스토어가 있어야 한다. (어플리케이션 전역적으로 하나의 스토어를 가져야 한다.)
+  - 여러개의 스토어를 가지지 못하는 이유에 대해서는 [여기](https://redux.js.org/faq/store-setup#can-or-should-i-create-multiple-stores-can-i-import-my-store-directly-and-use-it-in-components-myself) 를 참고하자.
+
+
+
+## 대략적인 순서
+
+store와 `<App/>`, `<Provider/>` 를 연동하는 대략적인 과정은 아래와 같다.  
 
 - 위에서 작성한 src/store/modules/index.js에서 반환하는 rootReducer를 import한다.
-  
-  - import rootReducer from './store/modules';
-- import한 rootReducer를 createStore의 인자로 넘겨주어, store를 생성한다.
-  - const store = createStore(rootReducer, ...);
-  - 보통 애플리케이션 전역에서는 스토가 하나여야 하는 것이 원칙이다.
-  - 하지만 redux 공식문서를 보다보면 여러개의 스토어를 써야 하는 경우에 대한 설명을 하는 메뉴역시 존재했다.
-- "react-redux"모듈 내의 Provider 컴포넌트로 App 컴포넌트를 감싸준다.
-  - Provider 컴포넌트는 store 객체를 props로 가지고 있는데, App 컴포넌트를 감싸면서 App 컴포넌트가 상태에 접근할 수 있도록 도와주는 역할을 한다.
 
-  
+  - `import rootReducer from './store/modules';`
+- import한 rootReducer를 createStore의 인자로 넘겨주어, store를 생성한다.
+  - `const store = createStore(rootReducer, ...);`
+- `react-redux` 모듈 내의 Provider 컴포넌트로 App 컴포넌트를 감싸준다.
+  - `<Provider store={store}> <App/> </Provider>`
+  - `<Provider/>` 컴포넌트는 store 객체를 props로 가지고 있는데, `<App/>` 컴포넌트를 감싸면서 `<App/>` 컴포넌트가 어플리케이션 전역에 선언한 상태(state)인 redux store 에 접근할 수 있도록 도와주는 역할을 한다.
+
+
 
 ## src/index.js
 
@@ -208,7 +260,7 @@ export default combineReducers({
 >
 > 형식)  
 >
-> createStore (reducer, [preloadState], [enhancer] )  :  Store  
+> **createStore (reducer, [preloadState], [enhancer] )  :  Store**  
 >
 > #### Arguments[#](https://redux.js.org/api/createstore#arguments)
 >
@@ -220,7 +272,7 @@ export default combineReducers({
 >
 > ([*`Store`*](https://redux.js.org/api/store)): An object that holds the complete state of your app. The only way to change its state is by [dispatching actions](https://redux.js.org/api/store#dispatchaction). You may also [subscribe](https://redux.js.org/api/store#subscribelistener) to the changes to its state to update the UI.
 
-
+  
 
 ```javascript
 import React from 'react';
@@ -255,9 +307,9 @@ export default store;
 
 ## App.js
 
-MartItemList.js 컴포넌트를 조금 뒤에 정리하게 되겠지만 MartItemList 컴포넌트가 컨테이너 컴포넌트(스마트 컴포넌트) 역할을 수행한다. ( MartItemList 컴포넌트는 `react-redux` 의 `connect()` 함수를 통해 index.js 에서 기술했던 Provider 컴포넌트로 연결되게끔 해준다.)  
+MartItemList.js 컴포넌트를 조금 뒤에 정리하게 되겠지만 `<MartItemList/>` 컴포넌트가 컨테이너 컴포넌트(스마트 컴포넌트) 역할을 수행한다.  
 
-  
+( MartItemList 컴포넌트는 `react-redux` 의 `connect()` 함수를 통해 index.js 에서 기술했던 `<Provider>` 컴포넌트로 연결되게끔 해준다.)  
 
 ```javascript
 import React from 'react';
@@ -308,11 +360,15 @@ src/
 
   
 
+컴포넌트의 계층은 아래와 같이 구성했다.
+
+![이미지](./img/COMPONENT_CONTAINER_ORDER.png)
+
+
+
 ## UI 컴포넌트 - FoodItem
 
 FoodItem 은 라면/두부/청양고추/순두부의 모양을 렌더링해주는 단순 UI 컴포넌트이다. 리덕스의 창시자 Dan Abramov는 이런 컴포넌트를 Dumb Component로 표현했다. (참고: [Dan Abramov - medium](https://medium.com/@dan_abramov/smart-and-dumb-components-7ca2f9a7c7d0) )  
-
-  
 
 ### FoodItem.js
 ```javascript
@@ -410,7 +466,7 @@ css 를 잘하는 것이 아니라서... css를 제대로 잘 설명할 자신�
 
   
 
-## Redux 컴포넌트 - MartItemList
+## 스마트 컴포넌트 - MartItemList
 
 ### MartItemList.js
 ```javascript
@@ -513,7 +569,7 @@ redux를 react에서 사용할 때는 코딩을 하기에 더 쉬워진 측면�
 
 ### MartItemList.css
 
-css에도 소질이 없고, 디자인 감각에도 소질이 없는 편이어서...😅😅 달랑 한줄밖에 없기는 한다.🤓
+css에도 소질이 없고, 디자인 감각에도 소질이 없는 편이어서...😅😅 달랑 한줄밖에 없기는 하다...🤓
 ```css
 .martItemList{
     margin-left: 5px;
