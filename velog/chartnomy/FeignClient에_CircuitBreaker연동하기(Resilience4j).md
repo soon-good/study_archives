@@ -10,8 +10,6 @@ Netflix 라이브러리를 이미 사용하고 있는 사람이라면 Netflix �
 
 # 참고자료
 
-정리하자 ... ㅠㅜ  
-
 - Feign
   - [https://resilience4j.readme.io/docs/feign](https://resilience4j.readme.io/docs/feign)
 - Rate Limiter
@@ -25,11 +23,109 @@ Netflix 라이브러리를 이미 사용하고 있는 사람이라면 Netflix �
 
 ## CircuitBreaker 의 핵심개념
 
-정리할 예정이다. 예정이다 😭😭😭  
+참고자료 : [resilience4j.readme.io/docs/circuitbreaker](https://resilience4j.readme.io/docs/circuitbreaker)  
+
+Circuit Breaker 는 유한상태의 머신을 통해 구현된다. 이 유한 상태의 머신은 CLOSED, OPEN, HALF_OPEN 이라는 정상 상태를 가지고 있다. 이 외에 DISABLED, FORCED_OPEN 상태 역시 존재한다.
+
+![이미지](./img/OPENFEIGN_ON_CIRCUITBREAKER/CIRCUIT_BREAKER.jpg)
+
+Circuit Breaker 는 호출들의 결과를 집계하고 저장하기 위해 Sliding Window를 이용한다. Sliding Window 방식은 Count-based sliding window, Time-based sliding window 두가지가 있다.  
+
+- Count Based Sliding Window
+  - 횟수 기반의 슬라이딩 윈도우
+  - 마지막 N번의 호출 결과를 집계한다. 
+- Time Based Sliding window
+  - 호출 지연 시간 기반의 슬라이딩 윈도우
+  - 마지막 N초의 호출 결과들을 집계한다.
+
+슬라이딩 윈도우들의 내부 구현 원리들을 살펴보려고 나름의 번역을 해가면서 읽었는데, 참 ... 내부 동작 자체는 한국어로 정리해도 이해가 안가는 면이 있다. 조금 더 시간을 두고 봐야 할 것 같고, 지금 당장에 일단은 결론을 내야할것 같아서 정리해봤다... 
+
+- Count based sliding window는 
+  - N 개의 사이즈 제한을 두고 이만큼 호출해서 몇번의 호출이 실패하면 막는 것이고, 
+- Time based sliding window는 
+  - 특정 호출 건이 몇초가 걸리는지를 매번 기록해두다가 원하는 임계(threshold)값을 넘어서면 그때 차단을 거는(슬라이딩 윈도우를 거는) 듯 해보인다.  
+
+
+
+## Count-based sliding window
+
+Count based 슬라이딩 윈도우는 n 번의 측정(measurement)를 가진 원형(순환) 배열을 기반으로 구현된다. 만약 count window size가 10 이면 원형(순환) 배열(circular array) 은 항상 10번의 measurements를 가지고 있게 된다.  
+
+새로운 호출 결과가 기록되면 총 집계는 업데이트된다. 가장 오래된 측정이 제거되면 총 집계에서 측정이 차감되고 버킷이 재설정된다.
+
+더 자세한 내용은 [https://resilience4j.readme.io/docs/circuitbreaker#count-based-sliding-window](https://resilience4j.readme.io/docs/circuitbreaker#count-based-sliding-window) 을 참고하자.  
+
+  
+
+## Time-based sliding window
+
+Time based 슬라이딩 윈도우는 N개의 부분 집계(bucket)의 원형(순환) 배열로 구현된다. 만약 time window size가 10 이면, 순환 배열은 항상 10개의 부분 집계를 갖는다. 모든 버킷은 특정 구간대의 초에 발생하는 모든 호출의 결과를 집계한다. (부분집계)  
+
+원형 배열의 헤드 버킷은 현재 구간대 초의 호출결과를 저장한다. 다른 부분 집계는 이전 초의 호출결과를 저장한다.
+
+슬라이딩 윈도우는 호출 결과(튜플)를 개별적으로 저장하지 않지만, 부분 집계(버킷) 및 전체 집계를 점진적으로 업데이트 한다. 총 집계는 새 통화 결과가 기록 될 때 점진적으로 업데이트 된다.  
+
+가장 오래된 버킷이 제거되면 해당 버킷의 부분 총 집계가 총 집계에서 빼고 버킷이 재설정 된다. (Subtract - on Evict)
+
+더 자세한 내용은 [https://resilience4j.readme.io/docs/circuitbreaker#time-based-sliding-window](https://resilience4j.readme.io/docs/circuitbreaker#time-based-sliding-window) 을 참고하자.  
+
+  
+
+## Failure rate and slow call rate thresholds
+
+3 Thread Example 을 최대한 간단하게 요약하자.  
+
+  
+
+## CircuitBreakerRegistry 생성
+
+[https://resilience4j.readme.io/docs/circuitbreaker#create-a-circuitbreakerregistry](https://resilience4j.readme.io/docs/circuitbreaker#create-a-circuitbreakerregistry)  
+
+
+
+## CircuitBreaker 생성 및 설정
+
+[https://resilience4j.readme.io/docs/circuitbreaker#create-and-configure-a-circuitbreaker](https://resilience4j.readme.io/docs/circuitbreaker#create-and-configure-a-circuitbreaker)  
+
+
+
+## Decorate, execute an Functional Interface
+
+[https://resilience4j.readme.io/docs/circuitbreaker#decorate-and-execute-a-functional-interface](https://resilience4j.readme.io/docs/circuitbreaker#decorate-and-execute-a-functional-interface)  functional interface 를 사용한다는 것은 하나의 동작에 대한 의미단위인 함수단위를 변수나 인자로 전달할 수 있다는 점에서 아주 큰 장점이 된다고 생각한다. 그리고 Resilience4J는 이것을 Decorators로 감싸서 모든 기능들을 build 후에 target으로 Service 컴포넌트 타입의 객체로 뱉어내준다. 
+
+
+
+일단 정리를 해야하는데... 오늘은 시간이 일단은 없어서... 내일쯤해야 할듯하다...🐌🐌🐌
+
+
+
+
+
+## 그외의 읽어볼 자료모음
+
+- Consume emitted RegistryEvents
+  - https://resilience4j.readme.io/docs/circuitbreaker#consume-emitted-registryevents
+- Consume emitted CircuitBreakerEvents
+  - https://resilience4j.readme.io/docs/circuitbreaker#consume-emitted-circuitbreakerevents
+- Override the RegistryStore
+  - https://resilience4j.readme.io/docs/circuitbreaker#override-the-registrystore
+
+
 
 ## RateLimiter 의 핵심개념
 
 정리할 예정이다. 예정이다 😭😭😭  
+
+Rate Limit 은 어느 정도의 Rate (비율)을 정해두고, 이 Rate의 제한점(Limit)을 넘어가는 요청에 대해서 아래의 두가지 해결방식을 어떤 방식으로든 조합해서 사용가능하다.
+
+- 거부한다. (decline)
+- 나중에 실행할 큐(대기열)을 만들어(build)둔다.
+
+
+
+더 정리해야하는데... 시간이 너무 부족하다. 금요일날 추가로 정리할 예정.
+
+
 
 ## Fallback 의 핵심개념
 
@@ -158,6 +254,8 @@ dependencies{
 # 스프링 설정
 
 kotlin 을 공부하는 중이고, 현재 프로젝트에는 무조건 kotlin 을 사용하도록 강제했다.  
+
+
 
 ## CircuitBreaker 인스턴스 생성
 
