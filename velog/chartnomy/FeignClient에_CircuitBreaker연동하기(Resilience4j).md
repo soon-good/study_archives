@@ -43,7 +43,7 @@ Circuit Breaker의 개념을 간단하게 정리해보자. 공식 문서에서�
 
 - [resilience4j.readme.io/docs/feign](https://resilience4j.readme.io/docs/feign)
 
-![이미지](file:///Users/kyle.sgjung/workspace/sgjung/study_archives/velog/chartnomy/img/OPENFEIGN_ON_CIRCUITBREAKER/1.png?lastModify=1603893826)
+![이미지](./img/OPENFEIGN_ON_CIRCUITBREAKER/1.png)  
 
 CircuitBreaker 는 제일 앞단에서 특정 API ( 위 예에서는 Feign Client ) 가 차단이 걸린 상태이면 해당 API 를 제공하는 Service 객체로의 접근을 차단한다. CircuitBreaker 가 차단되는 조건은 직접 설정할 수 있는데, 이에 대해서는 아래에서 정리할 예정이다.  
 
