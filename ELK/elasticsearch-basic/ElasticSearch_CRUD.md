@@ -46,6 +46,7 @@ $ curl -XGET http://localhost:9200/classes?pretty
 
 ```bash
 $ curl -XPUT http://localhost:9200/classes
+# 출력결과
 {"acknowledged":true,"shards_acknowledged":true,"index":"classes"}%
 ```
 
