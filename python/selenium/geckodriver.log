@@ -1,0 +1,80 @@
+1600519950673	mozrunner::runner	INFO	Running command: "/Applications/Firefox.app/Contents/MacOS/firefox-bin" "-marionette" "-foreground" "-no-remote" "-profile" "/var/folders/gh/1nq2kgbx2wv7vm2qgd4mzf680000gn/T/rust_mozprofileUQi8Yc"
+console.error: SearchCache: "_readCacheFile: Error reading cache file:" (new Error("", "(unknown module)"))
+1600519953047	Marionette	INFO	Listening on port 63402
+1600519953138	Marionette	WARN	TLS certificate errors will be ignored for this session
+1600520357509	Marionette	INFO	Stopped listening on port 63402
+1600520390721	mozrunner::runner	INFO	Running command: "/Applications/Firefox.app/Contents/MacOS/firefox-bin" "-marionette" "-foreground" "-no-remote" "-profile" "/var/folders/gh/1nq2kgbx2wv7vm2qgd4mzf680000gn/T/rust_mozprofilenT1sVB"
+console.error: SearchCache: "_readCacheFile: Error reading cache file:" (new Error("", "(unknown module)"))
+1600520392718	Marionette	INFO	Listening on port 65250
+1600520392774	Marionette	WARN	TLS certificate errors will be ignored for this session
+1600526023169	Marionette	INFO	Stopped listening on port 65250
+1600526199677	mozrunner::runner	INFO	Running command: "/Applications/Firefox.app/Contents/MacOS/firefox-bin" "-marionette" "-foreground" "-no-remote" "-profile" "/var/folders/gh/1nq2kgbx2wv7vm2qgd4mzf680000gn/T/rust_mozprofileJJJix4"
+console.error: SearchCache: "_readCacheFile: Error reading cache file:" (new Error("", "(unknown module)"))
+1600526201794	Marionette	INFO	Listening on port 51878
+1600526201830	Marionette	WARN	TLS certificate errors will be ignored for this session
+1600526203842	Marionette	WARN	TimedPromise timed out after 500 ms: stacktrace:
+TimedPromise/<@chrome://marionette/content/sync.js:245:13
+TimedPromise@chrome://marionette/content/sync.js:230:10
+interaction.flushEventLoop@chrome://marionette/content/interaction.js:416:10
+webdriverClickElement@chrome://marionette/content/interaction.js:182:31
+send@http://marketdata.krx.co.kr/WEB-APP/jquery/jquery.min.js:5:25682
+ajax@http://marketdata.krx.co.kr/WEB-APP/jquery/jquery.min.js:5:21570
+m._evalUrl@http://marketdata.krx.co.kr/WEB-APP/jquery/jquery.min.js:5:22649
+domManip@http://marketdata.krx.co.kr/WEB-APP/jquery/jquery.min.js:4:23089
+append@http://marketdata.krx.co.kr/WEB-APP/jquery/jquery.min.js:4:20620
+html/<@http://marketdata.krx.co.kr/WEB-APP/jquery/jquery.min.js:4:22151
+m.access@http://marketdata.krx.co.kr/WEB-APP/jquery/jquery.min.js:4:3399
+html@http://marketdata.krx.co.kr/WEB-APP/jquery/jquery.min.js:4:21736
+success@http://marketdata.krx.co.kr/templets/pc/js/templet.js:193:8
+j@http://marketdata.krx.co.kr/WEB-APP/jquery/jquery.min.js:2:27309
+fireWith@http://marketdata.krx.co.kr/WEB-APP/jquery/jquery.min.js:2:28122
+x@http://marketdata.krx.co.kr/WEB-APP/jquery/jquery.min.js:5:22111
+b@http://marketdata.krx.co.kr/WEB-APP/jquery/jquery.min.js:5:26030
+1600526238644	mozrunner::runner	INFO	Running command: "/Applications/Firefox.app/Contents/MacOS/firefox-bin" "-marionette" "-foreground" "-no-remote" "-profile" "/var/folders/gh/1nq2kgbx2wv7vm2qgd4mzf680000gn/T/rust_mozprofile1OOx0F"
+console.error: SearchCache: "_readCacheFile: Error reading cache file:" (new Error("", "(unknown module)"))
+1600526240854	Marionette	INFO	Listening on port 52105
+1600526240907	Marionette	WARN	TLS certificate errors will be ignored for this session
+1600526242616	Marionette	WARN	TimedPromise timed out after 500 ms: stacktrace:
+TimedPromise/<@chrome://marionette/content/sync.js:245:13
+TimedPromise@chrome://marionette/content/sync.js:230:10
+interaction.flushEventLoop@chrome://marionette/content/interaction.js:416:10
+webdriverClickElement@chrome://marionette/content/interaction.js:182:31
+send@http://marketdata.krx.co.kr/WEB-APP/jquery/jquery.min.js:5:25682
+ajax@http://marketdata.krx.co.kr/WEB-APP/jquery/jquery.min.js:5:21570
+m._evalUrl@http://marketdata.krx.co.kr/WEB-APP/jquery/jquery.min.js:5:22649
+domManip@http://marketdata.krx.co.kr/WEB-APP/jquery/jquery.min.js:4:23089
+append@http://marketdata.krx.co.kr/WEB-APP/jquery/jquery.min.js:4:20620
+html/<@http://marketdata.krx.co.kr/WEB-APP/jquery/jquery.min.js:4:22151
+m.access@http://marketdata.krx.co.kr/WEB-APP/jquery/jquery.min.js:4:3399
+html@http://marketdata.krx.co.kr/WEB-APP/jquery/jquery.min.js:4:21736
+success@http://marketdata.krx.co.kr/templets/pc/js/templet.js:193:8
+j@http://marketdata.krx.co.kr/WEB-APP/jquery/jquery.min.js:2:27309
+fireWith@http://marketdata.krx.co.kr/WEB-APP/jquery/jquery.min.js:2:28122
+x@http://marketdata.krx.co.kr/WEB-APP/jquery/jquery.min.js:5:22111
+b@http://marketdata.krx.co.kr/WEB-APP/jquery/jquery.min.js:5:26030
+1600526271429	Marionette	INFO	Stopped listening on port 51878
+1600526273551	Marionette	INFO	Stopped listening on port 52105
+1600526275502	mozrunner::runner	INFO	Running command: "/Applications/Firefox.app/Contents/MacOS/firefox-bin" "-marionette" "-foreground" "-no-remote" "-profile" "/var/folders/gh/1nq2kgbx2wv7vm2qgd4mzf680000gn/T/rust_mozprofile5zyDIq"
+console.error: SearchCache: "_readCacheFile: Error reading cache file:" (new Error("", "(unknown module)"))
+1600526277511	Marionette	INFO	Listening on port 52326
+1600526277556	Marionette	WARN	TLS certificate errors will be ignored for this session
+1600526279364	Marionette	WARN	TimedPromise timed out after 500 ms: stacktrace:
+TimedPromise/<@chrome://marionette/content/sync.js:245:13
+TimedPromise@chrome://marionette/content/sync.js:230:10
+interaction.flushEventLoop@chrome://marionette/content/interaction.js:416:10
+webdriverClickElement@chrome://marionette/content/interaction.js:182:31
+send@http://marketdata.krx.co.kr/WEB-APP/jquery/jquery.min.js:5:25682
+ajax@http://marketdata.krx.co.kr/WEB-APP/jquery/jquery.min.js:5:21570
+m._evalUrl@http://marketdata.krx.co.kr/WEB-APP/jquery/jquery.min.js:5:22649
+domManip@http://marketdata.krx.co.kr/WEB-APP/jquery/jquery.min.js:4:23089
+append@http://marketdata.krx.co.kr/WEB-APP/jquery/jquery.min.js:4:20620
+html/<@http://marketdata.krx.co.kr/WEB-APP/jquery/jquery.min.js:4:22151
+m.access@http://marketdata.krx.co.kr/WEB-APP/jquery/jquery.min.js:4:3399
+html@http://marketdata.krx.co.kr/WEB-APP/jquery/jquery.min.js:4:21736
+success@http://marketdata.krx.co.kr/templets/pc/js/templet.js:193:8
+j@http://marketdata.krx.co.kr/WEB-APP/jquery/jquery.min.js:2:27309
+fireWith@http://marketdata.krx.co.kr/WEB-APP/jquery/jquery.min.js:2:28122
+x@http://marketdata.krx.co.kr/WEB-APP/jquery/jquery.min.js:5:22111
+b@http://marketdata.krx.co.kr/WEB-APP/jquery/jquery.min.js:5:26030
+1600526279570	Marionette	INFO	Stopped listening on port 52326
+JavaScript error: http://marketdata.krx.co.kr/WEB-APP/jquery/jquery.min.js line 2 > eval, line 4: TypeError: b.ownerDocument.defaultView is null

@@ -6,14 +6,20 @@
 - velog에 정리해두고 싶었으나... (나중에 다시 보기 편하기 때문에...) 그냥 참았다.
 
 # virtualenv 세팅
+```
 virtualenv env-perpbr  
 source env-perpbr/bin/activate
+```
 
 # requirements 설치
+```
 pip install -r requirements.txt
+```
 
 # virtualenv 종료시키기
+```bash
 deactivate
+```
 
 # pycharm 에서 virtualenv 환경 세팅
 https://psychoria.tistory.com/447
