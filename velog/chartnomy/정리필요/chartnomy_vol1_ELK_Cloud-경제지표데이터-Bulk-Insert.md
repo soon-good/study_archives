@@ -2,7 +2,7 @@
 
 [velog.io - ELK Cloud - 경제지표 데이터 Bulk Insert](https://velog.io/@gosgjung/chartnomy-ELK-Cloud-%EA%B2%BD%EC%A0%9C%EC%A7%80%ED%91%9C-%EB%8D%B0%EC%9D%B4%ED%84%B0-Bulk-Insert) 에 정리했던 내용을 깃헙에 백업하는 용도로 정리.
 
-![이미지](./img/ELASTIC_CLOUD/ElasticLogo.jpg)
+![이미지](../img/ELASTIC_CLOUD/ElasticLogo.jpg)
 
 > 목요일 ~ 금요일 동안 포스팅을 하려 했으나, Elastic Cloud에 외부(로컬 개발환경)에서 BULK INSERT API를 요청할 때 curl 커맨드의 형식을 맞추는게 번번히 실패해 삽질을 거듭하다가 어제 저녁에 부랴부랴 성공했다.(이렇게 실패한 원인에는 공식문서의 글을 맹신한것도 어느정도 기여했다.)  
 >
@@ -30,17 +30,17 @@
 
 kibana console을 활용해 인덱스를 생성해봅시다.  
 
-![img](./img/BULK-INSERT-1/1.png)
+![img](../img/BULK-INSERT-1/1.png)
 
   
 
 Kibana 메뉴 옆의 Launch 버튼을 클릭  
-![img](./img/BULK-INSERT-1/2.png)
+![img](../img/BULK-INSERT-1/2.png)
 
   
 
 Kibana > Management > Dev Tools 클릭
-![img](./img/BULK-INSERT-1/3.png)
+![img](../img/BULK-INSERT-1/3.png)
 
   
 
@@ -49,7 +49,7 @@ Kibana > Management > Dev Tools 클릭
 > PUT [인덱스명]
 > ndex는 관계형 데이터베이스로 치면 MySQL의 스키마와 같은 개념이다. 보통 스키마 밑에 테이블들이 여러 개 있다. 테이블의 개념은 6.x 까지는 타입(type)이었는데, 7.x 대에서 이 개념이 DEPRECATED 되었다.
 
-![img](./img/BULK-INSERT-1/4.png)
+![img](../img/BULK-INSERT-1/4.png)
 
   
 
@@ -58,18 +58,18 @@ Kibana > Management > Dev Tools 클릭
 > DELETE [인덱스명]
 
 index를 삭제하려면 아래와 같이하면 된다. 이 역시 키바나 콘솔에서 수행했다. (추후 Spring Boot 에서 DataSource를 연결하게 되면 SpringBoot로 CRUD API를 작성했던 내용 역시 정리할 예정이다.)  
-![img](./img/BULK-INSERT-1/5.png)
+![img](../img/BULK-INSERT-1/5.png)
 
   
 
 **명령어 도움말 documentation 확인하기**  
 렌치 버튼 클릭 -> Open documentation 클릭  
-![img](./img/BULK-INSERT-1/6.png)
+![img](../img/BULK-INSERT-1/6.png)
 
   
 
 [도큐먼트 페이지](https://www.elastic.co/guide/en/elasticsearch/reference/7.9/indices-create-index.html)를 확인할 수 있다.
-![img](./img/BULK-INSERT-1/7.png)
+![img](../img/BULK-INSERT-1/7.png)
 
   
 
@@ -200,7 +200,7 @@ $ (ecos-crawler) python json-korbank-kospi.py
 
 만들어진 json 파일의 이름은 json/document/kospi_data.json 이다.  
 
-![img](./img/BULK-INSERT-1/8.png)
+![img](../img/BULK-INSERT-1/8.png)
 
   
 
@@ -223,7 +223,7 @@ Elastic Cloud 내에 새로 생성된 ElasticSearch 노드에 데이터를 Bulk 
   
 
 JSON으로 생성된 파일의 첫번째 라인을 복사해서 _BULK 명령어로 수행했다. 결과는 errors: false, result: created 메시지를 보아 정상적으로 잘 생성되었음을 확인 가능하다.  
-![img](./img/BULK-INSERT-1/9.png)
+![img](../img/BULK-INSERT-1/9.png)
 
 혹시라도 이 명령어를 이용하려는 사람이 있을것 같아 텍스트로 남겨놓는다.
 
@@ -261,17 +261,17 @@ POST _bulk
 ### ElastchSearch End Point 복사  
 
 [cloud.elastic.co](https://cloud.elastic.co/) 방문 & 로그인  
-![img](./img/BULK-INSERT-1/10.png)
+![img](../img/BULK-INSERT-1/10.png)
 
   
 
 Deployment name 에 적힌 node 를 클릭  
-![img](./img/BULK-INSERT-1/11.png)
+![img](../img/BULK-INSERT-1/11.png)
 
   
 
 Copy endpoint 클릭  
-![img](./img/BULK-INSERT-1/12.png)
+![img](../img/BULK-INSERT-1/12.png)
 
 이렇게 복사한 Elasticsearch URL을 메모장이나, 텍스트 파일 어디든 붙여넣고 저장해두고 있다가 Bulk Insert에 붙여넣어 사용하자.
 

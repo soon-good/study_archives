@@ -15,7 +15,7 @@
 ```bash
 DELETE /kospi
 ```
-![이미지](./img/BULK_INSERT_2_AND_MAPPING/1.png)
+![이미지](../img/BULK_INSERT_2_AND_MAPPING/1.png)
 
   
 
@@ -25,6 +25,7 @@ DELETE /kospi
 
 ### 참고자료
 - 인덱스 매핑
+  
   - [https://www.elastic.co/guide/en/elasticsearch/reference/current/mapping.html](https://www.elastic.co/guide/en/elasticsearch/reference/current/mapping.html)
 - `Explicit Mappings` 
   - 인덱스 매핑을 하는 여러가지 방식을 설명한다.
@@ -37,13 +38,14 @@ DELETE /kospi
   - ElasticSearch 의 Data Type 들에 대해 리스팅 되어 있는 자료
   - [https://www.elastic.co/guide/en/elasticsearch/reference/current/sql-data-types.html](https://www.elastic.co/guide/en/elasticsearch/reference/current/sql-data-types.html)
 - 데이트 타입 매핑시 DateFormat 관련 자료
+  
   - [https://www.elastic.co/guide/en/elasticsearch/reference/current/mapping-date-format.html](https://www.elastic.co/guide/en/elasticsearch/reference/current/mapping-date-format.html)
 - 데이트 타입 매핑시 포매팅 속성 지정 관련 자료
   - [https://www.elastic.co/guide/en/elasticsearch/reference/current/date.html](https://www.elastic.co/guide/en/elasticsearch/reference/current/date.html)
 
    
 
-![이미지](./img/BULK_INSERT_2_AND_MAPPING/2.png)
+![이미지](../img/BULK_INSERT_2_AND_MAPPING/2.png)
 
 위의 자료들을 참고해 매핑을 적용한 모습은 아래와 같다. 가운데에 'T'가 들어간 날짜 형식을 ISO 포맷이라고 부른다. 'T'가 들어가지 않고도 일라스틱 클라우드에 매핑과 Bulk Insert 모두 가능하다.  
 
@@ -55,7 +57,7 @@ DELETE /kospi
 
 다른 형식 모두 괜찮긴 한데 시/분/초 까지 적용되게끔 하려면 Spring Data ElasticSearch에서는 isoformat만을 지원하기 때문에 가급적 ’T’가 포함된 ISO Format을 사용하는 것이 권장된다.
 
-![이미지](./img/BULK_INSERT_2_AND_MAPPING/3.png)
+![이미지](../img/BULK_INSERT_2_AND_MAPPING/3.png)
 
 
 
@@ -312,7 +314,7 @@ https://a2580127b5fa47a783245a38d16c6a76.ap-northeast-2.aws.elastic-cloud.com:92
 
 Insert가 정상적으로 수행된 모습은 아래와 같다.  
 
-![이미지](./img/BULK_INSERT_2_AND_MAPPING/4.png)
+![이미지](../img/BULK_INSERT_2_AND_MAPPING/4.png)
 
 
 
@@ -336,7 +338,7 @@ Insert가 정상적으로 수행된 모습은 아래와 같다.
 
 프로젝트의 구조는 아래와 같다. 아래에 보이듯이 connection.properties 라는 파일이 있다.  
 
-![이미지](./img/BULK_INSERT_2_AND_MAPPING/5.png)
+![이미지](../img/BULK_INSERT_2_AND_MAPPING/5.png)
 
 
 
@@ -522,11 +524,11 @@ class ElasticsearchClientConfiguration (
 
 날짜의 format과 pattern을 지정해주는 @Field 내의 필드들은 아래와 같다.  
 
-![이미지](./img/BULK_INSERT_2_AND_MAPPING/6.png)
+![이미지](../img/BULK_INSERT_2_AND_MAPPING/6.png)
 
   
 
-![이미지](./img/BULK_INSERT_2_AND_MAPPING/7.png)
+![이미지](../img/BULK_INSERT_2_AND_MAPPING/7.png)
 
 이렇게 이것 저것 참고해가며 완성한 엔티티 매핑은 아래와 같다   
 
@@ -673,7 +675,7 @@ class KospiTest {
 ### 출력결과
 
 잘된다~ 아휴... (땀 뻘뻘...) ㅋㅋ
-![이미지](./img/BULK_INSERT_2_AND_MAPPING/8.png)
+![이미지](../img/BULK_INSERT_2_AND_MAPPING/8.png)
 
   
 
