@@ -8,12 +8,21 @@
 
 redux가 flux 와 많이 비교되는 편인 것 같다. redux flux 라는 검색어로 구글 검색을 해보면 정말 많은 자료가 나오는데... 심심할때 많이 봐두어야 할 것 같다.  
 
+# 예제 URL
+
+[github - redux example](https://github.com/soongujung/react_examples/tree/master/redux-ramen-shopping)
+
+
+
 # 참고자료들
 
 - [redux.js.org](https://redux.js.org/)
   - 주로 Getting Started, Tutorial 위주로 살펴보았다.
   - API 명세 역시 찾아보았는데 설명이 자세했다. 
   - Best Practices 에서는 좋은 코딩 관례에 대해 설명하고 있다.
+- [redux.js.org/basics/usage-with-react](https://redux.js.org/basics/usage-with-react)
+  - react에서 redux를 사용할때의 예제를 정리하고 있다.
+  - 여기에서 들고 있는 예제만 따로 정리해도 내용이 굉장히 알찰거 같다는 생각이 든다.
 - [Dan Abramov - Presentational and Container Components](https://medium.com/@dan_abramov/smart-and-dumb-components-7ca2f9a7c7d0)
   - Dan Abramov 는 redux의 창시자이다.
 - [리액트를 다루는 기술(개정판) - Ebook](http://www.yes24.com/Product/Goods/79260300)
@@ -65,7 +74,7 @@ $ yarn add react-redux
 
 [참고](https://redux.js.org/basics/reducers)) **Reducers** specify how the application's state changes in response to [actions](https://redux.js.org/basics/actions) sent to the store. Remember that actions only describe *what happened*, but don't describe how the application's state changes.  
 
-리듀서는 action에 대한 반응이다. store로 전달되는 액션에 대해 애플리케이션의 상태변화를 어떻게 할 지에 대해 기술하는 역할을 한다. 액션은 애플리케이션의 state가 어떻게 변하는지를 묘사하는 것이 아니라, 무엇이 일어났는지만을 묘사해야 한다.  
+리듀서는 action에 대한 반응이다. store로 전달되는 액션에 대해 애플리케이션의 상태변화를 어떻게 할 지에 대해 기술하는 역할을 한다. 액션은 애플리케이션의 state가 어떻게 변하는지를 묘사하는 것이 아니라, 무엇이 일어났는지만을 묘사해야 한다. (무엇이 일어났는지만을 묘사한다는 것은 state 전체를 수정하는 것이 아니라, 액션에 대한 state만을 수정해야 한다는 이야기를 조금은 이론적으로, 개념적으로 설명하려다 보니 이런 문구가 되지 않았나 싶다.)  
 
 
 
@@ -96,6 +105,8 @@ $ yarn add react-redux
 - payload : {type: 'cart/DECREMENT', itemKind: '물품명'}
   - 이 '물품명' 값은 각각의 컴포넌트의 이벤트 핸들러로부터 인자값으로 전달받는다.
 
+  
+
 ### 리듀서(cart.js) 정의
 
 **src/store/modules/cart.js**
@@ -105,14 +116,15 @@ $ yarn add react-redux
 const INCREMENT = 'cart/INCREMENT';
 const DECREMENT = 'cart/DECREMENT';
 
+// 액션 생성함수 정의 
 export const incrementItem = (itemKind) => ({type: INCREMENT, itemKind: itemKind});
 export const decrementItem = (itemKind) => ({type: DECREMENT, itemKind: itemKind});
-// export const currentState = () => ()
 
 const initialState = {
     number: 0
 };
 
+// 리듀서 생성/정의/export
 export default function cart(state = initialState, action){
     const itemType = action.itemKind;
 
@@ -149,8 +161,37 @@ export default function cart(state = initialState, action){
 }
 ```
 
+내용을 모두 설명해야 하는데 더 자세한 설명은 수요일에 할 예정이다.  
 
-내용을 모두 설명해야 하는데 더 자세한 설명은 수요일에 할 예정이다.   
+cart.js 에서는 아래의 내용들을 정의하고 있다.
+
+- 액션생성 함수 생성시 유의할 내용
+  - type인가 뭐시기가 꼭 하나는 있어야 한다 이런 내용이 있었는데 이 내용 정리하자.
+
+
+
+- 액션생성함수 (Action Creator)
+  - incrementItem(itemKind) : Object
+    - {type: xxx, ...} 와 같이 return 하면 된다.
+    - 
+  - decrementItem(itemKind) : Object
+  - ...
+- 리듀서 생성/정의/export
+  - 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 state 의 형태는 아래와 같이 구성했다.  
 
@@ -173,7 +214,9 @@ state 의 형태는 아래와 같이 구성했다.
 
 
 
-## 루트리듀서 생성 (index.js - combineReducer(...) )
+## 루트리듀서 생성 (index.js - combineReducers(...) )
+
+> 장바구니 리듀서를 하나의 루트 리듀서에 합쳐서 export 한다. 루트리듀서를 생성하는 combineReducers(...) 함수는 redux 모듈에 존재한는 함수이다.
 
 cart.js (src/store/modules/cart.js) 에서 방금전 리듀서로 생성했던 cart(...) 함수는 리듀싱 함수이다. 이 리듀싱 함수는 애플리케이션 전역에 하나일 수도 있지만, 용도별로, 컴포넌트별로 나누어 여러개의 리듀싱 함수로 생성할 수 있다. 그런데 최종적으로는 이 리듀서 함수들을 하나로 합쳐야 하는데, 이때 사용하는 것이 `combineReducer (...)` 함수이다.  
 
@@ -546,6 +589,13 @@ const mapStateToProps = ({cart}) =>{
     return temp;
 }
 
+// state 의 현재 모양은 아래와 같다. combineReducers로 입력할때 이렇게 했기 때문
+// {
+//  cart: {
+//    ...
+//  }
+// }
+
 
 const mapDispatchToProps = dispatch => ({
     incrementItem: (itemKind) => dispatch(incrementItem(itemKind)),
@@ -557,14 +607,32 @@ export default connect(mapStateToProps, mapDispatchToProps)(MartItemList);
 
 redux를 react에서 사용할 때는 코딩을 하기에 더 쉬워진 측면이 있기는하다. react가 아닌 순수 redux로 코딩할때는 굉장히 어렵게 이해했었는데, react-redux  라이브러리를 사용하면 조금은 간편하게 코딩을 하게 된다. 아래 내용들만 기억한다면 간단하게 코딩이 가능하다.
 - `mapStateToProps`
+
+  - [reduxjs.org - usage with react](https://redux.js.org/basics/usage-with-react#implementing-container-components) 에서는 mapStateToProps를 아래와 같이 설명하고 있다.
+  - To use connect(), you need to define a special function called `mapStateToProps` that describes how to transform the current Redux store state into the props you want to pass to a presentational component you are wrapping.
+  - connec()를 사용하려면 `mapStateToProps` 라는 특수한 함수를 정의해야 한다. `mapStateToProps` 는 현재의 Redux store state 가 props로 어떻게 변하는지를 기술(describe)한다. 이때 props 는 래핑하고 있는 Presentational 컴포넌트에 전달할 props를 의미한다.
+  - 즉, Presentational 컴포넌트에 props 를 전달하는데, 이 mapStateProps
+
 - `mapDispatchToProps`
+
+  - mapDispatchToProps 함수는 공식문서에서 아래와 같이 설명하고 있다.
+    - In addition to reading the state, container components can dispatch actions. In a similar fashion, you can define a function called `mapDispatchToProps()` that receives the [`dispatch()`](https://redux.js.org/api/store#dispatchaction) method and returns callback props that you want to inject into the presentational component.
+    - state를 읽어들이는 것 외에도 container component 는 action 을 dispatch 할 수 있다. 비슷한 방식으로, `dispatch()` 메서드를 받아서 callback props 를 리턴하는 `mapDispatchToProps()` 라는 이름의 함수를 정의할 수 있다. 이때 callback props는 presentational component 로 inject 하고자 하는 것들이다. 
+    - 공식문서에서는 개념적으로 설명하기 위하다보니 조금 어렵거나 개념을 설명하는 추상적인 말들만 적혀있기에 간단히 정리해보면 이렇다. dispatch 메서드들을 callback 함수들처럼 동작하도록 특정 props들에 바인딩하는 과정이다. props에 dispatch 함수들을 연결해주는 메서드가 mapDispatchToProps 이다. 이렇게 props로 등록해 사용하면 함수의 내용이 바뀔일이 없다. 
+      (props 는 읽기전용이므로)
+
 - `connect()` 함수
+  
   - connect() 함수는 react-redux 모듈에서 제공하는 함수이다.
-  - mapStateToProps, mapDispatchToProps 함수를 전달 받아서 새로운 함수를 반환하는데
-  - 이 새로운 함수의 인자에 컨테이너 객체(ex. MartItemList)를 대입하면 
+  - mapStateToProps, mapDispatchToProps 함수를 전달 받아서 새로운 함수를 반환한다.
+  - connect() 함수가 반환하는 함수의 의 인자에 컨테이너 객체(ex. MartItemList)를 대입하면 
   - 해당 컴포넌트(`MartItemList`) 에 대해서 
     - state를 MartItemList의 props 로 주입
     - dispatch를 MartItemList의 props 로 주입
+  - 공식문서에서는 `connect()` 함수에 대해 아래와 같이 설명하고 있다.
+    - You could write a container component by hand, but we suggest instead generating container components with the React Redux library's [`connect()`](https://react-redux.js.org/using-react-redux/connect-mapstate) function, which provides many useful optimizations to prevent unnecessary re-renders. 
+    - `connect()` 는 React Redux 라이브러리에서 제공하는 함수인데, `connect()` 함수는불필요한 re-render 작업을 예방하기위한  많은 유용한 optimization들을 제공한다.
+  
 - 이렇게 state, dispatch 를 props 로 전달하게 되면, state, dispatch를 읽기전용으로 사용할 수있게 되어 불변성을 보장할수 있기 때문에 장점이 되지 않을까 하는 그런 생각이 든다.
 
   
