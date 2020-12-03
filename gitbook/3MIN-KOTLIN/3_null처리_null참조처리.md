@@ -238,11 +238,95 @@ null 인 요소에 대해서는 toUpperCase() 를 수행하지 않고 null 을 �
 
 
 
-# !! 연산자
+# Null Pointer Exception 관련 연산자들‌
+
+## ?: 연산자 (Elvis 연산자)
+
+참고 : [kotlinlang.org - Elvis Operator](https://kotlinlang.org/docs/reference/null-safety.html#elvis-operator)  
+
+연산자의 좌측과 우측에 피 연산자가 존재하는데, 왼쪽에는 실제 null 이 될수도 있는 값이고, 우측의 값은 null 이 될 경우 대체할 값을 반환하는 역할을 한다. 이해를 위해 두가지 예제를 정리해보면 아래와 같다.  
+
+### 예제 1) ?: 연산자 테스트 (Elvis Operator) #1
+
+```kotlin
+class NullTest {
+
+    @Test
+    @DisplayName("?: 연산자 테스트 (Elvis Operator) #1 ")
+    fun testElvisOpertor1 () : Unit {
+//        var b = "abcdefgh"
+        var b : String? = null
+        val l: Int = if (b != null) b.length else -1
+        val m: Int = b?.length ?: -1
+
+        println("l : ${l}")
+        println("m : ${m}")
+    }
+}
+```
 
 
 
-# Elvis 연산자
+**출력결과**  
+
+```plain
+l : -1
+m : -1
+```
+
+  
+
+### 예제 2) ?: 연산자 테스트 (Elvis Operator) #2
+
+**ElectricalEnergy.kt**  
+
+```kotlin
+data class ElectricalEnergy (
+    var kwh : Double?,
+    var voltage: Double?,
+    val date: LocalDate
+){
+}
+```
+
+  
+
+**테스트 코드**  ‌ 
+
+주의할 점이 하나 있다. **Elvis Operator 를 통해 반환받는 값은 Any 라는 타입**이라는 것이다. 따라서 아래의 for 문에서 만약 kwh 와 voltage를 곱하거나 더하거나 나누고 빼는 산술연산을 수행하는 것은 불가능하다. Double? 과 Any 간에 산술연산을 했기 때문이다.   
+
+```kotlin
+@Test
+@DisplayName("?: 연산자 테스트 (Elvis Operator) #2 ")
+fun testElvisOperator2 () : Unit {
+    val strDay1 = "20201203"
+    val strDay2 = "20201204"
+
+    val ofPattern = DateTimeFormatter.ofPattern("yyyyMMdd")
+    val startDate = LocalDate.parse(strDay1, ofPattern)
+    val endDate = LocalDate.parse(strDay2, ofPattern)
+
+    val e1 = ElectricalEnergy(kwh = 2000.0, voltage = null, date = startDate)
+    val e2 = ElectricalEnergy(kwh = 1500.0, voltage = null, date = endDate)
+
+    val elecList = listOf<ElectricalEnergy>(e1, e2)
+    elecList.forEach {
+        val nullProcessed : Any = it.voltage?.dec() ?: 0
+        println("voltage :: ${nullProcessed}")
+    }
+}
+```
+
+  
+
+**출력결과**  
+
+```kotlin
+voltage :: 0
+voltage :: 0
+```
+
+
 
 
 
