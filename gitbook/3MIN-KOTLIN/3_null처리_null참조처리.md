@@ -8,6 +8,8 @@
 
 - [Kotlin 안전한 null 처리 - thdev.tech](https://thdev.tech/kotlin/2016/08/04/Kotlin-Null-Safety/)
 - [kotlinlang.org - Null Safety](https://kotlinlang.org/docs/reference/null-safety.html) 
+- [Keywords and Operators - kotlinlang.org](https://kotlinlang.org/docs/reference/keyword-reference.html)
+- ["Unsafe" cast operator - kotlinlang.org, Type Checks and Casts: 'is' and 'as'](https://kotlinlang.org/docs/reference/typecasts.html#unsafe-cast-operator)
 
 
 
@@ -328,11 +330,268 @@ voltage :: 0
 
 
 
+## !! 연산자
+
+> 참고자료 : https://kotlinlang.org/docs/reference/null-safety.html#the--operator‌
+
+!! 연산자는 어떤 변수가 다른 변수에 대입되거나, 어떤 변수에 대해 참조연산을 할 때 변수 뒤에 붙여서 사용한다. NPE 가 발생하도록 강제하도록 할경우에 사용하는 경우가 많다고 한다.  
+
+- !! 연산자가 뒤에 붙은 변수 a 가 다른 어떤 변수 b에 대입될때 
+  - val a : String? = null
+  - val b : String = a!!
+  - 이때  변수 A가 null 이면 NPE(Null Pointer Exception) 이 발생한다.  
+
+공식 문서에서는 !! 연산자를 이렇게 설명하고 있다.
+
+> he third option is for NPE-lovers: the not-null assertion operator (`!!`) converts any value to a non-null type and throws an exception if the value is null. We can write `b!!`, and this will return a non-null value of `b` (e.g., a `String` in our example) or throw an NPE if `b` is null:
+
+
+
+‌
+
+### 예제 1) 
+
+```kotlin
+@Test
+@DisplayName("!! 연산자 테스트 >> 공백문자로 테스트해보기")
+fun testNonNullCase1() : Unit {
+    val whitespace: String = ""
+    val length1 = whitespace!!.length
+    println(length1)
+}
+```
+
+출력결과
+
+```plain
+0
+```
+
+‌
+
+### 예제 2)
+
+```kotlin
+@Test
+@DisplayName("!! 연산자 테스트 >> nullable에 notnull 을 대입해보기")
+fun testNonNullCase2() : Unit {
+    val label1 : String? = "테스트"
+    val label2 : String = label1!!
+    val label3 : String? = label1!!
+    val label4 : String? = null
+//        val label5 : String = label4!!  // NPE 발생
+
+    println("label1 = ${label1}")
+    println("label2 = ${label2}")
+    println("label3 = ${label3}")
+    println("label4 = ${label4}")
+//        println("lable5 = ${label5}")
+}
+```
+
+출력결과
+
+```plain
+label1 = 테스트
+label2 = 테스트
+label3 = 테스트
+label4 = null
+```
+
+‌
+
+### 예제 3)
+
+```kotlin
+@Test
+@DisplayName("!! 연산자 테스트 >> nullable 데이터 테스트")
+fun testNonNullCase3() : Unit {
+    val nullableString: String? = null
+    // null 데이터에 대해서 NPE (Null Pointer Exception 을 발생시킨다.)
+    println("nullableString!!.length = ${nullableString!!.length}")
+}
+```
+
+출력결과  
+
+Null Pointer Exception이 발생해야만 한다.
+
+```plain
+kotlin.KotlinNullPointerException
+	at nullable_operator.NonNullOperatorTest.testNonNullCase3(NonNullOperatorTest.kt:37)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.junit.platform.commons.util.ReflectionUtils.invokeMethod(ReflectionUtils.java:389)
+	at org.junit.jupiter.engine.execution.ExecutableInvoker.invoke(ExecutableInvoker.java:115)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.lambda$invokeTestMethod$6(TestMethodTestDescriptor.java:167)
+	at org.junit.jupiter.engine.execution.ThrowableCollector.execute(ThrowableCollector.java:40)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.invokeTestMethod(TestMethodTestDescriptor.java:163)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:110)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:57)
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestExecutor.lambda$execute$3(HierarchicalTestExecutor.java:83)
+	at org.junit.platform.engine.support.hierarchical.SingleTestExecutor.executeSafely(SingleTestExecutor.java:66)
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestExecutor.execute(HierarchicalTestExecutor.java:77)
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestExecutor.lambda$null$2(HierarchicalTestExecutor.java:92)
+	at java.util.stream.ForEachOps$ForEachOp$OfRef.accept(ForEachOps.java:183)
+	at java.util.stream.ReferencePipeline$2$1.accept(ReferencePipeline.java:175)
+	at java.util.Iterator.forEachRemaining(Iterator.java:116)
+	at java.util.Spliterators$IteratorSpliterator.forEachRemaining(Spliterators.java:1801)
+	at java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:482)
+	at java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:472)
+	at java.util.stream.ForEachOps$ForEachOp.evaluateSequential(ForEachOps.java:150)
+	at java.util.stream.ForEachOps$ForEachOp$OfRef.evaluateSequential(ForEachOps.java:173)
+	at java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:234)
+```
+
 
 
 # 안전한 Casting (as? 연산자)
 
+> 참고자료 :  
+>
+> - [Keywords and Operators - kotlinlang.org](https://kotlinlang.org/docs/reference/keyword-reference.html)
+>   - as 연산자는 보통 type cast 를 할 때 사용한다.
+> - ["Unsafe" cast operator - kotlinlang.org, Type Checks and Casts: 'is' and 'as'](https://kotlinlang.org/docs/reference/typecasts.html#unsafe-cast-operator)
 
+
+
+## Overview
+
+이것 하나만 기억해두고 아래의 예제들을 체크해보자. 
+
+- String 타입과 String? 타입을 코틀린 컴파일러는 명백히 다른 타입으로 인식한다.
+- Int 타입과 Int? 타입을 코틀린 컴파일러는 명백히 다른 타입으로 인식한다.
+- Long 타입과 Long? 타입을 코틀린 컴파일러는 명백히 다른 타입으로 인식한다. 
+- 나머지 다른 타입들에 대해서도 동일하게 `타입` 과 `타입?` 은 명백히 다른 타입으로 인식된다.
+
+
+
+## Unsafe cast operator (안전하지 않은 Casting)‌
+
+as? 는 안전한 캐스팅에 사용되는 연산자이다. 하지만, as?를 확인해보기 전에 as를 참고 삼아 정리해두면 더 좋을 것 같아 as 연산자에 대해서 먼저 정리해보기로 했다. 일반적으로 as 는 현재 타입을 다른 타입으로 캐스팅할 때 사용한다.   
+
+java 언어에서의 예를 들어보면 `Map<String, Object>` 를 사용할 때 가끔 Java 의 Object 타입을 String으로 바꾸는 등의 작업을 하는 경우 역시 예로 들수 있을 것 같다.  
+
+
+
+### 예제)
+
+```kotlin
+@Test
+@DisplayName("unsafe operator 1")
+fun testOperatorAsCase1() : Unit {
+    val y : Any = "hello"
+    val x : String = y as String
+    println("x is ... ${x}")
+}
+```
+
+출력결과 
+
+```plain
+x is ... hello
+```
+
+‌
+
+## Safe case operator (안전한 Casting)‌
+
+as? 는 안전한 캐스팅에 사용되는 연산자이다. as? 에 대해서 캐스팅이 적용될 수 있는 경우를 나열해보면 이해가 쉬울 것 같다.‌
+
+- String? 타입 변수에 String 타입을 대입해서 캐스팅하는 것은 불가능하다. String? 과 String 은 명백히 다른 타입이기 때문이다.
+- Int? 타입 변수에 Int 타입을 대입해서 캐스팅하는 것은 불가능하다. Int? 과 Int 은 명백히 다른 타입이기 때문이다.
+- Long? 타입 변수에 Long 타입을 대입해서 캐스팅하는 것은 불가능하다. Long? 과 Long은 명백히 다른 타입이기 때문이다.
+- 나머지 다른 타입들에 대해서도 동일하게 `타입` 과 `타입?` 은 명백히 다른 타입이고 `as` 와  `as?`  는 명백히 다른 캐스팅 연산이다.‌
+
+  
+
+### 예제1)
+
+```kotlin
+@Test
+@DisplayName("unsafe operator 1")
+fun testOperatorAsCase1() : Unit {
+    val y : Any = "hello"
+    val x : String = y as String
+    println("x is ... ${x}")
+}
+```
+
+출력결과
+
+```plain
+x is ... hello
+```
+
+  
+
+### 예제2)
+
+```kotlin
+@Test
+@DisplayName("unsafe operator 2")
+fun testOperatorAsCase2() : Unit {
+    val y : Any? = null
+    val x : String? = y as? String?
+    println("x is ... ${x}")
+}
+```
+
+출력결과 
+
+```plain
+x is ... null
+```
+
+‌
+
+### 예제3)
+
+```kotlin
+@Test
+@DisplayName("unsafe operator 3")
+fun testOperatorAsCase3() : Unit {
+    val y : Any? = null
+    val x : String? = y as String   // Type cast Exception ( Any? -> String )
+    println("x is ... ${x}")
+}
+```
+
+출력결과  ‌
+
+`Type Cast Exception` 이 발생한다.  
+
+```plain
+kotlin.TypeCastException: null cannot be cast to non-null type kotlin.String
+
+	at nullable_operator.TheOperatorAsTest.testOperatorAsCase3(TheOperatorAsTest.kt:28)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.junit.platform.commons.util.ReflectionUtils.invokeMethod(ReflectionUtils.java:389)
+	at org.junit.jupiter.engine.execution.ExecutableInvoker.invoke(ExecutableInvoker.java:115)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.lambda$invokeTestMethod$6(TestMethodTestDescriptor.java:167)
+	at org.junit.jupiter.engine.execution.ThrowableCollector.execute(ThrowableCollector.java:40)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.invokeTestMethod(TestMethodTestDescriptor.java:163)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:110)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:57)
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestExecutor.lambda$execute$3(HierarchicalTestExecutor.java:83)
+	at org.junit.platform.engine.support.hierarchical.SingleTestExecutor.executeSafely(SingleTestExecutor.java:66)
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestExecutor.execute(HierarchicalTestExecutor.java:77)
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestExecutor.lambda$null$2(HierarchicalTestExecutor.java:92)
+	at java.util.stream.ForEachOps$ForEachOp$OfRef.accept(ForEachOps.java:183)
+	at java.util.stream.ReferencePipeline$2$1.accept(ReferencePipeline.java:175)
+	at java.util.Iterator.forEachRemaining(Iterator.java:116)
+	at java.util.Spliterators$IteratorSpliterator.forEachRemaining(Spliterators.java:1801)
+	at java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:482)
+	at java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:472)
+	at java.util.stream.ForEachOps$ForEachOp.evaluateSequential(ForEachOps.java:150)
+```
+
+  
 
 # Nullable 값들에 대한 컬렉션들, filterNotNull() 함수
 

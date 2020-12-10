@@ -1,6 +1,10 @@
 package nullable_operator
 
-data class MonthlyPeakData (
-    val
+import java.time.LocalDate
+
+data class ElectricalEnergy (
+    var kwh : Double?,
+    var voltage: Double?,
+    val date: LocalDate
 ){
 }
