@@ -16,11 +16,17 @@ public class MainApp {
 		transaction.begin();
 
 		try{
-			System.out.println("======= em.find(Employee.class, 1L) =======");
-			Employee emp1 = em.find(Employee.class, 1L);
+			// @Id가 100L 인 데이터를 가져와 보자.
+			System.out.println("======= em.find (Employee.class, 100L) =======");
+			Employee emp100 = em.find(Employee.class, 100L);
 
-			System.out.println("======= em.remove(\"소방관\") =======");
-			em.remove(emp1);
+			// emp100의 이름을 변경해보자
+			System.out.println("======= emp100.setName... 엔티티 내부 값 변경 =======");
+			emp100.setName("소방관#100");
+
+			// 현재 영속성 컨텍스트인 em 을 비워보자.
+			System.out.println("======= em.clear() =======");
+			em.clear();
 
 			System.out.println("======= transaction.commit() =======");
 			transaction.commit();
