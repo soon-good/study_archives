@@ -8,7 +8,9 @@
 
 등등의 경우도 생각해봐야 한다. 이런 경우는 서버단에서 외부 API를 호출해야 한다. Spring/Maven 에서는 다른 서버의 REST API와 통신하기 위한 기본적인 기능들을 제공하는 라이브러리를 제공해주고 있다. 
 
-- [springframework.http.client](https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/http/client/package-summary.html)
+- Spring 의 RestTemplate 사용하기
+  - [springframework.http.client](https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/http/client/package-summary.html)
+  - [기억보다는 기록을 - Dto 클래스에서 MultiValueMap으로 쉽게 타입변환하기](https://jojoldu.tistory.com/478)
 - [jersey-client](https://mvnrepository.com/artifact/org.glassfish.jersey.core/jersey-client)
 
 
@@ -404,6 +406,8 @@ public interface JsonPlaceholderClient {
 
 
 ### POST 메서드 예제
+
+!TODO https://stackoverflow.com/questions/42427639/how-to-send-post-request-by-spring-cloud-feign
 
 
 

@@ -40,6 +40,7 @@ Map<LifeCycle, Set<Plant>> plantsByLifeCycle =
   
 
 ## 나쁜 예
+
 ```java
 enum LifeCycle { ANNUAL, PERENNIAL, BIENNIAL }
 
@@ -115,6 +116,7 @@ for(int i=0; i<plantsByLifeCycle.length; i++){
   
   
 ## 권장 - EnumMap 활용
+
 정원에 화초가 2~3개 이상 있다고 가정해보자. 정원에 있는 화초들은 각각 자기 자신의 생애주기 정보(LifeCycle)를 가지고 있다. 아래는 정원내에 생애 주기별로 화초들의 목록을 EnumMap으로 정리하는 코드이다.  
 ```java
 // EnumMap 타입인 plantsByLifeCycle 선언
@@ -140,6 +142,7 @@ System.out.println(plantsByLifeCycle);
   
 
 # 스트림 활용
+
 ## 스트림 활용 (1)
 참고로, 이 예제는 EnumMap을 사용하지 않는다. List\<Plant\> 형태인 garden에서 LifeCycle의 상수의 종류별로 그루핑해 리스트를 도출하고 있다.  
 
