@@ -1,7 +1,6 @@
 # item36 - 비트 필드 대신 EnumSet을 사용하라
 
 # 정수 열거 상수를 사용할 경우의 단점
-
 예전의 코드들에는 열거하려는 상수 값들이 단독이 아닌 집합으로 사용될 경우 각 상수를 선언할 때마다 2의 거듭제곱을 한번 더 하도록 선언 및 정의하는 경우가 있었다고 한다. 예를 들어 아래와 같은 경우이다.  
 
 ```java
@@ -22,7 +21,6 @@ text.applyStyles(STYLE_BOLD | STYLE_ITALIC);
 
 위와 같이 비트 필드를 사용하면 비트별 연산을 사용해 합집합, 교집합과 같은 집합 연산을 효율적으로 수행가능하다. 하지만 비트 필드는 정수 열거 상수(정수로 직접 선언한 상수)의 단점을 그대로 지니고 있다.
 ex)
-
 ```java
 public class Text{
 	// ...
@@ -38,7 +36,6 @@ public class Text{
 > java.util 패키지의 EnumSet 클래스는 열거타입 상수의 값으로 구성된 집합을 효과적으로 표현해준다.
 
 ## 예제
-
 EnumSet을 이용해 위의 코드를 변경해보면 아래와 같다. ([예제링크](https://github.com/WegraLee/effective-java-3e-source-code/blob/master/src/effectivejava/chapter6/item36/Text.java))
 ```java
 import java.util.*;
