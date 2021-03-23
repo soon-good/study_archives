@@ -1,43 +1,39 @@
 # 스프링 Data JPA 확장기능
 
+아주 옛날에 정리한 문서를 몇번씩 자주, 다시 돌아볼 때마다 가끔은 얼굴이 화끈 거릴 정도로 쑥스럽기는 하다. 오늘도 다시 문서를 보면서 같은 감정이 들었다. 아침마다 애널리스트들의 30분짜리 시황을 들어서 생각하는 방식이 변해서일까? 아니면 문서로 정리하는 일을 오랫동안 해오면서 나 자신도 철이 든 것일까? 하는 생각이 들었다. 오늘은 예전에 정리했던 문서를 최대한 깔끔하게 정리해봤다. 그래도 1년이 넘게 꾸준히 뭐가 되든 직접 실천해온 나에게 대견한 감정이 들었다. 과거의 나는 빨리 뭔가를 더 배우고 싶어서 굉장히 성급했었던 것 같다.    
+
+
+
 # 1. 사용자 정의 리포지터리
 
-QueryDsl, Mybatis, Jooq, jdbcTemplate 을 사용하려 하는데, DataRepository 내에서 해당 기능을 통으로 제공하고 싶을 때가 있다. 운영하면서 Spring Data JPA 에서 제공하는 기능보다는 약간 정교하고 세밀한 컨트롤이 필요한 쿼리를 사용해야만 되는 경우가 자주 있다. 이런 경우 DataSource를 따로 쓰는 경우도 있고, 여러가지 세부적인 특화된 설정을 가져다 쓰는 사용자 정의Repository를 가져다 쓴다.   
+QueryDsl 과 함께 Spring Data 기반으로 작성된 Repository 에서 사용할 수 있도록 상속관계를 만들어서 하나의 Repository 파일 내에서 Data JPA 와 QueryDsl 을 짬뽕해서 사용할 수 있다. 이 문서에서 정리하는 내용은 Data JPA Repository 와 QueryDSL 을 함께 사용할 수 있도록 하는 예제를 직접 정리해보고자 한다. 
 
-  
+> 개인적인 취향이지만, 나의 경우는 QueryDsl 리포지터리는 따로 구현해서 별도의 리포지터리로 빼두는 것이 낫다는 생각이 있다. 객체지향 적으로 멋있게 풀어내는 것보다는 제품에 대한 시각이 더 중요하지 않나 하는 생각이 있어서이다. 여러가지 라이브러리가 강한 결합을 가지는 것은 좋지 않다는 생각도 들었었다. 다른 사람이 쉽게 파악할 수 있는 코드가 좋은 코드라는 생각도 들었다. 실제로 강의를 들으면서 강사님(김영한 님) 께서도 꼭 이렇게 합쳐놓는게 만능은 아니라는 설명 역시 있었었다.
 
-이때, 사용자 정의 리포지터리를 새로 하나 만들고, 이 사용자 정의 리포지터리를 기존 DataRepository 내에서 사용할 수 있도록 상속받아 기능을 확장할 수 있다. 여기서는 이러한 경우에 대해 다룬다. 
 
-> 실제로, 사용자 정의 리포지터리를 기존 Data JPA Repository 내에 결합해서 사용하는 것은 사람마다 취향차이이겠지만, 여러가지 라이브러리가 짬뽕된 리포지터리가 만들어지는 관계로 인해 나의 경우는 그다지 선호하지 않는다. 복잡도도 올라가고, 결합도도 높아지기 때문이다. 어느 정도의 용도별 분리가 더 중요한 편이라고 생각하는 편이다.  
 
-예제에서는  
+아래에서 정리하는 예제의 시나리오를 정리해봤다.
 
-- 사용자 정의 리포지터리 클래스/인터페이스를 생성한다.
-  - QEmpRepository, QEmpRepositoryImpl 이라는 이름으로 생성한다.
-    - 이름을 보면 알수 있겠지만, QueryDsl을 사용하는 경우를 가정했다. 
-    - 여기서 QueryDsl을 설정하지는 않는다. 단순 가정일 뿐이다. (시간이 된다면 예제로 추가할 예정)
-  - 단순 select 문을 추가
-  - 여기서 QueryDsl 을 정리하지는 않는다. (시간이 된다면 예제로 추가해보자.)
-- Spring Data JPA 기반의 리포지터리를 만든다. 
-  - EmpCustomDataRepository 라는 이름으로 생성한다.
-  - 이 리포지터리에서 QEmpRepository 의 select 구문을 호출할 수 있도록 QEmpRepository 인터페이스를 상속받는다.
+- `QEmpRepository` , `QEmpRepositoryImpl` 라는 이름의 사용자 정의 리포지터리를 생성
+  - 단순 조회 쿼리만을 수행하는 Repository 만
+- `EmpCustomDataRepository`라는 이름의 Spring Data JPA 기반의 리포지터리 생성
+  - 이 Data Repository 용도의 인터페이스 내에서 select 구문을 호출할 수 있도록 QEmpRepository 인터페이스를 상속받는다.
 
-자, 이제 예제를 살펴보자.
+
 
 ## 예제
 
 ### QEmpRepository.java
 
-아직까지는, QueryDsl을 사용하는 경우를 흉내낸 단순 리포지터리이다. 나중에 볼때 이해가 쉬우려면 예제의 단순함이 훨씬 중요하다는 생각에 QueryDsl 로직을 배제했다.
+`QEmpRepository.java` 는 `QEmpRepositoryImpl.java` 에서 implements 하고 있다. 
 
 ```java
-package io.study.erd_example.emp.repository.custom.rawjpa;
+package io.study.qdsl_and_datajpa.employee.repository;
 
-import io.study.erd_example.emp.entity.Employee;
 import java.util.List;
 
-public interface QEmpRepository {
-	List<Employee> selectAllEmployees();
+public interface QEmployeeRepository {
+	List<Employee> findByAnyNameOrSalary(String name, Double salary);
 }
 ```
 
@@ -48,19 +44,34 @@ public interface QEmpRepository {
 아직까지는, QueryDsl을 사용하는 경우를 흉내낸 단순 리포지터리이다. 나중에 볼때 이해가 쉬우려면 예제의 단순함이 훨씬 중요하다는 생각에 QueryDsl 로직을 배제했다.
 
 ```java
-public class QEmpRepositoryImpl implements QEmpRepository {
+package io.study.qdsl_and_datajpa.employee.repository;
 
-	private EntityManager em;
+import com.querydsl.jpa.impl.JPAQueryFactory;
+import java.util.List;
+import javax.persistence.EntityManager;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
-	public QEmpRepositoryImpl(EntityManager em){
-		this.em = em;
+@Repository
+public class QEmployeeRepositoryImpl implements QEmployeeRepository{
+
+	private final EntityManager entityManager;
+
+	private final JPAQueryFactory queryFactory;
+
+	@Autowired
+	public QEmployeeRepositoryImpl(EntityManager entityManager){
+		this.entityManager = entityManager;
+		this.queryFactory = new JPAQueryFactory(entityManager);
 	}
 
-	@Override
-	public List<Employee> selectAllEmployees() {
-		return em.createQuery("select e from Employee e")
-			.getResultList();
+	public List<Employee> findByAnyNameOrSalary(String name, Double salary){
+		return queryFactory.selectFrom(QEmployee.employee)
+			.where(QEmployee.employee.name.eq(name)
+				.or(QEmployee.employee.salary.eq(salary)))
+			.fetch();
 	}
+
 }
 ```
 
@@ -68,106 +79,96 @@ public class QEmpRepositoryImpl implements QEmpRepository {
 
 ### EmpCustomDataRepository.java
 
-이전까지 만들었던 Data JPA 예제를 지저분하게 만드는 것이 영 내키지 않아서, EmpCustomDataRepository 라는 이름의 interface를 새로 만들었다. 디렉터리의 위치는 아래와 같다. (아예 custom이라는 패키지를 새로 만들어 예제용으로 준비했다.)
-
-![이미자](./img/CUSTOM_JPA_1.png)
-
-예제 코드는 아래와 같다.
+> Data JPA 리포지터리 이다.
 
 ```java
-public interface EmpCustomDataRepository extends JpaRepository<Employee, Long>, QEmpRepository {
+package io.study.qdsl_and_datajpa.employee.repository;
 
-	@Query("select e from Employee e left join fetch e.dept")
-	List<Employee> findAllFetchJoin();
-  
-	// ... 이전에 작성했던 예제들 ... 모두 중략 
-  
+import io.study.qdsl_and_datajpa.employee.Employee;
+import java.util.List;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
+
+public interface EmployeeCustomRepository extends JpaRepository<Employee, Long>, QEmployeeRepository{
+
+	@Query("select e from Employee e where e.id =:id")
+	List<Employee> findEmployeesById(@Param("id") Long id);
 }
 ```
 
+DataJPA 리포지터리인  `EmpCustomDataRepository` 는 JpaRepository 를 상속받으면서도, QEmpRepository 도 상속받고 있다. interface는 다중상속을 받을 수 있다. 이렇게 되면 EmpCustomDataRepository 는 아래의 기능을 모두 가지게 된다.  
 
-
-일반적인 Data JPA Repository 는 JpaRepository 라는 이름의 interface를 상속받는 편이다. 그런데 사용자 정의 리포지터리의 기능도 이 Data JPA Repository 에서 사용할 수 있도록 하기 위해 QEmpRepository interface도 상속받았다.  
-
-결과적으로는 
-
-- JpaRepository\<Employee, Long\>
-- QEmpRepository
-
-를 상속받았다. UML 로 정리해보려 했는데, 직접 작성해본 결과, UML을 아무리 보는 것보다는 실제로 코드를 쳐봐야 UML이 이해가 된다. 이런 이유로 UML은 생략~ (절대 그리기 싫어서가 아니다. ㅋㅋ ㅠㅜ)
+- JpaRepository\<Employee, Long\> 
+- QEmployeeRepository
+  - findByAnyNameOrSalary(String name, Double salary)
 
 
 
 ### EmpCustomDataRepositoryTest.java
 
 ```java
-/**
- * 사용자 정의 리포지터리 테스트
- */
+package io.study.qdsl_and_datajpa.employee;
+
+import io.study.qdsl_and_datajpa.employee.repository.EmployeeCustomRepository;
+import java.util.List;
+import javax.persistence.EntityManager;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.transaction.annotation.Transactional;
+
 @SpringBootTest
 @Transactional
-public class EmpCustomDataRepositoryTest {
+public class EmployeeCustomRepositoryTest {
 
 	@Autowired
-	DeptDataRepository deptDataRepository;
-
-	@Autowired
-	EmpCustomDataRepository qEmpRepository;
+	EmployeeCustomRepository customEmpRepository;
 
 	@Autowired
 	EntityManager em;
 
 	@BeforeEach
 	void insertData(){
-		Department police = new Department("POLICE");
-		Department firefighter = new Department("FIREFIGHTER");
+		Employee e1 = new Employee("소방관 #1", 1000D);
+		Employee e2 = new Employee("소방관 #2", 2000D);
 
-		deptDataRepository.save(police);
-		deptDataRepository.save(firefighter);
-
-		Employee empPolice1 = new Employee("경찰관1", 1000D, police);
-		Employee empPolice2 = new Employee("경찰관2", 1000D, police);
-		Employee empPolice3 = new Employee("경찰관3", 1000D, police);
-		Employee empPolice4 = new Employee("경찰관4", 1000D, police);
-		Employee empPolice5 = new Employee("경찰관5", 1000D, police);
-		Employee empFireFighter = new Employee("소방관1", 1000D, firefighter);
-
-		qEmpRepository.save(empPolice1);
-		qEmpRepository.save(empPolice2);
-		qEmpRepository.save(empPolice3);
-		qEmpRepository.save(empPolice4);
-		qEmpRepository.save(empPolice5);
-
-		qEmpRepository.save(empFireFighter);
-
-		em.flush();
-		em.clear();
+		customEmpRepository.save(e1);
+		customEmpRepository.save(e2);
 	}
 
 	@Test
-	@DisplayName("커스텀 리포지터리 테스트")
-	void testCustomRepository(){
-		List<Employee> employeeCustom = qEmpRepository.selectAllEmployees();
-
+	@DisplayName("커스텀_리포지터리_테스트")
+	void 커스텀_리포지터리_테스트(){
+		List<Employee> employeeCustom = customEmpRepository.findByAnyNameOrSalary("소방관 #1", 1000D);
 		System.out.println(employeeCustom);
 	}
+
 }
+```
+
+
+
+출력결과
+
+```plain
+[Employee(id=1, name=소방관 #1, salary=1000.0)]
 ```
 
 
 
 # 2. Auditing
 
-엔티티의 생성/변경 시점에 
+엔티티의 생성/변경 시점에 아래의 네 가지 항목들을 기록으로 남겨둘 수 있다.
 
 - 등록일
 - 수정일
 - 등록자
 - 수정자
 
-를 기록으로 남겨놓을 수 있다. 엔티티마다 이러한 내용들을 남겨놓으면 추후 운영단계에서 번거로움을 많이 덜어낼 수 있다.  
-
-상용서비스의 경우 가끔 과거 이력을 추적하고, 이력으로 남겨야만 법적인 문제가 되지 않는 경우도 있다. 뭐라는거지? 일단 정리 고고싱  
+엔티티마다 이러한 내용들을 남겨놓으면 추후 운영단계에서 번거로움을 많이 덜어낼 수 있다.  
 
 
 
@@ -192,6 +193,8 @@ public class JpaBaseEntity {
 
 	@Column(updatable = false)
 	private LocalDateTime createdDate;
+  
+  @Column(updatable = false)
 	private LocalDateTime updatedDate;
 
 	@PrePersist
@@ -211,22 +214,24 @@ public class JpaBaseEntity {
 ```
 
 - @MappedSuperclass
-  - Entity 클래스 (e.g. Employee, Department 등등) 가 상속받아서 사용한다.
-  - 우리가 작성한 JpaBaseEntity라는 이름의 클래스는 Employee 엔티티에서 사용하기 위해서는 @MappedSuperclass 라는 어노테이션을 사용해야만 엔티티가 JpaBaseEntity 타입의 클래스를 인식가능하다.
+  - "**다른 엔티티들에 의해 매핑되는 수퍼클래스**" 임을 지정할 때 사용하는 애노테이션 
+  - 다른 Entity 클래스 (e.g. Employee) 가 상속받아서 사용한다.
+  - 위 예제에서 작성한  JpaBaseEntity 이름의 엔티티 클래스에 @MappedSuperClass 를 지정해야만 다른 엔티티(e.g. `Employee` )에서 JpaBaseEntity 타입의 클래스를 인식할 수 있다.
   - 자세한 원리는 JPA 기본편에서 자세하게 설명해준다.
 - @Column(updatable = false)
   - 데이터의 초기 생성시점은 변경되면 안된다는 조건을 걸고 싶을 때 사용한다.
-  - 과거 이력에 대해서 수정을 하는 것이 조작이라고 판단되는 법적인 문제?도 있지 않은가... 또 헛소리를 했다. 얼ㄹ른 자야할 듯.
-  - 초기 생성 시점에 대한 기록이 자주 변경된다면 조회상으로도 모호함을 낳기 때문에 좋지 않기 때문에 createdDate와 같은 필드에는 가급적 @Column(updatable = false)를 사용하는 것을 권장하는 편이다.
+  - 초기 생성 시점에 대한 기록이 자주 변경된다면 조회상으로도 모호함을 낳는 것으로 인해 createdDate와 같은 필드에는 가급적 @Column(updatable = false)를 사용하는 것을 권장하는 편이다.
   - @Column(updatable = false, insertable = true) 와 같이 지정할 수 도 있다.
 - @PrePersist
   - Persist, 즉 DB에 저장하기 직전에 호출되도록 하고 싶은 메서드에 @PrePersist 를 지정해준다.
 - @PreUpdate
-  - Entity 에 대해 Update 동작이 발생할 때에 수행할 동작을 기술한 메서드에 @PreUpdate 를 지정해준다.
+  - Entity 에 대해 Update 동작이 발생할 때에 수행할 동작을 기술한 메서드에 @PreUpdate 를 지정해준다.  
+
+  
 
 ### Employee.java
 
-Employee 엔티티는 방금 작성한  JpaBaseEntity 클래스를 상속받은 것 외에는 따로 해준 것이 없다.
+`Employee` 엔티티에서는 위에서 작성한 `JpaBaseEntity` 클래스를 상속(확장)하고 있다.
 
 ```java
 @Getter @Setter
@@ -345,28 +350,43 @@ updatedDate :: 2020-08-10T23:24:04
 
 ## 예제2) Spring Data JPA 를 사용할 때
 
+> 위에서 살펴본 JpaBaseEntity 는 Spring Data JPA 를 사용하게 된다면 보일러플레이트 성격의 중복 코드들을 또 다시 공통화 할 수 있다. 
+>
+> - LocalDateTime now = LocalDateTime.now();
+> - createdDate = now
+>
+> 와 같은 구문은 직접 사용할 경우 예기치 않은 실수가 발생할 수도 있고, 중복코드를 공통화한다면 좋다. Spring Data JPA 에서는 아래의 애노테이션들을 사용하여 이런 중복 코드들을 공통화하는 것이 가능하다.
+>
+> - @EntityListeners
+> - @CreatedDate
+> - @LastModifiedDate
+
+
+
 순수 JPA를 사용할 때에 비해 코드가 짧아지거나 간결해지진 않는다. 작성하는 코드의 양은 비슷하다. 다만, 차이점은 아래와 같다.
 
 - 순수 JPA를 사용할 때
 
-  - @PrePersise @PreUpdate 에서 프로그래머가 직접 작성하게 될때 부주의하게 실수할 수 있는 부분이 있다.
+  - @PrePersist, @PreUpdate 에서 프로그래머가 직접 작성하게 될때 부주의하게 실수할 수 있는 부분이 있다.
 
 - Data JPA를 사용할 때
 
-  - 내부에 내재화 되어 있다는 것이 다른 점으로 보인다.  
-
   - 아래와 같은 중복될 수밖에 없는 코드들을 공통화한 @CreatedDate, @LastModifiedDate 어노테이션을 사용한다.
+
+  - 즉, 중복되는 코드들이 Data JPA 내부적인 원리로 내재화 되어 있다는 것이 다른 점으로 보인다.  
 
     ```java
     LocalDateTime now = LocalDateTime.now();
     createdDate = now;
     ```
 
+
   
 
-Spring Data JPA 기반으로 Auditing 을 사용하는 한가지 장점이 있다.
+Spring Data JPA 기반으로 Auditing 을 사용하는 한 가지 장점이 있다.
 
 - 등록자, 수정자를 AuditorAware 와 연동하여 @CreatedBy, @LastModifiedBy 등으로 지정해줄 수 있다는 점이다.
+
 
   
 
@@ -375,7 +395,7 @@ Spring Data JPA 기반으로 Auditing 엔티티를 작성할 때 사용하는 �
 - @EnableJpaAuditing
   - 스프링 부트 설정 클래스에 적용
 - @MappedSuperclass
-  - 엔티티에 적용
+  - 엔티티에 적용 (e.g. `JpaBaseEntity` or `DataJpaBaseEntity`)
 - @EntityListeners(AuditingEntityListener.class)
   - 엔티티에 적용
 - @CreatedDate
@@ -569,15 +589,36 @@ updatedDate :: 2020-08-11T21:11:51
 
 
 
-## 예제3) Spring Data JPA - 등록자, 수정자 (1)
+## 예제3) 글쓴이, 수정한 사람을 Auditing 하기
+
+글 쓴이, 수정한 사람에 대한 데이터 역시 Data JPA 의 Auditing 기능을 이용하여 지정해주는 것이 가능하다. 가끔 이런 기능들을 보면 정말 유지보수성이 뛰어난 라이브러리 이구나 하는 생각도 든다.
+
+- @CreatedBy, @LastModifiedBy 가 엔티티 내에 지정하고 있는 필드에 데이터를 주입하려면 그냥은 사용할 수 없다.  
+- AuditorAware 타입의 컴포넌트를 빈으로 등록해두어야 @CreatedBy, @LastModifiedBy 가 가리키는 필드에 데이터를 주입할 수 있다.  
+- 이때 AuditorAware 를 이용해서 해당 글을 작성한 사람(@CreatedBy), 수정한 사람(@LastModifiedBy)를 리턴하는 구문을 작성한다. 
+- 보통 이때 Spring Security 의 Security Context Holder 를 사용한다. 꼭 Spring Security 가 아니더라도 로그인 한 사용자의 이름이나, 닉네임을 얻어오기 위해 사용 가능한 다른 방법을 이용해서 데이터를 리턴해주면 된다. 
+
+  
+
+**참고자료**  
+
+- [AuditorAware 를 사용하여 등록자 데이터를 자동으로 생성하기](https://mia-dahae.tistory.com/150)
+- [[JPA] @CreatedBy](https://ziponia.github.io/2019/05/13/@CreatedBy.html)
+
+
 
 ### ErdApplication.java
 
-- 이번 예제에서는 UUID를 이용해 난수를 생성했다.
-  - 스프링 시큐리티 설정까지 정리하기엔 예제가 너무 TMI가 되어 한눈에 보기 어려워질것 같다는 생각에 이렇게 정리.
-- 보통은 SecurityContextHolder 를 이용해 현재 세션의 사용자를 얻어내는 편이다.
-- SecurityContextHolder 를 이용해 현재 세션의 사용자를 얻어냈을 때 아래의 람다 구문의 Optional.of( ... ) 메서드 내에 해당 세션에 대한 요청 ID를 넣어주면 된다.
-- 아이디를 얻어와 지정해주는 로직은 설정(Configuration 또는 Bean)으로 따로 분리해놓았는데, 여기서는 @Bean으로 등록했다.
+> - @CreatedBy , @LastModifiedBy 가 지정하고 있는 엔티티 내의 필드에 주입할 데이터를 생성하는 부분이 필요하다. 
+> - AuditAware 를 이용해서 @CreatedBy, @LastModifiedBy 가 지정하고 있는 필드에 데이터를 주입해줄 수 있다.
+> - 꼭 SecurityContextHolder 등의 스프링 시큐리티 기능을 사용해야 하는 것은 아니다. 작성자를 지정할 수 있는 id를 얻어낼 수 있거나, 또는 nickname을 얻어오는 로직이 따로 있다면 그것을 AuditAware 를 빈 등록하는 구문에서 사용할 수 있다.
+> - 아이디를 얻어와 지정해주는 로직은 설정(Configuration 또는 Bean)으로 따로 분리해놓았는데, 여기서는 글이 길어지기 때문에 Application 클래스 내에서 바로 확인가능하도록 @Bean으로 등록했다.
+
+  
+
+이번 예제에서는 UUID를 이용해 난수를 생성했다. 보통은 SecurityContextHolder 를 이용해 현재 세션의 사용자를 얻어내는 편이다.  
+
+SecurityContextHolder 를 이용해 현재 세션의 사용자를 얻어냈을 때 아래의 람다 구문의 Optional.of( ... ) 메서드 내에 해당 세션에 대한 요청 ID를 넣어주면 된다.  
 
 ```java
 package io.study.erd_example;
@@ -598,18 +639,13 @@ public class ErdApplication {
 		SpringApplication.run(ErdApplication.class, args);
 	}
 
-	// 샘플 예제를 위한 fake 데이터 생성
-	// UUID를 이용해 난수를 생성했다.
-	// 보통은 SecurityContextHolder 를 이용해 현재 세션의 사용자를 얻어내는 편이다.
-	// SecurityContextHolder 를 이용해 현재 세션의 사용자를 얻어냈을 때 아래의 람다 구문의
-	// Optional.of( ... ) 메서드 내에 해당 세션에 대한 요청 ID를 넣어주면 된다.
+  // 아래 예제는 
 	@Bean
 	public AuditorAware<String> auditorAware(){
 		return () -> Optional.of(UUID.randomUUID().toString());
 	}
 
 }
-
 ```
 
 
@@ -617,19 +653,20 @@ public class ErdApplication {
 ### DataJpaBaseEntity.java
 
 - @CreatedBy
-  - 등록자
-  - 보통은 SecurityContextHolder에서 가져온 현재 요청을 보낸 사용자에 대한 아이디를 얻어와 지정해준다.
+  - 글쓴이에 대한 데이터를 AuditorAware 타입의 컴포넌트로부터 받아와 @CreatedBy 가 가리키는 필드에 데이터를 주입
+  - 스프링 시큐리티 또는 내부 개발 팀에서 사용하는 로직을 이용해 로그인 한 사용자 정보에 대한 데이터를 전달해주는 로직을 AuditorAware 관련 로직에 추가해준다.
   - 아이디를 얻어와 지정해주는 로직은 설정으로 따로 분리해놓았는데, 바로 앞전에서 본 AuditingAware 함수를 @Bean으로 등록하는 구문에서 등록하고 있다.
   - 이번 예제에서는 등록자에 단순히 난수를 등록해주고 있다.
 
 - @LastModifiedBy
 
-  - 수정자
+  - 글을 수정한 사람에 대한 데이터를 AuditorAware 타입의 컴포넌트로부터 받아와 @LastModifiedBy 가 가리키는 필드에 데이터를 주입
   - 보통은 SecurityContextHolder에서 가져온 현재 요청을 보낸 사용자에 대한 아이디를 얻어와 지정해준다.
   - 아이디를 얻어와 지정해주는 로직은 설정(Configuration 또는 Bean)으로 따로 분리해놓았는데, 바로 앞전에서 본 AuditingAware 함수를 @Bean으로 등록하는 구문에서 등록하고 있다.
   - 이번 예제에서는 수정자에 단순히 난수를 등록해주고 있다.
 
-  
+
+
 
 ```java
 @EntityListeners(AuditingEntityListener.class)
@@ -736,9 +773,9 @@ updatedBy :: e19fbedc-1a39-4241-83ea-2c440e3c29c0
 
 
 
-## 예제 4) Spring Data JPA - 등록자, 수정자 (2) :: update시에는 null 로 지정
+## 예제 4) 글쓴이, 수저한 사람을 Auditing 하기 :: update시에는 null 로 지정
 
-권장되는 방법은 아니다. 등록할 때에만 데이터를 입력하고, 수정할 때에는 null 로 지정하고자 할 때가 있다. 설정 파일위에 작성한 @EnableJpaAuditing 어노테이션에 아래와 같이 추가해준다. (이번 예제에서는 ErdApplication.java, 보통 @EnableJpaAuditing 은 설정 클래스에 따로 분리해놓는 편이다. 명심하자.)
+권장되는 방법은 아니다. 등록할 때에만 데이터를 입력하고, 수정할 때에는 null 로 지정하고자 할 때가 있다. 설정 파일위에 작성한 @EnableJpaAuditing 어노테이션에 아래와 같이 추가해준다. 
 
 > @EnableJpaAuditing(modifyOnCreate = false)
 
