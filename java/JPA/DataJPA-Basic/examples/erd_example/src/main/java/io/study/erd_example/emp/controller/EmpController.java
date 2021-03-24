@@ -5,6 +5,8 @@ import io.study.erd_example.emp.entity.Department;
 import io.study.erd_example.emp.entity.Employee;
 import io.study.erd_example.emp.repository.DeptDataRepository;
 import io.study.erd_example.emp.repository.EmpDataRepository;
+import java.util.List;
+import java.util.stream.Collectors;
 import javax.annotation.PostConstruct;
 import javax.persistence.EntityManager;
 import org.springframework.data.domain.Page;
@@ -43,6 +45,15 @@ public class EmpController {
 	@GetMapping("/employee/v2/{id}")
 	public String getEmployeeById2(@PathVariable("id") Employee employee){
 		return employee.getUsername();
+	}
+
+	@GetMapping("/employee/v3")
+	@ResponseBody
+	public List<EmployeeDto> getEmployeeById3(EmployeeDto dto){
+		List<Employee> result = empDataRepository.findAllByUsername(dto.getUsername());
+		return result.stream()
+			.map(employee -> new EmployeeDto(employee))
+			.collect(Collectors.toList());
 	}
 
 	// 여기부터...

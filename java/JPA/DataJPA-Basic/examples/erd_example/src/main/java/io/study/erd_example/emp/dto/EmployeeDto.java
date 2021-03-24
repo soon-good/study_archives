@@ -1,13 +1,14 @@
 package io.study.erd_example.emp.dto;
 
 import io.study.erd_example.emp.entity.Employee;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
-@Getter @Setter
+@Data
 public class EmployeeDto {
 	private String username;
 	private Double salary;
+
+	public EmployeeDto(){}
 
 	public EmployeeDto(String username, Double salary){
 		this.username = username;

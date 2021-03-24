@@ -24,6 +24,8 @@ public interface EmpDataRepository extends JpaRepository<Employee, Long> {
 	@Query("select e from Employee e")
 	List<Employee> findAllEntityGraph();
 
+	List<Employee> findAllByUsername(@Param("username") String username);
+
 	@QueryHints(value= @QueryHint(name="org.hibernate.readOnly", value="true"))
 //	@Query("select e from Employee e where e.username = :username")
 	Employee findReadOnlyByUsername(@Param("username") String username);
