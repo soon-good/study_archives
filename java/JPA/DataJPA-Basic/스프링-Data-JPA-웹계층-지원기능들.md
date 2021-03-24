@@ -1,66 +1,8 @@
-# 3. 도메인 클래스 컨버터
+# 스프링  Data JPA 웹 계층 지원기능들
 
-그다지 권장하는 방식은 아니다. Controller 내의 HTTP 요청을 받는 메서드에서 메서드의 파라미터로 도메인 클래스(엔티티 클래스)를 두면, HTTP 요청에 의해 전달되는 데이터를 스프링 내부에서 실제 인자값을 도메인 클래스내의 해당 멤버 필드로 바인딩해준다.  
+**예제 파일들**
 
-  
-
-단점은 화면에 종속적인 정보를 도메인에 연결시킨다는 점이다. 이렇게 할 경우, 기획이 자주 바뀔수 밖에 없는 화면단의 관점에 따라 도메인이 변하게 되고, 도메인에 종속된 repository 들의 로직들도 일괄적으로 변할 수 밖에 없다는 점이 단점이다.  
-
-  
-
-가급적이면, 굉장히 급한 프로토타입을 만드는 경우가 아니고서는 권장되지 않는 방식이다. 주의할것!!!
-
-## 예제
-
-### EmpController.java
-
-```java
-@Controller
-public class EmpController {
-
-	private final EmpDataRepository empDataRepository;
-
-	private final DeptDataRepository deptDataRepository;
-
-	private final EntityManager em;
-
-	public EmpController(EmpDataRepository empDataRepository,
-							DeptDataRepository deptDataRepository,
-							EntityManager em){
-		this.empDataRepository = empDataRepository;
-		this.deptDataRepository = deptDataRepository;
-		this.em = em;
-	}
-
-	// 도메인 클래스 컨버터 예제 - 일반 요청 (비교를 위해 예제로)
-	@GetMapping("/employee/v1/{id}")
-	public String getEmployeeById(@PathVariable("id") Long id){
-		Employee employee = empDataRepository.findById(id).get();
-		return employee.getUsername();
-	}
-
-	// 도메인 클래스 컨버터 예제 - 도메인 클래스 컨버터를 사용
-	@GetMapping("/employee/v2/{id}")
-	public String getEmployeeById2(@PathVariable("id") Employee employee){
-		return employee.getUsername();
-	}
-
-	@PostConstruct
-	public void initData(){
-		Department police = new Department("POLICE");
-		deptDataRepository.save(police);
-
-		for(int i=0; i<100; i++){
-			final Employee e = new Employee("경찰관 #"+String.valueOf(i), 1000D, police);
-			empDataRepository.save(e);
-		}
-    
-    em.flush();
-    em.clear();
-	}
-}
-
-```
+- [github.com/study_archives/java/jpa/DataJPA-Basic/examples/erd_example](https://github.com/soongujung/study_archives/tree/master/java/JPA/DataJPA-Basic/examples/erd_example)
 
 
 
@@ -1106,7 +1048,7 @@ limit 5;
 
 
 
-## 별첨) 커스터마이징
+# 참고) 커스터마이징
 
 > 페이징을 적용할 때 page의 기본 시작 index가 0 이다. page 를 1 부터 시작하도록 하려면 두가지의 해결책이 있다.
 
@@ -1116,4 +1058,42 @@ limit 5;
 - spring.data.web.pageable.one-indexed-parameters 를  true로 설정하는 방식
   - spring.data.web 계층에서 page를 단순 증감(-1) 처리하는 방식이다.
   - 한계가 있다. (pageable 및 나머지 필드들에는 적용이 안된다.)
+
+
+
+# 참고) 도메인 클래스 컨버터
+
+> 도메인이 웹과 강하게 결합되는 점, 트랜잭션을 웹 계층에 걸수 없다는 점, 커스터마이징이 쉽지 않다는 점. 등으로 인해 자주 사용되는 것은 아니며, 그냥 스프링 Data JPA 에 있는 그저 그런 개념중 하나.
+
+  
+
+Controller 의 GetMapping 메서드에 엔티티 클래스(도메인)를 파라미터로 두는 경우가 있다. 이 경우 스프링 내부적으로는 도메인 클래스 컨버터라는 것을 이용해 필드에 값을 치환해준다. 아마도 리플렉션이 적용되는 것이 아닐까 하는 생각이 든다.  
+  
+
+상대적으로 권장되는 방식은 아니다. 웹 계층의 데이터는 화면/기획에 따라 굉장히 자주 변경되어야 하는 정보이다. 언제든지 적극적으로 변경되어야 하는 정보이다. 하지만, 도메인(엔티티 클래스)의 경우 마이그레이션에 신중해야 하고, DB의 부하에 대해서도 신중하게 생각해야 한다. 웹 계층에서 도메인 계층의 객체를 사용하게 되면 변경이 자유로운 소프트웨어를 만들지 못하게 되는 문제가 생긱기에 추천되는 방식은 아니다. 대신, DTO 클래스를 따로 만들어서 인자값으로 받으면 된다.  
+
+
+## 예제
+
+[github.com/study_archives/java/jpa/DataJPA-Basic/examples/erd_example](https://github.com/soongujung/study_archives/tree/master/java/JPA/DataJPA-Basic/examples/erd_example)  
+
+
+### EmpController.java
+
+```java
+@Controller
+public class EmpController {
+
+	// ...
+
+	// 도메인 클래스 컨버터 예제 - 도메인 클래스 컨버터를 사용
+	@GetMapping("/employee/v2/{id}")
+	public String getEmployeeById2(@PathVariable("id") Employee employee){
+		return employee.getUsername();
+	}
+  
+	// ...
+}
+
+```
 
